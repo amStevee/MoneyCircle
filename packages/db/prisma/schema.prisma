@@ -6,9 +6,22 @@ datasource db {
   provider = "postgresql"
 }
 
-model User {
-  id        String   @id @default(cuid())
-  name      String
-  email     String   @unique
-  createdAt DateTime @default(now())
+enum Status {
+  PENDING
+  VERIFIED
+  UNSUBSCRIBED
+}
+
+model waitlistEntry {
+  id String @id @default(uuid())
+  email String @unique @db.VarChar(255)
+  status Status @default(PENDING)
+  verification_token_hash String? @db.VarChar(255)
+  verification_expires_at DateTime 
+  verified_at DateTime? 
+  created_at DateTime @default(now()) 
+  updated_at DateTime @default(now()) 
+
+  @@index([status])
+  @@index([created_at])
 }

@@ -1,4 +1,7 @@
-const app = require("./app.js");
+import dotenv from "dotenv";
+import app from "./app.js";
+
+dotenv.config({ path: new URL("../.env", import.meta.url).pathname });
 
 const port = Number(process.env.PORT) || 4000;
 

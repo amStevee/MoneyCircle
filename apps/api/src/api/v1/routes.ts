@@ -1,5 +1,5 @@
 import express, { Router } from "express";
-import waitingListRouter from "../../modules/waiting-list/routes.js";
+import waitingListRouter from "../../modules/waiting-list/waitingList.routes.js";
 
 const router: Router = express.Router();
 

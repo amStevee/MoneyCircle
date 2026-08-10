@@ -2,8 +2,8 @@ import { z } from "zod";
 import {
   joinWaitingListRepository,
   findWaitingListByEmail,
-} from "./waitingList.repository.js";
-
+} from "./waitingList.repository.ts";
+import { emailService } from "../../infrastructure/email/email.provider.ts";
 export const joinWaitingListSchema = z.object({
   email: z
     .string()
@@ -30,6 +30,14 @@ class WaitingListService {
     }
 
     const newEntry = await joinWaitingListRepository(normalizeEmail);
+
+    await emailService.send({
+      to: normalizeEmail,
+      subject: "Thanks for joining the waiting list",
+      text: `Hello!\n\nThank you for joining our waiting list. We'll notify you when we launch.`,
+      html: `<p>Hello!</p><p>Thank you for joining our waiting list. We&apos;ll notify you when we launch.</p>`,
+    });
+
     return newEntry;
   }
 }

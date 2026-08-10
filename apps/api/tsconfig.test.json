@@ -4,7 +4,8 @@
   "compilerOptions": {
     "noEmit": true,
     "rootDir": ".",
-    "types": ["node", "jest"]
+    "types": ["node", "jest"],
+    "module": "CommonJS"
   },
   "include": ["src", "tests"],
   "exclude": ["node_modules", "dist"]

@@ -1,6 +1,6 @@
 import { prisma } from "@repo/db";
 
-async function joinWaitingListRepository(email: string) {
+async function joinWaitingListRepository(email: string): Promise<any> {
   try {
     const verificationExpiresAt = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 hours
     const newEntry = await prisma.waitlistEntry.create({
@@ -16,7 +16,7 @@ async function joinWaitingListRepository(email: string) {
   }
 }
 
-async function findWaitingListByEmail(email: string) {
+async function findWaitingListByEmail(email: string): Promise<any | null> {
   try {
     return await prisma.waitlistEntry.findUnique({ where: { email } });
   } catch (error) {

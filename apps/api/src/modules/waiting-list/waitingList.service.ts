@@ -13,9 +13,10 @@ export const joinWaitingListSchema = z.object({
 });
 
 export type JoinWaitingListInput = z.infer<typeof joinWaitingListSchema>;
+type JoinWaitingListResult = Awaited<ReturnType<typeof joinWaitingListRepository>>;
 
 class WaitingListService {
-  async join(email: JoinWaitingListInput["email"]) {
+  async join(email: JoinWaitingListInput["email"]): Promise<JoinWaitingListResult> {
     const result = joinWaitingListSchema.safeParse({ email });
     if (!result.success) {
       throw new Error("Invalid email format");

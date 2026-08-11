@@ -7,13 +7,9 @@ module.exports = {
     "^.+\\.(t|j)sx?$": ["ts-jest", { tsconfig: "tsconfig.test.json" }],
   },
   moduleNameMapper: {
+    // Strips .js extensions added for NodeNext ESM compatibility so Jest can find .ts source files
     "^(\\.{1,2}/.*)\\.js$": "$1",
-    "^@repo\\/(.*)$": "<rootDir>/../../packages/$1/src",
-    "^@repo$": "<rootDir>/../../packages/$1/src",
-  },
-  globals: {
-    "ts-jest": {
-      tsconfig: "tsconfig.test.json",
-    },
+    // Maps @repo/* to packages/*/src
+    "^@repo/(.*)$": "<rootDir>/../../packages/$1/src",
   },
 };

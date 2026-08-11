@@ -45,6 +45,9 @@ importers:
         specifier: ^3.23.2
         version: 3.25.76
     devDependencies:
+      '@repo/eslint-config':
+        specifier: workspace:*
+        version: link:../../packages/eslint-config
       '@types/dotenv':
         specifier: ^8.2.3
         version: 8.2.3

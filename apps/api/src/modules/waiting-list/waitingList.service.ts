@@ -2,8 +2,8 @@ import { z } from "zod";
 import {
   joinWaitingListRepository,
   findWaitingListByEmail,
-} from "./waitingList.repository.ts";
-import { emailService } from "../../infrastructure/email/email.provider.ts";
+} from "./waitingList.repository.js";
+import { emailService } from "../../infrastructure/email/email.provider.js";
 export const joinWaitingListSchema = z.object({
   email: z
     .string()

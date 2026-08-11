@@ -2,7 +2,7 @@ import type {
   EmailPayload,
   EmailProvider,
   EmailSendResult,
-} from "./email.types.ts";
+} from "./email.types.js";
 
 export class EmailService {
   constructor(private readonly provider: EmailProvider) {}

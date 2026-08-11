@@ -3,7 +3,7 @@ import type {
   EmailPayload,
   EmailProvider,
   EmailSendResult,
-} from "../email.types.ts";
+} from "../email.types.js";
 
 const smtpUrl = process.env.EMAIL_SMTP_URL;
 const smtpHost = process.env.EMAIL_SMTP_HOST;

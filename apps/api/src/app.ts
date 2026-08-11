@@ -1,5 +1,5 @@
 import express, { Application, Request, Response } from "express";
-import v1Routes from "./api/v1/routes.ts";
+import v1Routes from "./api/v1/routes.js";
 
 const app: Application = express();
 app.use(express.json());

@@ -2,6 +2,11 @@
   "$schema": "https://json.schemastore.org/tsconfig",
   "extends": "@repo/typescript-config/react-library.json",
   "compilerOptions": {
+    "paths": {
+      "@repo/ui": ["./src"],
+      "@repo/ui/*": ["./src/*"],
+      "@/*": ["./*"]
+    },
     "outDir": "./dist",
     "rootDir": "src",
     "declaration": true,

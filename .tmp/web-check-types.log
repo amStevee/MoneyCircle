@@ -1,0 +1,6 @@
+
+> web@1.0.0 check-types C:\Users\HP\Desktop\MoneyCircle\apps\web
+> next typegen && tsc --noEmit
+
+Terminate batch job (Y/N)? 
+^C^C^C^C

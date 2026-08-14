@@ -1,0 +1,27 @@
+
+> web@1.0.0 build C:\Users\HP\Desktop\MoneyCircle\apps\web
+> next build
+
+▲ Next.js 16.3.0 (Turbopack)
+✓ Running next.config.ts took 7.3s
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 8.0min
+  Skipping validation of types
+  Finished TypeScript config validation in 1527ms ...
+  Collecting page data using 3 workers ...
+✓ Finished writing to filesystem cache in 26.5s
+  Generating static pages using 3 workers (0/4) ...
+  Generating static pages using 3 workers (1/4) 
+  Generating static pages using 3 workers (2/4) 
+  Generating static pages using 3 workers (3/4) 
+✓ Generating static pages using 3 workers (4/4) in 1331ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+└ ○ /_not-found
+
+
+○  (Static)  prerendered as static content
+

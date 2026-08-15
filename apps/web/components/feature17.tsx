@@ -11,38 +11,38 @@ import {
   Sparkles,
   Workflow,
   Zap,
-} from "lucide-react";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+} from "lucide-react"
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils"
 
 interface FeatureIconListItem {
-  title: string;
-  description: string;
-  icon?: React.ReactNode;
-  href?: string;
+  title: string
+  description: string
+  icon?: React.ReactNode
+  href?: string
 }
 interface Button {
-  text: string;
-  url: string;
-  icon?: React.ReactNode;
+  text: string
+  url: string
+  icon?: React.ReactNode
 }
 interface Buttons {
-  primary?: Button;
-  secondary?: Button;
+  primary?: Button
+  secondary?: Button
 }
 
 interface FeatureIconListProps {
-  heading: string;
-  label?: string;
-  features?: FeatureIconListItem[];
-  buttons?: Buttons;
-  className?: string;
+  heading: string
+  label?: string
+  features?: FeatureIconListItem[]
+  buttons?: Buttons
+  className?: string
 }
 
-interface Feature17Props extends FeatureIconListProps {}
-type Props = Partial<Feature17Props>;
+type Feature17Props = FeatureIconListProps
+type Props = Partial<Feature17Props>
 
 const defaultProps: Feature17Props = {
   heading: "Build faster with production ready features",
@@ -127,16 +127,16 @@ const defaultProps: Feature17Props = {
       url: "https://www.shadcnblocks.com",
     },
   },
-};
+}
 
-const MAX_FEATURES = 6;
+const MAX_FEATURES = 6
 
 const Feature17 = (props: Props) => {
   const { heading, label, features, buttons, className } = {
     ...defaultProps,
     ...props,
-  };
-  const items = (features ?? []).slice(0, MAX_FEATURES);
+  }
+  const items = (features ?? []).slice(0, MAX_FEATURES)
 
   return (
     <section className={cn("py-32", className)}>
@@ -171,12 +171,18 @@ const Feature17 = (props: Props) => {
         </div>
         {buttons?.primary?.url && (
           <div className="mt-16 flex justify-center">
-            <Button size="lg" render={<a href={buttons.primary.url} />} nativeButton={false}>{buttons.primary.text}</Button>
+            <Button
+              size="lg"
+              render={<a href={buttons.primary.url} />}
+              nativeButton={false}
+            >
+              {buttons.primary.text}
+            </Button>
           </div>
         )}
       </div>
     </section>
-  );
-};
+  )
+}
 
-export { Feature17 };
+export { Feature17 }

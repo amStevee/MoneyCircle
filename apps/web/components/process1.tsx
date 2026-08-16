@@ -48,7 +48,7 @@ const Process1 = ({ className }: Process1Props) => {
   ]
 
   return (
-    <section id="Learn-How-it-Works" className={cn("py-32", className)}>
+    <section id="Learn-How-it-Works" className={cn("py-5", className)}>
       <div className="container">
         <div className="grid grid-cols-1 gap-5 lg:grid-cols-6 lg:gap-20">
           <div className="top-10 col-span-2 h-fit w-fit gap-3 space-y-7 py-8 lg:sticky">

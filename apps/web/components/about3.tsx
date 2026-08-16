@@ -1,9 +1,4 @@
-import {
-  Marquee,
-  MarqueeContent,
-  MarqueeFade,
-  MarqueeItem,
-} from "@/components/kibo-ui/marquee";
+
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -27,26 +22,12 @@ interface About3Props {
     buttonText?: string;
     buttonUrl?: string;
   };
-  companies?: Array<{
-    src: string;
-    alt: string;
-  }> | null;
-  achievementsTitle?: string;
-  achievementsDescription?: string;
-  achievements?: Array<{
-    label: string;
-    value: string;
-  }>;
-  contentSections?: Array<{
-    title: string;
-    content: string;
-  }>;
 }
 
 const About3 = ({
   className,
   title = "About Us",
-  description = "We are a passionate team dedicated to creating innovative solutions that empower businesses to thrive in the digital age. With years of experience in design and development, we craft beautiful, accessible components that help teams build faster.",
+  description = "Money Circle is a digital platform designed to simplify and modernize the traditional Ajo savings system by helping individuals and groups organize, track, and manage their contributions in one place. It provides a clear view of savings cycles, contributions, members, payment schedules, and records, reducing the reliance on manual tracking through notebooks, spreadsheets, or chat messages. The project is built with scalability in mind, with the goal of making Ajo savings more transparent, organized, and easier to manage while preserving the simplicity and community-driven nature of the traditional savings model.",
   mainImage = {
     src: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/photos/annie-spratt-MChSQHxGZrQ-unsplash.jpg",
     alt: "about",
@@ -56,63 +37,17 @@ const About3 = ({
     alt: "about",
   },
   breakout = {
-    src: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/block-1.svg",
-    alt: "logo",
-    title: "Hundreds of blocks at Shadcnblocks.com",
+    src: "https://github.com/steven-anongo.png",
+    alt: "Steven Anongo",
+    title: "Hi, I'm Steven.",
     description:
-      "Providing businesses with effective tools to improve workflows, boost efficiency, and encourage growth.",
-    buttonText: "Discover more",
-    buttonUrl: "https://www.shadcnblocks.com",
+      "I'm a software engineer building Money Circle, a platform that helps people save money together in a transparent and secure way. This is a capstone project for my software development bootcamp, and I'm excited to share it with the world. I hope you find it useful and enjoy using it as much as I enjoyed building it.",
+    buttonText: "Learn More",
+    buttonUrl: "https://www.linkedin.com/in/steven-anongo",
   },
-  companies = [
-    {
-      src: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/logos/company/fictional-company-logo-1.svg",
-      alt: "Arc",
-    },
-    {
-      src: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/logos/company/fictional-company-logo-2.svg",
-      alt: "Descript",
-    },
-    {
-      src: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/logos/company/fictional-company-logo-3.svg",
-      alt: "Mercury",
-    },
-    {
-      src: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/logos/company/fictional-company-logo-4.svg",
-      alt: "Ramp",
-    },
-    {
-      src: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/logos/company/fictional-company-logo-5.svg",
-      alt: "Retool",
-    },
-    {
-      src: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/logos/company/fictional-company-logo-6.svg",
-      alt: "Watershed",
-    },
-  ],
-  achievementsTitle = "Our Achievements in Numbers",
-  achievementsDescription = "Providing businesses with effective tools to improve workflows, boost efficiency, and encourage growth.",
-  achievements = [
-    { label: "Companies ", value: "300+" },
-    { label: "Projects Finalized", value: "800+" },
-    { label: "Happy Customers", value: "99%" },
-    { label: "Recognized Awards", value: "10+" },
-  ],
-  contentSections = [
-    {
-      title: "Our Vision",
-      content:
-        "For years, the process of building custom software has remained challenging. Today, visual builders exist, but tailored solutions still require technical expertise and a lot of time. This is a problem for businesses and individuals alike.\n\nWhat if you could create custom software without writing a single line of code? What if you could build your own tools.\n\nWith our platform, you can! Our tools let you design layouts and create functionality—all without needing to code.\n\nWe believe that everyone should be able to build their own solutions, regardless of their technical background.",
-    },
-    {
-      title: "Our Creators",
-      content:
-        "Our company has been building web tools for over a decade, focusing on efficiency and user control in every project. We know that the best solutions are the ones that you can create yourself.\n\nWe initially developed these solutions for our own team, and now everyone can benefit from them too. We are proud to offer a platform that is accessible to all, regardless of technical expertise.\n\nOur team is made up of talented individuals who are passionate about creating tools that empower users to build their own solutions with ease. We are dedicated to helping you achieve your goals.",
-    },
-  ],
 }: About3Props) => {
   return (
-    <section className={cn("py-32", className)}>
+    <section id="about" className={cn("py-32", className)}>
       <div className="container">
         <div className="mb-14 flex flex-col gap-5 lg:w-2/3">
           <h1 className="text-5xl font-semibold tracking-tighter lg:text-6xl">
@@ -139,7 +74,14 @@ const About3 = ({
                 <p className="mb-2 text-lg font-semibold">{breakout.title}</p>
                 <p className="text-muted-foreground">{breakout.description}</p>
               </div>
-              <Button variant="outline" className="mr-auto" render={<a href={breakout.buttonUrl} target="_blank" />} nativeButton={false}>{breakout.buttonText}</Button>
+              <Button
+                variant="outline"
+                className="mr-auto"
+                render={<a href={breakout.buttonUrl} target="_blank" />}
+                nativeButton={false}
+              >
+                {breakout.buttonText}
+              </Button>
             </div>
             <img
               src={secondaryImage.src}
@@ -148,66 +90,9 @@ const About3 = ({
             />
           </div>
         </div>
-        {companies && (
-          <div className="py-32">
-            <Marquee>
-              <MarqueeContent speed={40}>
-                {companies.map((company, idx) => (
-                  <MarqueeItem
-                    key={company.src + idx}
-                    className="mx-8 flex items-center"
-                  >
-                    <img
-                      src={company.src}
-                      alt={company.alt}
-                      className="h-7 w-auto md:h-8 dark:invert"
-                    />
-                  </MarqueeItem>
-                ))}
-              </MarqueeContent>
-              <MarqueeFade side="left" />
-              <MarqueeFade side="right" />
-            </Marquee>
-          </div>
-        )}
-        <div className="relative overflow-hidden rounded-xl bg-muted p-7 md:p-16">
-          <div className="flex flex-col gap-4 text-center md:text-left">
-            <h2 className="text-3xl font-medium md:text-4xl">
-              {achievementsTitle}
-            </h2>
-            <p className="max-w-xl text-muted-foreground">
-              {achievementsDescription}
-            </p>
-          </div>
-          <div className="mt-10 grid grid-cols-2 gap-x-4 gap-y-8 md:flex md:flex-wrap md:justify-between">
-            {achievements.map((item, idx) => (
-              <div
-                className="flex flex-col gap-2 text-center md:text-left"
-                key={item.label + idx}
-              >
-                <span className="font-mono text-4xl font-semibold md:text-5xl">
-                  {item.value}
-                </span>
-                <p className="text-sm md:text-base">{item.label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-        {contentSections && contentSections.length > 0 && (
-          <div className="mx-auto grid max-w-5xl gap-16 py-28 md:grid-cols-2 md:gap-28">
-            {contentSections.map((section, idx) => (
-              <div key={section.title + idx}>
-                <h2 className="mb-5 text-4xl font-medium">{section.title}</h2>
-                <p className="text-lg leading-7 whitespace-pre-line text-muted-foreground">
-                  {section.content}
-                </p>
-              </div>
-            ))}
-          </div>
-        )}
       </div>
     </section>
-  );
-};
+  )
+}
 
 export { About3 };

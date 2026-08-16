@@ -3,20 +3,20 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@/components/ui/accordion";
-import { cn } from "@/lib/utils";
+} from "@/components/ui/accordion"
+import { cn } from "@/lib/utils"
 
 interface FaqItem {
-  id: string;
-  question: string;
-  answer: string;
-  className?: string;
+  id: string
+  question: string
+  answer: string
+  className?: string
 }
 
 interface Faq1Props {
-  heading?: string;
-  items?: FaqItem[];
-  className?: string;
+  heading?: string
+  items?: FaqItem[]
+  className?: string
 }
 
 const Faq1 = ({
@@ -24,51 +24,45 @@ const Faq1 = ({
   items = [
     {
       id: "faq-1",
-      question: "What is a FAQ?",
+      question: "What is Ajo?",
       answer:
-        "A FAQ is a list of frequently asked questions and answers on a particular topic.",
+        "Ajo is a traditional rotating savings scheme where a group of people agrees to contribute a fixed amount at regular intervals (daily, weekly, or monthly). Each contribution period, one participant recevives the pooled amount until everyone has had a turn",
     },
     {
       id: "faq-2",
-      question: "What is the purpose of a FAQ?",
+      question: "Who is Money circle for?",
       answer:
-        "The purpose of a FAQ is to provide answers to common questions and help users find the information they need quickly and easily.",
+        "Money circle is primarily for people who want to save money together in a structuredm, trusted group",
     },
     {
       id: "faq-3",
-      question: "How do I create a FAQ?",
+      question: "Is my money stored in Money Circle",
       answer:
-        "To create a FAQ, you need to compile a list of common questions and answers on a particular topic and organize them in a clear and easy-to-navigate format.",
+        "No. Money circle stores the financial records, not the actual money",
     },
     {
       id: "faq-4",
-      question: "What are the benefits of a FAQ?",
+      question: "Is Money Circle free?",
       answer:
-        "The benefits of a FAQ include providing quick and easy access to information, reducing the number of support requests, and improving the overall user experience.",
+        "Yes. Money Circle is a free platform. Future updates may include a payment plan.",
     },
     {
       id: "faq-5",
-      question: "How should I organize my FAQ?",
+      question: "When will Money Circle lunch?",
       answer:
-        "You should organize your FAQ in a logical manner, grouping related questions together and ordering them from most basic to more advanced topics.",
+        "At the moment Money Circle is in it's Beta phase and will be released when it's deemed by the developer",
     },
     {
       id: "faq-6",
-      question: "How long should FAQ answers be?",
+      question: "can i create multiple groups?",
       answer:
-        "FAQ answers should be concise and to the point, typically a few sentences or a short paragraph is sufficient for most questions.",
-    },
-    {
-      id: "faq-7",
-      question: "Should I include links in my FAQ?",
-      answer:
-        "Yes, including links to more detailed information or related resources can be very helpful for users who want to learn more about a particular topic.",
+        "Yes. Money Circle support the creation a nd managing of multiple groups.",
     },
   ],
   className,
 }: Faq1Props) => {
   return (
-    <section id="faq" className={cn("py-32", className)}>
+    <section id="faq" className={cn("py-5", className)}>
       <div className="container">
         <div className="mx-auto max-w-3xl">
           <h1 className="mb-4 text-3xl font-semibold md:mb-11 md:text-4xl">
@@ -89,7 +83,7 @@ const Faq1 = ({
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export { Faq1 };
+export { Faq1 }

@@ -45,7 +45,7 @@ const Hero47 = ({
   className,
 }: Hero47Props) => {
   return (
-    <section className={cn("bg-background py-20 lg:py-32", className)}>
+    <section className={cn("bg-background py-5 lg:py-5", className)}>
       <div className="container flex flex-col items-center gap-10 lg:my-0 lg:flex-row">
         <div className="flex flex-col gap-7 lg:w-2/3">
           <h2 className="text-5xl font-semibold text-foreground md:text-5xl lg:text-8xl">

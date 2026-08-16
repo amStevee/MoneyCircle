@@ -58,7 +58,7 @@ interface Navbar1Props {
 
 const Navbar1 = ({
   logo = {
-    url: "https://www.shadcnblocks.com",
+    url: "/",
     src: "/logo-black.png",
     alt: "logo",
     title: "moneycircle",
@@ -145,7 +145,7 @@ const Navbar1 = ({
   className,
 }: Navbar1Props) => {
   return (
-    <section className={cn("py-4", className)}>
+    <section className={cn("py-0", className)}>
       <div className="container">
         {/* Desktop Menu */}
         <nav className="hidden items-center justify-between lg:flex">
@@ -154,10 +154,8 @@ const Navbar1 = ({
             <a href={logo.url} className="flex items-center gap-2">
               <img
                 src={logo.src}
-                className="max-h-8 dark:invert"
+                className="max-h-20 dark:invert"
                 alt={logo.alt}
-                width={250}
-                height={250}
               />
               <span className="text-lg font-semibold tracking-tighter">
                 {logo.title}
@@ -192,12 +190,12 @@ const Navbar1 = ({
 
         {/* Mobile Menu */}
         <div className="block lg:hidden">
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between p-5">
             {/* Logo */}
             <a href={logo.url} className="flex items-center gap-2">
               <img
                 src={logo.src}
-                className="max-h-8 dark:invert"
+                className="max-h-20 dark:invert"
                 alt={logo.alt}
               />
             </a>

@@ -1,4 +1,4 @@
-import { Banknote, Bell, Calendar, Eye } from "lucide-react"
+import { File, Quote, Shield, Users, Zap } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 
@@ -22,6 +22,7 @@ interface Buttons {
 
 interface FeatureIconListProps {
   heading: string
+  description: string
   label?: string
   features?: FeatureIconListItem[]
   buttons?: Buttons
@@ -32,49 +33,48 @@ type Feature17Props = FeatureIconListProps
 type Props = Partial<Feature17Props>
 
 const defaultProps: Feature17Props = {
-  heading: "Build faster with production ready features",
-  label: "Features",
+  heading: "Built with real conversations",
+  description:
+    "I have spoken with people who participated in Ajo groups and heard recurring challenges.",
+  label: "",
   features: [
     {
-      icon: <Calendar className="size-5" />,
-      title: "Contributions get forgotten",
-      description: "",
+      icon: <Quote className="size-5" />,
+      title: "",
+      description: '"keeping track of who has paid is always difficult"',
     },
     {
-      icon: <Banknote className="size-5" />,
-      title: "Payment record becomes difficult to track",
-      description: "",
+      icon: <Quote className="size-5" />,
+      title: "",
+      description:
+        '"The organizer spends more time sending reminders than managing the savings."',
     },
     {
-      icon: <Bell className="size-5" />,
-      title: "Group admins spend hours reminding members.",
-      description: "",
-    },
-    {
-      icon: <Eye className="size-5" />,
-      title: "Disagreements happen because information isn't transparent",
-      description: "",
+      icon: <Quote className="size-5" />,
+      title: "",
+      description:
+        '"Everything depends on trust but better records would make everyone more confident."',
     },
   ],
   buttons: {
     primary: {
-      text: "Money Circle brings structure without changing the tradition people already trust.",
-      url: "",
+      text: "Browse Components",
+      url: "https://www.shadcnblocks.com",
     },
   },
 }
 
 const MAX_FEATURES = 6
 
-const Problems17 = (props: Props) => {
-  const { heading, label, features, buttons, className } = {
+const Research17 = (props: Props) => {
+  const { heading, description, label, features, buttons, className } = {
     ...defaultProps,
     ...props,
   }
   const items = (features ?? []).slice(0, MAX_FEATURES)
 
   return (
-    <section className={cn("py-10", className)}>
+    <section className={cn("py-32", className)}>
       <div className="container">
         {(label || heading) && (
           <div className="mx-auto mb-12 flex max-w-3xl flex-col items-center gap-4 text-center">
@@ -82,6 +82,9 @@ const Problems17 = (props: Props) => {
             <h2 className="text-3xl font-semibold tracking-tight text-pretty md:text-4xl lg:text-5xl">
               {heading}
             </h2>
+            <p className="text-sm text-muted-foreground md:text-base">
+              {description}
+            </p>
           </div>
         )}
         <div className="mx-auto grid max-w-6xl gap-12 md:grid-cols-2">
@@ -104,10 +107,12 @@ const Problems17 = (props: Props) => {
             </div>
           ))}
         </div>
-        {buttons?.primary?.url && (
+        <p className="text-sm text-muted-foreground md:text-base">
+          I am building Money Circle to solve these everyday frustrations.
+        </p>
+        {/* {buttons?.primary?.url && (
           <div className="mt-16 flex justify-center">
             <Button
-              variant={"outline"}
               size="lg"
               render={<a href={buttons.primary.url} />}
               nativeButton={false}
@@ -115,10 +120,10 @@ const Problems17 = (props: Props) => {
               {buttons.primary.text}
             </Button>
           </div>
-        )}
+        )} */}
       </div>
     </section>
   )
 }
 
-export { Problems17 }
+export { Research17 }

@@ -17,6 +17,7 @@ const Waitlist1 = ({ className }: Waitlist1Props) => {
         "flex h-svh max-h-[1200px] min-h-[600px] items-center justify-center overflow-hidden py-32",
         className,
       )}
+      id="waitlist"
     >
       <BackgroundLines className="container flex w-full flex-col items-center justify-center px-4 md:h-full">
         <h2 className="relative z-20 py-2 text-center font-sans text-5xl font-semibold tracking-tighter md:py-10 lg:text-8xl">

@@ -1,64 +1,73 @@
-import { Asterisk, CornerDownRight } from "lucide-react";
-import React from "react";
+import { Asterisk, CornerDownRight } from "lucide-react"
+import React from "react"
 
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
 
 interface Process1Props {
-  className?: string;
+  className?: string
 }
 
 const Process1 = ({ className }: Process1Props) => {
   const process = [
     {
       step: "01",
-      title: "Discover & Research",
+      title: "Create a Savings Group",
       description:
-        "We begin by understanding your business goals, target audience, and current challenges. This phase involves research, analysis, and strategic planning to identify opportunities.",
+        "Start a private group with people you already know and trust.",
     },
     {
       step: "02",
-      title: "Strategy & Planning",
-      description:
-        "Based on our findings, we develop a comprehensive strategy that aligns with your objectives. This includes defining the approach, timeline, and key milestones for success.",
+      title: "Invite Members",
+      description: "Share an invite link and let members join securely.",
     },
     {
       step: "03",
-      title: "Execute & Develop",
+      title: "Set the Rules",
       description:
-        "We bring the strategy to life through careful implementation and development. Our team works collaboratively to ensure every detail meets your requirements and standards.",
+        "Choose contribution a,ount, frequency, number of members, payout order and start date.",
     },
     {
       step: "04",
-      title: "Optimize & Improve",
+      title: "Traack Contributions",
       description:
-        "We continuously monitor performance and gather feedback to refine and improve the solution. This iterative process ensures long-term success and growth.",
+        'Everyone can see who has paid, upcoming contributions, group progress and payout schedule. No more asking, "who has paid"',
     },
-  ];
+    {
+      step: "05",
+      title: "Stay Updated",
+      description:
+        "Start a private group with people you already know and trust.",
+    },
+    {
+      step: "06",
+      title: "Grow Together",
+      description:
+        "Build a constistent saving habit with complete visibility for every member",
+    },
+  ]
 
   return (
-    <section className={cn("py-32", className)}>
+    <section id="Learn-How-it-Works" className={cn("py-32", className)}>
       <div className="container">
         <div className="grid grid-cols-1 gap-5 lg:grid-cols-6 lg:gap-20">
           <div className="top-10 col-span-2 h-fit w-fit gap-3 space-y-7 py-8 lg:sticky">
             <div className="relative w-fit text-5xl font-semibold tracking-tight lg:text-7xl">
               {" "}
-              <h1 className="w-fit">Our Process</h1>
+              <h1 className="w-fit">How Money Circle Works</h1>
               <Asterisk className="absolute -top-2 -right-2 size-5 text-orange-500 md:size-10 lg:-right-14" />
             </div>
             <p className="text-base text-foreground/50">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maxime
-              amet dolorem eum est voluptatem id repellendus ut laborum
-              laboriosam debitis.
+              Simple. Transparent. Built for groups.
             </p>
 
-            <Button
+            {/* <Button
               variant="ghost"
               className="flex items-center justify-start gap-2"
             >
               <CornerDownRight className="text-orange-500" />
               Get in touch
-            </Button>
+            </Button> */}
           </div>
           <ul className="relative col-span-4 w-full lg:pl-22">
             {process.map((step, index) => (
@@ -83,10 +92,10 @@ const Process1 = ({ className }: Process1Props) => {
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export { Process1 };
+export { Process1 }
 
 const Illustration = (props: React.SVGProps<SVGSVGElement>) => {
   return (
@@ -115,5 +124,5 @@ const Illustration = (props: React.SVGProps<SVGSVGElement>) => {
         strokeWidth="4"
       />
     </svg>
-  );
-};
+  )
+}

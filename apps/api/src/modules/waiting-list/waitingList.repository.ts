@@ -20,6 +20,7 @@ async function findWaitingListByEmail(email: string): Promise<any | null> {
   try {
     return await prisma.waitlistEntry.findUnique({ where: { email } });
   } catch (error) {
+    console.log(error)
     throw new Error("Error occurred while finding the waiting list entry");
   }
 }

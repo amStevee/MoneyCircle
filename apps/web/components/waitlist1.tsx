@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils"
 import { useState } from "react"
 import { type ChangeEvent } from "react"
 import api from "@/lib/apiAxios"
+import { toast } from "react-toastify"
 
 interface Waitlist1Props {
   className?: string
@@ -15,26 +16,26 @@ interface Waitlist1Props {
 
 const Waitlist1 = ({ className }: Waitlist1Props) => {
   const [email, setEmail] = useState<string>("")
+  
 
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
-    const newValue = e.target.value
-
-    setEmail((prevValue) => {
-      return newValue
-    })
+    setEmail(e.target.value)
   }
 
   async function joinWaitList(email: string) {
-    const { data } = await api.post<{ message: string }>(
-      "/api/v1/waiting-list",
-      {
-        email,
-      }
-    )
-
-    const { message } = data
-    console.log(message)
+    try {
+      const { data } = await api.post<{ message: string }>(
+        "/api/v1/waiting-list",
+        { email }
+      )
+      toast.success(data.message || "Successfully joined the waitlist!")
+    } catch (error: any) {
+      const errorMessage =
+        error?.response?.data?.message || "Something went wrong!"
+      toast.error(errorMessage)
+    }
   }
+
   return (
     <section
       className={cn(

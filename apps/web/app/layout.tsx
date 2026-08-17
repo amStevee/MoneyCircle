@@ -1,8 +1,10 @@
 import { Geist_Mono, Inter } from "next/font/google"
 
+import "react-toastify/dist/ReactToastify.css"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { cn } from "@/lib/utils"
+import { ToastContainer } from "react-toastify"
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" })
 
@@ -29,6 +31,7 @@ export default function RootLayout({
     >
       <body>
         <ThemeProvider>{children}</ThemeProvider>
+        <ToastContainer />
       </body>
     </html>
   )

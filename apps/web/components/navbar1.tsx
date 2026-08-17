@@ -189,21 +189,22 @@ const Navbar1 = ({
         </nav>
 
         {/* Mobile Menu */}
-        <div className="block lg:hidden">
-          <div className="flex items-center justify-between p-5">
+        <div className="block lg:hidden p-5">
+          <div className="flex items-center justify-between p-0">
             {/* Logo */}
             <a href={logo.url} className="flex items-center gap-2">
               <img
                 src={logo.src}
                 className="max-h-20 dark:invert"
                 alt={logo.alt}
+                width={80}
               />
             </a>
             <Sheet>
               <SheetTrigger
                 render={
                   <Button variant="outline" size="icon">
-                    <Menu className="size-4" />
+                    <Menu className="size-8" />
                     <span className="sr-only">Toggle Menu</span>
                   </Button>
                 }

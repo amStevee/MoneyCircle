@@ -76,7 +76,7 @@ const Feature17 = (props: Props) => {
   const items = (features ?? []).slice(0, MAX_FEATURES)
 
   return (
-    <section id="features" className={cn("py-32", className)}>
+    <section id="features" className={cn("py-5", className)}>
       <div className="container">
         {(label || heading) && (
           <div className="mx-auto mb-12 flex max-w-3xl flex-col items-center gap-4 text-center">

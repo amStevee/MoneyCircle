@@ -79,7 +79,7 @@ const Footer2 = (props: Props) => {
   const visibleSections = (sections ?? []).slice(0, MAX_SECTIONS);
 
   return (
-    <section className={cn("py-5", className)}>
+    <section className={cn("pt-20", className)}>
       <div className="container mx-auto">
         <footer>
           <div className="grid grid-cols-2 gap-8 lg:grid-cols-6">
@@ -93,6 +93,7 @@ const Footer2 = (props: Props) => {
                     className="h-7 dark:invert"
                   />
                 </a>
+                <span className="ml-2 text-lg font-bold">MoneyCircle</span>
               </div>
               <p className="mt-4 text-sm font-medium text-muted-foreground">
                 {description}
@@ -122,7 +123,7 @@ const Footer2 = (props: Props) => {
         </footer>
       </div>
     </section>
-  );
+  )
 };
 
 export { Footer2 };

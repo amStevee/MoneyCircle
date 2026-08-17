@@ -1,27 +1,26 @@
-
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
 
 interface About3Props {
-  className?: string;
-  title: string;
-  description?: string;
+  className?: string
+  title: string
+  description?: string
   mainImage: {
-    src: string;
-    alt: string;
-  };
+    src: string
+    alt: string
+  }
   secondaryImage: {
-    src: string;
-    alt: string;
-  };
+    src: string
+    alt: string
+  }
   breakout: {
-    src?: string;
-    alt?: string;
-    title: string;
-    description: string;
-    buttonText?: string;
-    buttonUrl?: string;
-  };
+    src?: string
+    alt?: string
+    title: string
+    description: string
+    buttonText?: string
+    buttonUrl?: string
+  }
 }
 
 const About3 = ({
@@ -29,15 +28,15 @@ const About3 = ({
   title = "About Us",
   description = "Money Circle is a digital platform designed to simplify and modernize the traditional Ajo savings system by helping individuals and groups organize, track, and manage their contributions in one place. It provides a clear view of savings cycles, contributions, members, payment schedules, and records, reducing the reliance on manual tracking through notebooks, spreadsheets, or chat messages. The project is built with scalability in mind, with the goal of making Ajo savings more transparent, organized, and easier to manage while preserving the simplicity and community-driven nature of the traditional savings model.",
   mainImage = {
-    src: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/photos/annie-spratt-MChSQHxGZrQ-unsplash.jpg",
+    src: "/online-community.png",
     alt: "about",
   },
   secondaryImage = {
-    src: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/photos/annie-spratt-AkftcHujUmk-unsplash.jpg",
+    src: "/undraw_profile.png",
     alt: "about",
   },
   breakout = {
-    src: "https://github.com/steven-anongo.png",
+    src: "https://github.com/amStevee.png",
     alt: "Steven Anongo",
     title: "Hi, I'm Steven.",
     description:
@@ -47,7 +46,7 @@ const About3 = ({
   },
 }: About3Props) => {
   return (
-    <section id="about" className={cn("py-32", className)}>
+    <section id="about" className={cn("py-5", className)}>
       <div className="container">
         <div className="mb-14 flex flex-col gap-5 lg:w-2/3">
           <h1 className="text-5xl font-semibold tracking-tighter lg:text-6xl">
@@ -68,7 +67,7 @@ const About3 = ({
               <img
                 src={breakout.src}
                 alt={breakout.alt}
-                className="mr-auto h-12 dark:invert"
+                className="mr-auto h-12 rounded-full dark:invert"
               />
               <div>
                 <p className="mb-2 text-lg font-semibold">{breakout.title}</p>
@@ -95,4 +94,4 @@ const About3 = ({
   )
 }
 
-export { About3 };
+export { About3 }

@@ -1,4 +1,4 @@
-'use client'
+"use client"
 
 import { BackgroundLines } from "@/components/ui/background-lines"
 import { Avatar, AvatarImage } from "@/components/ui/avatar"
@@ -14,18 +14,23 @@ interface Waitlist1Props {
 }
 
 const Waitlist1 = ({ className }: Waitlist1Props) => {
-  const [email, setEmail] = useState<string>('');
+  const [email, setEmail] = useState<string>("")
 
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
-    const newValue = e.target.value;
+    const newValue = e.target.value
 
-    setEmail((prevValue) => {return newValue})
+    setEmail((prevValue) => {
+      return newValue
+    })
   }
 
   async function joinWaitList(email: string) {
-    const { data } = await api.post<{ message: string }>('/api/waitlist', {
-      email,
-    })
+    const { data } = await api.post<{ message: string }>(
+      "/api/v1/waiting-list",
+      {
+        email,
+      }
+    )
 
     const { message } = data
     console.log(message)
@@ -53,7 +58,10 @@ const Waitlist1 = ({ className }: Waitlist1Props) => {
             placeholder="Enter your email"
             onChange={(e) => handleChange(e)}
           />
-          <Button className="h-10 rounded-xl" onClick={() => joinWaitList(email)}>
+          <Button
+            className="h-10 rounded-xl"
+            onClick={() => joinWaitList(email)}
+          >
             Join the Waitlist
           </Button>
         </div>

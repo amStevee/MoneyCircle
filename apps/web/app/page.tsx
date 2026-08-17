@@ -37,9 +37,24 @@ export default function Page() {
         <Faq1 />
         <Waitlist1 />
         <About3
-          {...({
-            title: "About Money Circle",
-          } as any)}
+          title="About Money Circle"
+          mainImage={{
+            src: "/online-community.png",
+            alt: "about",
+          }}
+          secondaryImage={{
+            src: "/undraw_profile.png",
+            alt: "about",
+          }}
+          breakout={{
+            src: "https://github.com/amStevee.png",
+            alt: "Steven Anongo",
+            title: "Hi, I'm Steven.",
+            description:
+              "I'm a software engineer building Money Circle, a platform that helps people save money together in a transparent and secure way. This is a capstone project for my software development bootcamp, and I'm excited to share it with the world. I hope you find it useful and enjoy using it as much as I enjoyed building it.",
+            buttonText: "Learn More",
+            buttonUrl: "https://www.linkedin.com/in/steven-anongo",
+          }}
         />
         <Contact7 />
         <Footer2 />

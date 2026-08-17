@@ -16,6 +16,7 @@
     "dev": "tsc --build --watch tsconfig.json",
     "generate": "prisma generate",
     "migrate": "prisma migrate dev",
+    "push": "prisma db push",
     "studio": "prisma studio",
     "check-types": "tsc --noEmit"
   },

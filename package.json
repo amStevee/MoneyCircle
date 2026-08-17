@@ -10,7 +10,7 @@
     "db:generate": "pnpm --filter @repo/db run generate",
     "db:migrate": "pnpm --filter @repo/db run migrate",
     "db:studio": "pnpm --filter @repo/db run studio",
-    "db:push": "pnpm --filter @repo/db exec prisma db push"
+    "db:push": "pnpm --filter @repo/db run push"
   },
   "devDependencies": {
     "prettier": "^3.6.0",

@@ -1,4 +1,4 @@
-import { BrevoClient } from "@getbrevo/brevo";
+import { BrevoClient, BrevoError } from "@getbrevo/brevo";
 import type {
   EmailPayload,
   EmailProvider,
@@ -41,14 +41,31 @@ export class BrevoProvider implements EmailProvider {
       to: [
         {
           email: payload.to,
-          name: "",
         },
       ],
       subject: payload.subject,
       htmlContent: payload.htmlContent,
     };
 
-    return brevo.transactionalEmails.sendTransacEmail(emailPayload);
+    try {
+      return await brevo.transactionalEmails.sendTransacEmail(emailPayload);
+    } catch (error) {
+      if (error instanceof BrevoError) {
+        console.error("[BrevoProvider] Failed to send email:", {
+          to: payload.to,
+          statusCode: error.statusCode,
+          requestId: error.requestId,
+          body: error.body,
+          message: error.message,
+        });
+      } else {
+        console.error("[BrevoProvider] Failed to send email:", {
+          to: payload.to,
+          error,
+        });
+      }
+      throw error;
+    }
   }
 }
 

@@ -6,10 +6,6 @@ import dotenv from "dotenv";
 
 dotenv.config()
 
-// dotenv.config({ path: path.resolve(__dirname, "../.env") });
-// dotenv.config({ path: path.resolve(process.cwd(), ".env") });
-// dotenv.config({ path: path.resolve(process.cwd(), "../../apps/api/.env") });
-
 const connectionString = process.env.DATABASE_URL;
 
 if (!connectionString) {

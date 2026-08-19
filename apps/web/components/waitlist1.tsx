@@ -29,7 +29,7 @@ const Waitlist1 = ({ className }: Waitlist1Props) => {
         { email }
       )
       toast.success(data.message || "Successfully joined the waitlist!")
-    } catch (error: any) {
+    } catch (error: Error | any) {
       const errorMessage =
         error?.response?.data?.message || "Something went wrong!"
       toast.error(errorMessage)

@@ -35,8 +35,7 @@ class WaitingListService {
     await emailService.send({
       to: normalizeEmail,
       subject: "Thanks for joining the waiting list",
-      text: `Hello!\n\nThank you for joining our waiting list. We'll notify you when we launch.`,
-      html: `<p>Hello!</p><p>Thank you for joining our waiting list. We&apos;ll notify you when we launch.</p>`,
+      htmlContent: `<p>Hello!</p><p>Thank you for joining our waiting list. We&apos;ll notify you when we launch.</p>`,
     });
 
     return newEntry;

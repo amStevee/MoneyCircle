@@ -32,7 +32,7 @@ const Faq1 = ({
       id: "faq-2",
       question: "Who is Money circle for?",
       answer:
-        "Money circle is primarily for people who want to save money together in a structuredm, trusted group",
+        "Money circle is primarily for people who want to save money together in a structured, trusted group",
     },
     {
       id: "faq-3",
@@ -50,7 +50,7 @@ const Faq1 = ({
       id: "faq-5",
       question: "When will Money Circle lunch?",
       answer:
-        "At the moment Money Circle is in it's Beta phase and will be released when it's deemed by the developer",
+        "At the moment Money Circle is in it's Beta phase and will be released when it's deemed fit by the developer",
     },
     {
       id: "faq-6",

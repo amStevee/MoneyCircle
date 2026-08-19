@@ -4,13 +4,13 @@ const mockJoinWaitingListRepository = jest
   .fn()
   .mockResolvedValue({ email: "user@example.com" });
 
-jest.mock("../src/infrastructure/email/email.provider.ts", () => ({
+jest.mock("../src/infrastructure/email/email.provider.js", () => ({
   emailService: {
     send: mockSend,
   },
 }));
 
-jest.mock("../src/modules/waiting-list/waitingList.repository.ts", () => ({
+jest.mock("../src/modules/waiting-list/waitingList.repository.js", () => ({
   joinWaitingListRepository: mockJoinWaitingListRepository,
   findWaitingListByEmail: mockFindByEmail,
 }));

@@ -1,5 +1,5 @@
-import { createNodemailerProvider } from "./providers/nodemailer.provider.js";
+import { createResendProvider } from "./providers/resend.js";
 import { createEmailService } from "./email.service.js";
 
-export const emailProvider = createNodemailerProvider();
+export const emailProvider = createResendProvider();
 export const emailService = createEmailService(emailProvider);

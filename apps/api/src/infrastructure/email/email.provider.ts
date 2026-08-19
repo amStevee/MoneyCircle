@@ -1,5 +1,5 @@
-import { createResendProvider } from "./providers/resend.js";
+import { createBrevoProvider } from "./providers/brevo.js";
 import { createEmailService } from "./email.service.js";
 
-export const emailProvider = createResendProvider();
+export const emailProvider = createBrevoProvider();
 export const emailService = createEmailService(emailProvider);

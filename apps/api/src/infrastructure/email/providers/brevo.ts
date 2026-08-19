@@ -10,7 +10,7 @@ const defaultFrom = process.env.EMAIL_FROM ?? "example@example.com";
 
 const brevo = brevoApiKey ? new BrevoClient({apiKey: brevoApiKey}) : null;
 
-export class ResendProvider implements EmailProvider {
+export class BrevoProvider implements EmailProvider {
   async sendEmail(payload: EmailPayload): Promise<EmailSendResult> {
     if (!brevo) {
       throw new Error("BREVO_API_KEY is not configured.");
@@ -35,6 +35,6 @@ export class ResendProvider implements EmailProvider {
   }
 }
 
-export function createResendProvider(): EmailProvider {
-  return new ResendProvider();
+export function createBrevoProvider(): EmailProvider {
+  return new BrevoProvider();
 }

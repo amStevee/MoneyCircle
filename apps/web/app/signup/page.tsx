@@ -1,5 +1,6 @@
 "use client"
 
+import { Suspense } from 'react';
 import { SignupForm } from "@/components/signup-form"
 // import { GalleryVerticalEndIcon } from "lucide-react"
 
@@ -17,7 +18,9 @@ export default function SignupPage() {
         </div>
         <div className="flex flex-1 items-center justify-center">
           <div className="w-full max-w-xs">
+            <Suspense fallback={<div>Loading form...</div>}>
             <SignupForm />
+            </Suspense>
           </div>
         </div>
       </div>

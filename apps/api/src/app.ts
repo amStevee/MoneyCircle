@@ -4,7 +4,7 @@ import cors from "cors";
 
 const app: Application = express();
 const corsOptions = {
-  origin: "*", // Allow all origins
+  origin: "https://money-circle-web.vercel.app", // Allow all origins
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE", // Allow all HTTP methods
   allowedHeaders: "Content-Type,Authorization", // Allow specific headers
 };

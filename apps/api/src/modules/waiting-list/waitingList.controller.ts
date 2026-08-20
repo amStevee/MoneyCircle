@@ -10,10 +10,10 @@ class WaitingListController {
     }
 
     try {
-      await waitingListService.join(email);
+      const {token} = await waitingListService.join(email);
       return res
         .status(200)
-        .json({ message: "Successfully joined the waiting list" });
+        .json({ message: "Successfully joined the waiting list", redirectUrl: `/signup?token=${token}` });
     } catch (err: any) {
       return res
         .status(400)

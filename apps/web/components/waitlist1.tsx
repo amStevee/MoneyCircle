@@ -9,6 +9,7 @@ import { useState } from "react"
 import { type ChangeEvent } from "react"
 import api from "@/lib/apiAxios"
 import { toast } from "react-toastify"
+import { redirect } from "next/navigation"
 
 interface Waitlist1Props {
   className?: string
@@ -24,11 +25,12 @@ const Waitlist1 = ({ className }: Waitlist1Props) => {
 
   async function joinWaitList(email: string) {
     try {
-      const { data } = await api.post<{ message: string }>(
+      const { data } = await api.post<{ message: string, redirectUrl: string }>(
         "/api/v1/waiting-list",
         { email }
       )
       toast.success(data.message || "Successfully joined the waitlist!")
+      data.redirectUrl && redirect(data.redirectUrl)
     } catch (error: Error | any) {
       const errorMessage =
         error?.response?.data?.message || "Something went wrong!"

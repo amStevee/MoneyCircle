@@ -4,6 +4,9 @@ import {
   findWaitingListByEmail,
 } from "./waitingList.repository.js";
 import { emailService } from "../../infrastructure/email/email.provider.js";
+import crypto from "crypto";
+
+
 export const joinWaitingListSchema = z.object({
   email: z
     .string()
@@ -30,7 +33,11 @@ class WaitingListService {
       throw new Error("Email already exists in the waiting list");
     }
 
-    const newEntry = await joinWaitingListRepository(normalizeEmail);
+    const token = crypto.randomBytes(32).toString("hex");
+    const tokenHash = crypto.createHash("sha256").update(token).digest("hex");
+    const expresAt = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 hours from now **NOTE: change to a shorter value as application is in development**
+
+    const newEntry = await joinWaitingListRepository(normalizeEmail, expresAt, tokenHash);
 
     await emailService.send({
       to: normalizeEmail,
@@ -38,7 +45,7 @@ class WaitingListService {
       htmlContent: `<p>Hello!</p><p>Thank you for joining our waiting list. We&apos;ll notify you when we launch.</p>`,
     });
 
-    return newEntry;
+    return {newEntry, token};
   }
 }
 

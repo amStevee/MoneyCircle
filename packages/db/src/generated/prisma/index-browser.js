@@ -127,13 +127,173 @@ exports.Prisma.WaitlistEntryScalarFieldEnum = {
   verification_token_hash: 'verification_token_hash',
   verification_expires_at: 'verification_expires_at',
   verified_at: 'verified_at',
+  userId: 'userId',
   created_at: 'created_at',
   updated_at: 'updated_at'
+};
+
+exports.Prisma.UsersScalarFieldEnum = {
+  id: 'id',
+  email: 'email',
+  phone: 'phone',
+  password_hash: 'password_hash',
+  first_name: 'first_name',
+  last_name: 'last_name',
+  avatar_url: 'avatar_url',
+  email_verified_at: 'email_verified_at',
+  status: 'status',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+};
+
+exports.Prisma.SessionsScalarFieldEnum = {
+  id: 'id',
+  user_id: 'user_id',
+  token_hash: 'token_hash',
+  expires_at: 'expires_at',
+  created_at: 'created_at',
+  revoked_at: 'revoked_at'
+};
+
+exports.Prisma.Savings_circlesScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  decription: 'decription',
+  owner_id: 'owner_id',
+  contribution_amount: 'contribution_amount',
+  currency: 'currency',
+  frequency: 'frequency',
+  member_limit: 'member_limit',
+  start_date: 'start_date',
+  status: 'status',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+};
+
+exports.Prisma.Circle_membersScalarFieldEnum = {
+  id: 'id',
+  circle_id: 'circle_id',
+  user_id: 'user_id',
+  role: 'role',
+  status: 'status',
+  joined_at: 'joined_at',
+  left_at: 'left_at',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+};
+
+exports.Prisma.Circle_invitationsScalarFieldEnum = {
+  id: 'id',
+  circle_id: 'circle_id',
+  invited_by: 'invited_by',
+  email: 'email',
+  token_hash: 'token_hash',
+  status: 'status',
+  expires_at: 'expires_at',
+  accepted_at: 'accepted_at',
+  created_at: 'created_at'
+};
+
+exports.Prisma.Savings_schedulesScalarFieldEnum = {
+  id: 'id',
+  circle_id: 'circle_id',
+  frequency: 'frequency',
+  contribution_amount: 'contribution_amount',
+  start_date: 'start_date',
+  end_date: 'end_date',
+  total_cycles: 'total_cycles',
+  current_cycle: 'current_cycle',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+};
+
+exports.Prisma.ContributionsScalarFieldEnum = {
+  id: 'id',
+  circle_id: 'circle_id',
+  circle_member: 'circle_member',
+  cycle_number: 'cycle_number',
+  amount: 'amount',
+  due_date: 'due_date',
+  paid_at: 'paid_at',
+  status: 'status',
+  transaction_id: 'transaction_id',
+  create_at: 'create_at',
+  updated_at: 'updated_at'
+};
+
+exports.Prisma.PayoutsScalarFieldEnum = {
+  id: 'id',
+  circle_id: 'circle_id',
+  member_id: 'member_id',
+  cycle_number: 'cycle_number',
+  amount: 'amount',
+  scheduled_date: 'scheduled_date',
+  paid_at: 'paid_at',
+  status: 'status',
+  transaction_id: 'transaction_id',
+  create_at: 'create_at',
+  updated_at: 'updated_at'
+};
+
+exports.Prisma.Payment_transactionsScalarFieldEnum = {
+  id: 'id',
+  user_id: 'user_id',
+  refernce: 'refernce',
+  idempotency_key: 'idempotency_key',
+  provider: 'provider',
+  provider_reference: 'provider_reference',
+  type: 'type',
+  amount: 'amount',
+  currency: 'currency',
+  status: 'status',
+  metadata: 'metadata',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+};
+
+exports.Prisma.Payment_status_historyScalarFieldEnum = {
+  id: 'id',
+  transaction_id: 'transaction_id',
+  status: 'status',
+  message: 'message',
+  metadata: 'metadata',
+  created_at: 'created_at'
+};
+
+exports.Prisma.NotificationsScalarFieldEnum = {
+  id: 'id',
+  user_id: 'user_id',
+  type: 'type',
+  title: 'title',
+  message: 'message',
+  data: 'data',
+  read_at: 'read_at',
+  created_at: 'created_at'
+};
+
+exports.Prisma.Audit_logScalarFieldEnum = {
+  id: 'id',
+  user_id: 'user_id',
+  action: 'action',
+  entity_type: 'entity_type',
+  entity_id: 'entity_id',
+  metadata: 'metadata',
+  ip_address: 'ip_address',
+  created_at: 'created_at'
 };
 
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
+};
+
+exports.Prisma.JsonNullValueInput = {
+  JsonNull: Prisma.JsonNull
+};
+
+exports.Prisma.NullableJsonNullValueInput = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull
 };
 
 exports.Prisma.QueryMode = {
@@ -145,14 +305,88 @@ exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
 };
+
+exports.Prisma.JsonNullValueFilter = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull,
+  AnyNull: Prisma.AnyNull
+};
 exports.Status = exports.$Enums.Status = {
   PENDING: 'PENDING',
   VERIFIED: 'VERIFIED',
   UNSUBSCRIBED: 'UNSUBSCRIBED'
 };
 
+exports.Frequency = exports.$Enums.Frequency = {
+  WEEKLY: 'WEEKLY',
+  MONTHLY: 'MONTHLY',
+  YEARLY: 'YEARLY'
+};
+
+exports.Role = exports.$Enums.Role = {
+  OWNER: 'OWNER',
+  ADMIN: 'ADMIN',
+  MEMBER: 'MEMBER'
+};
+
+exports.Circle_Status = exports.$Enums.Circle_Status = {
+  INVITED: 'INVITED',
+  ACTIVE: 'ACTIVE',
+  SUSPENDED: 'SUSPENDED',
+  LEFT: 'LEFT',
+  REMOVED: 'REMOVED'
+};
+
+exports.Contribution_status = exports.$Enums.Contribution_status = {
+  PENDING: 'PENDING',
+  PAID: 'PAID',
+  OVERDUE: 'OVERDUE',
+  FAILED: 'FAILED',
+  CANCELLED: 'CANCELLED'
+};
+
+exports.Provider = exports.$Enums.Provider = {
+  PAYSTACK: 'PAYSTACK',
+  STRIPE: 'STRIPE'
+};
+
+exports.Payment_type = exports.$Enums.Payment_type = {
+  CONTRIBUTION: 'CONTRIBUTION',
+  PAYOUT: 'PAYOUT'
+};
+
+exports.Payout = exports.$Enums.Payout = {
+  PENDING: 'PENDING',
+  PROCESSING: 'PROCESSING',
+  PAID: 'PAID',
+  FAILED: 'FAILED',
+  CANCELLED: 'CANCELLED'
+};
+
+exports.Notifications = exports.$Enums.Notifications = {
+  CONTRIBUTION_DUE: 'CONTRIBUTION_DUE',
+  CONTRIBUTION_SUCCESS: 'CONTRIBUTION_SUCCESS',
+  CONTRIBUTION_OVERDUE: 'CONTRIBUTION_OVERDUE',
+  PAYOUT_AVAILABLE: 'PAYOUT_AVAILABLE',
+  PAYOUT_SUCCESS: 'PAYOUT_SUCCESS',
+  CIRCLE_INVITATION: 'CIRCLE_INVITATION',
+  CIRCLE_UPDATE: 'CIRCLE_UPDATE'
+};
+
 exports.Prisma.ModelName = {
-  waitlistEntry: 'waitlistEntry'
+  waitlistEntry: 'waitlistEntry',
+  users: 'users',
+  sessions: 'sessions',
+  savings_circles: 'savings_circles',
+  circle_members: 'circle_members',
+  circle_invitations: 'circle_invitations',
+  savings_schedules: 'savings_schedules',
+  contributions: 'contributions',
+  payouts: 'payouts',
+  payment_transactions: 'payment_transactions',
+  payment_status_history: 'payment_status_history',
+  notifications: 'notifications',
+  audit_log: 'audit_log'
 };
 
 /**

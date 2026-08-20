@@ -13,6 +13,62 @@ enum Status {
   UNSUBSCRIBED
 }
 
+enum Frequency {
+  WEEKLY
+  MONTHLY
+  YEARLY
+}
+
+enum Role {
+  OWNER
+  ADMIN
+  MEMBER
+}
+
+enum Circle_Status {
+  INVITED
+  ACTIVE
+  SUSPENDED
+  LEFT
+  REMOVED
+}
+
+enum Contribution_status {
+  PENDING
+  PAID
+  OVERDUE
+  FAILED
+  CANCELLED
+}
+
+enum Payout {
+  PENDING
+  PROCESSING
+  PAID
+  FAILED
+  CANCELLED
+}
+
+enum Provider {
+  PAYSTACK
+  STRIPE
+}
+
+enum Payment_type {
+  CONTRIBUTION 
+  PAYOUT
+}
+
+enum Notifications {
+  CONTRIBUTION_DUE
+  CONTRIBUTION_SUCCESS
+  CONTRIBUTION_OVERDUE
+  PAYOUT_AVAILABLE
+  PAYOUT_SUCCESS
+  CIRCLE_INVITATION
+  CIRCLE_UPDATE
+}
+
 model waitlistEntry {
   id String @id @default(uuid())
   email String @unique @db.VarChar(255)
@@ -20,9 +76,194 @@ model waitlistEntry {
   verification_token_hash String? @db.VarChar(255)
   verification_expires_at DateTime 
   verified_at DateTime? 
+  userId String? @unique
+  user users? @relation(fields: [userId], references: [id])
   created_at DateTime @default(now()) 
-  updated_at DateTime @default(now()) 
+  updated_at DateTime @updatedAt 
 
   @@index([status])
   @@index([created_at])
+}
+
+model users {
+  id String @id @default(uuid())
+  email String @unique @db.VarChar(255)
+  phone String? @unique @db.VarChar(255)
+  password_hash String @db.VarChar(255)
+  first_name String @db.VarChar(255)
+  last_name String @db.VarChar(255)
+  avatar_url String? @db.VarChar(255)
+  email_verified_at DateTime?
+  status Status @default(PENDING)
+  created_at DateTime @default(now()) 
+  updated_at DateTime @updatedAt 
+
+  waitlistEntry waitlistEntry?
+  session sessions?
+  savings_circles savings_circles?
+  circle_members circle_members?
+  circle_invitations circle_invitations?
+  contributions contributions?
+  payment_transactions payment_transactions?
+  notifications notifications?
+}
+
+model sessions {
+  id String @id @default(uuid())
+  user_id String @unique
+  user users @relation(fields: [user_id], references: [id])
+  token_hash String @db.VarChar(225)
+  expires_at DateTime?
+  created_at DateTime @default(now())
+  revoked_at DateTime?
+}
+
+model savings_circles {
+  id String @id @default(uuid())
+  name String @db.VarChar(255)
+  decription String @db.VarChar(255)
+  owner_id String @unique
+  users users @relation(fields: [owner_id], references: [id])
+  contribution_amount Decimal
+  currency String @db.VarChar(255)
+  frequency Frequency
+  member_limit Int
+  start_date DateTime
+  status Status
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  circle_members circle_members?
+  circle_invitations circle_invitations?
+  savings_schedules savings_schedules?
+  contributions contributions?
+  payouts payouts?
+}
+
+model circle_members {
+  id String @id @default(uuid())
+  circle_id String @unique
+  savings_circle savings_circles @relation(fields: [circle_id], references: [id])
+  user_id String @unique
+  users users @relation(fields: [user_id], references: [id])
+  role Role
+  status Circle_Status
+  joined_at DateTime
+  left_at DateTime?
+  created_at DateTime
+  updated_at DateTime @updatedAt
+
+  payouts payouts?
+}
+
+model circle_invitations {
+  id String @id @default(uuid())
+  circle_id String @unique
+  savings_circle savings_circles @relation(fields: [circle_id], references: [id])
+  invited_by String @unique
+  users users @relation(fields: [invited_by], references: [id])
+  email String @db.VarChar(255)
+  token_hash String @unique
+  status Status
+  expires_at DateTime
+  accepted_at DateTime?
+  created_at DateTime
+}
+
+model savings_schedules {
+  id String @id @default(uuid())
+  circle_id String @unique
+  savings_circle savings_circles @relation(fields: [circle_id], references: [id])
+  frequency Frequency
+  contribution_amount Decimal
+  start_date DateTime
+  end_date DateTime?
+  total_cycles Int
+  current_cycle Int
+  created_at DateTime
+  updated_at DateTime @updatedAt
+}
+
+model contributions {
+  id String @id @default(uuid())
+  circle_id String @unique
+  savings_circle savings_circles @relation(fields: [circle_id], references: [id])
+  circle_member String @unique
+  users users @relation(fields: [circle_member], references: [id])
+  cycle_number Int
+  amount Decimal
+  due_date DateTime
+  paid_at DateTime?
+  status Contribution_status
+  transaction_id String? @unique
+  create_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
+model payouts {
+  id String @id @default(uuid())
+  circle_id String @unique
+  savings_circle savings_circles @relation(fields: [circle_id], references: [id])
+  member_id String @unique
+  circle_member circle_members @relation(fields: [member_id], references: [id])
+  cycle_number Int
+  amount Decimal
+  scheduled_date DateTime
+  paid_at DateTime?
+  status Contribution_status
+  transaction_id String? @unique
+  create_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
+model payment_transactions {
+  id String @id @default(uuid())
+  user_id String @unique
+  users users @relation(fields: [user_id], references: [id])
+  refernce String @unique 
+  idempotency_key String @unique 
+  provider Provider
+  provider_reference String?
+  type Payment_type
+  amount Decimal
+  currency String
+  status Payout
+  metadata Json
+  created_at DateTime
+  updated_at DateTime @updatedAt
+
+  payment_status_history payment_status_history?
+}
+
+model payment_status_history {
+  id String @id @default(uuid())
+  transaction_id String @unique
+  payment_transactions payment_transactions @relation(fields: [transaction_id], references: [id])
+  status Payout
+  message String @db.VarChar(255)
+  metadata Json
+  created_at DateTime
+}
+
+model notifications {
+  id String @id @default(uuid())
+  user_id String @unique
+  users users @relation(fields: [user_id], references: [id])
+  type Notifications
+  title String @db.VarChar(255)
+  message String @db.VarChar(255)
+  data Json
+  read_at DateTime
+  created_at DateTime
+}
+
+model audit_log {
+  id String @id @default(uuid())
+  user_id Status?
+  action String @db.VarChar(255)
+  entity_type String @db.VarChar(255)
+  entity_id String?
+  metadata Json?
+  ip_address String?
+  created_at DateTime
 }

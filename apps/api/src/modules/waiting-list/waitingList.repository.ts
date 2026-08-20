@@ -1,13 +1,13 @@
 import { prisma } from "@repo/db";
 
-async function joinWaitingListRepository(email: string): Promise<any> {
+async function joinWaitingListRepository(email: string, expiresAt: Date, tokenHash: string): Promise<any> {
   try {
-    const verificationExpiresAt = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 hours
+    const verificationExpiresAt = expiresAt;
     const newEntry = await prisma.waitlistEntry.create({
       data: {
         email,
         verification_expires_at: verificationExpiresAt,
-        verification_token_hash: null,
+        verification_token_hash: tokenHash,
       },
     });
     return newEntry;
@@ -25,4 +25,24 @@ async function findWaitingListByEmail(email: string): Promise<any | null> {
   }
 }
 
-export { joinWaitingListRepository, findWaitingListByEmail };
+async function findWaitlistEntry(tokenHash:string) {
+  try {
+    return await prisma.waitlistEntry.findFirst({
+      where: {
+        verification_token_hash: tokenHash,
+        verification_expires_at: {
+          gt: new Date(),
+        },
+        status: "PENDING",
+      },
+      select: {
+        email: true,
+      },
+    });
+  } catch (error) {
+    console.log(error)
+    throw new Error("Error occurred while finding the waitlist entry");
+  }
+}
+
+export { joinWaitingListRepository, findWaitingListByEmail, findWaitlistEntry };

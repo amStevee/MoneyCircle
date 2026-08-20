@@ -26,6 +26,7 @@ class WaitingListService {
     }
 
     const normalizeEmail = result.data.email;
+    console.log(normalizeEmail)
 
     const existingEntry = await findWaitingListByEmail(normalizeEmail);
 

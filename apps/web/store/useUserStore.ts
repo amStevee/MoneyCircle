@@ -1,5 +1,6 @@
 import api from "@/lib/apiAxios"
 import { create } from "zustand"
+import { persist } from "zustand/middleware"
 
 export interface User {
   id?: string
@@ -21,31 +22,54 @@ enum Status {
   UNSUBSCRIBED,
 }
 
-
 interface UserState {
   user: User | null
+  token: string | null
   isLoading: boolean
   error: string | null
   fetchUser: (userId: string) => Promise<void>
+  setSession: (user: User, token: string) => void
   clearUser: () => void
 }
 
-export const useUserStore = create<UserState>((set) => ({
-  user: null,
-  isLoading: false,
-  error: null,
+export const useUserStore = create<UserState>()(
+  persist(
+    (set) => ({
+      user: null,
+      token: null,
+      isLoading: false,
+      error: null,
 
-  fetchUser: async (userId: string) => {
-    set({ isLoading: true, error: null })
-    try {
-      const response = await api.get<User>(`/users/${userId}`)
-      set({ user: response.data, isLoading: false })
-    } catch (err: any) {
-      set({
-        error: err.message || "Failed to fetch user data.",
-        isLoading: false,
-      })
+      fetchUser: async (userId: string) => {
+        set({ isLoading: true, error: null })
+        try {
+          const response = await api.get<User>(`/users/${userId}`)
+          set({ user: response.data, isLoading: false })
+        } catch (err: any) {
+          set({
+            error: err.message || "Failed to fetch user data.",
+            isLoading: false,
+          })
+        }
+      },
+
+      setSession: (user: User, token: string) => {
+        if (typeof window !== "undefined") {
+          window.localStorage.setItem("moneycircle_token", token)
+        }
+        set({ user, token, error: null })
+      },
+
+      clearUser: () => {
+        if (typeof window !== "undefined") {
+          window.localStorage.removeItem("moneycircle_token")
+        }
+        set({ user: null, token: null, error: null })
+      },
+    }),
+    {
+      name: "moneycircle-user",
+      partialize: (state) => ({ user: state.user, token: state.token }),
     }
-  },
-  clearUser: () => set({ user: null, error: null }),
-}))
+  )
+)

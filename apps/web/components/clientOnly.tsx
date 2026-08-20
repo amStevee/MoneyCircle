@@ -1,15 +1,15 @@
-"use client"
+import { useState, useEffect } from "react";
 
-import { useEffect, useState, ReactNode } from "react"
-
-export default function ClientOnly({ children }: { children: ReactNode }) {
-  const [hasMounted, setHasMounted] = useState(false)
+export function ClientOnly({ children }: { children: React.ReactNode }) {
+  const [hasMounted, setHasMounted] = useState(false);
 
   useEffect(() => {
-    setHasMounted(true)
-  }, [])
+    queueMicrotask(() => {
+      setHasMounted(true);
+    });
+  }, []);
 
-  if (!hasMounted) return null // **TODO: return a skeleton/spinner **
+  if (!hasMounted) return null;
 
-  return <>{children}</>
+  return <>{children}</>;
 }

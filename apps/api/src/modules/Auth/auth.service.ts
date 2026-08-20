@@ -1,5 +1,5 @@
 import crypto from "node:crypto";
-import bcrypt from "bcryptjs";
+import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { z } from "zod";
 import {

@@ -45,4 +45,29 @@ async function findWaitlistEntry(tokenHash:string) {
   }
 }
 
-export { joinWaitingListRepository, findWaitingListByEmail, findWaitlistEntry };
+async function markWaitlistEntryVerified(tokenHash: string, userId: string) {
+  try {
+    return await prisma.waitlistEntry.updateMany({
+      where: {
+        verification_token_hash: tokenHash,
+        status: "PENDING",
+      },
+      data: {
+        status: "VERIFIED",
+        verified_at: new Date(),
+        userId,
+      },
+    });
+  } catch (error) {
+    console.log(error);
+    throw new Error("Error occurred while verifying the waitlist entry");
+  }
+}
+
+export {
+  joinWaitingListRepository,
+  findWaitingListByEmail,
+  findWaitlistEntry,
+  markWaitlistEntryVerified,
+};
+

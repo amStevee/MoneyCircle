@@ -9,5 +9,5 @@
       "@repo/db": ["../../packages/db/src/index.ts"]
     }
   },
-  "include": ["src"]
+  "include": ["src", "api"]
 }

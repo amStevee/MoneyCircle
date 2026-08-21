@@ -149,7 +149,7 @@ const Navbar1 = ({
     <section className={cn("py-0", className)}>
       <div className="container">
         {/* Desktop Menu */}
-        <nav className="hidden items-center justify-between lg:flex">
+        <nav className="hidden items-center justify-between p-5 lg:flex">
           <div className="flex items-center gap-6">
             {/* Logo */}
             <a href={logo.url} className="flex items-center gap-2">
@@ -196,11 +196,11 @@ const Navbar1 = ({
           <div className="flex items-center justify-between p-0">
             {/* Logo */}
             <a href={logo.url} className="flex items-center gap-2">
-              <img
+              <Image
                 src={logo.src}
-                className="max-h-20 dark:invert"
                 alt={logo.alt}
                 width={80}
+                className="h-7 w-7 dark:invert"
               />
             </a>
             <Sheet>

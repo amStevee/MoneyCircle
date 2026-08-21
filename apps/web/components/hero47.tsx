@@ -41,7 +41,7 @@ const Hero47 = ({
   },
   image = {
     // src: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-dark-7-tall.svg",
-    src: "/placeholder_dashboard.jpg",
+    src: "/placeholder_dashboard.svg",
     alt: "Placeholder",
   },
   className,

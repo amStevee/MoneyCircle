@@ -21,7 +21,7 @@ export default function LoginPage() {
       </div>
       <div className="relative hidden bg-muted lg:block">
         <img
-          src="https://unsplash.com/illustrations/hand-holding-a-stack-of-gold-coins-EQB7lo7CPe4"
+          src="/login-sid.png"
           alt="Image"
           className="absolute inset-0 h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
         />

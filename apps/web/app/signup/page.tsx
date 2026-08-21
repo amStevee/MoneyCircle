@@ -26,7 +26,7 @@ export default function SignupPage() {
       </div>
       <div className="relative hidden bg-muted lg:block">
         <img
-          src="/placeholder.svg"
+          src="https://unsplash.com/illustrations/hand-holding-a-stack-of-gold-coins-EQB7lo7CPe4"
           alt="Image"
           className="absolute inset-0 h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
         />

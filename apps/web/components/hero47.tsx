@@ -1,27 +1,28 @@
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react"
 
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
+import Image from "next/image"
 
 interface Hero47Props {
-  heading?: string;
-  subheading?: string;
-  description?: string;
+  heading?: string
+  subheading?: string
+  description?: string
   image?: {
-    src: string;
-    alt: string;
-  };
+    src: string
+    alt: string
+  }
   buttons?: {
     primary?: {
-      text: string;
-      url: string;
-    };
+      text: string
+      url: string
+    }
     secondary?: {
-      text: string;
-      url: string;
-    };
-  };
-  className?: string;
+      text: string
+      url: string
+    }
+  }
+  className?: string
 }
 
 const Hero47 = ({
@@ -39,7 +40,8 @@ const Hero47 = ({
     },
   },
   image = {
-    src: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-dark-7-tall.svg",
+    // src: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-dark-7-tall.svg",
+    src: "/placeholder_dashboard.jpg",
     alt: "Placeholder",
   },
   className,
@@ -56,23 +58,37 @@ const Hero47 = ({
             {description}
           </p>
           <div className="flex flex-wrap items-start gap-5 lg:gap-7">
-            <Button render={<a href={buttons.primary?.url} />} nativeButton={false}><div className="flex items-center gap-2">
-                                        <ArrowUpRight className="size-4" />
-                                      </div><span className="pr-6 pl-4 text-sm whitespace-nowrap lg:pr-8 lg:pl-6 lg:text-base">
-                                        {buttons.primary?.text}
-                                      </span></Button>
-            <Button variant="link" className="underline" render={<a href={buttons.secondary?.url} />} nativeButton={false}>{buttons.secondary?.text}</Button>
+            <Button
+              render={<a href={buttons.primary?.url} />}
+              nativeButton={false}
+            >
+              <span className="pr-6 pl-4 text-sm whitespace-nowrap lg:pr-8 lg:pl-6 lg:text-base">
+                {buttons.primary?.text}
+              </span>
+            </Button>
+            <Button
+              variant="link"
+              className="underline"
+              render={<a href={buttons.secondary?.url} />}
+              nativeButton={false}
+            >
+              {buttons.secondary?.text}
+
+              <div className="flex items-center gap-2">
+                <ArrowUpRight className="size-4" />
+              </div>
+            </Button>
           </div>
         </div>
         <div className="relative z-10">
           <div className="absolute top-2.5 left-1/2! h-[92%]! w-[69%]! -translate-x-[52%] overflow-hidden rounded-[35px]">
-            <img
+            <Image
               src={image.src}
               alt={image.alt}
               className="size-full object-cover object-[50%_0%]"
             />
           </div>
-          <img
+          <Image
             className="relative z-10"
             src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/mockups/phone-2.png"
             width={450}
@@ -82,7 +98,7 @@ const Hero47 = ({
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export { Hero47 };
+export { Hero47 }

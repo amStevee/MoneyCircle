@@ -88,7 +88,7 @@ const Hero47 = ({
               className="size-full object-cover object-[50%_0%]"
             />
           </div>
-          <Image
+          <img
             className="relative z-10"
             src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/mockups/phone-2.png"
             width={450}

@@ -25,6 +25,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet"
 import { cn } from "@/lib/utils"
+import Image from "next/image"
 
 interface MenuItem {
   title: string
@@ -152,10 +153,12 @@ const Navbar1 = ({
           <div className="flex items-center gap-6">
             {/* Logo */}
             <a href={logo.url} className="flex items-center gap-2">
-              <img
+              <Image
                 src={logo.src}
-                className="max-h-20 dark:invert"
                 alt={logo.alt}
+                width={45}
+                height={45}
+                className="h-7 w-7 dark:invert"
               />
               <span className="text-lg font-semibold tracking-tighter">
                 {logo.title}
@@ -189,7 +192,7 @@ const Navbar1 = ({
         </nav>
 
         {/* Mobile Menu */}
-        <div className="block lg:hidden p-5">
+        <div className="block p-5 lg:hidden">
           <div className="flex items-center justify-between p-0">
             {/* Logo */}
             <a href={logo.url} className="flex items-center gap-2">

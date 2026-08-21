@@ -1,3 +1,4 @@
+import Link from "next/link"
 import { ChevronRight, Users } from "lucide-react"
 
 import { Card } from "@/components/ui/card"
@@ -14,7 +15,7 @@ export function SavingsGroupsCard({ groups }: SavingsGroupsCardProps) {
       <div className="flex items-center justify-between">
         <span className="text-base font-semibold">My Savings Groups</span>
         <a
-          href="#"
+          href="/groups"
           className="text-sm font-medium text-primary hover:underline"
         >
           View all
@@ -28,9 +29,9 @@ export function SavingsGroupsCard({ groups }: SavingsGroupsCardProps) {
           )
 
           return (
-            <button
+            <Link
               key={group.id}
-              type="button"
+              href={`/groups/${group.id}`}
               className="flex items-start gap-3 rounded-xl border border-border p-4 text-left transition-colors hover:bg-muted/50"
             >
               <div className="flex size-12 shrink-0 items-center justify-center rounded-full bg-green-100 dark:bg-green-950">
@@ -62,7 +63,7 @@ export function SavingsGroupsCard({ groups }: SavingsGroupsCardProps) {
                   </span>
                 </div>
               </div>
-            </button>
+            </Link>
           )
         })}
       </div>

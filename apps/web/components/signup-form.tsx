@@ -64,8 +64,7 @@ export function SignupForm({
       } catch (error: any) {
         if (!cancelled) {
           toast.error(
-            error.response?.data?.error ||
-              "Invalid or expired signup invitation"
+            error.response?.data?.error || "Invalid or expired signup invitation"
           )
         }
       } finally {

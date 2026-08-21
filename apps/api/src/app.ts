@@ -8,7 +8,13 @@ const corsOptions = {
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE", // Allow all HTTP methods
   allowedHeaders: "Content-Type,Authorization", // Allow specific headers
 };
-app.use(express.json());
+app.use(
+  express.json({
+    verify: (req, _res, buffer) => {
+      req.bodyRaw = Buffer.from(buffer);
+    },
+  }),
+);
 app.use(cors(corsOptions));
 
 app.get("/health", (req: Request, res: Response) => {

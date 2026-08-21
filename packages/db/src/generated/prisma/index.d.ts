@@ -132,7 +132,7 @@ export const Contribution_status: {
 export type Contribution_status = (typeof Contribution_status)[keyof typeof Contribution_status]
 
 
-export const Payout: {
+export const Payout_Status: {
   PENDING: 'PENDING',
   PROCESSING: 'PROCESSING',
   PAID: 'PAID',
@@ -140,7 +140,18 @@ export const Payout: {
   CANCELLED: 'CANCELLED'
 };
 
-export type Payout = (typeof Payout)[keyof typeof Payout]
+export type Payout_Status = (typeof Payout_Status)[keyof typeof Payout_Status]
+
+
+export const Payment_Status: {
+  PENDING: 'PENDING',
+  PROCESSING: 'PROCESSING',
+  PAID: 'PAID',
+  FAILED: 'FAILED',
+  CANCELLED: 'CANCELLED'
+};
+
+export type Payment_Status = (typeof Payment_Status)[keyof typeof Payment_Status]
 
 
 export const Provider: {
@@ -193,9 +204,13 @@ export type Contribution_status = $Enums.Contribution_status
 
 export const Contribution_status: typeof $Enums.Contribution_status
 
-export type Payout = $Enums.Payout
+export type Payout_Status = $Enums.Payout_Status
 
-export const Payout: typeof $Enums.Payout
+export const Payout_Status: typeof $Enums.Payout_Status
+
+export type Payment_Status = $Enums.Payment_Status
+
+export const Payment_Status: typeof $Enums.Payment_Status
 
 export type Provider = $Enums.Provider
 
@@ -2111,6 +2126,210 @@ export namespace Prisma {
    */
 
 
+  /**
+   * Count Type UsersCountOutputType
+   */
+
+  export type UsersCountOutputType = {
+    savings_circles: number
+    circle_members: number
+    circle_invitations: number
+    contributions: number
+    payment_transactions: number
+    notifications: number
+  }
+
+  export type UsersCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    savings_circles?: boolean | UsersCountOutputTypeCountSavings_circlesArgs
+    circle_members?: boolean | UsersCountOutputTypeCountCircle_membersArgs
+    circle_invitations?: boolean | UsersCountOutputTypeCountCircle_invitationsArgs
+    contributions?: boolean | UsersCountOutputTypeCountContributionsArgs
+    payment_transactions?: boolean | UsersCountOutputTypeCountPayment_transactionsArgs
+    notifications?: boolean | UsersCountOutputTypeCountNotificationsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * UsersCountOutputType without action
+   */
+  export type UsersCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UsersCountOutputType
+     */
+    select?: UsersCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * UsersCountOutputType without action
+   */
+  export type UsersCountOutputTypeCountSavings_circlesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: savings_circlesWhereInput
+  }
+
+  /**
+   * UsersCountOutputType without action
+   */
+  export type UsersCountOutputTypeCountCircle_membersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: circle_membersWhereInput
+  }
+
+  /**
+   * UsersCountOutputType without action
+   */
+  export type UsersCountOutputTypeCountCircle_invitationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: circle_invitationsWhereInput
+  }
+
+  /**
+   * UsersCountOutputType without action
+   */
+  export type UsersCountOutputTypeCountContributionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: contributionsWhereInput
+  }
+
+  /**
+   * UsersCountOutputType without action
+   */
+  export type UsersCountOutputTypeCountPayment_transactionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: payment_transactionsWhereInput
+  }
+
+  /**
+   * UsersCountOutputType without action
+   */
+  export type UsersCountOutputTypeCountNotificationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: notificationsWhereInput
+  }
+
+
+  /**
+   * Count Type Savings_circlesCountOutputType
+   */
+
+  export type Savings_circlesCountOutputType = {
+    circle_members: number
+    circle_invitations: number
+    savings_schedules: number
+    contributions: number
+    payouts: number
+  }
+
+  export type Savings_circlesCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    circle_members?: boolean | Savings_circlesCountOutputTypeCountCircle_membersArgs
+    circle_invitations?: boolean | Savings_circlesCountOutputTypeCountCircle_invitationsArgs
+    savings_schedules?: boolean | Savings_circlesCountOutputTypeCountSavings_schedulesArgs
+    contributions?: boolean | Savings_circlesCountOutputTypeCountContributionsArgs
+    payouts?: boolean | Savings_circlesCountOutputTypeCountPayoutsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * Savings_circlesCountOutputType without action
+   */
+  export type Savings_circlesCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Savings_circlesCountOutputType
+     */
+    select?: Savings_circlesCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * Savings_circlesCountOutputType without action
+   */
+  export type Savings_circlesCountOutputTypeCountCircle_membersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: circle_membersWhereInput
+  }
+
+  /**
+   * Savings_circlesCountOutputType without action
+   */
+  export type Savings_circlesCountOutputTypeCountCircle_invitationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: circle_invitationsWhereInput
+  }
+
+  /**
+   * Savings_circlesCountOutputType without action
+   */
+  export type Savings_circlesCountOutputTypeCountSavings_schedulesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: savings_schedulesWhereInput
+  }
+
+  /**
+   * Savings_circlesCountOutputType without action
+   */
+  export type Savings_circlesCountOutputTypeCountContributionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: contributionsWhereInput
+  }
+
+  /**
+   * Savings_circlesCountOutputType without action
+   */
+  export type Savings_circlesCountOutputTypeCountPayoutsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: payoutsWhereInput
+  }
+
+
+  /**
+   * Count Type Circle_membersCountOutputType
+   */
+
+  export type Circle_membersCountOutputType = {
+    payouts: number
+  }
+
+  export type Circle_membersCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    payouts?: boolean | Circle_membersCountOutputTypeCountPayoutsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * Circle_membersCountOutputType without action
+   */
+  export type Circle_membersCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Circle_membersCountOutputType
+     */
+    select?: Circle_membersCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * Circle_membersCountOutputType without action
+   */
+  export type Circle_membersCountOutputTypeCountPayoutsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: payoutsWhereInput
+  }
+
+
+  /**
+   * Count Type Payment_transactionsCountOutputType
+   */
+
+  export type Payment_transactionsCountOutputType = {
+    payment_status_history: number
+  }
+
+  export type Payment_transactionsCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    payment_status_history?: boolean | Payment_transactionsCountOutputTypeCountPayment_status_historyArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * Payment_transactionsCountOutputType without action
+   */
+  export type Payment_transactionsCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Payment_transactionsCountOutputType
+     */
+    select?: Payment_transactionsCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * Payment_transactionsCountOutputType without action
+   */
+  export type Payment_transactionsCountOutputTypeCountPayment_status_historyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: payment_status_historyWhereInput
+  }
+
 
   /**
    * Models
@@ -3470,6 +3689,7 @@ export namespace Prisma {
     contributions?: boolean | users$contributionsArgs<ExtArgs>
     payment_transactions?: boolean | users$payment_transactionsArgs<ExtArgs>
     notifications?: boolean | users$notificationsArgs<ExtArgs>
+    _count?: boolean | UsersCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["users"]>
 
   export type usersSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -3524,6 +3744,7 @@ export namespace Prisma {
     contributions?: boolean | users$contributionsArgs<ExtArgs>
     payment_transactions?: boolean | users$payment_transactionsArgs<ExtArgs>
     notifications?: boolean | users$notificationsArgs<ExtArgs>
+    _count?: boolean | UsersCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type usersIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
   export type usersIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -3533,12 +3754,12 @@ export namespace Prisma {
     objects: {
       waitlistEntry: Prisma.$waitlistEntryPayload<ExtArgs> | null
       session: Prisma.$sessionsPayload<ExtArgs> | null
-      savings_circles: Prisma.$savings_circlesPayload<ExtArgs> | null
-      circle_members: Prisma.$circle_membersPayload<ExtArgs> | null
-      circle_invitations: Prisma.$circle_invitationsPayload<ExtArgs> | null
-      contributions: Prisma.$contributionsPayload<ExtArgs> | null
-      payment_transactions: Prisma.$payment_transactionsPayload<ExtArgs> | null
-      notifications: Prisma.$notificationsPayload<ExtArgs> | null
+      savings_circles: Prisma.$savings_circlesPayload<ExtArgs>[]
+      circle_members: Prisma.$circle_membersPayload<ExtArgs>[]
+      circle_invitations: Prisma.$circle_invitationsPayload<ExtArgs>[]
+      contributions: Prisma.$contributionsPayload<ExtArgs>[]
+      payment_transactions: Prisma.$payment_transactionsPayload<ExtArgs>[]
+      notifications: Prisma.$notificationsPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -3948,12 +4169,12 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     waitlistEntry<T extends users$waitlistEntryArgs<ExtArgs> = {}>(args?: Subset<T, users$waitlistEntryArgs<ExtArgs>>): Prisma__waitlistEntryClient<$Result.GetResult<Prisma.$waitlistEntryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     session<T extends users$sessionArgs<ExtArgs> = {}>(args?: Subset<T, users$sessionArgs<ExtArgs>>): Prisma__sessionsClient<$Result.GetResult<Prisma.$sessionsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    savings_circles<T extends users$savings_circlesArgs<ExtArgs> = {}>(args?: Subset<T, users$savings_circlesArgs<ExtArgs>>): Prisma__savings_circlesClient<$Result.GetResult<Prisma.$savings_circlesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    circle_members<T extends users$circle_membersArgs<ExtArgs> = {}>(args?: Subset<T, users$circle_membersArgs<ExtArgs>>): Prisma__circle_membersClient<$Result.GetResult<Prisma.$circle_membersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    circle_invitations<T extends users$circle_invitationsArgs<ExtArgs> = {}>(args?: Subset<T, users$circle_invitationsArgs<ExtArgs>>): Prisma__circle_invitationsClient<$Result.GetResult<Prisma.$circle_invitationsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    contributions<T extends users$contributionsArgs<ExtArgs> = {}>(args?: Subset<T, users$contributionsArgs<ExtArgs>>): Prisma__contributionsClient<$Result.GetResult<Prisma.$contributionsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    payment_transactions<T extends users$payment_transactionsArgs<ExtArgs> = {}>(args?: Subset<T, users$payment_transactionsArgs<ExtArgs>>): Prisma__payment_transactionsClient<$Result.GetResult<Prisma.$payment_transactionsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    notifications<T extends users$notificationsArgs<ExtArgs> = {}>(args?: Subset<T, users$notificationsArgs<ExtArgs>>): Prisma__notificationsClient<$Result.GetResult<Prisma.$notificationsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    savings_circles<T extends users$savings_circlesArgs<ExtArgs> = {}>(args?: Subset<T, users$savings_circlesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$savings_circlesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    circle_members<T extends users$circle_membersArgs<ExtArgs> = {}>(args?: Subset<T, users$circle_membersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$circle_membersPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    circle_invitations<T extends users$circle_invitationsArgs<ExtArgs> = {}>(args?: Subset<T, users$circle_invitationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$circle_invitationsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    contributions<T extends users$contributionsArgs<ExtArgs> = {}>(args?: Subset<T, users$contributionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$contributionsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    payment_transactions<T extends users$payment_transactionsArgs<ExtArgs> = {}>(args?: Subset<T, users$payment_transactionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$payment_transactionsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    notifications<T extends users$notificationsArgs<ExtArgs> = {}>(args?: Subset<T, users$notificationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$notificationsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4441,6 +4662,11 @@ export namespace Prisma {
      */
     include?: savings_circlesInclude<ExtArgs> | null
     where?: savings_circlesWhereInput
+    orderBy?: savings_circlesOrderByWithRelationInput | savings_circlesOrderByWithRelationInput[]
+    cursor?: savings_circlesWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Savings_circlesScalarFieldEnum | Savings_circlesScalarFieldEnum[]
   }
 
   /**
@@ -4460,6 +4686,11 @@ export namespace Prisma {
      */
     include?: circle_membersInclude<ExtArgs> | null
     where?: circle_membersWhereInput
+    orderBy?: circle_membersOrderByWithRelationInput | circle_membersOrderByWithRelationInput[]
+    cursor?: circle_membersWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Circle_membersScalarFieldEnum | Circle_membersScalarFieldEnum[]
   }
 
   /**
@@ -4479,6 +4710,11 @@ export namespace Prisma {
      */
     include?: circle_invitationsInclude<ExtArgs> | null
     where?: circle_invitationsWhereInput
+    orderBy?: circle_invitationsOrderByWithRelationInput | circle_invitationsOrderByWithRelationInput[]
+    cursor?: circle_invitationsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Circle_invitationsScalarFieldEnum | Circle_invitationsScalarFieldEnum[]
   }
 
   /**
@@ -4498,6 +4734,11 @@ export namespace Prisma {
      */
     include?: contributionsInclude<ExtArgs> | null
     where?: contributionsWhereInput
+    orderBy?: contributionsOrderByWithRelationInput | contributionsOrderByWithRelationInput[]
+    cursor?: contributionsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ContributionsScalarFieldEnum | ContributionsScalarFieldEnum[]
   }
 
   /**
@@ -4517,6 +4758,11 @@ export namespace Prisma {
      */
     include?: payment_transactionsInclude<ExtArgs> | null
     where?: payment_transactionsWhereInput
+    orderBy?: payment_transactionsOrderByWithRelationInput | payment_transactionsOrderByWithRelationInput[]
+    cursor?: payment_transactionsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Payment_transactionsScalarFieldEnum | Payment_transactionsScalarFieldEnum[]
   }
 
   /**
@@ -4536,6 +4782,11 @@ export namespace Prisma {
      */
     include?: notificationsInclude<ExtArgs> | null
     where?: notificationsWhereInput
+    orderBy?: notificationsOrderByWithRelationInput | notificationsOrderByWithRelationInput[]
+    cursor?: notificationsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: NotificationsScalarFieldEnum | NotificationsScalarFieldEnum[]
   }
 
   /**
@@ -5665,7 +5916,7 @@ export namespace Prisma {
     frequency: $Enums.Frequency | null
     member_limit: number | null
     start_date: Date | null
-    status: $Enums.Status | null
+    status: $Enums.Circle_Status | null
     created_at: Date | null
     updated_at: Date | null
   }
@@ -5680,7 +5931,7 @@ export namespace Prisma {
     frequency: $Enums.Frequency | null
     member_limit: number | null
     start_date: Date | null
-    status: $Enums.Status | null
+    status: $Enums.Circle_Status | null
     created_at: Date | null
     updated_at: Date | null
   }
@@ -5854,7 +6105,7 @@ export namespace Prisma {
     frequency: $Enums.Frequency
     member_limit: number
     start_date: Date
-    status: $Enums.Status
+    status: $Enums.Circle_Status
     created_at: Date
     updated_at: Date
     _count: Savings_circlesCountAggregateOutputType | null
@@ -5897,6 +6148,7 @@ export namespace Prisma {
     savings_schedules?: boolean | savings_circles$savings_schedulesArgs<ExtArgs>
     contributions?: boolean | savings_circles$contributionsArgs<ExtArgs>
     payouts?: boolean | savings_circles$payoutsArgs<ExtArgs>
+    _count?: boolean | Savings_circlesCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["savings_circles"]>
 
   export type savings_circlesSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -5954,6 +6206,7 @@ export namespace Prisma {
     savings_schedules?: boolean | savings_circles$savings_schedulesArgs<ExtArgs>
     contributions?: boolean | savings_circles$contributionsArgs<ExtArgs>
     payouts?: boolean | savings_circles$payoutsArgs<ExtArgs>
+    _count?: boolean | Savings_circlesCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type savings_circlesIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     users?: boolean | usersDefaultArgs<ExtArgs>
@@ -5966,11 +6219,11 @@ export namespace Prisma {
     name: "savings_circles"
     objects: {
       users: Prisma.$usersPayload<ExtArgs>
-      circle_members: Prisma.$circle_membersPayload<ExtArgs> | null
-      circle_invitations: Prisma.$circle_invitationsPayload<ExtArgs> | null
-      savings_schedules: Prisma.$savings_schedulesPayload<ExtArgs> | null
-      contributions: Prisma.$contributionsPayload<ExtArgs> | null
-      payouts: Prisma.$payoutsPayload<ExtArgs> | null
+      circle_members: Prisma.$circle_membersPayload<ExtArgs>[]
+      circle_invitations: Prisma.$circle_invitationsPayload<ExtArgs>[]
+      savings_schedules: Prisma.$savings_schedulesPayload<ExtArgs>[]
+      contributions: Prisma.$contributionsPayload<ExtArgs>[]
+      payouts: Prisma.$payoutsPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -5982,7 +6235,7 @@ export namespace Prisma {
       frequency: $Enums.Frequency
       member_limit: number
       start_date: Date
-      status: $Enums.Status
+      status: $Enums.Circle_Status
       created_at: Date
       updated_at: Date
     }, ExtArgs["result"]["savings_circles"]>
@@ -6380,11 +6633,11 @@ export namespace Prisma {
   export interface Prisma__savings_circlesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     users<T extends usersDefaultArgs<ExtArgs> = {}>(args?: Subset<T, usersDefaultArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    circle_members<T extends savings_circles$circle_membersArgs<ExtArgs> = {}>(args?: Subset<T, savings_circles$circle_membersArgs<ExtArgs>>): Prisma__circle_membersClient<$Result.GetResult<Prisma.$circle_membersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    circle_invitations<T extends savings_circles$circle_invitationsArgs<ExtArgs> = {}>(args?: Subset<T, savings_circles$circle_invitationsArgs<ExtArgs>>): Prisma__circle_invitationsClient<$Result.GetResult<Prisma.$circle_invitationsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    savings_schedules<T extends savings_circles$savings_schedulesArgs<ExtArgs> = {}>(args?: Subset<T, savings_circles$savings_schedulesArgs<ExtArgs>>): Prisma__savings_schedulesClient<$Result.GetResult<Prisma.$savings_schedulesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    contributions<T extends savings_circles$contributionsArgs<ExtArgs> = {}>(args?: Subset<T, savings_circles$contributionsArgs<ExtArgs>>): Prisma__contributionsClient<$Result.GetResult<Prisma.$contributionsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    payouts<T extends savings_circles$payoutsArgs<ExtArgs> = {}>(args?: Subset<T, savings_circles$payoutsArgs<ExtArgs>>): Prisma__payoutsClient<$Result.GetResult<Prisma.$payoutsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    circle_members<T extends savings_circles$circle_membersArgs<ExtArgs> = {}>(args?: Subset<T, savings_circles$circle_membersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$circle_membersPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    circle_invitations<T extends savings_circles$circle_invitationsArgs<ExtArgs> = {}>(args?: Subset<T, savings_circles$circle_invitationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$circle_invitationsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    savings_schedules<T extends savings_circles$savings_schedulesArgs<ExtArgs> = {}>(args?: Subset<T, savings_circles$savings_schedulesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$savings_schedulesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    contributions<T extends savings_circles$contributionsArgs<ExtArgs> = {}>(args?: Subset<T, savings_circles$contributionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$contributionsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    payouts<T extends savings_circles$payoutsArgs<ExtArgs> = {}>(args?: Subset<T, savings_circles$payoutsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$payoutsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -6423,7 +6676,7 @@ export namespace Prisma {
     readonly frequency: FieldRef<"savings_circles", 'Frequency'>
     readonly member_limit: FieldRef<"savings_circles", 'Int'>
     readonly start_date: FieldRef<"savings_circles", 'DateTime'>
-    readonly status: FieldRef<"savings_circles", 'Status'>
+    readonly status: FieldRef<"savings_circles", 'Circle_Status'>
     readonly created_at: FieldRef<"savings_circles", 'DateTime'>
     readonly updated_at: FieldRef<"savings_circles", 'DateTime'>
   }
@@ -6843,6 +7096,11 @@ export namespace Prisma {
      */
     include?: circle_membersInclude<ExtArgs> | null
     where?: circle_membersWhereInput
+    orderBy?: circle_membersOrderByWithRelationInput | circle_membersOrderByWithRelationInput[]
+    cursor?: circle_membersWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Circle_membersScalarFieldEnum | Circle_membersScalarFieldEnum[]
   }
 
   /**
@@ -6862,6 +7120,11 @@ export namespace Prisma {
      */
     include?: circle_invitationsInclude<ExtArgs> | null
     where?: circle_invitationsWhereInput
+    orderBy?: circle_invitationsOrderByWithRelationInput | circle_invitationsOrderByWithRelationInput[]
+    cursor?: circle_invitationsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Circle_invitationsScalarFieldEnum | Circle_invitationsScalarFieldEnum[]
   }
 
   /**
@@ -6881,6 +7144,11 @@ export namespace Prisma {
      */
     include?: savings_schedulesInclude<ExtArgs> | null
     where?: savings_schedulesWhereInput
+    orderBy?: savings_schedulesOrderByWithRelationInput | savings_schedulesOrderByWithRelationInput[]
+    cursor?: savings_schedulesWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Savings_schedulesScalarFieldEnum | Savings_schedulesScalarFieldEnum[]
   }
 
   /**
@@ -6900,6 +7168,11 @@ export namespace Prisma {
      */
     include?: contributionsInclude<ExtArgs> | null
     where?: contributionsWhereInput
+    orderBy?: contributionsOrderByWithRelationInput | contributionsOrderByWithRelationInput[]
+    cursor?: contributionsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ContributionsScalarFieldEnum | ContributionsScalarFieldEnum[]
   }
 
   /**
@@ -6919,6 +7192,11 @@ export namespace Prisma {
      */
     include?: payoutsInclude<ExtArgs> | null
     where?: payoutsWhereInput
+    orderBy?: payoutsOrderByWithRelationInput | payoutsOrderByWithRelationInput[]
+    cursor?: payoutsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PayoutsScalarFieldEnum | PayoutsScalarFieldEnum[]
   }
 
   /**
@@ -7139,6 +7417,7 @@ export namespace Prisma {
     savings_circle?: boolean | savings_circlesDefaultArgs<ExtArgs>
     users?: boolean | usersDefaultArgs<ExtArgs>
     payouts?: boolean | circle_members$payoutsArgs<ExtArgs>
+    _count?: boolean | Circle_membersCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["circle_members"]>
 
   export type circle_membersSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -7186,6 +7465,7 @@ export namespace Prisma {
     savings_circle?: boolean | savings_circlesDefaultArgs<ExtArgs>
     users?: boolean | usersDefaultArgs<ExtArgs>
     payouts?: boolean | circle_members$payoutsArgs<ExtArgs>
+    _count?: boolean | Circle_membersCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type circle_membersIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     savings_circle?: boolean | savings_circlesDefaultArgs<ExtArgs>
@@ -7201,7 +7481,7 @@ export namespace Prisma {
     objects: {
       savings_circle: Prisma.$savings_circlesPayload<ExtArgs>
       users: Prisma.$usersPayload<ExtArgs>
-      payouts: Prisma.$payoutsPayload<ExtArgs> | null
+      payouts: Prisma.$payoutsPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -7609,7 +7889,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     savings_circle<T extends savings_circlesDefaultArgs<ExtArgs> = {}>(args?: Subset<T, savings_circlesDefaultArgs<ExtArgs>>): Prisma__savings_circlesClient<$Result.GetResult<Prisma.$savings_circlesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     users<T extends usersDefaultArgs<ExtArgs> = {}>(args?: Subset<T, usersDefaultArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    payouts<T extends circle_members$payoutsArgs<ExtArgs> = {}>(args?: Subset<T, circle_members$payoutsArgs<ExtArgs>>): Prisma__payoutsClient<$Result.GetResult<Prisma.$payoutsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    payouts<T extends circle_members$payoutsArgs<ExtArgs> = {}>(args?: Subset<T, circle_members$payoutsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$payoutsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -8065,6 +8345,11 @@ export namespace Prisma {
      */
     include?: payoutsInclude<ExtArgs> | null
     where?: payoutsWhereInput
+    orderBy?: payoutsOrderByWithRelationInput | payoutsOrderByWithRelationInput[]
+    cursor?: payoutsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PayoutsScalarFieldEnum | PayoutsScalarFieldEnum[]
   }
 
   /**
@@ -10411,7 +10696,7 @@ export namespace Prisma {
     paid_at: Date | null
     status: $Enums.Contribution_status | null
     transaction_id: string | null
-    create_at: Date | null
+    created_at: Date | null
     updated_at: Date | null
   }
 
@@ -10425,7 +10710,7 @@ export namespace Prisma {
     paid_at: Date | null
     status: $Enums.Contribution_status | null
     transaction_id: string | null
-    create_at: Date | null
+    created_at: Date | null
     updated_at: Date | null
   }
 
@@ -10439,7 +10724,7 @@ export namespace Prisma {
     paid_at: number
     status: number
     transaction_id: number
-    create_at: number
+    created_at: number
     updated_at: number
     _all: number
   }
@@ -10465,7 +10750,7 @@ export namespace Prisma {
     paid_at?: true
     status?: true
     transaction_id?: true
-    create_at?: true
+    created_at?: true
     updated_at?: true
   }
 
@@ -10479,7 +10764,7 @@ export namespace Prisma {
     paid_at?: true
     status?: true
     transaction_id?: true
-    create_at?: true
+    created_at?: true
     updated_at?: true
   }
 
@@ -10493,7 +10778,7 @@ export namespace Prisma {
     paid_at?: true
     status?: true
     transaction_id?: true
-    create_at?: true
+    created_at?: true
     updated_at?: true
     _all?: true
   }
@@ -10594,7 +10879,7 @@ export namespace Prisma {
     paid_at: Date | null
     status: $Enums.Contribution_status
     transaction_id: string | null
-    create_at: Date
+    created_at: Date
     updated_at: Date
     _count: ContributionsCountAggregateOutputType | null
     _avg: ContributionsAvgAggregateOutputType | null
@@ -10627,10 +10912,11 @@ export namespace Prisma {
     paid_at?: boolean
     status?: boolean
     transaction_id?: boolean
-    create_at?: boolean
+    created_at?: boolean
     updated_at?: boolean
     savings_circle?: boolean | savings_circlesDefaultArgs<ExtArgs>
     users?: boolean | usersDefaultArgs<ExtArgs>
+    payment_transaction?: boolean | contributions$payment_transactionArgs<ExtArgs>
   }, ExtArgs["result"]["contributions"]>
 
   export type contributionsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -10643,10 +10929,11 @@ export namespace Prisma {
     paid_at?: boolean
     status?: boolean
     transaction_id?: boolean
-    create_at?: boolean
+    created_at?: boolean
     updated_at?: boolean
     savings_circle?: boolean | savings_circlesDefaultArgs<ExtArgs>
     users?: boolean | usersDefaultArgs<ExtArgs>
+    payment_transaction?: boolean | contributions$payment_transactionArgs<ExtArgs>
   }, ExtArgs["result"]["contributions"]>
 
   export type contributionsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -10659,10 +10946,11 @@ export namespace Prisma {
     paid_at?: boolean
     status?: boolean
     transaction_id?: boolean
-    create_at?: boolean
+    created_at?: boolean
     updated_at?: boolean
     savings_circle?: boolean | savings_circlesDefaultArgs<ExtArgs>
     users?: boolean | usersDefaultArgs<ExtArgs>
+    payment_transaction?: boolean | contributions$payment_transactionArgs<ExtArgs>
   }, ExtArgs["result"]["contributions"]>
 
   export type contributionsSelectScalar = {
@@ -10675,22 +10963,25 @@ export namespace Prisma {
     paid_at?: boolean
     status?: boolean
     transaction_id?: boolean
-    create_at?: boolean
+    created_at?: boolean
     updated_at?: boolean
   }
 
-  export type contributionsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "circle_id" | "circle_member" | "cycle_number" | "amount" | "due_date" | "paid_at" | "status" | "transaction_id" | "create_at" | "updated_at", ExtArgs["result"]["contributions"]>
+  export type contributionsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "circle_id" | "circle_member" | "cycle_number" | "amount" | "due_date" | "paid_at" | "status" | "transaction_id" | "created_at" | "updated_at", ExtArgs["result"]["contributions"]>
   export type contributionsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     savings_circle?: boolean | savings_circlesDefaultArgs<ExtArgs>
     users?: boolean | usersDefaultArgs<ExtArgs>
+    payment_transaction?: boolean | contributions$payment_transactionArgs<ExtArgs>
   }
   export type contributionsIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     savings_circle?: boolean | savings_circlesDefaultArgs<ExtArgs>
     users?: boolean | usersDefaultArgs<ExtArgs>
+    payment_transaction?: boolean | contributions$payment_transactionArgs<ExtArgs>
   }
   export type contributionsIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     savings_circle?: boolean | savings_circlesDefaultArgs<ExtArgs>
     users?: boolean | usersDefaultArgs<ExtArgs>
+    payment_transaction?: boolean | contributions$payment_transactionArgs<ExtArgs>
   }
 
   export type $contributionsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -10698,6 +10989,7 @@ export namespace Prisma {
     objects: {
       savings_circle: Prisma.$savings_circlesPayload<ExtArgs>
       users: Prisma.$usersPayload<ExtArgs>
+      payment_transaction: Prisma.$payment_transactionsPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -10709,7 +11001,7 @@ export namespace Prisma {
       paid_at: Date | null
       status: $Enums.Contribution_status
       transaction_id: string | null
-      create_at: Date
+      created_at: Date
       updated_at: Date
     }, ExtArgs["result"]["contributions"]>
     composites: {}
@@ -11107,6 +11399,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     savings_circle<T extends savings_circlesDefaultArgs<ExtArgs> = {}>(args?: Subset<T, savings_circlesDefaultArgs<ExtArgs>>): Prisma__savings_circlesClient<$Result.GetResult<Prisma.$savings_circlesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     users<T extends usersDefaultArgs<ExtArgs> = {}>(args?: Subset<T, usersDefaultArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    payment_transaction<T extends contributions$payment_transactionArgs<ExtArgs> = {}>(args?: Subset<T, contributions$payment_transactionArgs<ExtArgs>>): Prisma__payment_transactionsClient<$Result.GetResult<Prisma.$payment_transactionsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -11145,7 +11438,7 @@ export namespace Prisma {
     readonly paid_at: FieldRef<"contributions", 'DateTime'>
     readonly status: FieldRef<"contributions", 'Contribution_status'>
     readonly transaction_id: FieldRef<"contributions", 'String'>
-    readonly create_at: FieldRef<"contributions", 'DateTime'>
+    readonly created_at: FieldRef<"contributions", 'DateTime'>
     readonly updated_at: FieldRef<"contributions", 'DateTime'>
   }
     
@@ -11548,6 +11841,25 @@ export namespace Prisma {
   }
 
   /**
+   * contributions.payment_transaction
+   */
+  export type contributions$payment_transactionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the payment_transactions
+     */
+    select?: payment_transactionsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the payment_transactions
+     */
+    omit?: payment_transactionsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: payment_transactionsInclude<ExtArgs> | null
+    where?: payment_transactionsWhereInput
+  }
+
+  /**
    * contributions without action
    */
   export type contributionsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -11596,9 +11908,9 @@ export namespace Prisma {
     amount: Decimal | null
     scheduled_date: Date | null
     paid_at: Date | null
-    status: $Enums.Contribution_status | null
+    status: $Enums.Payout_Status | null
     transaction_id: string | null
-    create_at: Date | null
+    created_at: Date | null
     updated_at: Date | null
   }
 
@@ -11610,9 +11922,9 @@ export namespace Prisma {
     amount: Decimal | null
     scheduled_date: Date | null
     paid_at: Date | null
-    status: $Enums.Contribution_status | null
+    status: $Enums.Payout_Status | null
     transaction_id: string | null
-    create_at: Date | null
+    created_at: Date | null
     updated_at: Date | null
   }
 
@@ -11626,7 +11938,7 @@ export namespace Prisma {
     paid_at: number
     status: number
     transaction_id: number
-    create_at: number
+    created_at: number
     updated_at: number
     _all: number
   }
@@ -11652,7 +11964,7 @@ export namespace Prisma {
     paid_at?: true
     status?: true
     transaction_id?: true
-    create_at?: true
+    created_at?: true
     updated_at?: true
   }
 
@@ -11666,7 +11978,7 @@ export namespace Prisma {
     paid_at?: true
     status?: true
     transaction_id?: true
-    create_at?: true
+    created_at?: true
     updated_at?: true
   }
 
@@ -11680,7 +11992,7 @@ export namespace Prisma {
     paid_at?: true
     status?: true
     transaction_id?: true
-    create_at?: true
+    created_at?: true
     updated_at?: true
     _all?: true
   }
@@ -11779,9 +12091,9 @@ export namespace Prisma {
     amount: Decimal
     scheduled_date: Date
     paid_at: Date | null
-    status: $Enums.Contribution_status
+    status: $Enums.Payout_Status
     transaction_id: string | null
-    create_at: Date
+    created_at: Date
     updated_at: Date
     _count: PayoutsCountAggregateOutputType | null
     _avg: PayoutsAvgAggregateOutputType | null
@@ -11814,10 +12126,11 @@ export namespace Prisma {
     paid_at?: boolean
     status?: boolean
     transaction_id?: boolean
-    create_at?: boolean
+    created_at?: boolean
     updated_at?: boolean
     savings_circle?: boolean | savings_circlesDefaultArgs<ExtArgs>
     circle_member?: boolean | circle_membersDefaultArgs<ExtArgs>
+    payment_transaction?: boolean | payouts$payment_transactionArgs<ExtArgs>
   }, ExtArgs["result"]["payouts"]>
 
   export type payoutsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -11830,10 +12143,11 @@ export namespace Prisma {
     paid_at?: boolean
     status?: boolean
     transaction_id?: boolean
-    create_at?: boolean
+    created_at?: boolean
     updated_at?: boolean
     savings_circle?: boolean | savings_circlesDefaultArgs<ExtArgs>
     circle_member?: boolean | circle_membersDefaultArgs<ExtArgs>
+    payment_transaction?: boolean | payouts$payment_transactionArgs<ExtArgs>
   }, ExtArgs["result"]["payouts"]>
 
   export type payoutsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -11846,10 +12160,11 @@ export namespace Prisma {
     paid_at?: boolean
     status?: boolean
     transaction_id?: boolean
-    create_at?: boolean
+    created_at?: boolean
     updated_at?: boolean
     savings_circle?: boolean | savings_circlesDefaultArgs<ExtArgs>
     circle_member?: boolean | circle_membersDefaultArgs<ExtArgs>
+    payment_transaction?: boolean | payouts$payment_transactionArgs<ExtArgs>
   }, ExtArgs["result"]["payouts"]>
 
   export type payoutsSelectScalar = {
@@ -11862,22 +12177,25 @@ export namespace Prisma {
     paid_at?: boolean
     status?: boolean
     transaction_id?: boolean
-    create_at?: boolean
+    created_at?: boolean
     updated_at?: boolean
   }
 
-  export type payoutsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "circle_id" | "member_id" | "cycle_number" | "amount" | "scheduled_date" | "paid_at" | "status" | "transaction_id" | "create_at" | "updated_at", ExtArgs["result"]["payouts"]>
+  export type payoutsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "circle_id" | "member_id" | "cycle_number" | "amount" | "scheduled_date" | "paid_at" | "status" | "transaction_id" | "created_at" | "updated_at", ExtArgs["result"]["payouts"]>
   export type payoutsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     savings_circle?: boolean | savings_circlesDefaultArgs<ExtArgs>
     circle_member?: boolean | circle_membersDefaultArgs<ExtArgs>
+    payment_transaction?: boolean | payouts$payment_transactionArgs<ExtArgs>
   }
   export type payoutsIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     savings_circle?: boolean | savings_circlesDefaultArgs<ExtArgs>
     circle_member?: boolean | circle_membersDefaultArgs<ExtArgs>
+    payment_transaction?: boolean | payouts$payment_transactionArgs<ExtArgs>
   }
   export type payoutsIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     savings_circle?: boolean | savings_circlesDefaultArgs<ExtArgs>
     circle_member?: boolean | circle_membersDefaultArgs<ExtArgs>
+    payment_transaction?: boolean | payouts$payment_transactionArgs<ExtArgs>
   }
 
   export type $payoutsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -11885,6 +12203,7 @@ export namespace Prisma {
     objects: {
       savings_circle: Prisma.$savings_circlesPayload<ExtArgs>
       circle_member: Prisma.$circle_membersPayload<ExtArgs>
+      payment_transaction: Prisma.$payment_transactionsPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -11894,9 +12213,9 @@ export namespace Prisma {
       amount: Prisma.Decimal
       scheduled_date: Date
       paid_at: Date | null
-      status: $Enums.Contribution_status
+      status: $Enums.Payout_Status
       transaction_id: string | null
-      create_at: Date
+      created_at: Date
       updated_at: Date
     }, ExtArgs["result"]["payouts"]>
     composites: {}
@@ -12294,6 +12613,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     savings_circle<T extends savings_circlesDefaultArgs<ExtArgs> = {}>(args?: Subset<T, savings_circlesDefaultArgs<ExtArgs>>): Prisma__savings_circlesClient<$Result.GetResult<Prisma.$savings_circlesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     circle_member<T extends circle_membersDefaultArgs<ExtArgs> = {}>(args?: Subset<T, circle_membersDefaultArgs<ExtArgs>>): Prisma__circle_membersClient<$Result.GetResult<Prisma.$circle_membersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    payment_transaction<T extends payouts$payment_transactionArgs<ExtArgs> = {}>(args?: Subset<T, payouts$payment_transactionArgs<ExtArgs>>): Prisma__payment_transactionsClient<$Result.GetResult<Prisma.$payment_transactionsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -12330,9 +12650,9 @@ export namespace Prisma {
     readonly amount: FieldRef<"payouts", 'Decimal'>
     readonly scheduled_date: FieldRef<"payouts", 'DateTime'>
     readonly paid_at: FieldRef<"payouts", 'DateTime'>
-    readonly status: FieldRef<"payouts", 'Contribution_status'>
+    readonly status: FieldRef<"payouts", 'Payout_Status'>
     readonly transaction_id: FieldRef<"payouts", 'String'>
-    readonly create_at: FieldRef<"payouts", 'DateTime'>
+    readonly created_at: FieldRef<"payouts", 'DateTime'>
     readonly updated_at: FieldRef<"payouts", 'DateTime'>
   }
     
@@ -12735,6 +13055,25 @@ export namespace Prisma {
   }
 
   /**
+   * payouts.payment_transaction
+   */
+  export type payouts$payment_transactionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the payment_transactions
+     */
+    select?: payment_transactionsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the payment_transactions
+     */
+    omit?: payment_transactionsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: payment_transactionsInclude<ExtArgs> | null
+    where?: payment_transactionsWhereInput
+  }
+
+  /**
    * payouts without action
    */
   export type payoutsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -12783,7 +13122,7 @@ export namespace Prisma {
     type: $Enums.Payment_type | null
     amount: Decimal | null
     currency: string | null
-    status: $Enums.Payout | null
+    status: $Enums.Payment_Status | null
     created_at: Date | null
     updated_at: Date | null
   }
@@ -12798,7 +13137,7 @@ export namespace Prisma {
     type: $Enums.Payment_type | null
     amount: Decimal | null
     currency: string | null
-    status: $Enums.Payout | null
+    status: $Enums.Payment_Status | null
     created_at: Date | null
     updated_at: Date | null
   }
@@ -12972,7 +13311,7 @@ export namespace Prisma {
     type: $Enums.Payment_type
     amount: Decimal
     currency: string
-    status: $Enums.Payout
+    status: $Enums.Payment_Status
     metadata: JsonValue
     created_at: Date
     updated_at: Date
@@ -13012,7 +13351,10 @@ export namespace Prisma {
     created_at?: boolean
     updated_at?: boolean
     users?: boolean | usersDefaultArgs<ExtArgs>
+    contribution?: boolean | payment_transactions$contributionArgs<ExtArgs>
+    payout?: boolean | payment_transactions$payoutArgs<ExtArgs>
     payment_status_history?: boolean | payment_transactions$payment_status_historyArgs<ExtArgs>
+    _count?: boolean | Payment_transactionsCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["payment_transactions"]>
 
   export type payment_transactionsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -13068,7 +13410,10 @@ export namespace Prisma {
   export type payment_transactionsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "user_id" | "refernce" | "idempotency_key" | "provider" | "provider_reference" | "type" | "amount" | "currency" | "status" | "metadata" | "created_at" | "updated_at", ExtArgs["result"]["payment_transactions"]>
   export type payment_transactionsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     users?: boolean | usersDefaultArgs<ExtArgs>
+    contribution?: boolean | payment_transactions$contributionArgs<ExtArgs>
+    payout?: boolean | payment_transactions$payoutArgs<ExtArgs>
     payment_status_history?: boolean | payment_transactions$payment_status_historyArgs<ExtArgs>
+    _count?: boolean | Payment_transactionsCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type payment_transactionsIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     users?: boolean | usersDefaultArgs<ExtArgs>
@@ -13081,7 +13426,9 @@ export namespace Prisma {
     name: "payment_transactions"
     objects: {
       users: Prisma.$usersPayload<ExtArgs>
-      payment_status_history: Prisma.$payment_status_historyPayload<ExtArgs> | null
+      contribution: Prisma.$contributionsPayload<ExtArgs> | null
+      payout: Prisma.$payoutsPayload<ExtArgs> | null
+      payment_status_history: Prisma.$payment_status_historyPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -13093,7 +13440,7 @@ export namespace Prisma {
       type: $Enums.Payment_type
       amount: Prisma.Decimal
       currency: string
-      status: $Enums.Payout
+      status: $Enums.Payment_Status
       metadata: Prisma.JsonValue
       created_at: Date
       updated_at: Date
@@ -13492,7 +13839,9 @@ export namespace Prisma {
   export interface Prisma__payment_transactionsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     users<T extends usersDefaultArgs<ExtArgs> = {}>(args?: Subset<T, usersDefaultArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    payment_status_history<T extends payment_transactions$payment_status_historyArgs<ExtArgs> = {}>(args?: Subset<T, payment_transactions$payment_status_historyArgs<ExtArgs>>): Prisma__payment_status_historyClient<$Result.GetResult<Prisma.$payment_status_historyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    contribution<T extends payment_transactions$contributionArgs<ExtArgs> = {}>(args?: Subset<T, payment_transactions$contributionArgs<ExtArgs>>): Prisma__contributionsClient<$Result.GetResult<Prisma.$contributionsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    payout<T extends payment_transactions$payoutArgs<ExtArgs> = {}>(args?: Subset<T, payment_transactions$payoutArgs<ExtArgs>>): Prisma__payoutsClient<$Result.GetResult<Prisma.$payoutsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    payment_status_history<T extends payment_transactions$payment_status_historyArgs<ExtArgs> = {}>(args?: Subset<T, payment_transactions$payment_status_historyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$payment_status_historyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -13531,7 +13880,7 @@ export namespace Prisma {
     readonly type: FieldRef<"payment_transactions", 'Payment_type'>
     readonly amount: FieldRef<"payment_transactions", 'Decimal'>
     readonly currency: FieldRef<"payment_transactions", 'String'>
-    readonly status: FieldRef<"payment_transactions", 'Payout'>
+    readonly status: FieldRef<"payment_transactions", 'Payment_Status'>
     readonly metadata: FieldRef<"payment_transactions", 'Json'>
     readonly created_at: FieldRef<"payment_transactions", 'DateTime'>
     readonly updated_at: FieldRef<"payment_transactions", 'DateTime'>
@@ -13936,6 +14285,44 @@ export namespace Prisma {
   }
 
   /**
+   * payment_transactions.contribution
+   */
+  export type payment_transactions$contributionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the contributions
+     */
+    select?: contributionsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the contributions
+     */
+    omit?: contributionsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: contributionsInclude<ExtArgs> | null
+    where?: contributionsWhereInput
+  }
+
+  /**
+   * payment_transactions.payout
+   */
+  export type payment_transactions$payoutArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the payouts
+     */
+    select?: payoutsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the payouts
+     */
+    omit?: payoutsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: payoutsInclude<ExtArgs> | null
+    where?: payoutsWhereInput
+  }
+
+  /**
    * payment_transactions.payment_status_history
    */
   export type payment_transactions$payment_status_historyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -13952,6 +14339,11 @@ export namespace Prisma {
      */
     include?: payment_status_historyInclude<ExtArgs> | null
     where?: payment_status_historyWhereInput
+    orderBy?: payment_status_historyOrderByWithRelationInput | payment_status_historyOrderByWithRelationInput[]
+    cursor?: payment_status_historyWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Payment_status_historyScalarFieldEnum | Payment_status_historyScalarFieldEnum[]
   }
 
   /**
@@ -13986,7 +14378,7 @@ export namespace Prisma {
   export type Payment_status_historyMinAggregateOutputType = {
     id: string | null
     transaction_id: string | null
-    status: $Enums.Payout | null
+    status: $Enums.Payment_Status | null
     message: string | null
     created_at: Date | null
   }
@@ -13994,7 +14386,7 @@ export namespace Prisma {
   export type Payment_status_historyMaxAggregateOutputType = {
     id: string | null
     transaction_id: string | null
-    status: $Enums.Payout | null
+    status: $Enums.Payment_Status | null
     message: string | null
     created_at: Date | null
   }
@@ -14111,7 +14503,7 @@ export namespace Prisma {
   export type Payment_status_historyGroupByOutputType = {
     id: string
     transaction_id: string
-    status: $Enums.Payout
+    status: $Enums.Payment_Status
     message: string
     metadata: JsonValue
     created_at: Date
@@ -14192,7 +14584,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       transaction_id: string
-      status: $Enums.Payout
+      status: $Enums.Payment_Status
       message: string
       metadata: Prisma.JsonValue
       created_at: Date
@@ -14622,7 +15014,7 @@ export namespace Prisma {
   interface payment_status_historyFieldRefs {
     readonly id: FieldRef<"payment_status_history", 'String'>
     readonly transaction_id: FieldRef<"payment_status_history", 'String'>
-    readonly status: FieldRef<"payment_status_history", 'Payout'>
+    readonly status: FieldRef<"payment_status_history", 'Payment_Status'>
     readonly message: FieldRef<"payment_status_history", 'String'>
     readonly metadata: FieldRef<"payment_status_history", 'Json'>
     readonly created_at: FieldRef<"payment_status_history", 'DateTime'>
@@ -15199,7 +15591,7 @@ export namespace Prisma {
     title: string
     message: string
     data: JsonValue
-    read_at: Date
+    read_at: Date | null
     created_at: Date
     _count: NotificationsCountAggregateOutputType | null
     _min: NotificationsMinAggregateOutputType | null
@@ -15290,7 +15682,7 @@ export namespace Prisma {
       title: string
       message: string
       data: Prisma.JsonValue
-      read_at: Date
+      read_at: Date | null
       created_at: Date
     }, ExtArgs["result"]["notifications"]>
     composites: {}
@@ -16155,7 +16547,7 @@ export namespace Prisma {
 
   export type Audit_logMinAggregateOutputType = {
     id: string | null
-    user_id: $Enums.Status | null
+    user_id: string | null
     action: string | null
     entity_type: string | null
     entity_id: string | null
@@ -16165,7 +16557,7 @@ export namespace Prisma {
 
   export type Audit_logMaxAggregateOutputType = {
     id: string | null
-    user_id: $Enums.Status | null
+    user_id: string | null
     action: string | null
     entity_type: string | null
     entity_id: string | null
@@ -16292,7 +16684,7 @@ export namespace Prisma {
 
   export type Audit_logGroupByOutputType = {
     id: string
-    user_id: $Enums.Status | null
+    user_id: string | null
     action: string
     entity_type: string
     entity_id: string | null
@@ -16369,7 +16761,7 @@ export namespace Prisma {
     objects: {}
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      user_id: $Enums.Status | null
+      user_id: string | null
       action: string
       entity_type: string
       entity_id: string | null
@@ -16800,7 +17192,7 @@ export namespace Prisma {
    */
   interface audit_logFieldRefs {
     readonly id: FieldRef<"audit_log", 'String'>
-    readonly user_id: FieldRef<"audit_log", 'Status'>
+    readonly user_id: FieldRef<"audit_log", 'String'>
     readonly action: FieldRef<"audit_log", 'String'>
     readonly entity_type: FieldRef<"audit_log", 'String'>
     readonly entity_id: FieldRef<"audit_log", 'String'>
@@ -17310,7 +17702,7 @@ export namespace Prisma {
     paid_at: 'paid_at',
     status: 'status',
     transaction_id: 'transaction_id',
-    create_at: 'create_at',
+    created_at: 'created_at',
     updated_at: 'updated_at'
   };
 
@@ -17327,7 +17719,7 @@ export namespace Prisma {
     paid_at: 'paid_at',
     status: 'status',
     transaction_id: 'transaction_id',
-    create_at: 'create_at',
+    created_at: 'created_at',
     updated_at: 'updated_at'
   };
 
@@ -17531,20 +17923,6 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Role'
-   */
-  export type EnumRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Role'>
-    
-
-
-  /**
-   * Reference to a field of type 'Role[]'
-   */
-  export type ListEnumRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Role[]'>
-    
-
-
-  /**
    * Reference to a field of type 'Circle_Status'
    */
   export type EnumCircle_StatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Circle_Status'>
@@ -17559,6 +17937,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Role'
+   */
+  export type EnumRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Role'>
+    
+
+
+  /**
+   * Reference to a field of type 'Role[]'
+   */
+  export type ListEnumRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Role[]'>
+    
+
+
+  /**
    * Reference to a field of type 'Contribution_status'
    */
   export type EnumContribution_statusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Contribution_status'>
@@ -17569,6 +17961,20 @@ export namespace Prisma {
    * Reference to a field of type 'Contribution_status[]'
    */
   export type ListEnumContribution_statusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Contribution_status[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Payout_Status'
+   */
+  export type EnumPayout_StatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Payout_Status'>
+    
+
+
+  /**
+   * Reference to a field of type 'Payout_Status[]'
+   */
+  export type ListEnumPayout_StatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Payout_Status[]'>
     
 
 
@@ -17601,16 +18007,16 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Payout'
+   * Reference to a field of type 'Payment_Status'
    */
-  export type EnumPayoutFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Payout'>
+  export type EnumPayment_StatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Payment_Status'>
     
 
 
   /**
-   * Reference to a field of type 'Payout[]'
+   * Reference to a field of type 'Payment_Status[]'
    */
-  export type ListEnumPayoutFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Payout[]'>
+  export type ListEnumPayment_StatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Payment_Status[]'>
     
 
 
@@ -17751,12 +18157,12 @@ export namespace Prisma {
     updated_at?: DateTimeFilter<"users"> | Date | string
     waitlistEntry?: XOR<WaitlistEntryNullableScalarRelationFilter, waitlistEntryWhereInput> | null
     session?: XOR<SessionsNullableScalarRelationFilter, sessionsWhereInput> | null
-    savings_circles?: XOR<Savings_circlesNullableScalarRelationFilter, savings_circlesWhereInput> | null
-    circle_members?: XOR<Circle_membersNullableScalarRelationFilter, circle_membersWhereInput> | null
-    circle_invitations?: XOR<Circle_invitationsNullableScalarRelationFilter, circle_invitationsWhereInput> | null
-    contributions?: XOR<ContributionsNullableScalarRelationFilter, contributionsWhereInput> | null
-    payment_transactions?: XOR<Payment_transactionsNullableScalarRelationFilter, payment_transactionsWhereInput> | null
-    notifications?: XOR<NotificationsNullableScalarRelationFilter, notificationsWhereInput> | null
+    savings_circles?: Savings_circlesListRelationFilter
+    circle_members?: Circle_membersListRelationFilter
+    circle_invitations?: Circle_invitationsListRelationFilter
+    contributions?: ContributionsListRelationFilter
+    payment_transactions?: Payment_transactionsListRelationFilter
+    notifications?: NotificationsListRelationFilter
   }
 
   export type usersOrderByWithRelationInput = {
@@ -17773,12 +18179,12 @@ export namespace Prisma {
     updated_at?: SortOrder
     waitlistEntry?: waitlistEntryOrderByWithRelationInput
     session?: sessionsOrderByWithRelationInput
-    savings_circles?: savings_circlesOrderByWithRelationInput
-    circle_members?: circle_membersOrderByWithRelationInput
-    circle_invitations?: circle_invitationsOrderByWithRelationInput
-    contributions?: contributionsOrderByWithRelationInput
-    payment_transactions?: payment_transactionsOrderByWithRelationInput
-    notifications?: notificationsOrderByWithRelationInput
+    savings_circles?: savings_circlesOrderByRelationAggregateInput
+    circle_members?: circle_membersOrderByRelationAggregateInput
+    circle_invitations?: circle_invitationsOrderByRelationAggregateInput
+    contributions?: contributionsOrderByRelationAggregateInput
+    payment_transactions?: payment_transactionsOrderByRelationAggregateInput
+    notifications?: notificationsOrderByRelationAggregateInput
   }
 
   export type usersWhereUniqueInput = Prisma.AtLeast<{
@@ -17798,12 +18204,12 @@ export namespace Prisma {
     updated_at?: DateTimeFilter<"users"> | Date | string
     waitlistEntry?: XOR<WaitlistEntryNullableScalarRelationFilter, waitlistEntryWhereInput> | null
     session?: XOR<SessionsNullableScalarRelationFilter, sessionsWhereInput> | null
-    savings_circles?: XOR<Savings_circlesNullableScalarRelationFilter, savings_circlesWhereInput> | null
-    circle_members?: XOR<Circle_membersNullableScalarRelationFilter, circle_membersWhereInput> | null
-    circle_invitations?: XOR<Circle_invitationsNullableScalarRelationFilter, circle_invitationsWhereInput> | null
-    contributions?: XOR<ContributionsNullableScalarRelationFilter, contributionsWhereInput> | null
-    payment_transactions?: XOR<Payment_transactionsNullableScalarRelationFilter, payment_transactionsWhereInput> | null
-    notifications?: XOR<NotificationsNullableScalarRelationFilter, notificationsWhereInput> | null
+    savings_circles?: Savings_circlesListRelationFilter
+    circle_members?: Circle_membersListRelationFilter
+    circle_invitations?: Circle_invitationsListRelationFilter
+    contributions?: ContributionsListRelationFilter
+    payment_transactions?: Payment_transactionsListRelationFilter
+    notifications?: NotificationsListRelationFilter
   }, "id" | "email" | "phone">
 
   export type usersOrderByWithAggregationInput = {
@@ -17913,15 +18319,15 @@ export namespace Prisma {
     frequency?: EnumFrequencyFilter<"savings_circles"> | $Enums.Frequency
     member_limit?: IntFilter<"savings_circles"> | number
     start_date?: DateTimeFilter<"savings_circles"> | Date | string
-    status?: EnumStatusFilter<"savings_circles"> | $Enums.Status
+    status?: EnumCircle_StatusFilter<"savings_circles"> | $Enums.Circle_Status
     created_at?: DateTimeFilter<"savings_circles"> | Date | string
     updated_at?: DateTimeFilter<"savings_circles"> | Date | string
     users?: XOR<UsersScalarRelationFilter, usersWhereInput>
-    circle_members?: XOR<Circle_membersNullableScalarRelationFilter, circle_membersWhereInput> | null
-    circle_invitations?: XOR<Circle_invitationsNullableScalarRelationFilter, circle_invitationsWhereInput> | null
-    savings_schedules?: XOR<Savings_schedulesNullableScalarRelationFilter, savings_schedulesWhereInput> | null
-    contributions?: XOR<ContributionsNullableScalarRelationFilter, contributionsWhereInput> | null
-    payouts?: XOR<PayoutsNullableScalarRelationFilter, payoutsWhereInput> | null
+    circle_members?: Circle_membersListRelationFilter
+    circle_invitations?: Circle_invitationsListRelationFilter
+    savings_schedules?: Savings_schedulesListRelationFilter
+    contributions?: ContributionsListRelationFilter
+    payouts?: PayoutsListRelationFilter
   }
 
   export type savings_circlesOrderByWithRelationInput = {
@@ -17938,36 +18344,36 @@ export namespace Prisma {
     created_at?: SortOrder
     updated_at?: SortOrder
     users?: usersOrderByWithRelationInput
-    circle_members?: circle_membersOrderByWithRelationInput
-    circle_invitations?: circle_invitationsOrderByWithRelationInput
-    savings_schedules?: savings_schedulesOrderByWithRelationInput
-    contributions?: contributionsOrderByWithRelationInput
-    payouts?: payoutsOrderByWithRelationInput
+    circle_members?: circle_membersOrderByRelationAggregateInput
+    circle_invitations?: circle_invitationsOrderByRelationAggregateInput
+    savings_schedules?: savings_schedulesOrderByRelationAggregateInput
+    contributions?: contributionsOrderByRelationAggregateInput
+    payouts?: payoutsOrderByRelationAggregateInput
   }
 
   export type savings_circlesWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    owner_id?: string
     AND?: savings_circlesWhereInput | savings_circlesWhereInput[]
     OR?: savings_circlesWhereInput[]
     NOT?: savings_circlesWhereInput | savings_circlesWhereInput[]
     name?: StringFilter<"savings_circles"> | string
     decription?: StringFilter<"savings_circles"> | string
+    owner_id?: StringFilter<"savings_circles"> | string
     contribution_amount?: DecimalFilter<"savings_circles"> | Decimal | DecimalJsLike | number | string
     currency?: StringFilter<"savings_circles"> | string
     frequency?: EnumFrequencyFilter<"savings_circles"> | $Enums.Frequency
     member_limit?: IntFilter<"savings_circles"> | number
     start_date?: DateTimeFilter<"savings_circles"> | Date | string
-    status?: EnumStatusFilter<"savings_circles"> | $Enums.Status
+    status?: EnumCircle_StatusFilter<"savings_circles"> | $Enums.Circle_Status
     created_at?: DateTimeFilter<"savings_circles"> | Date | string
     updated_at?: DateTimeFilter<"savings_circles"> | Date | string
     users?: XOR<UsersScalarRelationFilter, usersWhereInput>
-    circle_members?: XOR<Circle_membersNullableScalarRelationFilter, circle_membersWhereInput> | null
-    circle_invitations?: XOR<Circle_invitationsNullableScalarRelationFilter, circle_invitationsWhereInput> | null
-    savings_schedules?: XOR<Savings_schedulesNullableScalarRelationFilter, savings_schedulesWhereInput> | null
-    contributions?: XOR<ContributionsNullableScalarRelationFilter, contributionsWhereInput> | null
-    payouts?: XOR<PayoutsNullableScalarRelationFilter, payoutsWhereInput> | null
-  }, "id" | "owner_id">
+    circle_members?: Circle_membersListRelationFilter
+    circle_invitations?: Circle_invitationsListRelationFilter
+    savings_schedules?: Savings_schedulesListRelationFilter
+    contributions?: ContributionsListRelationFilter
+    payouts?: PayoutsListRelationFilter
+  }, "id">
 
   export type savings_circlesOrderByWithAggregationInput = {
     id?: SortOrder
@@ -18002,7 +18408,7 @@ export namespace Prisma {
     frequency?: EnumFrequencyWithAggregatesFilter<"savings_circles"> | $Enums.Frequency
     member_limit?: IntWithAggregatesFilter<"savings_circles"> | number
     start_date?: DateTimeWithAggregatesFilter<"savings_circles"> | Date | string
-    status?: EnumStatusWithAggregatesFilter<"savings_circles"> | $Enums.Status
+    status?: EnumCircle_StatusWithAggregatesFilter<"savings_circles"> | $Enums.Circle_Status
     created_at?: DateTimeWithAggregatesFilter<"savings_circles"> | Date | string
     updated_at?: DateTimeWithAggregatesFilter<"savings_circles"> | Date | string
   }
@@ -18022,7 +18428,7 @@ export namespace Prisma {
     updated_at?: DateTimeFilter<"circle_members"> | Date | string
     savings_circle?: XOR<Savings_circlesScalarRelationFilter, savings_circlesWhereInput>
     users?: XOR<UsersScalarRelationFilter, usersWhereInput>
-    payouts?: XOR<PayoutsNullableScalarRelationFilter, payoutsWhereInput> | null
+    payouts?: PayoutsListRelationFilter
   }
 
   export type circle_membersOrderByWithRelationInput = {
@@ -18037,16 +18443,17 @@ export namespace Prisma {
     updated_at?: SortOrder
     savings_circle?: savings_circlesOrderByWithRelationInput
     users?: usersOrderByWithRelationInput
-    payouts?: payoutsOrderByWithRelationInput
+    payouts?: payoutsOrderByRelationAggregateInput
   }
 
   export type circle_membersWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    circle_id?: string
-    user_id?: string
+    circle_id_user_id?: circle_membersCircle_idUser_idCompoundUniqueInput
     AND?: circle_membersWhereInput | circle_membersWhereInput[]
     OR?: circle_membersWhereInput[]
     NOT?: circle_membersWhereInput | circle_membersWhereInput[]
+    circle_id?: StringFilter<"circle_members"> | string
+    user_id?: StringFilter<"circle_members"> | string
     role?: EnumRoleFilter<"circle_members"> | $Enums.Role
     status?: EnumCircle_StatusFilter<"circle_members"> | $Enums.Circle_Status
     joined_at?: DateTimeFilter<"circle_members"> | Date | string
@@ -18055,8 +18462,8 @@ export namespace Prisma {
     updated_at?: DateTimeFilter<"circle_members"> | Date | string
     savings_circle?: XOR<Savings_circlesScalarRelationFilter, savings_circlesWhereInput>
     users?: XOR<UsersScalarRelationFilter, usersWhereInput>
-    payouts?: XOR<PayoutsNullableScalarRelationFilter, payoutsWhereInput> | null
-  }, "id" | "circle_id" | "user_id">
+    payouts?: PayoutsListRelationFilter
+  }, "id" | "circle_id_user_id">
 
   export type circle_membersOrderByWithAggregationInput = {
     id?: SortOrder
@@ -18121,12 +18528,12 @@ export namespace Prisma {
 
   export type circle_invitationsWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    circle_id?: string
-    invited_by?: string
     token_hash?: string
     AND?: circle_invitationsWhereInput | circle_invitationsWhereInput[]
     OR?: circle_invitationsWhereInput[]
     NOT?: circle_invitationsWhereInput | circle_invitationsWhereInput[]
+    circle_id?: StringFilter<"circle_invitations"> | string
+    invited_by?: StringFilter<"circle_invitations"> | string
     email?: StringFilter<"circle_invitations"> | string
     status?: EnumStatusFilter<"circle_invitations"> | $Enums.Status
     expires_at?: DateTimeFilter<"circle_invitations"> | Date | string
@@ -18134,7 +18541,7 @@ export namespace Prisma {
     created_at?: DateTimeFilter<"circle_invitations"> | Date | string
     savings_circle?: XOR<Savings_circlesScalarRelationFilter, savings_circlesWhereInput>
     users?: XOR<UsersScalarRelationFilter, usersWhereInput>
-  }, "id" | "circle_id" | "invited_by" | "token_hash">
+  }, "id" | "token_hash">
 
   export type circle_invitationsOrderByWithAggregationInput = {
     id?: SortOrder
@@ -18199,10 +18606,10 @@ export namespace Prisma {
 
   export type savings_schedulesWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    circle_id?: string
     AND?: savings_schedulesWhereInput | savings_schedulesWhereInput[]
     OR?: savings_schedulesWhereInput[]
     NOT?: savings_schedulesWhereInput | savings_schedulesWhereInput[]
+    circle_id?: StringFilter<"savings_schedules"> | string
     frequency?: EnumFrequencyFilter<"savings_schedules"> | $Enums.Frequency
     contribution_amount?: DecimalFilter<"savings_schedules"> | Decimal | DecimalJsLike | number | string
     start_date?: DateTimeFilter<"savings_schedules"> | Date | string
@@ -18212,7 +18619,7 @@ export namespace Prisma {
     created_at?: DateTimeFilter<"savings_schedules"> | Date | string
     updated_at?: DateTimeFilter<"savings_schedules"> | Date | string
     savings_circle?: XOR<Savings_circlesScalarRelationFilter, savings_circlesWhereInput>
-  }, "id" | "circle_id">
+  }, "id">
 
   export type savings_schedulesOrderByWithAggregationInput = {
     id?: SortOrder
@@ -18261,10 +18668,11 @@ export namespace Prisma {
     paid_at?: DateTimeNullableFilter<"contributions"> | Date | string | null
     status?: EnumContribution_statusFilter<"contributions"> | $Enums.Contribution_status
     transaction_id?: StringNullableFilter<"contributions"> | string | null
-    create_at?: DateTimeFilter<"contributions"> | Date | string
+    created_at?: DateTimeFilter<"contributions"> | Date | string
     updated_at?: DateTimeFilter<"contributions"> | Date | string
     savings_circle?: XOR<Savings_circlesScalarRelationFilter, savings_circlesWhereInput>
     users?: XOR<UsersScalarRelationFilter, usersWhereInput>
+    payment_transaction?: XOR<Payment_transactionsNullableScalarRelationFilter, payment_transactionsWhereInput> | null
   }
 
   export type contributionsOrderByWithRelationInput = {
@@ -18277,30 +18685,33 @@ export namespace Prisma {
     paid_at?: SortOrderInput | SortOrder
     status?: SortOrder
     transaction_id?: SortOrderInput | SortOrder
-    create_at?: SortOrder
+    created_at?: SortOrder
     updated_at?: SortOrder
     savings_circle?: savings_circlesOrderByWithRelationInput
     users?: usersOrderByWithRelationInput
+    payment_transaction?: payment_transactionsOrderByWithRelationInput
   }
 
   export type contributionsWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    circle_id?: string
-    circle_member?: string
     transaction_id?: string
+    circle_id_circle_member_cycle_number?: contributionsCircle_idCircle_memberCycle_numberCompoundUniqueInput
     AND?: contributionsWhereInput | contributionsWhereInput[]
     OR?: contributionsWhereInput[]
     NOT?: contributionsWhereInput | contributionsWhereInput[]
+    circle_id?: StringFilter<"contributions"> | string
+    circle_member?: StringFilter<"contributions"> | string
     cycle_number?: IntFilter<"contributions"> | number
     amount?: DecimalFilter<"contributions"> | Decimal | DecimalJsLike | number | string
     due_date?: DateTimeFilter<"contributions"> | Date | string
     paid_at?: DateTimeNullableFilter<"contributions"> | Date | string | null
     status?: EnumContribution_statusFilter<"contributions"> | $Enums.Contribution_status
-    create_at?: DateTimeFilter<"contributions"> | Date | string
+    created_at?: DateTimeFilter<"contributions"> | Date | string
     updated_at?: DateTimeFilter<"contributions"> | Date | string
     savings_circle?: XOR<Savings_circlesScalarRelationFilter, savings_circlesWhereInput>
     users?: XOR<UsersScalarRelationFilter, usersWhereInput>
-  }, "id" | "circle_id" | "circle_member" | "transaction_id">
+    payment_transaction?: XOR<Payment_transactionsNullableScalarRelationFilter, payment_transactionsWhereInput> | null
+  }, "id" | "transaction_id" | "circle_id_circle_member_cycle_number">
 
   export type contributionsOrderByWithAggregationInput = {
     id?: SortOrder
@@ -18312,7 +18723,7 @@ export namespace Prisma {
     paid_at?: SortOrderInput | SortOrder
     status?: SortOrder
     transaction_id?: SortOrderInput | SortOrder
-    create_at?: SortOrder
+    created_at?: SortOrder
     updated_at?: SortOrder
     _count?: contributionsCountOrderByAggregateInput
     _avg?: contributionsAvgOrderByAggregateInput
@@ -18334,7 +18745,7 @@ export namespace Prisma {
     paid_at?: DateTimeNullableWithAggregatesFilter<"contributions"> | Date | string | null
     status?: EnumContribution_statusWithAggregatesFilter<"contributions"> | $Enums.Contribution_status
     transaction_id?: StringNullableWithAggregatesFilter<"contributions"> | string | null
-    create_at?: DateTimeWithAggregatesFilter<"contributions"> | Date | string
+    created_at?: DateTimeWithAggregatesFilter<"contributions"> | Date | string
     updated_at?: DateTimeWithAggregatesFilter<"contributions"> | Date | string
   }
 
@@ -18349,12 +18760,13 @@ export namespace Prisma {
     amount?: DecimalFilter<"payouts"> | Decimal | DecimalJsLike | number | string
     scheduled_date?: DateTimeFilter<"payouts"> | Date | string
     paid_at?: DateTimeNullableFilter<"payouts"> | Date | string | null
-    status?: EnumContribution_statusFilter<"payouts"> | $Enums.Contribution_status
+    status?: EnumPayout_StatusFilter<"payouts"> | $Enums.Payout_Status
     transaction_id?: StringNullableFilter<"payouts"> | string | null
-    create_at?: DateTimeFilter<"payouts"> | Date | string
+    created_at?: DateTimeFilter<"payouts"> | Date | string
     updated_at?: DateTimeFilter<"payouts"> | Date | string
     savings_circle?: XOR<Savings_circlesScalarRelationFilter, savings_circlesWhereInput>
     circle_member?: XOR<Circle_membersScalarRelationFilter, circle_membersWhereInput>
+    payment_transaction?: XOR<Payment_transactionsNullableScalarRelationFilter, payment_transactionsWhereInput> | null
   }
 
   export type payoutsOrderByWithRelationInput = {
@@ -18367,30 +18779,33 @@ export namespace Prisma {
     paid_at?: SortOrderInput | SortOrder
     status?: SortOrder
     transaction_id?: SortOrderInput | SortOrder
-    create_at?: SortOrder
+    created_at?: SortOrder
     updated_at?: SortOrder
     savings_circle?: savings_circlesOrderByWithRelationInput
     circle_member?: circle_membersOrderByWithRelationInput
+    payment_transaction?: payment_transactionsOrderByWithRelationInput
   }
 
   export type payoutsWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    circle_id?: string
-    member_id?: string
     transaction_id?: string
+    circle_id_member_id_cycle_number?: payoutsCircle_idMember_idCycle_numberCompoundUniqueInput
     AND?: payoutsWhereInput | payoutsWhereInput[]
     OR?: payoutsWhereInput[]
     NOT?: payoutsWhereInput | payoutsWhereInput[]
+    circle_id?: StringFilter<"payouts"> | string
+    member_id?: StringFilter<"payouts"> | string
     cycle_number?: IntFilter<"payouts"> | number
     amount?: DecimalFilter<"payouts"> | Decimal | DecimalJsLike | number | string
     scheduled_date?: DateTimeFilter<"payouts"> | Date | string
     paid_at?: DateTimeNullableFilter<"payouts"> | Date | string | null
-    status?: EnumContribution_statusFilter<"payouts"> | $Enums.Contribution_status
-    create_at?: DateTimeFilter<"payouts"> | Date | string
+    status?: EnumPayout_StatusFilter<"payouts"> | $Enums.Payout_Status
+    created_at?: DateTimeFilter<"payouts"> | Date | string
     updated_at?: DateTimeFilter<"payouts"> | Date | string
     savings_circle?: XOR<Savings_circlesScalarRelationFilter, savings_circlesWhereInput>
     circle_member?: XOR<Circle_membersScalarRelationFilter, circle_membersWhereInput>
-  }, "id" | "circle_id" | "member_id" | "transaction_id">
+    payment_transaction?: XOR<Payment_transactionsNullableScalarRelationFilter, payment_transactionsWhereInput> | null
+  }, "id" | "transaction_id" | "circle_id_member_id_cycle_number">
 
   export type payoutsOrderByWithAggregationInput = {
     id?: SortOrder
@@ -18402,7 +18817,7 @@ export namespace Prisma {
     paid_at?: SortOrderInput | SortOrder
     status?: SortOrder
     transaction_id?: SortOrderInput | SortOrder
-    create_at?: SortOrder
+    created_at?: SortOrder
     updated_at?: SortOrder
     _count?: payoutsCountOrderByAggregateInput
     _avg?: payoutsAvgOrderByAggregateInput
@@ -18422,9 +18837,9 @@ export namespace Prisma {
     amount?: DecimalWithAggregatesFilter<"payouts"> | Decimal | DecimalJsLike | number | string
     scheduled_date?: DateTimeWithAggregatesFilter<"payouts"> | Date | string
     paid_at?: DateTimeNullableWithAggregatesFilter<"payouts"> | Date | string | null
-    status?: EnumContribution_statusWithAggregatesFilter<"payouts"> | $Enums.Contribution_status
+    status?: EnumPayout_StatusWithAggregatesFilter<"payouts"> | $Enums.Payout_Status
     transaction_id?: StringNullableWithAggregatesFilter<"payouts"> | string | null
-    create_at?: DateTimeWithAggregatesFilter<"payouts"> | Date | string
+    created_at?: DateTimeWithAggregatesFilter<"payouts"> | Date | string
     updated_at?: DateTimeWithAggregatesFilter<"payouts"> | Date | string
   }
 
@@ -18441,12 +18856,14 @@ export namespace Prisma {
     type?: EnumPayment_typeFilter<"payment_transactions"> | $Enums.Payment_type
     amount?: DecimalFilter<"payment_transactions"> | Decimal | DecimalJsLike | number | string
     currency?: StringFilter<"payment_transactions"> | string
-    status?: EnumPayoutFilter<"payment_transactions"> | $Enums.Payout
+    status?: EnumPayment_StatusFilter<"payment_transactions"> | $Enums.Payment_Status
     metadata?: JsonFilter<"payment_transactions">
     created_at?: DateTimeFilter<"payment_transactions"> | Date | string
     updated_at?: DateTimeFilter<"payment_transactions"> | Date | string
     users?: XOR<UsersScalarRelationFilter, usersWhereInput>
-    payment_status_history?: XOR<Payment_status_historyNullableScalarRelationFilter, payment_status_historyWhereInput> | null
+    contribution?: XOR<ContributionsNullableScalarRelationFilter, contributionsWhereInput> | null
+    payout?: XOR<PayoutsNullableScalarRelationFilter, payoutsWhereInput> | null
+    payment_status_history?: Payment_status_historyListRelationFilter
   }
 
   export type payment_transactionsOrderByWithRelationInput = {
@@ -18464,29 +18881,33 @@ export namespace Prisma {
     created_at?: SortOrder
     updated_at?: SortOrder
     users?: usersOrderByWithRelationInput
-    payment_status_history?: payment_status_historyOrderByWithRelationInput
+    contribution?: contributionsOrderByWithRelationInput
+    payout?: payoutsOrderByWithRelationInput
+    payment_status_history?: payment_status_historyOrderByRelationAggregateInput
   }
 
   export type payment_transactionsWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    user_id?: string
     refernce?: string
     idempotency_key?: string
     AND?: payment_transactionsWhereInput | payment_transactionsWhereInput[]
     OR?: payment_transactionsWhereInput[]
     NOT?: payment_transactionsWhereInput | payment_transactionsWhereInput[]
+    user_id?: StringFilter<"payment_transactions"> | string
     provider?: EnumProviderFilter<"payment_transactions"> | $Enums.Provider
     provider_reference?: StringNullableFilter<"payment_transactions"> | string | null
     type?: EnumPayment_typeFilter<"payment_transactions"> | $Enums.Payment_type
     amount?: DecimalFilter<"payment_transactions"> | Decimal | DecimalJsLike | number | string
     currency?: StringFilter<"payment_transactions"> | string
-    status?: EnumPayoutFilter<"payment_transactions"> | $Enums.Payout
+    status?: EnumPayment_StatusFilter<"payment_transactions"> | $Enums.Payment_Status
     metadata?: JsonFilter<"payment_transactions">
     created_at?: DateTimeFilter<"payment_transactions"> | Date | string
     updated_at?: DateTimeFilter<"payment_transactions"> | Date | string
     users?: XOR<UsersScalarRelationFilter, usersWhereInput>
-    payment_status_history?: XOR<Payment_status_historyNullableScalarRelationFilter, payment_status_historyWhereInput> | null
-  }, "id" | "user_id" | "refernce" | "idempotency_key">
+    contribution?: XOR<ContributionsNullableScalarRelationFilter, contributionsWhereInput> | null
+    payout?: XOR<PayoutsNullableScalarRelationFilter, payoutsWhereInput> | null
+    payment_status_history?: Payment_status_historyListRelationFilter
+  }, "id" | "refernce" | "idempotency_key">
 
   export type payment_transactionsOrderByWithAggregationInput = {
     id?: SortOrder
@@ -18522,7 +18943,7 @@ export namespace Prisma {
     type?: EnumPayment_typeWithAggregatesFilter<"payment_transactions"> | $Enums.Payment_type
     amount?: DecimalWithAggregatesFilter<"payment_transactions"> | Decimal | DecimalJsLike | number | string
     currency?: StringWithAggregatesFilter<"payment_transactions"> | string
-    status?: EnumPayoutWithAggregatesFilter<"payment_transactions"> | $Enums.Payout
+    status?: EnumPayment_StatusWithAggregatesFilter<"payment_transactions"> | $Enums.Payment_Status
     metadata?: JsonWithAggregatesFilter<"payment_transactions">
     created_at?: DateTimeWithAggregatesFilter<"payment_transactions"> | Date | string
     updated_at?: DateTimeWithAggregatesFilter<"payment_transactions"> | Date | string
@@ -18534,7 +18955,7 @@ export namespace Prisma {
     NOT?: payment_status_historyWhereInput | payment_status_historyWhereInput[]
     id?: StringFilter<"payment_status_history"> | string
     transaction_id?: StringFilter<"payment_status_history"> | string
-    status?: EnumPayoutFilter<"payment_status_history"> | $Enums.Payout
+    status?: EnumPayment_StatusFilter<"payment_status_history"> | $Enums.Payment_Status
     message?: StringFilter<"payment_status_history"> | string
     metadata?: JsonFilter<"payment_status_history">
     created_at?: DateTimeFilter<"payment_status_history"> | Date | string
@@ -18553,16 +18974,16 @@ export namespace Prisma {
 
   export type payment_status_historyWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    transaction_id?: string
     AND?: payment_status_historyWhereInput | payment_status_historyWhereInput[]
     OR?: payment_status_historyWhereInput[]
     NOT?: payment_status_historyWhereInput | payment_status_historyWhereInput[]
-    status?: EnumPayoutFilter<"payment_status_history"> | $Enums.Payout
+    transaction_id?: StringFilter<"payment_status_history"> | string
+    status?: EnumPayment_StatusFilter<"payment_status_history"> | $Enums.Payment_Status
     message?: StringFilter<"payment_status_history"> | string
     metadata?: JsonFilter<"payment_status_history">
     created_at?: DateTimeFilter<"payment_status_history"> | Date | string
     payment_transactions?: XOR<Payment_transactionsScalarRelationFilter, payment_transactionsWhereInput>
-  }, "id" | "transaction_id">
+  }, "id">
 
   export type payment_status_historyOrderByWithAggregationInput = {
     id?: SortOrder
@@ -18582,7 +19003,7 @@ export namespace Prisma {
     NOT?: payment_status_historyScalarWhereWithAggregatesInput | payment_status_historyScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"payment_status_history"> | string
     transaction_id?: StringWithAggregatesFilter<"payment_status_history"> | string
-    status?: EnumPayoutWithAggregatesFilter<"payment_status_history"> | $Enums.Payout
+    status?: EnumPayment_StatusWithAggregatesFilter<"payment_status_history"> | $Enums.Payment_Status
     message?: StringWithAggregatesFilter<"payment_status_history"> | string
     metadata?: JsonWithAggregatesFilter<"payment_status_history">
     created_at?: DateTimeWithAggregatesFilter<"payment_status_history"> | Date | string
@@ -18598,7 +19019,7 @@ export namespace Prisma {
     title?: StringFilter<"notifications"> | string
     message?: StringFilter<"notifications"> | string
     data?: JsonFilter<"notifications">
-    read_at?: DateTimeFilter<"notifications"> | Date | string
+    read_at?: DateTimeNullableFilter<"notifications"> | Date | string | null
     created_at?: DateTimeFilter<"notifications"> | Date | string
     users?: XOR<UsersScalarRelationFilter, usersWhereInput>
   }
@@ -18610,25 +19031,25 @@ export namespace Prisma {
     title?: SortOrder
     message?: SortOrder
     data?: SortOrder
-    read_at?: SortOrder
+    read_at?: SortOrderInput | SortOrder
     created_at?: SortOrder
     users?: usersOrderByWithRelationInput
   }
 
   export type notificationsWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    user_id?: string
     AND?: notificationsWhereInput | notificationsWhereInput[]
     OR?: notificationsWhereInput[]
     NOT?: notificationsWhereInput | notificationsWhereInput[]
+    user_id?: StringFilter<"notifications"> | string
     type?: EnumNotificationsFilter<"notifications"> | $Enums.Notifications
     title?: StringFilter<"notifications"> | string
     message?: StringFilter<"notifications"> | string
     data?: JsonFilter<"notifications">
-    read_at?: DateTimeFilter<"notifications"> | Date | string
+    read_at?: DateTimeNullableFilter<"notifications"> | Date | string | null
     created_at?: DateTimeFilter<"notifications"> | Date | string
     users?: XOR<UsersScalarRelationFilter, usersWhereInput>
-  }, "id" | "user_id">
+  }, "id">
 
   export type notificationsOrderByWithAggregationInput = {
     id?: SortOrder
@@ -18637,7 +19058,7 @@ export namespace Prisma {
     title?: SortOrder
     message?: SortOrder
     data?: SortOrder
-    read_at?: SortOrder
+    read_at?: SortOrderInput | SortOrder
     created_at?: SortOrder
     _count?: notificationsCountOrderByAggregateInput
     _max?: notificationsMaxOrderByAggregateInput
@@ -18654,7 +19075,7 @@ export namespace Prisma {
     title?: StringWithAggregatesFilter<"notifications"> | string
     message?: StringWithAggregatesFilter<"notifications"> | string
     data?: JsonWithAggregatesFilter<"notifications">
-    read_at?: DateTimeWithAggregatesFilter<"notifications"> | Date | string
+    read_at?: DateTimeNullableWithAggregatesFilter<"notifications"> | Date | string | null
     created_at?: DateTimeWithAggregatesFilter<"notifications"> | Date | string
   }
 
@@ -18663,7 +19084,7 @@ export namespace Prisma {
     OR?: audit_logWhereInput[]
     NOT?: audit_logWhereInput | audit_logWhereInput[]
     id?: StringFilter<"audit_log"> | string
-    user_id?: EnumStatusNullableFilter<"audit_log"> | $Enums.Status | null
+    user_id?: StringNullableFilter<"audit_log"> | string | null
     action?: StringFilter<"audit_log"> | string
     entity_type?: StringFilter<"audit_log"> | string
     entity_id?: StringNullableFilter<"audit_log"> | string | null
@@ -18688,7 +19109,7 @@ export namespace Prisma {
     AND?: audit_logWhereInput | audit_logWhereInput[]
     OR?: audit_logWhereInput[]
     NOT?: audit_logWhereInput | audit_logWhereInput[]
-    user_id?: EnumStatusNullableFilter<"audit_log"> | $Enums.Status | null
+    user_id?: StringNullableFilter<"audit_log"> | string | null
     action?: StringFilter<"audit_log"> | string
     entity_type?: StringFilter<"audit_log"> | string
     entity_id?: StringNullableFilter<"audit_log"> | string | null
@@ -18716,7 +19137,7 @@ export namespace Prisma {
     OR?: audit_logScalarWhereWithAggregatesInput[]
     NOT?: audit_logScalarWhereWithAggregatesInput | audit_logScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"audit_log"> | string
-    user_id?: EnumStatusNullableWithAggregatesFilter<"audit_log"> | $Enums.Status | null
+    user_id?: StringNullableWithAggregatesFilter<"audit_log"> | string | null
     action?: StringWithAggregatesFilter<"audit_log"> | string
     entity_type?: StringWithAggregatesFilter<"audit_log"> | string
     entity_id?: StringNullableWithAggregatesFilter<"audit_log"> | string | null
@@ -18822,12 +19243,12 @@ export namespace Prisma {
     updated_at?: Date | string
     waitlistEntry?: waitlistEntryCreateNestedOneWithoutUserInput
     session?: sessionsCreateNestedOneWithoutUserInput
-    savings_circles?: savings_circlesCreateNestedOneWithoutUsersInput
-    circle_members?: circle_membersCreateNestedOneWithoutUsersInput
-    circle_invitations?: circle_invitationsCreateNestedOneWithoutUsersInput
-    contributions?: contributionsCreateNestedOneWithoutUsersInput
-    payment_transactions?: payment_transactionsCreateNestedOneWithoutUsersInput
-    notifications?: notificationsCreateNestedOneWithoutUsersInput
+    savings_circles?: savings_circlesCreateNestedManyWithoutUsersInput
+    circle_members?: circle_membersCreateNestedManyWithoutUsersInput
+    circle_invitations?: circle_invitationsCreateNestedManyWithoutUsersInput
+    contributions?: contributionsCreateNestedManyWithoutUsersInput
+    payment_transactions?: payment_transactionsCreateNestedManyWithoutUsersInput
+    notifications?: notificationsCreateNestedManyWithoutUsersInput
   }
 
   export type usersUncheckedCreateInput = {
@@ -18844,12 +19265,12 @@ export namespace Prisma {
     updated_at?: Date | string
     waitlistEntry?: waitlistEntryUncheckedCreateNestedOneWithoutUserInput
     session?: sessionsUncheckedCreateNestedOneWithoutUserInput
-    savings_circles?: savings_circlesUncheckedCreateNestedOneWithoutUsersInput
-    circle_members?: circle_membersUncheckedCreateNestedOneWithoutUsersInput
-    circle_invitations?: circle_invitationsUncheckedCreateNestedOneWithoutUsersInput
-    contributions?: contributionsUncheckedCreateNestedOneWithoutUsersInput
-    payment_transactions?: payment_transactionsUncheckedCreateNestedOneWithoutUsersInput
-    notifications?: notificationsUncheckedCreateNestedOneWithoutUsersInput
+    savings_circles?: savings_circlesUncheckedCreateNestedManyWithoutUsersInput
+    circle_members?: circle_membersUncheckedCreateNestedManyWithoutUsersInput
+    circle_invitations?: circle_invitationsUncheckedCreateNestedManyWithoutUsersInput
+    contributions?: contributionsUncheckedCreateNestedManyWithoutUsersInput
+    payment_transactions?: payment_transactionsUncheckedCreateNestedManyWithoutUsersInput
+    notifications?: notificationsUncheckedCreateNestedManyWithoutUsersInput
   }
 
   export type usersUpdateInput = {
@@ -18866,12 +19287,12 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     waitlistEntry?: waitlistEntryUpdateOneWithoutUserNestedInput
     session?: sessionsUpdateOneWithoutUserNestedInput
-    savings_circles?: savings_circlesUpdateOneWithoutUsersNestedInput
-    circle_members?: circle_membersUpdateOneWithoutUsersNestedInput
-    circle_invitations?: circle_invitationsUpdateOneWithoutUsersNestedInput
-    contributions?: contributionsUpdateOneWithoutUsersNestedInput
-    payment_transactions?: payment_transactionsUpdateOneWithoutUsersNestedInput
-    notifications?: notificationsUpdateOneWithoutUsersNestedInput
+    savings_circles?: savings_circlesUpdateManyWithoutUsersNestedInput
+    circle_members?: circle_membersUpdateManyWithoutUsersNestedInput
+    circle_invitations?: circle_invitationsUpdateManyWithoutUsersNestedInput
+    contributions?: contributionsUpdateManyWithoutUsersNestedInput
+    payment_transactions?: payment_transactionsUpdateManyWithoutUsersNestedInput
+    notifications?: notificationsUpdateManyWithoutUsersNestedInput
   }
 
   export type usersUncheckedUpdateInput = {
@@ -18888,12 +19309,12 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     waitlistEntry?: waitlistEntryUncheckedUpdateOneWithoutUserNestedInput
     session?: sessionsUncheckedUpdateOneWithoutUserNestedInput
-    savings_circles?: savings_circlesUncheckedUpdateOneWithoutUsersNestedInput
-    circle_members?: circle_membersUncheckedUpdateOneWithoutUsersNestedInput
-    circle_invitations?: circle_invitationsUncheckedUpdateOneWithoutUsersNestedInput
-    contributions?: contributionsUncheckedUpdateOneWithoutUsersNestedInput
-    payment_transactions?: payment_transactionsUncheckedUpdateOneWithoutUsersNestedInput
-    notifications?: notificationsUncheckedUpdateOneWithoutUsersNestedInput
+    savings_circles?: savings_circlesUncheckedUpdateManyWithoutUsersNestedInput
+    circle_members?: circle_membersUncheckedUpdateManyWithoutUsersNestedInput
+    circle_invitations?: circle_invitationsUncheckedUpdateManyWithoutUsersNestedInput
+    contributions?: contributionsUncheckedUpdateManyWithoutUsersNestedInput
+    payment_transactions?: payment_transactionsUncheckedUpdateManyWithoutUsersNestedInput
+    notifications?: notificationsUncheckedUpdateManyWithoutUsersNestedInput
   }
 
   export type usersCreateManyInput = {
@@ -19009,15 +19430,15 @@ export namespace Prisma {
     frequency: $Enums.Frequency
     member_limit: number
     start_date: Date | string
-    status: $Enums.Status
+    status?: $Enums.Circle_Status
     created_at?: Date | string
     updated_at?: Date | string
     users: usersCreateNestedOneWithoutSavings_circlesInput
-    circle_members?: circle_membersCreateNestedOneWithoutSavings_circleInput
-    circle_invitations?: circle_invitationsCreateNestedOneWithoutSavings_circleInput
-    savings_schedules?: savings_schedulesCreateNestedOneWithoutSavings_circleInput
-    contributions?: contributionsCreateNestedOneWithoutSavings_circleInput
-    payouts?: payoutsCreateNestedOneWithoutSavings_circleInput
+    circle_members?: circle_membersCreateNestedManyWithoutSavings_circleInput
+    circle_invitations?: circle_invitationsCreateNestedManyWithoutSavings_circleInput
+    savings_schedules?: savings_schedulesCreateNestedManyWithoutSavings_circleInput
+    contributions?: contributionsCreateNestedManyWithoutSavings_circleInput
+    payouts?: payoutsCreateNestedManyWithoutSavings_circleInput
   }
 
   export type savings_circlesUncheckedCreateInput = {
@@ -19030,14 +19451,14 @@ export namespace Prisma {
     frequency: $Enums.Frequency
     member_limit: number
     start_date: Date | string
-    status: $Enums.Status
+    status?: $Enums.Circle_Status
     created_at?: Date | string
     updated_at?: Date | string
-    circle_members?: circle_membersUncheckedCreateNestedOneWithoutSavings_circleInput
-    circle_invitations?: circle_invitationsUncheckedCreateNestedOneWithoutSavings_circleInput
-    savings_schedules?: savings_schedulesUncheckedCreateNestedOneWithoutSavings_circleInput
-    contributions?: contributionsUncheckedCreateNestedOneWithoutSavings_circleInput
-    payouts?: payoutsUncheckedCreateNestedOneWithoutSavings_circleInput
+    circle_members?: circle_membersUncheckedCreateNestedManyWithoutSavings_circleInput
+    circle_invitations?: circle_invitationsUncheckedCreateNestedManyWithoutSavings_circleInput
+    savings_schedules?: savings_schedulesUncheckedCreateNestedManyWithoutSavings_circleInput
+    contributions?: contributionsUncheckedCreateNestedManyWithoutSavings_circleInput
+    payouts?: payoutsUncheckedCreateNestedManyWithoutSavings_circleInput
   }
 
   export type savings_circlesUpdateInput = {
@@ -19049,15 +19470,15 @@ export namespace Prisma {
     frequency?: EnumFrequencyFieldUpdateOperationsInput | $Enums.Frequency
     member_limit?: IntFieldUpdateOperationsInput | number
     start_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    status?: EnumCircle_StatusFieldUpdateOperationsInput | $Enums.Circle_Status
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: usersUpdateOneRequiredWithoutSavings_circlesNestedInput
-    circle_members?: circle_membersUpdateOneWithoutSavings_circleNestedInput
-    circle_invitations?: circle_invitationsUpdateOneWithoutSavings_circleNestedInput
-    savings_schedules?: savings_schedulesUpdateOneWithoutSavings_circleNestedInput
-    contributions?: contributionsUpdateOneWithoutSavings_circleNestedInput
-    payouts?: payoutsUpdateOneWithoutSavings_circleNestedInput
+    circle_members?: circle_membersUpdateManyWithoutSavings_circleNestedInput
+    circle_invitations?: circle_invitationsUpdateManyWithoutSavings_circleNestedInput
+    savings_schedules?: savings_schedulesUpdateManyWithoutSavings_circleNestedInput
+    contributions?: contributionsUpdateManyWithoutSavings_circleNestedInput
+    payouts?: payoutsUpdateManyWithoutSavings_circleNestedInput
   }
 
   export type savings_circlesUncheckedUpdateInput = {
@@ -19070,14 +19491,14 @@ export namespace Prisma {
     frequency?: EnumFrequencyFieldUpdateOperationsInput | $Enums.Frequency
     member_limit?: IntFieldUpdateOperationsInput | number
     start_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    status?: EnumCircle_StatusFieldUpdateOperationsInput | $Enums.Circle_Status
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    circle_members?: circle_membersUncheckedUpdateOneWithoutSavings_circleNestedInput
-    circle_invitations?: circle_invitationsUncheckedUpdateOneWithoutSavings_circleNestedInput
-    savings_schedules?: savings_schedulesUncheckedUpdateOneWithoutSavings_circleNestedInput
-    contributions?: contributionsUncheckedUpdateOneWithoutSavings_circleNestedInput
-    payouts?: payoutsUncheckedUpdateOneWithoutSavings_circleNestedInput
+    circle_members?: circle_membersUncheckedUpdateManyWithoutSavings_circleNestedInput
+    circle_invitations?: circle_invitationsUncheckedUpdateManyWithoutSavings_circleNestedInput
+    savings_schedules?: savings_schedulesUncheckedUpdateManyWithoutSavings_circleNestedInput
+    contributions?: contributionsUncheckedUpdateManyWithoutSavings_circleNestedInput
+    payouts?: payoutsUncheckedUpdateManyWithoutSavings_circleNestedInput
   }
 
   export type savings_circlesCreateManyInput = {
@@ -19090,7 +19511,7 @@ export namespace Prisma {
     frequency: $Enums.Frequency
     member_limit: number
     start_date: Date | string
-    status: $Enums.Status
+    status?: $Enums.Circle_Status
     created_at?: Date | string
     updated_at?: Date | string
   }
@@ -19104,7 +19525,7 @@ export namespace Prisma {
     frequency?: EnumFrequencyFieldUpdateOperationsInput | $Enums.Frequency
     member_limit?: IntFieldUpdateOperationsInput | number
     start_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    status?: EnumCircle_StatusFieldUpdateOperationsInput | $Enums.Circle_Status
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -19119,35 +19540,35 @@ export namespace Prisma {
     frequency?: EnumFrequencyFieldUpdateOperationsInput | $Enums.Frequency
     member_limit?: IntFieldUpdateOperationsInput | number
     start_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    status?: EnumCircle_StatusFieldUpdateOperationsInput | $Enums.Circle_Status
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type circle_membersCreateInput = {
     id?: string
-    role: $Enums.Role
-    status: $Enums.Circle_Status
-    joined_at: Date | string
+    role?: $Enums.Role
+    status?: $Enums.Circle_Status
+    joined_at?: Date | string
     left_at?: Date | string | null
-    created_at: Date | string
+    created_at?: Date | string
     updated_at?: Date | string
     savings_circle: savings_circlesCreateNestedOneWithoutCircle_membersInput
     users: usersCreateNestedOneWithoutCircle_membersInput
-    payouts?: payoutsCreateNestedOneWithoutCircle_memberInput
+    payouts?: payoutsCreateNestedManyWithoutCircle_memberInput
   }
 
   export type circle_membersUncheckedCreateInput = {
     id?: string
     circle_id: string
     user_id: string
-    role: $Enums.Role
-    status: $Enums.Circle_Status
-    joined_at: Date | string
+    role?: $Enums.Role
+    status?: $Enums.Circle_Status
+    joined_at?: Date | string
     left_at?: Date | string | null
-    created_at: Date | string
+    created_at?: Date | string
     updated_at?: Date | string
-    payouts?: payoutsUncheckedCreateNestedOneWithoutCircle_memberInput
+    payouts?: payoutsUncheckedCreateNestedManyWithoutCircle_memberInput
   }
 
   export type circle_membersUpdateInput = {
@@ -19160,7 +19581,7 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     savings_circle?: savings_circlesUpdateOneRequiredWithoutCircle_membersNestedInput
     users?: usersUpdateOneRequiredWithoutCircle_membersNestedInput
-    payouts?: payoutsUpdateOneWithoutCircle_memberNestedInput
+    payouts?: payoutsUpdateManyWithoutCircle_memberNestedInput
   }
 
   export type circle_membersUncheckedUpdateInput = {
@@ -19173,18 +19594,18 @@ export namespace Prisma {
     left_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    payouts?: payoutsUncheckedUpdateOneWithoutCircle_memberNestedInput
+    payouts?: payoutsUncheckedUpdateManyWithoutCircle_memberNestedInput
   }
 
   export type circle_membersCreateManyInput = {
     id?: string
     circle_id: string
     user_id: string
-    role: $Enums.Role
-    status: $Enums.Circle_Status
-    joined_at: Date | string
+    role?: $Enums.Role
+    status?: $Enums.Circle_Status
+    joined_at?: Date | string
     left_at?: Date | string | null
-    created_at: Date | string
+    created_at?: Date | string
     updated_at?: Date | string
   }
 
@@ -19214,10 +19635,10 @@ export namespace Prisma {
     id?: string
     email: string
     token_hash: string
-    status: $Enums.Status
+    status?: $Enums.Status
     expires_at: Date | string
     accepted_at?: Date | string | null
-    created_at: Date | string
+    created_at?: Date | string
     savings_circle: savings_circlesCreateNestedOneWithoutCircle_invitationsInput
     users: usersCreateNestedOneWithoutCircle_invitationsInput
   }
@@ -19228,10 +19649,10 @@ export namespace Prisma {
     invited_by: string
     email: string
     token_hash: string
-    status: $Enums.Status
+    status?: $Enums.Status
     expires_at: Date | string
     accepted_at?: Date | string | null
-    created_at: Date | string
+    created_at?: Date | string
   }
 
   export type circle_invitationsUpdateInput = {
@@ -19264,10 +19685,10 @@ export namespace Prisma {
     invited_by: string
     email: string
     token_hash: string
-    status: $Enums.Status
+    status?: $Enums.Status
     expires_at: Date | string
     accepted_at?: Date | string | null
-    created_at: Date | string
+    created_at?: Date | string
   }
 
   export type circle_invitationsUpdateManyMutationInput = {
@@ -19299,8 +19720,8 @@ export namespace Prisma {
     start_date: Date | string
     end_date?: Date | string | null
     total_cycles: number
-    current_cycle: number
-    created_at: Date | string
+    current_cycle?: number
+    created_at?: Date | string
     updated_at?: Date | string
     savings_circle: savings_circlesCreateNestedOneWithoutSavings_schedulesInput
   }
@@ -19313,8 +19734,8 @@ export namespace Prisma {
     start_date: Date | string
     end_date?: Date | string | null
     total_cycles: number
-    current_cycle: number
-    created_at: Date | string
+    current_cycle?: number
+    created_at?: Date | string
     updated_at?: Date | string
   }
 
@@ -19352,8 +19773,8 @@ export namespace Prisma {
     start_date: Date | string
     end_date?: Date | string | null
     total_cycles: number
-    current_cycle: number
-    created_at: Date | string
+    current_cycle?: number
+    created_at?: Date | string
     updated_at?: Date | string
   }
 
@@ -19388,12 +19809,12 @@ export namespace Prisma {
     amount: Decimal | DecimalJsLike | number | string
     due_date: Date | string
     paid_at?: Date | string | null
-    status: $Enums.Contribution_status
-    transaction_id?: string | null
-    create_at?: Date | string
+    status?: $Enums.Contribution_status
+    created_at?: Date | string
     updated_at?: Date | string
     savings_circle: savings_circlesCreateNestedOneWithoutContributionsInput
     users: usersCreateNestedOneWithoutContributionsInput
+    payment_transaction?: payment_transactionsCreateNestedOneWithoutContributionInput
   }
 
   export type contributionsUncheckedCreateInput = {
@@ -19404,9 +19825,9 @@ export namespace Prisma {
     amount: Decimal | DecimalJsLike | number | string
     due_date: Date | string
     paid_at?: Date | string | null
-    status: $Enums.Contribution_status
+    status?: $Enums.Contribution_status
     transaction_id?: string | null
-    create_at?: Date | string
+    created_at?: Date | string
     updated_at?: Date | string
   }
 
@@ -19417,11 +19838,11 @@ export namespace Prisma {
     due_date?: DateTimeFieldUpdateOperationsInput | Date | string
     paid_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     status?: EnumContribution_statusFieldUpdateOperationsInput | $Enums.Contribution_status
-    transaction_id?: NullableStringFieldUpdateOperationsInput | string | null
-    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     savings_circle?: savings_circlesUpdateOneRequiredWithoutContributionsNestedInput
     users?: usersUpdateOneRequiredWithoutContributionsNestedInput
+    payment_transaction?: payment_transactionsUpdateOneWithoutContributionNestedInput
   }
 
   export type contributionsUncheckedUpdateInput = {
@@ -19434,7 +19855,7 @@ export namespace Prisma {
     paid_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     status?: EnumContribution_statusFieldUpdateOperationsInput | $Enums.Contribution_status
     transaction_id?: NullableStringFieldUpdateOperationsInput | string | null
-    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -19446,9 +19867,9 @@ export namespace Prisma {
     amount: Decimal | DecimalJsLike | number | string
     due_date: Date | string
     paid_at?: Date | string | null
-    status: $Enums.Contribution_status
+    status?: $Enums.Contribution_status
     transaction_id?: string | null
-    create_at?: Date | string
+    created_at?: Date | string
     updated_at?: Date | string
   }
 
@@ -19459,8 +19880,7 @@ export namespace Prisma {
     due_date?: DateTimeFieldUpdateOperationsInput | Date | string
     paid_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     status?: EnumContribution_statusFieldUpdateOperationsInput | $Enums.Contribution_status
-    transaction_id?: NullableStringFieldUpdateOperationsInput | string | null
-    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -19474,7 +19894,7 @@ export namespace Prisma {
     paid_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     status?: EnumContribution_statusFieldUpdateOperationsInput | $Enums.Contribution_status
     transaction_id?: NullableStringFieldUpdateOperationsInput | string | null
-    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -19484,12 +19904,12 @@ export namespace Prisma {
     amount: Decimal | DecimalJsLike | number | string
     scheduled_date: Date | string
     paid_at?: Date | string | null
-    status: $Enums.Contribution_status
-    transaction_id?: string | null
-    create_at?: Date | string
+    status?: $Enums.Payout_Status
+    created_at?: Date | string
     updated_at?: Date | string
     savings_circle: savings_circlesCreateNestedOneWithoutPayoutsInput
     circle_member: circle_membersCreateNestedOneWithoutPayoutsInput
+    payment_transaction?: payment_transactionsCreateNestedOneWithoutPayoutInput
   }
 
   export type payoutsUncheckedCreateInput = {
@@ -19500,9 +19920,9 @@ export namespace Prisma {
     amount: Decimal | DecimalJsLike | number | string
     scheduled_date: Date | string
     paid_at?: Date | string | null
-    status: $Enums.Contribution_status
+    status?: $Enums.Payout_Status
     transaction_id?: string | null
-    create_at?: Date | string
+    created_at?: Date | string
     updated_at?: Date | string
   }
 
@@ -19512,12 +19932,12 @@ export namespace Prisma {
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     scheduled_date?: DateTimeFieldUpdateOperationsInput | Date | string
     paid_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    status?: EnumContribution_statusFieldUpdateOperationsInput | $Enums.Contribution_status
-    transaction_id?: NullableStringFieldUpdateOperationsInput | string | null
-    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: EnumPayout_StatusFieldUpdateOperationsInput | $Enums.Payout_Status
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     savings_circle?: savings_circlesUpdateOneRequiredWithoutPayoutsNestedInput
     circle_member?: circle_membersUpdateOneRequiredWithoutPayoutsNestedInput
+    payment_transaction?: payment_transactionsUpdateOneWithoutPayoutNestedInput
   }
 
   export type payoutsUncheckedUpdateInput = {
@@ -19528,9 +19948,9 @@ export namespace Prisma {
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     scheduled_date?: DateTimeFieldUpdateOperationsInput | Date | string
     paid_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    status?: EnumContribution_statusFieldUpdateOperationsInput | $Enums.Contribution_status
+    status?: EnumPayout_StatusFieldUpdateOperationsInput | $Enums.Payout_Status
     transaction_id?: NullableStringFieldUpdateOperationsInput | string | null
-    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -19542,9 +19962,9 @@ export namespace Prisma {
     amount: Decimal | DecimalJsLike | number | string
     scheduled_date: Date | string
     paid_at?: Date | string | null
-    status: $Enums.Contribution_status
+    status?: $Enums.Payout_Status
     transaction_id?: string | null
-    create_at?: Date | string
+    created_at?: Date | string
     updated_at?: Date | string
   }
 
@@ -19554,9 +19974,8 @@ export namespace Prisma {
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     scheduled_date?: DateTimeFieldUpdateOperationsInput | Date | string
     paid_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    status?: EnumContribution_statusFieldUpdateOperationsInput | $Enums.Contribution_status
-    transaction_id?: NullableStringFieldUpdateOperationsInput | string | null
-    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: EnumPayout_StatusFieldUpdateOperationsInput | $Enums.Payout_Status
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -19568,9 +19987,9 @@ export namespace Prisma {
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     scheduled_date?: DateTimeFieldUpdateOperationsInput | Date | string
     paid_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    status?: EnumContribution_statusFieldUpdateOperationsInput | $Enums.Contribution_status
+    status?: EnumPayout_StatusFieldUpdateOperationsInput | $Enums.Payout_Status
     transaction_id?: NullableStringFieldUpdateOperationsInput | string | null
-    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -19583,12 +20002,14 @@ export namespace Prisma {
     type: $Enums.Payment_type
     amount: Decimal | DecimalJsLike | number | string
     currency: string
-    status: $Enums.Payout
+    status?: $Enums.Payment_Status
     metadata: JsonNullValueInput | InputJsonValue
-    created_at: Date | string
+    created_at?: Date | string
     updated_at?: Date | string
     users: usersCreateNestedOneWithoutPayment_transactionsInput
-    payment_status_history?: payment_status_historyCreateNestedOneWithoutPayment_transactionsInput
+    contribution?: contributionsCreateNestedOneWithoutPayment_transactionInput
+    payout?: payoutsCreateNestedOneWithoutPayment_transactionInput
+    payment_status_history?: payment_status_historyCreateNestedManyWithoutPayment_transactionsInput
   }
 
   export type payment_transactionsUncheckedCreateInput = {
@@ -19601,11 +20022,13 @@ export namespace Prisma {
     type: $Enums.Payment_type
     amount: Decimal | DecimalJsLike | number | string
     currency: string
-    status: $Enums.Payout
+    status?: $Enums.Payment_Status
     metadata: JsonNullValueInput | InputJsonValue
-    created_at: Date | string
+    created_at?: Date | string
     updated_at?: Date | string
-    payment_status_history?: payment_status_historyUncheckedCreateNestedOneWithoutPayment_transactionsInput
+    contribution?: contributionsUncheckedCreateNestedOneWithoutPayment_transactionInput
+    payout?: payoutsUncheckedCreateNestedOneWithoutPayment_transactionInput
+    payment_status_history?: payment_status_historyUncheckedCreateNestedManyWithoutPayment_transactionsInput
   }
 
   export type payment_transactionsUpdateInput = {
@@ -19617,12 +20040,14 @@ export namespace Prisma {
     type?: EnumPayment_typeFieldUpdateOperationsInput | $Enums.Payment_type
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     currency?: StringFieldUpdateOperationsInput | string
-    status?: EnumPayoutFieldUpdateOperationsInput | $Enums.Payout
+    status?: EnumPayment_StatusFieldUpdateOperationsInput | $Enums.Payment_Status
     metadata?: JsonNullValueInput | InputJsonValue
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: usersUpdateOneRequiredWithoutPayment_transactionsNestedInput
-    payment_status_history?: payment_status_historyUpdateOneWithoutPayment_transactionsNestedInput
+    contribution?: contributionsUpdateOneWithoutPayment_transactionNestedInput
+    payout?: payoutsUpdateOneWithoutPayment_transactionNestedInput
+    payment_status_history?: payment_status_historyUpdateManyWithoutPayment_transactionsNestedInput
   }
 
   export type payment_transactionsUncheckedUpdateInput = {
@@ -19635,11 +20060,13 @@ export namespace Prisma {
     type?: EnumPayment_typeFieldUpdateOperationsInput | $Enums.Payment_type
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     currency?: StringFieldUpdateOperationsInput | string
-    status?: EnumPayoutFieldUpdateOperationsInput | $Enums.Payout
+    status?: EnumPayment_StatusFieldUpdateOperationsInput | $Enums.Payment_Status
     metadata?: JsonNullValueInput | InputJsonValue
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    payment_status_history?: payment_status_historyUncheckedUpdateOneWithoutPayment_transactionsNestedInput
+    contribution?: contributionsUncheckedUpdateOneWithoutPayment_transactionNestedInput
+    payout?: payoutsUncheckedUpdateOneWithoutPayment_transactionNestedInput
+    payment_status_history?: payment_status_historyUncheckedUpdateManyWithoutPayment_transactionsNestedInput
   }
 
   export type payment_transactionsCreateManyInput = {
@@ -19652,9 +20079,9 @@ export namespace Prisma {
     type: $Enums.Payment_type
     amount: Decimal | DecimalJsLike | number | string
     currency: string
-    status: $Enums.Payout
+    status?: $Enums.Payment_Status
     metadata: JsonNullValueInput | InputJsonValue
-    created_at: Date | string
+    created_at?: Date | string
     updated_at?: Date | string
   }
 
@@ -19667,7 +20094,7 @@ export namespace Prisma {
     type?: EnumPayment_typeFieldUpdateOperationsInput | $Enums.Payment_type
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     currency?: StringFieldUpdateOperationsInput | string
-    status?: EnumPayoutFieldUpdateOperationsInput | $Enums.Payout
+    status?: EnumPayment_StatusFieldUpdateOperationsInput | $Enums.Payment_Status
     metadata?: JsonNullValueInput | InputJsonValue
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -19683,7 +20110,7 @@ export namespace Prisma {
     type?: EnumPayment_typeFieldUpdateOperationsInput | $Enums.Payment_type
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     currency?: StringFieldUpdateOperationsInput | string
-    status?: EnumPayoutFieldUpdateOperationsInput | $Enums.Payout
+    status?: EnumPayment_StatusFieldUpdateOperationsInput | $Enums.Payment_Status
     metadata?: JsonNullValueInput | InputJsonValue
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -19691,25 +20118,25 @@ export namespace Prisma {
 
   export type payment_status_historyCreateInput = {
     id?: string
-    status: $Enums.Payout
+    status: $Enums.Payment_Status
     message: string
     metadata: JsonNullValueInput | InputJsonValue
-    created_at: Date | string
+    created_at?: Date | string
     payment_transactions: payment_transactionsCreateNestedOneWithoutPayment_status_historyInput
   }
 
   export type payment_status_historyUncheckedCreateInput = {
     id?: string
     transaction_id: string
-    status: $Enums.Payout
+    status: $Enums.Payment_Status
     message: string
     metadata: JsonNullValueInput | InputJsonValue
-    created_at: Date | string
+    created_at?: Date | string
   }
 
   export type payment_status_historyUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    status?: EnumPayoutFieldUpdateOperationsInput | $Enums.Payout
+    status?: EnumPayment_StatusFieldUpdateOperationsInput | $Enums.Payment_Status
     message?: StringFieldUpdateOperationsInput | string
     metadata?: JsonNullValueInput | InputJsonValue
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -19719,7 +20146,7 @@ export namespace Prisma {
   export type payment_status_historyUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     transaction_id?: StringFieldUpdateOperationsInput | string
-    status?: EnumPayoutFieldUpdateOperationsInput | $Enums.Payout
+    status?: EnumPayment_StatusFieldUpdateOperationsInput | $Enums.Payment_Status
     message?: StringFieldUpdateOperationsInput | string
     metadata?: JsonNullValueInput | InputJsonValue
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -19728,15 +20155,15 @@ export namespace Prisma {
   export type payment_status_historyCreateManyInput = {
     id?: string
     transaction_id: string
-    status: $Enums.Payout
+    status: $Enums.Payment_Status
     message: string
     metadata: JsonNullValueInput | InputJsonValue
-    created_at: Date | string
+    created_at?: Date | string
   }
 
   export type payment_status_historyUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    status?: EnumPayoutFieldUpdateOperationsInput | $Enums.Payout
+    status?: EnumPayment_StatusFieldUpdateOperationsInput | $Enums.Payment_Status
     message?: StringFieldUpdateOperationsInput | string
     metadata?: JsonNullValueInput | InputJsonValue
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -19745,7 +20172,7 @@ export namespace Prisma {
   export type payment_status_historyUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     transaction_id?: StringFieldUpdateOperationsInput | string
-    status?: EnumPayoutFieldUpdateOperationsInput | $Enums.Payout
+    status?: EnumPayment_StatusFieldUpdateOperationsInput | $Enums.Payment_Status
     message?: StringFieldUpdateOperationsInput | string
     metadata?: JsonNullValueInput | InputJsonValue
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -19757,8 +20184,8 @@ export namespace Prisma {
     title: string
     message: string
     data: JsonNullValueInput | InputJsonValue
-    read_at: Date | string
-    created_at: Date | string
+    read_at?: Date | string | null
+    created_at?: Date | string
     users: usersCreateNestedOneWithoutNotificationsInput
   }
 
@@ -19769,8 +20196,8 @@ export namespace Prisma {
     title: string
     message: string
     data: JsonNullValueInput | InputJsonValue
-    read_at: Date | string
-    created_at: Date | string
+    read_at?: Date | string | null
+    created_at?: Date | string
   }
 
   export type notificationsUpdateInput = {
@@ -19779,7 +20206,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     message?: StringFieldUpdateOperationsInput | string
     data?: JsonNullValueInput | InputJsonValue
-    read_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    read_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: usersUpdateOneRequiredWithoutNotificationsNestedInput
   }
@@ -19791,7 +20218,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     message?: StringFieldUpdateOperationsInput | string
     data?: JsonNullValueInput | InputJsonValue
-    read_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    read_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -19802,8 +20229,8 @@ export namespace Prisma {
     title: string
     message: string
     data: JsonNullValueInput | InputJsonValue
-    read_at: Date | string
-    created_at: Date | string
+    read_at?: Date | string | null
+    created_at?: Date | string
   }
 
   export type notificationsUpdateManyMutationInput = {
@@ -19812,7 +20239,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     message?: StringFieldUpdateOperationsInput | string
     data?: JsonNullValueInput | InputJsonValue
-    read_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    read_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -19823,35 +20250,35 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     message?: StringFieldUpdateOperationsInput | string
     data?: JsonNullValueInput | InputJsonValue
-    read_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    read_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type audit_logCreateInput = {
     id?: string
-    user_id?: $Enums.Status | null
+    user_id?: string | null
     action: string
     entity_type: string
     entity_id?: string | null
     metadata?: NullableJsonNullValueInput | InputJsonValue
     ip_address?: string | null
-    created_at: Date | string
+    created_at?: Date | string
   }
 
   export type audit_logUncheckedCreateInput = {
     id?: string
-    user_id?: $Enums.Status | null
+    user_id?: string | null
     action: string
     entity_type: string
     entity_id?: string | null
     metadata?: NullableJsonNullValueInput | InputJsonValue
     ip_address?: string | null
-    created_at: Date | string
+    created_at?: Date | string
   }
 
   export type audit_logUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    user_id?: NullableEnumStatusFieldUpdateOperationsInput | $Enums.Status | null
+    user_id?: NullableStringFieldUpdateOperationsInput | string | null
     action?: StringFieldUpdateOperationsInput | string
     entity_type?: StringFieldUpdateOperationsInput | string
     entity_id?: NullableStringFieldUpdateOperationsInput | string | null
@@ -19862,7 +20289,7 @@ export namespace Prisma {
 
   export type audit_logUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    user_id?: NullableEnumStatusFieldUpdateOperationsInput | $Enums.Status | null
+    user_id?: NullableStringFieldUpdateOperationsInput | string | null
     action?: StringFieldUpdateOperationsInput | string
     entity_type?: StringFieldUpdateOperationsInput | string
     entity_id?: NullableStringFieldUpdateOperationsInput | string | null
@@ -19873,18 +20300,18 @@ export namespace Prisma {
 
   export type audit_logCreateManyInput = {
     id?: string
-    user_id?: $Enums.Status | null
+    user_id?: string | null
     action: string
     entity_type: string
     entity_id?: string | null
     metadata?: NullableJsonNullValueInput | InputJsonValue
     ip_address?: string | null
-    created_at: Date | string
+    created_at?: Date | string
   }
 
   export type audit_logUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    user_id?: NullableEnumStatusFieldUpdateOperationsInput | $Enums.Status | null
+    user_id?: NullableStringFieldUpdateOperationsInput | string | null
     action?: StringFieldUpdateOperationsInput | string
     entity_type?: StringFieldUpdateOperationsInput | string
     entity_id?: NullableStringFieldUpdateOperationsInput | string | null
@@ -19895,7 +20322,7 @@ export namespace Prisma {
 
   export type audit_logUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    user_id?: NullableEnumStatusFieldUpdateOperationsInput | $Enums.Status | null
+    user_id?: NullableStringFieldUpdateOperationsInput | string | null
     action?: StringFieldUpdateOperationsInput | string
     entity_type?: StringFieldUpdateOperationsInput | string
     entity_id?: NullableStringFieldUpdateOperationsInput | string | null
@@ -20093,34 +20520,64 @@ export namespace Prisma {
     isNot?: sessionsWhereInput | null
   }
 
-  export type Savings_circlesNullableScalarRelationFilter = {
-    is?: savings_circlesWhereInput | null
-    isNot?: savings_circlesWhereInput | null
+  export type Savings_circlesListRelationFilter = {
+    every?: savings_circlesWhereInput
+    some?: savings_circlesWhereInput
+    none?: savings_circlesWhereInput
   }
 
-  export type Circle_membersNullableScalarRelationFilter = {
-    is?: circle_membersWhereInput | null
-    isNot?: circle_membersWhereInput | null
+  export type Circle_membersListRelationFilter = {
+    every?: circle_membersWhereInput
+    some?: circle_membersWhereInput
+    none?: circle_membersWhereInput
   }
 
-  export type Circle_invitationsNullableScalarRelationFilter = {
-    is?: circle_invitationsWhereInput | null
-    isNot?: circle_invitationsWhereInput | null
+  export type Circle_invitationsListRelationFilter = {
+    every?: circle_invitationsWhereInput
+    some?: circle_invitationsWhereInput
+    none?: circle_invitationsWhereInput
   }
 
-  export type ContributionsNullableScalarRelationFilter = {
-    is?: contributionsWhereInput | null
-    isNot?: contributionsWhereInput | null
+  export type ContributionsListRelationFilter = {
+    every?: contributionsWhereInput
+    some?: contributionsWhereInput
+    none?: contributionsWhereInput
   }
 
-  export type Payment_transactionsNullableScalarRelationFilter = {
-    is?: payment_transactionsWhereInput | null
-    isNot?: payment_transactionsWhereInput | null
+  export type Payment_transactionsListRelationFilter = {
+    every?: payment_transactionsWhereInput
+    some?: payment_transactionsWhereInput
+    none?: payment_transactionsWhereInput
   }
 
-  export type NotificationsNullableScalarRelationFilter = {
-    is?: notificationsWhereInput | null
-    isNot?: notificationsWhereInput | null
+  export type NotificationsListRelationFilter = {
+    every?: notificationsWhereInput
+    some?: notificationsWhereInput
+    none?: notificationsWhereInput
+  }
+
+  export type savings_circlesOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type circle_membersOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type circle_invitationsOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type contributionsOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type payment_transactionsOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type notificationsOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type usersCountOrderByAggregateInput = {
@@ -20226,14 +20683,31 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
-  export type Savings_schedulesNullableScalarRelationFilter = {
-    is?: savings_schedulesWhereInput | null
-    isNot?: savings_schedulesWhereInput | null
+  export type EnumCircle_StatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.Circle_Status | EnumCircle_StatusFieldRefInput<$PrismaModel>
+    in?: $Enums.Circle_Status[] | ListEnumCircle_StatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Circle_Status[] | ListEnumCircle_StatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumCircle_StatusFilter<$PrismaModel> | $Enums.Circle_Status
   }
 
-  export type PayoutsNullableScalarRelationFilter = {
-    is?: payoutsWhereInput | null
-    isNot?: payoutsWhereInput | null
+  export type Savings_schedulesListRelationFilter = {
+    every?: savings_schedulesWhereInput
+    some?: savings_schedulesWhereInput
+    none?: savings_schedulesWhereInput
+  }
+
+  export type PayoutsListRelationFilter = {
+    every?: payoutsWhereInput
+    some?: payoutsWhereInput
+    none?: payoutsWhereInput
+  }
+
+  export type savings_schedulesOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type payoutsOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type savings_circlesCountOrderByAggregateInput = {
@@ -20333,6 +20807,16 @@ export namespace Prisma {
     _max?: NestedIntFilter<$PrismaModel>
   }
 
+  export type EnumCircle_StatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Circle_Status | EnumCircle_StatusFieldRefInput<$PrismaModel>
+    in?: $Enums.Circle_Status[] | ListEnumCircle_StatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Circle_Status[] | ListEnumCircle_StatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumCircle_StatusWithAggregatesFilter<$PrismaModel> | $Enums.Circle_Status
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumCircle_StatusFilter<$PrismaModel>
+    _max?: NestedEnumCircle_StatusFilter<$PrismaModel>
+  }
+
   export type EnumRoleFilter<$PrismaModel = never> = {
     equals?: $Enums.Role | EnumRoleFieldRefInput<$PrismaModel>
     in?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
@@ -20340,16 +20824,14 @@ export namespace Prisma {
     not?: NestedEnumRoleFilter<$PrismaModel> | $Enums.Role
   }
 
-  export type EnumCircle_StatusFilter<$PrismaModel = never> = {
-    equals?: $Enums.Circle_Status | EnumCircle_StatusFieldRefInput<$PrismaModel>
-    in?: $Enums.Circle_Status[] | ListEnumCircle_StatusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.Circle_Status[] | ListEnumCircle_StatusFieldRefInput<$PrismaModel>
-    not?: NestedEnumCircle_StatusFilter<$PrismaModel> | $Enums.Circle_Status
-  }
-
   export type Savings_circlesScalarRelationFilter = {
     is?: savings_circlesWhereInput
     isNot?: savings_circlesWhereInput
+  }
+
+  export type circle_membersCircle_idUser_idCompoundUniqueInput = {
+    circle_id: string
+    user_id: string
   }
 
   export type circle_membersCountOrderByAggregateInput = {
@@ -20396,16 +20878,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumRoleFilter<$PrismaModel>
     _max?: NestedEnumRoleFilter<$PrismaModel>
-  }
-
-  export type EnumCircle_StatusWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.Circle_Status | EnumCircle_StatusFieldRefInput<$PrismaModel>
-    in?: $Enums.Circle_Status[] | ListEnumCircle_StatusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.Circle_Status[] | ListEnumCircle_StatusFieldRefInput<$PrismaModel>
-    not?: NestedEnumCircle_StatusWithAggregatesFilter<$PrismaModel> | $Enums.Circle_Status
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumCircle_StatusFilter<$PrismaModel>
-    _max?: NestedEnumCircle_StatusFilter<$PrismaModel>
   }
 
   export type circle_invitationsCountOrderByAggregateInput = {
@@ -20502,6 +20974,17 @@ export namespace Prisma {
     not?: NestedEnumContribution_statusFilter<$PrismaModel> | $Enums.Contribution_status
   }
 
+  export type Payment_transactionsNullableScalarRelationFilter = {
+    is?: payment_transactionsWhereInput | null
+    isNot?: payment_transactionsWhereInput | null
+  }
+
+  export type contributionsCircle_idCircle_memberCycle_numberCompoundUniqueInput = {
+    circle_id: string
+    circle_member: string
+    cycle_number: number
+  }
+
   export type contributionsCountOrderByAggregateInput = {
     id?: SortOrder
     circle_id?: SortOrder
@@ -20512,7 +20995,7 @@ export namespace Prisma {
     paid_at?: SortOrder
     status?: SortOrder
     transaction_id?: SortOrder
-    create_at?: SortOrder
+    created_at?: SortOrder
     updated_at?: SortOrder
   }
 
@@ -20531,7 +21014,7 @@ export namespace Prisma {
     paid_at?: SortOrder
     status?: SortOrder
     transaction_id?: SortOrder
-    create_at?: SortOrder
+    created_at?: SortOrder
     updated_at?: SortOrder
   }
 
@@ -20545,7 +21028,7 @@ export namespace Prisma {
     paid_at?: SortOrder
     status?: SortOrder
     transaction_id?: SortOrder
-    create_at?: SortOrder
+    created_at?: SortOrder
     updated_at?: SortOrder
   }
 
@@ -20564,9 +21047,22 @@ export namespace Prisma {
     _max?: NestedEnumContribution_statusFilter<$PrismaModel>
   }
 
+  export type EnumPayout_StatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.Payout_Status | EnumPayout_StatusFieldRefInput<$PrismaModel>
+    in?: $Enums.Payout_Status[] | ListEnumPayout_StatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Payout_Status[] | ListEnumPayout_StatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumPayout_StatusFilter<$PrismaModel> | $Enums.Payout_Status
+  }
+
   export type Circle_membersScalarRelationFilter = {
     is?: circle_membersWhereInput
     isNot?: circle_membersWhereInput
+  }
+
+  export type payoutsCircle_idMember_idCycle_numberCompoundUniqueInput = {
+    circle_id: string
+    member_id: string
+    cycle_number: number
   }
 
   export type payoutsCountOrderByAggregateInput = {
@@ -20579,7 +21075,7 @@ export namespace Prisma {
     paid_at?: SortOrder
     status?: SortOrder
     transaction_id?: SortOrder
-    create_at?: SortOrder
+    created_at?: SortOrder
     updated_at?: SortOrder
   }
 
@@ -20598,7 +21094,7 @@ export namespace Prisma {
     paid_at?: SortOrder
     status?: SortOrder
     transaction_id?: SortOrder
-    create_at?: SortOrder
+    created_at?: SortOrder
     updated_at?: SortOrder
   }
 
@@ -20612,13 +21108,23 @@ export namespace Prisma {
     paid_at?: SortOrder
     status?: SortOrder
     transaction_id?: SortOrder
-    create_at?: SortOrder
+    created_at?: SortOrder
     updated_at?: SortOrder
   }
 
   export type payoutsSumOrderByAggregateInput = {
     cycle_number?: SortOrder
     amount?: SortOrder
+  }
+
+  export type EnumPayout_StatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Payout_Status | EnumPayout_StatusFieldRefInput<$PrismaModel>
+    in?: $Enums.Payout_Status[] | ListEnumPayout_StatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Payout_Status[] | ListEnumPayout_StatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumPayout_StatusWithAggregatesFilter<$PrismaModel> | $Enums.Payout_Status
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumPayout_StatusFilter<$PrismaModel>
+    _max?: NestedEnumPayout_StatusFilter<$PrismaModel>
   }
 
   export type EnumProviderFilter<$PrismaModel = never> = {
@@ -20635,11 +21141,11 @@ export namespace Prisma {
     not?: NestedEnumPayment_typeFilter<$PrismaModel> | $Enums.Payment_type
   }
 
-  export type EnumPayoutFilter<$PrismaModel = never> = {
-    equals?: $Enums.Payout | EnumPayoutFieldRefInput<$PrismaModel>
-    in?: $Enums.Payout[] | ListEnumPayoutFieldRefInput<$PrismaModel>
-    notIn?: $Enums.Payout[] | ListEnumPayoutFieldRefInput<$PrismaModel>
-    not?: NestedEnumPayoutFilter<$PrismaModel> | $Enums.Payout
+  export type EnumPayment_StatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.Payment_Status | EnumPayment_StatusFieldRefInput<$PrismaModel>
+    in?: $Enums.Payment_Status[] | ListEnumPayment_StatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Payment_Status[] | ListEnumPayment_StatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumPayment_StatusFilter<$PrismaModel> | $Enums.Payment_Status
   }
   export type JsonFilter<$PrismaModel = never> =
     | PatchUndefined<
@@ -20665,9 +21171,24 @@ export namespace Prisma {
     not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
   }
 
-  export type Payment_status_historyNullableScalarRelationFilter = {
-    is?: payment_status_historyWhereInput | null
-    isNot?: payment_status_historyWhereInput | null
+  export type ContributionsNullableScalarRelationFilter = {
+    is?: contributionsWhereInput | null
+    isNot?: contributionsWhereInput | null
+  }
+
+  export type PayoutsNullableScalarRelationFilter = {
+    is?: payoutsWhereInput | null
+    isNot?: payoutsWhereInput | null
+  }
+
+  export type Payment_status_historyListRelationFilter = {
+    every?: payment_status_historyWhereInput
+    some?: payment_status_historyWhereInput
+    none?: payment_status_historyWhereInput
+  }
+
+  export type payment_status_historyOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type payment_transactionsCountOrderByAggregateInput = {
@@ -20744,14 +21265,14 @@ export namespace Prisma {
     _max?: NestedEnumPayment_typeFilter<$PrismaModel>
   }
 
-  export type EnumPayoutWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.Payout | EnumPayoutFieldRefInput<$PrismaModel>
-    in?: $Enums.Payout[] | ListEnumPayoutFieldRefInput<$PrismaModel>
-    notIn?: $Enums.Payout[] | ListEnumPayoutFieldRefInput<$PrismaModel>
-    not?: NestedEnumPayoutWithAggregatesFilter<$PrismaModel> | $Enums.Payout
+  export type EnumPayment_StatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Payment_Status | EnumPayment_StatusFieldRefInput<$PrismaModel>
+    in?: $Enums.Payment_Status[] | ListEnumPayment_StatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Payment_Status[] | ListEnumPayment_StatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumPayment_StatusWithAggregatesFilter<$PrismaModel> | $Enums.Payment_Status
     _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumPayoutFilter<$PrismaModel>
-    _max?: NestedEnumPayoutFilter<$PrismaModel>
+    _min?: NestedEnumPayment_StatusFilter<$PrismaModel>
+    _max?: NestedEnumPayment_StatusFilter<$PrismaModel>
   }
   export type JsonWithAggregatesFilter<$PrismaModel = never> =
     | PatchUndefined<
@@ -20857,13 +21378,6 @@ export namespace Prisma {
     _min?: NestedEnumNotificationsFilter<$PrismaModel>
     _max?: NestedEnumNotificationsFilter<$PrismaModel>
   }
-
-  export type EnumStatusNullableFilter<$PrismaModel = never> = {
-    equals?: $Enums.Status | EnumStatusFieldRefInput<$PrismaModel> | null
-    in?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel> | null
-    notIn?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel> | null
-    not?: NestedEnumStatusNullableFilter<$PrismaModel> | $Enums.Status | null
-  }
   export type JsonNullableFilter<$PrismaModel = never> =
     | PatchUndefined<
         Either<Required<JsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>,
@@ -20917,16 +21431,6 @@ export namespace Prisma {
     entity_id?: SortOrder
     ip_address?: SortOrder
     created_at?: SortOrder
-  }
-
-  export type EnumStatusNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.Status | EnumStatusFieldRefInput<$PrismaModel> | null
-    in?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel> | null
-    notIn?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel> | null
-    not?: NestedEnumStatusNullableWithAggregatesFilter<$PrismaModel> | $Enums.Status | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedEnumStatusNullableFilter<$PrismaModel>
-    _max?: NestedEnumStatusNullableFilter<$PrismaModel>
   }
   export type JsonNullableWithAggregatesFilter<$PrismaModel = never> =
     | PatchUndefined<
@@ -21003,40 +21507,46 @@ export namespace Prisma {
     connect?: sessionsWhereUniqueInput
   }
 
-  export type savings_circlesCreateNestedOneWithoutUsersInput = {
-    create?: XOR<savings_circlesCreateWithoutUsersInput, savings_circlesUncheckedCreateWithoutUsersInput>
-    connectOrCreate?: savings_circlesCreateOrConnectWithoutUsersInput
-    connect?: savings_circlesWhereUniqueInput
+  export type savings_circlesCreateNestedManyWithoutUsersInput = {
+    create?: XOR<savings_circlesCreateWithoutUsersInput, savings_circlesUncheckedCreateWithoutUsersInput> | savings_circlesCreateWithoutUsersInput[] | savings_circlesUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: savings_circlesCreateOrConnectWithoutUsersInput | savings_circlesCreateOrConnectWithoutUsersInput[]
+    createMany?: savings_circlesCreateManyUsersInputEnvelope
+    connect?: savings_circlesWhereUniqueInput | savings_circlesWhereUniqueInput[]
   }
 
-  export type circle_membersCreateNestedOneWithoutUsersInput = {
-    create?: XOR<circle_membersCreateWithoutUsersInput, circle_membersUncheckedCreateWithoutUsersInput>
-    connectOrCreate?: circle_membersCreateOrConnectWithoutUsersInput
-    connect?: circle_membersWhereUniqueInput
+  export type circle_membersCreateNestedManyWithoutUsersInput = {
+    create?: XOR<circle_membersCreateWithoutUsersInput, circle_membersUncheckedCreateWithoutUsersInput> | circle_membersCreateWithoutUsersInput[] | circle_membersUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: circle_membersCreateOrConnectWithoutUsersInput | circle_membersCreateOrConnectWithoutUsersInput[]
+    createMany?: circle_membersCreateManyUsersInputEnvelope
+    connect?: circle_membersWhereUniqueInput | circle_membersWhereUniqueInput[]
   }
 
-  export type circle_invitationsCreateNestedOneWithoutUsersInput = {
-    create?: XOR<circle_invitationsCreateWithoutUsersInput, circle_invitationsUncheckedCreateWithoutUsersInput>
-    connectOrCreate?: circle_invitationsCreateOrConnectWithoutUsersInput
-    connect?: circle_invitationsWhereUniqueInput
+  export type circle_invitationsCreateNestedManyWithoutUsersInput = {
+    create?: XOR<circle_invitationsCreateWithoutUsersInput, circle_invitationsUncheckedCreateWithoutUsersInput> | circle_invitationsCreateWithoutUsersInput[] | circle_invitationsUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: circle_invitationsCreateOrConnectWithoutUsersInput | circle_invitationsCreateOrConnectWithoutUsersInput[]
+    createMany?: circle_invitationsCreateManyUsersInputEnvelope
+    connect?: circle_invitationsWhereUniqueInput | circle_invitationsWhereUniqueInput[]
   }
 
-  export type contributionsCreateNestedOneWithoutUsersInput = {
-    create?: XOR<contributionsCreateWithoutUsersInput, contributionsUncheckedCreateWithoutUsersInput>
-    connectOrCreate?: contributionsCreateOrConnectWithoutUsersInput
-    connect?: contributionsWhereUniqueInput
+  export type contributionsCreateNestedManyWithoutUsersInput = {
+    create?: XOR<contributionsCreateWithoutUsersInput, contributionsUncheckedCreateWithoutUsersInput> | contributionsCreateWithoutUsersInput[] | contributionsUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: contributionsCreateOrConnectWithoutUsersInput | contributionsCreateOrConnectWithoutUsersInput[]
+    createMany?: contributionsCreateManyUsersInputEnvelope
+    connect?: contributionsWhereUniqueInput | contributionsWhereUniqueInput[]
   }
 
-  export type payment_transactionsCreateNestedOneWithoutUsersInput = {
-    create?: XOR<payment_transactionsCreateWithoutUsersInput, payment_transactionsUncheckedCreateWithoutUsersInput>
-    connectOrCreate?: payment_transactionsCreateOrConnectWithoutUsersInput
-    connect?: payment_transactionsWhereUniqueInput
+  export type payment_transactionsCreateNestedManyWithoutUsersInput = {
+    create?: XOR<payment_transactionsCreateWithoutUsersInput, payment_transactionsUncheckedCreateWithoutUsersInput> | payment_transactionsCreateWithoutUsersInput[] | payment_transactionsUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: payment_transactionsCreateOrConnectWithoutUsersInput | payment_transactionsCreateOrConnectWithoutUsersInput[]
+    createMany?: payment_transactionsCreateManyUsersInputEnvelope
+    connect?: payment_transactionsWhereUniqueInput | payment_transactionsWhereUniqueInput[]
   }
 
-  export type notificationsCreateNestedOneWithoutUsersInput = {
-    create?: XOR<notificationsCreateWithoutUsersInput, notificationsUncheckedCreateWithoutUsersInput>
-    connectOrCreate?: notificationsCreateOrConnectWithoutUsersInput
-    connect?: notificationsWhereUniqueInput
+  export type notificationsCreateNestedManyWithoutUsersInput = {
+    create?: XOR<notificationsCreateWithoutUsersInput, notificationsUncheckedCreateWithoutUsersInput> | notificationsCreateWithoutUsersInput[] | notificationsUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: notificationsCreateOrConnectWithoutUsersInput | notificationsCreateOrConnectWithoutUsersInput[]
+    createMany?: notificationsCreateManyUsersInputEnvelope
+    connect?: notificationsWhereUniqueInput | notificationsWhereUniqueInput[]
   }
 
   export type waitlistEntryUncheckedCreateNestedOneWithoutUserInput = {
@@ -21051,40 +21561,46 @@ export namespace Prisma {
     connect?: sessionsWhereUniqueInput
   }
 
-  export type savings_circlesUncheckedCreateNestedOneWithoutUsersInput = {
-    create?: XOR<savings_circlesCreateWithoutUsersInput, savings_circlesUncheckedCreateWithoutUsersInput>
-    connectOrCreate?: savings_circlesCreateOrConnectWithoutUsersInput
-    connect?: savings_circlesWhereUniqueInput
+  export type savings_circlesUncheckedCreateNestedManyWithoutUsersInput = {
+    create?: XOR<savings_circlesCreateWithoutUsersInput, savings_circlesUncheckedCreateWithoutUsersInput> | savings_circlesCreateWithoutUsersInput[] | savings_circlesUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: savings_circlesCreateOrConnectWithoutUsersInput | savings_circlesCreateOrConnectWithoutUsersInput[]
+    createMany?: savings_circlesCreateManyUsersInputEnvelope
+    connect?: savings_circlesWhereUniqueInput | savings_circlesWhereUniqueInput[]
   }
 
-  export type circle_membersUncheckedCreateNestedOneWithoutUsersInput = {
-    create?: XOR<circle_membersCreateWithoutUsersInput, circle_membersUncheckedCreateWithoutUsersInput>
-    connectOrCreate?: circle_membersCreateOrConnectWithoutUsersInput
-    connect?: circle_membersWhereUniqueInput
+  export type circle_membersUncheckedCreateNestedManyWithoutUsersInput = {
+    create?: XOR<circle_membersCreateWithoutUsersInput, circle_membersUncheckedCreateWithoutUsersInput> | circle_membersCreateWithoutUsersInput[] | circle_membersUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: circle_membersCreateOrConnectWithoutUsersInput | circle_membersCreateOrConnectWithoutUsersInput[]
+    createMany?: circle_membersCreateManyUsersInputEnvelope
+    connect?: circle_membersWhereUniqueInput | circle_membersWhereUniqueInput[]
   }
 
-  export type circle_invitationsUncheckedCreateNestedOneWithoutUsersInput = {
-    create?: XOR<circle_invitationsCreateWithoutUsersInput, circle_invitationsUncheckedCreateWithoutUsersInput>
-    connectOrCreate?: circle_invitationsCreateOrConnectWithoutUsersInput
-    connect?: circle_invitationsWhereUniqueInput
+  export type circle_invitationsUncheckedCreateNestedManyWithoutUsersInput = {
+    create?: XOR<circle_invitationsCreateWithoutUsersInput, circle_invitationsUncheckedCreateWithoutUsersInput> | circle_invitationsCreateWithoutUsersInput[] | circle_invitationsUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: circle_invitationsCreateOrConnectWithoutUsersInput | circle_invitationsCreateOrConnectWithoutUsersInput[]
+    createMany?: circle_invitationsCreateManyUsersInputEnvelope
+    connect?: circle_invitationsWhereUniqueInput | circle_invitationsWhereUniqueInput[]
   }
 
-  export type contributionsUncheckedCreateNestedOneWithoutUsersInput = {
-    create?: XOR<contributionsCreateWithoutUsersInput, contributionsUncheckedCreateWithoutUsersInput>
-    connectOrCreate?: contributionsCreateOrConnectWithoutUsersInput
-    connect?: contributionsWhereUniqueInput
+  export type contributionsUncheckedCreateNestedManyWithoutUsersInput = {
+    create?: XOR<contributionsCreateWithoutUsersInput, contributionsUncheckedCreateWithoutUsersInput> | contributionsCreateWithoutUsersInput[] | contributionsUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: contributionsCreateOrConnectWithoutUsersInput | contributionsCreateOrConnectWithoutUsersInput[]
+    createMany?: contributionsCreateManyUsersInputEnvelope
+    connect?: contributionsWhereUniqueInput | contributionsWhereUniqueInput[]
   }
 
-  export type payment_transactionsUncheckedCreateNestedOneWithoutUsersInput = {
-    create?: XOR<payment_transactionsCreateWithoutUsersInput, payment_transactionsUncheckedCreateWithoutUsersInput>
-    connectOrCreate?: payment_transactionsCreateOrConnectWithoutUsersInput
-    connect?: payment_transactionsWhereUniqueInput
+  export type payment_transactionsUncheckedCreateNestedManyWithoutUsersInput = {
+    create?: XOR<payment_transactionsCreateWithoutUsersInput, payment_transactionsUncheckedCreateWithoutUsersInput> | payment_transactionsCreateWithoutUsersInput[] | payment_transactionsUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: payment_transactionsCreateOrConnectWithoutUsersInput | payment_transactionsCreateOrConnectWithoutUsersInput[]
+    createMany?: payment_transactionsCreateManyUsersInputEnvelope
+    connect?: payment_transactionsWhereUniqueInput | payment_transactionsWhereUniqueInput[]
   }
 
-  export type notificationsUncheckedCreateNestedOneWithoutUsersInput = {
-    create?: XOR<notificationsCreateWithoutUsersInput, notificationsUncheckedCreateWithoutUsersInput>
-    connectOrCreate?: notificationsCreateOrConnectWithoutUsersInput
-    connect?: notificationsWhereUniqueInput
+  export type notificationsUncheckedCreateNestedManyWithoutUsersInput = {
+    create?: XOR<notificationsCreateWithoutUsersInput, notificationsUncheckedCreateWithoutUsersInput> | notificationsCreateWithoutUsersInput[] | notificationsUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: notificationsCreateOrConnectWithoutUsersInput | notificationsCreateOrConnectWithoutUsersInput[]
+    createMany?: notificationsCreateManyUsersInputEnvelope
+    connect?: notificationsWhereUniqueInput | notificationsWhereUniqueInput[]
   }
 
   export type waitlistEntryUpdateOneWithoutUserNestedInput = {
@@ -21107,64 +21623,88 @@ export namespace Prisma {
     update?: XOR<XOR<sessionsUpdateToOneWithWhereWithoutUserInput, sessionsUpdateWithoutUserInput>, sessionsUncheckedUpdateWithoutUserInput>
   }
 
-  export type savings_circlesUpdateOneWithoutUsersNestedInput = {
-    create?: XOR<savings_circlesCreateWithoutUsersInput, savings_circlesUncheckedCreateWithoutUsersInput>
-    connectOrCreate?: savings_circlesCreateOrConnectWithoutUsersInput
-    upsert?: savings_circlesUpsertWithoutUsersInput
-    disconnect?: savings_circlesWhereInput | boolean
-    delete?: savings_circlesWhereInput | boolean
-    connect?: savings_circlesWhereUniqueInput
-    update?: XOR<XOR<savings_circlesUpdateToOneWithWhereWithoutUsersInput, savings_circlesUpdateWithoutUsersInput>, savings_circlesUncheckedUpdateWithoutUsersInput>
+  export type savings_circlesUpdateManyWithoutUsersNestedInput = {
+    create?: XOR<savings_circlesCreateWithoutUsersInput, savings_circlesUncheckedCreateWithoutUsersInput> | savings_circlesCreateWithoutUsersInput[] | savings_circlesUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: savings_circlesCreateOrConnectWithoutUsersInput | savings_circlesCreateOrConnectWithoutUsersInput[]
+    upsert?: savings_circlesUpsertWithWhereUniqueWithoutUsersInput | savings_circlesUpsertWithWhereUniqueWithoutUsersInput[]
+    createMany?: savings_circlesCreateManyUsersInputEnvelope
+    set?: savings_circlesWhereUniqueInput | savings_circlesWhereUniqueInput[]
+    disconnect?: savings_circlesWhereUniqueInput | savings_circlesWhereUniqueInput[]
+    delete?: savings_circlesWhereUniqueInput | savings_circlesWhereUniqueInput[]
+    connect?: savings_circlesWhereUniqueInput | savings_circlesWhereUniqueInput[]
+    update?: savings_circlesUpdateWithWhereUniqueWithoutUsersInput | savings_circlesUpdateWithWhereUniqueWithoutUsersInput[]
+    updateMany?: savings_circlesUpdateManyWithWhereWithoutUsersInput | savings_circlesUpdateManyWithWhereWithoutUsersInput[]
+    deleteMany?: savings_circlesScalarWhereInput | savings_circlesScalarWhereInput[]
   }
 
-  export type circle_membersUpdateOneWithoutUsersNestedInput = {
-    create?: XOR<circle_membersCreateWithoutUsersInput, circle_membersUncheckedCreateWithoutUsersInput>
-    connectOrCreate?: circle_membersCreateOrConnectWithoutUsersInput
-    upsert?: circle_membersUpsertWithoutUsersInput
-    disconnect?: circle_membersWhereInput | boolean
-    delete?: circle_membersWhereInput | boolean
-    connect?: circle_membersWhereUniqueInput
-    update?: XOR<XOR<circle_membersUpdateToOneWithWhereWithoutUsersInput, circle_membersUpdateWithoutUsersInput>, circle_membersUncheckedUpdateWithoutUsersInput>
+  export type circle_membersUpdateManyWithoutUsersNestedInput = {
+    create?: XOR<circle_membersCreateWithoutUsersInput, circle_membersUncheckedCreateWithoutUsersInput> | circle_membersCreateWithoutUsersInput[] | circle_membersUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: circle_membersCreateOrConnectWithoutUsersInput | circle_membersCreateOrConnectWithoutUsersInput[]
+    upsert?: circle_membersUpsertWithWhereUniqueWithoutUsersInput | circle_membersUpsertWithWhereUniqueWithoutUsersInput[]
+    createMany?: circle_membersCreateManyUsersInputEnvelope
+    set?: circle_membersWhereUniqueInput | circle_membersWhereUniqueInput[]
+    disconnect?: circle_membersWhereUniqueInput | circle_membersWhereUniqueInput[]
+    delete?: circle_membersWhereUniqueInput | circle_membersWhereUniqueInput[]
+    connect?: circle_membersWhereUniqueInput | circle_membersWhereUniqueInput[]
+    update?: circle_membersUpdateWithWhereUniqueWithoutUsersInput | circle_membersUpdateWithWhereUniqueWithoutUsersInput[]
+    updateMany?: circle_membersUpdateManyWithWhereWithoutUsersInput | circle_membersUpdateManyWithWhereWithoutUsersInput[]
+    deleteMany?: circle_membersScalarWhereInput | circle_membersScalarWhereInput[]
   }
 
-  export type circle_invitationsUpdateOneWithoutUsersNestedInput = {
-    create?: XOR<circle_invitationsCreateWithoutUsersInput, circle_invitationsUncheckedCreateWithoutUsersInput>
-    connectOrCreate?: circle_invitationsCreateOrConnectWithoutUsersInput
-    upsert?: circle_invitationsUpsertWithoutUsersInput
-    disconnect?: circle_invitationsWhereInput | boolean
-    delete?: circle_invitationsWhereInput | boolean
-    connect?: circle_invitationsWhereUniqueInput
-    update?: XOR<XOR<circle_invitationsUpdateToOneWithWhereWithoutUsersInput, circle_invitationsUpdateWithoutUsersInput>, circle_invitationsUncheckedUpdateWithoutUsersInput>
+  export type circle_invitationsUpdateManyWithoutUsersNestedInput = {
+    create?: XOR<circle_invitationsCreateWithoutUsersInput, circle_invitationsUncheckedCreateWithoutUsersInput> | circle_invitationsCreateWithoutUsersInput[] | circle_invitationsUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: circle_invitationsCreateOrConnectWithoutUsersInput | circle_invitationsCreateOrConnectWithoutUsersInput[]
+    upsert?: circle_invitationsUpsertWithWhereUniqueWithoutUsersInput | circle_invitationsUpsertWithWhereUniqueWithoutUsersInput[]
+    createMany?: circle_invitationsCreateManyUsersInputEnvelope
+    set?: circle_invitationsWhereUniqueInput | circle_invitationsWhereUniqueInput[]
+    disconnect?: circle_invitationsWhereUniqueInput | circle_invitationsWhereUniqueInput[]
+    delete?: circle_invitationsWhereUniqueInput | circle_invitationsWhereUniqueInput[]
+    connect?: circle_invitationsWhereUniqueInput | circle_invitationsWhereUniqueInput[]
+    update?: circle_invitationsUpdateWithWhereUniqueWithoutUsersInput | circle_invitationsUpdateWithWhereUniqueWithoutUsersInput[]
+    updateMany?: circle_invitationsUpdateManyWithWhereWithoutUsersInput | circle_invitationsUpdateManyWithWhereWithoutUsersInput[]
+    deleteMany?: circle_invitationsScalarWhereInput | circle_invitationsScalarWhereInput[]
   }
 
-  export type contributionsUpdateOneWithoutUsersNestedInput = {
-    create?: XOR<contributionsCreateWithoutUsersInput, contributionsUncheckedCreateWithoutUsersInput>
-    connectOrCreate?: contributionsCreateOrConnectWithoutUsersInput
-    upsert?: contributionsUpsertWithoutUsersInput
-    disconnect?: contributionsWhereInput | boolean
-    delete?: contributionsWhereInput | boolean
-    connect?: contributionsWhereUniqueInput
-    update?: XOR<XOR<contributionsUpdateToOneWithWhereWithoutUsersInput, contributionsUpdateWithoutUsersInput>, contributionsUncheckedUpdateWithoutUsersInput>
+  export type contributionsUpdateManyWithoutUsersNestedInput = {
+    create?: XOR<contributionsCreateWithoutUsersInput, contributionsUncheckedCreateWithoutUsersInput> | contributionsCreateWithoutUsersInput[] | contributionsUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: contributionsCreateOrConnectWithoutUsersInput | contributionsCreateOrConnectWithoutUsersInput[]
+    upsert?: contributionsUpsertWithWhereUniqueWithoutUsersInput | contributionsUpsertWithWhereUniqueWithoutUsersInput[]
+    createMany?: contributionsCreateManyUsersInputEnvelope
+    set?: contributionsWhereUniqueInput | contributionsWhereUniqueInput[]
+    disconnect?: contributionsWhereUniqueInput | contributionsWhereUniqueInput[]
+    delete?: contributionsWhereUniqueInput | contributionsWhereUniqueInput[]
+    connect?: contributionsWhereUniqueInput | contributionsWhereUniqueInput[]
+    update?: contributionsUpdateWithWhereUniqueWithoutUsersInput | contributionsUpdateWithWhereUniqueWithoutUsersInput[]
+    updateMany?: contributionsUpdateManyWithWhereWithoutUsersInput | contributionsUpdateManyWithWhereWithoutUsersInput[]
+    deleteMany?: contributionsScalarWhereInput | contributionsScalarWhereInput[]
   }
 
-  export type payment_transactionsUpdateOneWithoutUsersNestedInput = {
-    create?: XOR<payment_transactionsCreateWithoutUsersInput, payment_transactionsUncheckedCreateWithoutUsersInput>
-    connectOrCreate?: payment_transactionsCreateOrConnectWithoutUsersInput
-    upsert?: payment_transactionsUpsertWithoutUsersInput
-    disconnect?: payment_transactionsWhereInput | boolean
-    delete?: payment_transactionsWhereInput | boolean
-    connect?: payment_transactionsWhereUniqueInput
-    update?: XOR<XOR<payment_transactionsUpdateToOneWithWhereWithoutUsersInput, payment_transactionsUpdateWithoutUsersInput>, payment_transactionsUncheckedUpdateWithoutUsersInput>
+  export type payment_transactionsUpdateManyWithoutUsersNestedInput = {
+    create?: XOR<payment_transactionsCreateWithoutUsersInput, payment_transactionsUncheckedCreateWithoutUsersInput> | payment_transactionsCreateWithoutUsersInput[] | payment_transactionsUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: payment_transactionsCreateOrConnectWithoutUsersInput | payment_transactionsCreateOrConnectWithoutUsersInput[]
+    upsert?: payment_transactionsUpsertWithWhereUniqueWithoutUsersInput | payment_transactionsUpsertWithWhereUniqueWithoutUsersInput[]
+    createMany?: payment_transactionsCreateManyUsersInputEnvelope
+    set?: payment_transactionsWhereUniqueInput | payment_transactionsWhereUniqueInput[]
+    disconnect?: payment_transactionsWhereUniqueInput | payment_transactionsWhereUniqueInput[]
+    delete?: payment_transactionsWhereUniqueInput | payment_transactionsWhereUniqueInput[]
+    connect?: payment_transactionsWhereUniqueInput | payment_transactionsWhereUniqueInput[]
+    update?: payment_transactionsUpdateWithWhereUniqueWithoutUsersInput | payment_transactionsUpdateWithWhereUniqueWithoutUsersInput[]
+    updateMany?: payment_transactionsUpdateManyWithWhereWithoutUsersInput | payment_transactionsUpdateManyWithWhereWithoutUsersInput[]
+    deleteMany?: payment_transactionsScalarWhereInput | payment_transactionsScalarWhereInput[]
   }
 
-  export type notificationsUpdateOneWithoutUsersNestedInput = {
-    create?: XOR<notificationsCreateWithoutUsersInput, notificationsUncheckedCreateWithoutUsersInput>
-    connectOrCreate?: notificationsCreateOrConnectWithoutUsersInput
-    upsert?: notificationsUpsertWithoutUsersInput
-    disconnect?: notificationsWhereInput | boolean
-    delete?: notificationsWhereInput | boolean
-    connect?: notificationsWhereUniqueInput
-    update?: XOR<XOR<notificationsUpdateToOneWithWhereWithoutUsersInput, notificationsUpdateWithoutUsersInput>, notificationsUncheckedUpdateWithoutUsersInput>
+  export type notificationsUpdateManyWithoutUsersNestedInput = {
+    create?: XOR<notificationsCreateWithoutUsersInput, notificationsUncheckedCreateWithoutUsersInput> | notificationsCreateWithoutUsersInput[] | notificationsUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: notificationsCreateOrConnectWithoutUsersInput | notificationsCreateOrConnectWithoutUsersInput[]
+    upsert?: notificationsUpsertWithWhereUniqueWithoutUsersInput | notificationsUpsertWithWhereUniqueWithoutUsersInput[]
+    createMany?: notificationsCreateManyUsersInputEnvelope
+    set?: notificationsWhereUniqueInput | notificationsWhereUniqueInput[]
+    disconnect?: notificationsWhereUniqueInput | notificationsWhereUniqueInput[]
+    delete?: notificationsWhereUniqueInput | notificationsWhereUniqueInput[]
+    connect?: notificationsWhereUniqueInput | notificationsWhereUniqueInput[]
+    update?: notificationsUpdateWithWhereUniqueWithoutUsersInput | notificationsUpdateWithWhereUniqueWithoutUsersInput[]
+    updateMany?: notificationsUpdateManyWithWhereWithoutUsersInput | notificationsUpdateManyWithWhereWithoutUsersInput[]
+    deleteMany?: notificationsScalarWhereInput | notificationsScalarWhereInput[]
   }
 
   export type waitlistEntryUncheckedUpdateOneWithoutUserNestedInput = {
@@ -21187,64 +21727,88 @@ export namespace Prisma {
     update?: XOR<XOR<sessionsUpdateToOneWithWhereWithoutUserInput, sessionsUpdateWithoutUserInput>, sessionsUncheckedUpdateWithoutUserInput>
   }
 
-  export type savings_circlesUncheckedUpdateOneWithoutUsersNestedInput = {
-    create?: XOR<savings_circlesCreateWithoutUsersInput, savings_circlesUncheckedCreateWithoutUsersInput>
-    connectOrCreate?: savings_circlesCreateOrConnectWithoutUsersInput
-    upsert?: savings_circlesUpsertWithoutUsersInput
-    disconnect?: savings_circlesWhereInput | boolean
-    delete?: savings_circlesWhereInput | boolean
-    connect?: savings_circlesWhereUniqueInput
-    update?: XOR<XOR<savings_circlesUpdateToOneWithWhereWithoutUsersInput, savings_circlesUpdateWithoutUsersInput>, savings_circlesUncheckedUpdateWithoutUsersInput>
+  export type savings_circlesUncheckedUpdateManyWithoutUsersNestedInput = {
+    create?: XOR<savings_circlesCreateWithoutUsersInput, savings_circlesUncheckedCreateWithoutUsersInput> | savings_circlesCreateWithoutUsersInput[] | savings_circlesUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: savings_circlesCreateOrConnectWithoutUsersInput | savings_circlesCreateOrConnectWithoutUsersInput[]
+    upsert?: savings_circlesUpsertWithWhereUniqueWithoutUsersInput | savings_circlesUpsertWithWhereUniqueWithoutUsersInput[]
+    createMany?: savings_circlesCreateManyUsersInputEnvelope
+    set?: savings_circlesWhereUniqueInput | savings_circlesWhereUniqueInput[]
+    disconnect?: savings_circlesWhereUniqueInput | savings_circlesWhereUniqueInput[]
+    delete?: savings_circlesWhereUniqueInput | savings_circlesWhereUniqueInput[]
+    connect?: savings_circlesWhereUniqueInput | savings_circlesWhereUniqueInput[]
+    update?: savings_circlesUpdateWithWhereUniqueWithoutUsersInput | savings_circlesUpdateWithWhereUniqueWithoutUsersInput[]
+    updateMany?: savings_circlesUpdateManyWithWhereWithoutUsersInput | savings_circlesUpdateManyWithWhereWithoutUsersInput[]
+    deleteMany?: savings_circlesScalarWhereInput | savings_circlesScalarWhereInput[]
   }
 
-  export type circle_membersUncheckedUpdateOneWithoutUsersNestedInput = {
-    create?: XOR<circle_membersCreateWithoutUsersInput, circle_membersUncheckedCreateWithoutUsersInput>
-    connectOrCreate?: circle_membersCreateOrConnectWithoutUsersInput
-    upsert?: circle_membersUpsertWithoutUsersInput
-    disconnect?: circle_membersWhereInput | boolean
-    delete?: circle_membersWhereInput | boolean
-    connect?: circle_membersWhereUniqueInput
-    update?: XOR<XOR<circle_membersUpdateToOneWithWhereWithoutUsersInput, circle_membersUpdateWithoutUsersInput>, circle_membersUncheckedUpdateWithoutUsersInput>
+  export type circle_membersUncheckedUpdateManyWithoutUsersNestedInput = {
+    create?: XOR<circle_membersCreateWithoutUsersInput, circle_membersUncheckedCreateWithoutUsersInput> | circle_membersCreateWithoutUsersInput[] | circle_membersUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: circle_membersCreateOrConnectWithoutUsersInput | circle_membersCreateOrConnectWithoutUsersInput[]
+    upsert?: circle_membersUpsertWithWhereUniqueWithoutUsersInput | circle_membersUpsertWithWhereUniqueWithoutUsersInput[]
+    createMany?: circle_membersCreateManyUsersInputEnvelope
+    set?: circle_membersWhereUniqueInput | circle_membersWhereUniqueInput[]
+    disconnect?: circle_membersWhereUniqueInput | circle_membersWhereUniqueInput[]
+    delete?: circle_membersWhereUniqueInput | circle_membersWhereUniqueInput[]
+    connect?: circle_membersWhereUniqueInput | circle_membersWhereUniqueInput[]
+    update?: circle_membersUpdateWithWhereUniqueWithoutUsersInput | circle_membersUpdateWithWhereUniqueWithoutUsersInput[]
+    updateMany?: circle_membersUpdateManyWithWhereWithoutUsersInput | circle_membersUpdateManyWithWhereWithoutUsersInput[]
+    deleteMany?: circle_membersScalarWhereInput | circle_membersScalarWhereInput[]
   }
 
-  export type circle_invitationsUncheckedUpdateOneWithoutUsersNestedInput = {
-    create?: XOR<circle_invitationsCreateWithoutUsersInput, circle_invitationsUncheckedCreateWithoutUsersInput>
-    connectOrCreate?: circle_invitationsCreateOrConnectWithoutUsersInput
-    upsert?: circle_invitationsUpsertWithoutUsersInput
-    disconnect?: circle_invitationsWhereInput | boolean
-    delete?: circle_invitationsWhereInput | boolean
-    connect?: circle_invitationsWhereUniqueInput
-    update?: XOR<XOR<circle_invitationsUpdateToOneWithWhereWithoutUsersInput, circle_invitationsUpdateWithoutUsersInput>, circle_invitationsUncheckedUpdateWithoutUsersInput>
+  export type circle_invitationsUncheckedUpdateManyWithoutUsersNestedInput = {
+    create?: XOR<circle_invitationsCreateWithoutUsersInput, circle_invitationsUncheckedCreateWithoutUsersInput> | circle_invitationsCreateWithoutUsersInput[] | circle_invitationsUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: circle_invitationsCreateOrConnectWithoutUsersInput | circle_invitationsCreateOrConnectWithoutUsersInput[]
+    upsert?: circle_invitationsUpsertWithWhereUniqueWithoutUsersInput | circle_invitationsUpsertWithWhereUniqueWithoutUsersInput[]
+    createMany?: circle_invitationsCreateManyUsersInputEnvelope
+    set?: circle_invitationsWhereUniqueInput | circle_invitationsWhereUniqueInput[]
+    disconnect?: circle_invitationsWhereUniqueInput | circle_invitationsWhereUniqueInput[]
+    delete?: circle_invitationsWhereUniqueInput | circle_invitationsWhereUniqueInput[]
+    connect?: circle_invitationsWhereUniqueInput | circle_invitationsWhereUniqueInput[]
+    update?: circle_invitationsUpdateWithWhereUniqueWithoutUsersInput | circle_invitationsUpdateWithWhereUniqueWithoutUsersInput[]
+    updateMany?: circle_invitationsUpdateManyWithWhereWithoutUsersInput | circle_invitationsUpdateManyWithWhereWithoutUsersInput[]
+    deleteMany?: circle_invitationsScalarWhereInput | circle_invitationsScalarWhereInput[]
   }
 
-  export type contributionsUncheckedUpdateOneWithoutUsersNestedInput = {
-    create?: XOR<contributionsCreateWithoutUsersInput, contributionsUncheckedCreateWithoutUsersInput>
-    connectOrCreate?: contributionsCreateOrConnectWithoutUsersInput
-    upsert?: contributionsUpsertWithoutUsersInput
-    disconnect?: contributionsWhereInput | boolean
-    delete?: contributionsWhereInput | boolean
-    connect?: contributionsWhereUniqueInput
-    update?: XOR<XOR<contributionsUpdateToOneWithWhereWithoutUsersInput, contributionsUpdateWithoutUsersInput>, contributionsUncheckedUpdateWithoutUsersInput>
+  export type contributionsUncheckedUpdateManyWithoutUsersNestedInput = {
+    create?: XOR<contributionsCreateWithoutUsersInput, contributionsUncheckedCreateWithoutUsersInput> | contributionsCreateWithoutUsersInput[] | contributionsUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: contributionsCreateOrConnectWithoutUsersInput | contributionsCreateOrConnectWithoutUsersInput[]
+    upsert?: contributionsUpsertWithWhereUniqueWithoutUsersInput | contributionsUpsertWithWhereUniqueWithoutUsersInput[]
+    createMany?: contributionsCreateManyUsersInputEnvelope
+    set?: contributionsWhereUniqueInput | contributionsWhereUniqueInput[]
+    disconnect?: contributionsWhereUniqueInput | contributionsWhereUniqueInput[]
+    delete?: contributionsWhereUniqueInput | contributionsWhereUniqueInput[]
+    connect?: contributionsWhereUniqueInput | contributionsWhereUniqueInput[]
+    update?: contributionsUpdateWithWhereUniqueWithoutUsersInput | contributionsUpdateWithWhereUniqueWithoutUsersInput[]
+    updateMany?: contributionsUpdateManyWithWhereWithoutUsersInput | contributionsUpdateManyWithWhereWithoutUsersInput[]
+    deleteMany?: contributionsScalarWhereInput | contributionsScalarWhereInput[]
   }
 
-  export type payment_transactionsUncheckedUpdateOneWithoutUsersNestedInput = {
-    create?: XOR<payment_transactionsCreateWithoutUsersInput, payment_transactionsUncheckedCreateWithoutUsersInput>
-    connectOrCreate?: payment_transactionsCreateOrConnectWithoutUsersInput
-    upsert?: payment_transactionsUpsertWithoutUsersInput
-    disconnect?: payment_transactionsWhereInput | boolean
-    delete?: payment_transactionsWhereInput | boolean
-    connect?: payment_transactionsWhereUniqueInput
-    update?: XOR<XOR<payment_transactionsUpdateToOneWithWhereWithoutUsersInput, payment_transactionsUpdateWithoutUsersInput>, payment_transactionsUncheckedUpdateWithoutUsersInput>
+  export type payment_transactionsUncheckedUpdateManyWithoutUsersNestedInput = {
+    create?: XOR<payment_transactionsCreateWithoutUsersInput, payment_transactionsUncheckedCreateWithoutUsersInput> | payment_transactionsCreateWithoutUsersInput[] | payment_transactionsUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: payment_transactionsCreateOrConnectWithoutUsersInput | payment_transactionsCreateOrConnectWithoutUsersInput[]
+    upsert?: payment_transactionsUpsertWithWhereUniqueWithoutUsersInput | payment_transactionsUpsertWithWhereUniqueWithoutUsersInput[]
+    createMany?: payment_transactionsCreateManyUsersInputEnvelope
+    set?: payment_transactionsWhereUniqueInput | payment_transactionsWhereUniqueInput[]
+    disconnect?: payment_transactionsWhereUniqueInput | payment_transactionsWhereUniqueInput[]
+    delete?: payment_transactionsWhereUniqueInput | payment_transactionsWhereUniqueInput[]
+    connect?: payment_transactionsWhereUniqueInput | payment_transactionsWhereUniqueInput[]
+    update?: payment_transactionsUpdateWithWhereUniqueWithoutUsersInput | payment_transactionsUpdateWithWhereUniqueWithoutUsersInput[]
+    updateMany?: payment_transactionsUpdateManyWithWhereWithoutUsersInput | payment_transactionsUpdateManyWithWhereWithoutUsersInput[]
+    deleteMany?: payment_transactionsScalarWhereInput | payment_transactionsScalarWhereInput[]
   }
 
-  export type notificationsUncheckedUpdateOneWithoutUsersNestedInput = {
-    create?: XOR<notificationsCreateWithoutUsersInput, notificationsUncheckedCreateWithoutUsersInput>
-    connectOrCreate?: notificationsCreateOrConnectWithoutUsersInput
-    upsert?: notificationsUpsertWithoutUsersInput
-    disconnect?: notificationsWhereInput | boolean
-    delete?: notificationsWhereInput | boolean
-    connect?: notificationsWhereUniqueInput
-    update?: XOR<XOR<notificationsUpdateToOneWithWhereWithoutUsersInput, notificationsUpdateWithoutUsersInput>, notificationsUncheckedUpdateWithoutUsersInput>
+  export type notificationsUncheckedUpdateManyWithoutUsersNestedInput = {
+    create?: XOR<notificationsCreateWithoutUsersInput, notificationsUncheckedCreateWithoutUsersInput> | notificationsCreateWithoutUsersInput[] | notificationsUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: notificationsCreateOrConnectWithoutUsersInput | notificationsCreateOrConnectWithoutUsersInput[]
+    upsert?: notificationsUpsertWithWhereUniqueWithoutUsersInput | notificationsUpsertWithWhereUniqueWithoutUsersInput[]
+    createMany?: notificationsCreateManyUsersInputEnvelope
+    set?: notificationsWhereUniqueInput | notificationsWhereUniqueInput[]
+    disconnect?: notificationsWhereUniqueInput | notificationsWhereUniqueInput[]
+    delete?: notificationsWhereUniqueInput | notificationsWhereUniqueInput[]
+    connect?: notificationsWhereUniqueInput | notificationsWhereUniqueInput[]
+    update?: notificationsUpdateWithWhereUniqueWithoutUsersInput | notificationsUpdateWithWhereUniqueWithoutUsersInput[]
+    updateMany?: notificationsUpdateManyWithWhereWithoutUsersInput | notificationsUpdateManyWithWhereWithoutUsersInput[]
+    deleteMany?: notificationsScalarWhereInput | notificationsScalarWhereInput[]
   }
 
   export type usersCreateNestedOneWithoutSessionInput = {
@@ -21267,64 +21831,74 @@ export namespace Prisma {
     connect?: usersWhereUniqueInput
   }
 
-  export type circle_membersCreateNestedOneWithoutSavings_circleInput = {
-    create?: XOR<circle_membersCreateWithoutSavings_circleInput, circle_membersUncheckedCreateWithoutSavings_circleInput>
-    connectOrCreate?: circle_membersCreateOrConnectWithoutSavings_circleInput
-    connect?: circle_membersWhereUniqueInput
+  export type circle_membersCreateNestedManyWithoutSavings_circleInput = {
+    create?: XOR<circle_membersCreateWithoutSavings_circleInput, circle_membersUncheckedCreateWithoutSavings_circleInput> | circle_membersCreateWithoutSavings_circleInput[] | circle_membersUncheckedCreateWithoutSavings_circleInput[]
+    connectOrCreate?: circle_membersCreateOrConnectWithoutSavings_circleInput | circle_membersCreateOrConnectWithoutSavings_circleInput[]
+    createMany?: circle_membersCreateManySavings_circleInputEnvelope
+    connect?: circle_membersWhereUniqueInput | circle_membersWhereUniqueInput[]
   }
 
-  export type circle_invitationsCreateNestedOneWithoutSavings_circleInput = {
-    create?: XOR<circle_invitationsCreateWithoutSavings_circleInput, circle_invitationsUncheckedCreateWithoutSavings_circleInput>
-    connectOrCreate?: circle_invitationsCreateOrConnectWithoutSavings_circleInput
-    connect?: circle_invitationsWhereUniqueInput
+  export type circle_invitationsCreateNestedManyWithoutSavings_circleInput = {
+    create?: XOR<circle_invitationsCreateWithoutSavings_circleInput, circle_invitationsUncheckedCreateWithoutSavings_circleInput> | circle_invitationsCreateWithoutSavings_circleInput[] | circle_invitationsUncheckedCreateWithoutSavings_circleInput[]
+    connectOrCreate?: circle_invitationsCreateOrConnectWithoutSavings_circleInput | circle_invitationsCreateOrConnectWithoutSavings_circleInput[]
+    createMany?: circle_invitationsCreateManySavings_circleInputEnvelope
+    connect?: circle_invitationsWhereUniqueInput | circle_invitationsWhereUniqueInput[]
   }
 
-  export type savings_schedulesCreateNestedOneWithoutSavings_circleInput = {
-    create?: XOR<savings_schedulesCreateWithoutSavings_circleInput, savings_schedulesUncheckedCreateWithoutSavings_circleInput>
-    connectOrCreate?: savings_schedulesCreateOrConnectWithoutSavings_circleInput
-    connect?: savings_schedulesWhereUniqueInput
+  export type savings_schedulesCreateNestedManyWithoutSavings_circleInput = {
+    create?: XOR<savings_schedulesCreateWithoutSavings_circleInput, savings_schedulesUncheckedCreateWithoutSavings_circleInput> | savings_schedulesCreateWithoutSavings_circleInput[] | savings_schedulesUncheckedCreateWithoutSavings_circleInput[]
+    connectOrCreate?: savings_schedulesCreateOrConnectWithoutSavings_circleInput | savings_schedulesCreateOrConnectWithoutSavings_circleInput[]
+    createMany?: savings_schedulesCreateManySavings_circleInputEnvelope
+    connect?: savings_schedulesWhereUniqueInput | savings_schedulesWhereUniqueInput[]
   }
 
-  export type contributionsCreateNestedOneWithoutSavings_circleInput = {
-    create?: XOR<contributionsCreateWithoutSavings_circleInput, contributionsUncheckedCreateWithoutSavings_circleInput>
-    connectOrCreate?: contributionsCreateOrConnectWithoutSavings_circleInput
-    connect?: contributionsWhereUniqueInput
+  export type contributionsCreateNestedManyWithoutSavings_circleInput = {
+    create?: XOR<contributionsCreateWithoutSavings_circleInput, contributionsUncheckedCreateWithoutSavings_circleInput> | contributionsCreateWithoutSavings_circleInput[] | contributionsUncheckedCreateWithoutSavings_circleInput[]
+    connectOrCreate?: contributionsCreateOrConnectWithoutSavings_circleInput | contributionsCreateOrConnectWithoutSavings_circleInput[]
+    createMany?: contributionsCreateManySavings_circleInputEnvelope
+    connect?: contributionsWhereUniqueInput | contributionsWhereUniqueInput[]
   }
 
-  export type payoutsCreateNestedOneWithoutSavings_circleInput = {
-    create?: XOR<payoutsCreateWithoutSavings_circleInput, payoutsUncheckedCreateWithoutSavings_circleInput>
-    connectOrCreate?: payoutsCreateOrConnectWithoutSavings_circleInput
-    connect?: payoutsWhereUniqueInput
+  export type payoutsCreateNestedManyWithoutSavings_circleInput = {
+    create?: XOR<payoutsCreateWithoutSavings_circleInput, payoutsUncheckedCreateWithoutSavings_circleInput> | payoutsCreateWithoutSavings_circleInput[] | payoutsUncheckedCreateWithoutSavings_circleInput[]
+    connectOrCreate?: payoutsCreateOrConnectWithoutSavings_circleInput | payoutsCreateOrConnectWithoutSavings_circleInput[]
+    createMany?: payoutsCreateManySavings_circleInputEnvelope
+    connect?: payoutsWhereUniqueInput | payoutsWhereUniqueInput[]
   }
 
-  export type circle_membersUncheckedCreateNestedOneWithoutSavings_circleInput = {
-    create?: XOR<circle_membersCreateWithoutSavings_circleInput, circle_membersUncheckedCreateWithoutSavings_circleInput>
-    connectOrCreate?: circle_membersCreateOrConnectWithoutSavings_circleInput
-    connect?: circle_membersWhereUniqueInput
+  export type circle_membersUncheckedCreateNestedManyWithoutSavings_circleInput = {
+    create?: XOR<circle_membersCreateWithoutSavings_circleInput, circle_membersUncheckedCreateWithoutSavings_circleInput> | circle_membersCreateWithoutSavings_circleInput[] | circle_membersUncheckedCreateWithoutSavings_circleInput[]
+    connectOrCreate?: circle_membersCreateOrConnectWithoutSavings_circleInput | circle_membersCreateOrConnectWithoutSavings_circleInput[]
+    createMany?: circle_membersCreateManySavings_circleInputEnvelope
+    connect?: circle_membersWhereUniqueInput | circle_membersWhereUniqueInput[]
   }
 
-  export type circle_invitationsUncheckedCreateNestedOneWithoutSavings_circleInput = {
-    create?: XOR<circle_invitationsCreateWithoutSavings_circleInput, circle_invitationsUncheckedCreateWithoutSavings_circleInput>
-    connectOrCreate?: circle_invitationsCreateOrConnectWithoutSavings_circleInput
-    connect?: circle_invitationsWhereUniqueInput
+  export type circle_invitationsUncheckedCreateNestedManyWithoutSavings_circleInput = {
+    create?: XOR<circle_invitationsCreateWithoutSavings_circleInput, circle_invitationsUncheckedCreateWithoutSavings_circleInput> | circle_invitationsCreateWithoutSavings_circleInput[] | circle_invitationsUncheckedCreateWithoutSavings_circleInput[]
+    connectOrCreate?: circle_invitationsCreateOrConnectWithoutSavings_circleInput | circle_invitationsCreateOrConnectWithoutSavings_circleInput[]
+    createMany?: circle_invitationsCreateManySavings_circleInputEnvelope
+    connect?: circle_invitationsWhereUniqueInput | circle_invitationsWhereUniqueInput[]
   }
 
-  export type savings_schedulesUncheckedCreateNestedOneWithoutSavings_circleInput = {
-    create?: XOR<savings_schedulesCreateWithoutSavings_circleInput, savings_schedulesUncheckedCreateWithoutSavings_circleInput>
-    connectOrCreate?: savings_schedulesCreateOrConnectWithoutSavings_circleInput
-    connect?: savings_schedulesWhereUniqueInput
+  export type savings_schedulesUncheckedCreateNestedManyWithoutSavings_circleInput = {
+    create?: XOR<savings_schedulesCreateWithoutSavings_circleInput, savings_schedulesUncheckedCreateWithoutSavings_circleInput> | savings_schedulesCreateWithoutSavings_circleInput[] | savings_schedulesUncheckedCreateWithoutSavings_circleInput[]
+    connectOrCreate?: savings_schedulesCreateOrConnectWithoutSavings_circleInput | savings_schedulesCreateOrConnectWithoutSavings_circleInput[]
+    createMany?: savings_schedulesCreateManySavings_circleInputEnvelope
+    connect?: savings_schedulesWhereUniqueInput | savings_schedulesWhereUniqueInput[]
   }
 
-  export type contributionsUncheckedCreateNestedOneWithoutSavings_circleInput = {
-    create?: XOR<contributionsCreateWithoutSavings_circleInput, contributionsUncheckedCreateWithoutSavings_circleInput>
-    connectOrCreate?: contributionsCreateOrConnectWithoutSavings_circleInput
-    connect?: contributionsWhereUniqueInput
+  export type contributionsUncheckedCreateNestedManyWithoutSavings_circleInput = {
+    create?: XOR<contributionsCreateWithoutSavings_circleInput, contributionsUncheckedCreateWithoutSavings_circleInput> | contributionsCreateWithoutSavings_circleInput[] | contributionsUncheckedCreateWithoutSavings_circleInput[]
+    connectOrCreate?: contributionsCreateOrConnectWithoutSavings_circleInput | contributionsCreateOrConnectWithoutSavings_circleInput[]
+    createMany?: contributionsCreateManySavings_circleInputEnvelope
+    connect?: contributionsWhereUniqueInput | contributionsWhereUniqueInput[]
   }
 
-  export type payoutsUncheckedCreateNestedOneWithoutSavings_circleInput = {
-    create?: XOR<payoutsCreateWithoutSavings_circleInput, payoutsUncheckedCreateWithoutSavings_circleInput>
-    connectOrCreate?: payoutsCreateOrConnectWithoutSavings_circleInput
-    connect?: payoutsWhereUniqueInput
+  export type payoutsUncheckedCreateNestedManyWithoutSavings_circleInput = {
+    create?: XOR<payoutsCreateWithoutSavings_circleInput, payoutsUncheckedCreateWithoutSavings_circleInput> | payoutsCreateWithoutSavings_circleInput[] | payoutsUncheckedCreateWithoutSavings_circleInput[]
+    connectOrCreate?: payoutsCreateOrConnectWithoutSavings_circleInput | payoutsCreateOrConnectWithoutSavings_circleInput[]
+    createMany?: payoutsCreateManySavings_circleInputEnvelope
+    connect?: payoutsWhereUniqueInput | payoutsWhereUniqueInput[]
   }
 
   export type DecimalFieldUpdateOperationsInput = {
@@ -21347,6 +21921,10 @@ export namespace Prisma {
     divide?: number
   }
 
+  export type EnumCircle_StatusFieldUpdateOperationsInput = {
+    set?: $Enums.Circle_Status
+  }
+
   export type usersUpdateOneRequiredWithoutSavings_circlesNestedInput = {
     create?: XOR<usersCreateWithoutSavings_circlesInput, usersUncheckedCreateWithoutSavings_circlesInput>
     connectOrCreate?: usersCreateOrConnectWithoutSavings_circlesInput
@@ -21355,104 +21933,144 @@ export namespace Prisma {
     update?: XOR<XOR<usersUpdateToOneWithWhereWithoutSavings_circlesInput, usersUpdateWithoutSavings_circlesInput>, usersUncheckedUpdateWithoutSavings_circlesInput>
   }
 
-  export type circle_membersUpdateOneWithoutSavings_circleNestedInput = {
-    create?: XOR<circle_membersCreateWithoutSavings_circleInput, circle_membersUncheckedCreateWithoutSavings_circleInput>
-    connectOrCreate?: circle_membersCreateOrConnectWithoutSavings_circleInput
-    upsert?: circle_membersUpsertWithoutSavings_circleInput
-    disconnect?: circle_membersWhereInput | boolean
-    delete?: circle_membersWhereInput | boolean
-    connect?: circle_membersWhereUniqueInput
-    update?: XOR<XOR<circle_membersUpdateToOneWithWhereWithoutSavings_circleInput, circle_membersUpdateWithoutSavings_circleInput>, circle_membersUncheckedUpdateWithoutSavings_circleInput>
+  export type circle_membersUpdateManyWithoutSavings_circleNestedInput = {
+    create?: XOR<circle_membersCreateWithoutSavings_circleInput, circle_membersUncheckedCreateWithoutSavings_circleInput> | circle_membersCreateWithoutSavings_circleInput[] | circle_membersUncheckedCreateWithoutSavings_circleInput[]
+    connectOrCreate?: circle_membersCreateOrConnectWithoutSavings_circleInput | circle_membersCreateOrConnectWithoutSavings_circleInput[]
+    upsert?: circle_membersUpsertWithWhereUniqueWithoutSavings_circleInput | circle_membersUpsertWithWhereUniqueWithoutSavings_circleInput[]
+    createMany?: circle_membersCreateManySavings_circleInputEnvelope
+    set?: circle_membersWhereUniqueInput | circle_membersWhereUniqueInput[]
+    disconnect?: circle_membersWhereUniqueInput | circle_membersWhereUniqueInput[]
+    delete?: circle_membersWhereUniqueInput | circle_membersWhereUniqueInput[]
+    connect?: circle_membersWhereUniqueInput | circle_membersWhereUniqueInput[]
+    update?: circle_membersUpdateWithWhereUniqueWithoutSavings_circleInput | circle_membersUpdateWithWhereUniqueWithoutSavings_circleInput[]
+    updateMany?: circle_membersUpdateManyWithWhereWithoutSavings_circleInput | circle_membersUpdateManyWithWhereWithoutSavings_circleInput[]
+    deleteMany?: circle_membersScalarWhereInput | circle_membersScalarWhereInput[]
   }
 
-  export type circle_invitationsUpdateOneWithoutSavings_circleNestedInput = {
-    create?: XOR<circle_invitationsCreateWithoutSavings_circleInput, circle_invitationsUncheckedCreateWithoutSavings_circleInput>
-    connectOrCreate?: circle_invitationsCreateOrConnectWithoutSavings_circleInput
-    upsert?: circle_invitationsUpsertWithoutSavings_circleInput
-    disconnect?: circle_invitationsWhereInput | boolean
-    delete?: circle_invitationsWhereInput | boolean
-    connect?: circle_invitationsWhereUniqueInput
-    update?: XOR<XOR<circle_invitationsUpdateToOneWithWhereWithoutSavings_circleInput, circle_invitationsUpdateWithoutSavings_circleInput>, circle_invitationsUncheckedUpdateWithoutSavings_circleInput>
+  export type circle_invitationsUpdateManyWithoutSavings_circleNestedInput = {
+    create?: XOR<circle_invitationsCreateWithoutSavings_circleInput, circle_invitationsUncheckedCreateWithoutSavings_circleInput> | circle_invitationsCreateWithoutSavings_circleInput[] | circle_invitationsUncheckedCreateWithoutSavings_circleInput[]
+    connectOrCreate?: circle_invitationsCreateOrConnectWithoutSavings_circleInput | circle_invitationsCreateOrConnectWithoutSavings_circleInput[]
+    upsert?: circle_invitationsUpsertWithWhereUniqueWithoutSavings_circleInput | circle_invitationsUpsertWithWhereUniqueWithoutSavings_circleInput[]
+    createMany?: circle_invitationsCreateManySavings_circleInputEnvelope
+    set?: circle_invitationsWhereUniqueInput | circle_invitationsWhereUniqueInput[]
+    disconnect?: circle_invitationsWhereUniqueInput | circle_invitationsWhereUniqueInput[]
+    delete?: circle_invitationsWhereUniqueInput | circle_invitationsWhereUniqueInput[]
+    connect?: circle_invitationsWhereUniqueInput | circle_invitationsWhereUniqueInput[]
+    update?: circle_invitationsUpdateWithWhereUniqueWithoutSavings_circleInput | circle_invitationsUpdateWithWhereUniqueWithoutSavings_circleInput[]
+    updateMany?: circle_invitationsUpdateManyWithWhereWithoutSavings_circleInput | circle_invitationsUpdateManyWithWhereWithoutSavings_circleInput[]
+    deleteMany?: circle_invitationsScalarWhereInput | circle_invitationsScalarWhereInput[]
   }
 
-  export type savings_schedulesUpdateOneWithoutSavings_circleNestedInput = {
-    create?: XOR<savings_schedulesCreateWithoutSavings_circleInput, savings_schedulesUncheckedCreateWithoutSavings_circleInput>
-    connectOrCreate?: savings_schedulesCreateOrConnectWithoutSavings_circleInput
-    upsert?: savings_schedulesUpsertWithoutSavings_circleInput
-    disconnect?: savings_schedulesWhereInput | boolean
-    delete?: savings_schedulesWhereInput | boolean
-    connect?: savings_schedulesWhereUniqueInput
-    update?: XOR<XOR<savings_schedulesUpdateToOneWithWhereWithoutSavings_circleInput, savings_schedulesUpdateWithoutSavings_circleInput>, savings_schedulesUncheckedUpdateWithoutSavings_circleInput>
+  export type savings_schedulesUpdateManyWithoutSavings_circleNestedInput = {
+    create?: XOR<savings_schedulesCreateWithoutSavings_circleInput, savings_schedulesUncheckedCreateWithoutSavings_circleInput> | savings_schedulesCreateWithoutSavings_circleInput[] | savings_schedulesUncheckedCreateWithoutSavings_circleInput[]
+    connectOrCreate?: savings_schedulesCreateOrConnectWithoutSavings_circleInput | savings_schedulesCreateOrConnectWithoutSavings_circleInput[]
+    upsert?: savings_schedulesUpsertWithWhereUniqueWithoutSavings_circleInput | savings_schedulesUpsertWithWhereUniqueWithoutSavings_circleInput[]
+    createMany?: savings_schedulesCreateManySavings_circleInputEnvelope
+    set?: savings_schedulesWhereUniqueInput | savings_schedulesWhereUniqueInput[]
+    disconnect?: savings_schedulesWhereUniqueInput | savings_schedulesWhereUniqueInput[]
+    delete?: savings_schedulesWhereUniqueInput | savings_schedulesWhereUniqueInput[]
+    connect?: savings_schedulesWhereUniqueInput | savings_schedulesWhereUniqueInput[]
+    update?: savings_schedulesUpdateWithWhereUniqueWithoutSavings_circleInput | savings_schedulesUpdateWithWhereUniqueWithoutSavings_circleInput[]
+    updateMany?: savings_schedulesUpdateManyWithWhereWithoutSavings_circleInput | savings_schedulesUpdateManyWithWhereWithoutSavings_circleInput[]
+    deleteMany?: savings_schedulesScalarWhereInput | savings_schedulesScalarWhereInput[]
   }
 
-  export type contributionsUpdateOneWithoutSavings_circleNestedInput = {
-    create?: XOR<contributionsCreateWithoutSavings_circleInput, contributionsUncheckedCreateWithoutSavings_circleInput>
-    connectOrCreate?: contributionsCreateOrConnectWithoutSavings_circleInput
-    upsert?: contributionsUpsertWithoutSavings_circleInput
-    disconnect?: contributionsWhereInput | boolean
-    delete?: contributionsWhereInput | boolean
-    connect?: contributionsWhereUniqueInput
-    update?: XOR<XOR<contributionsUpdateToOneWithWhereWithoutSavings_circleInput, contributionsUpdateWithoutSavings_circleInput>, contributionsUncheckedUpdateWithoutSavings_circleInput>
+  export type contributionsUpdateManyWithoutSavings_circleNestedInput = {
+    create?: XOR<contributionsCreateWithoutSavings_circleInput, contributionsUncheckedCreateWithoutSavings_circleInput> | contributionsCreateWithoutSavings_circleInput[] | contributionsUncheckedCreateWithoutSavings_circleInput[]
+    connectOrCreate?: contributionsCreateOrConnectWithoutSavings_circleInput | contributionsCreateOrConnectWithoutSavings_circleInput[]
+    upsert?: contributionsUpsertWithWhereUniqueWithoutSavings_circleInput | contributionsUpsertWithWhereUniqueWithoutSavings_circleInput[]
+    createMany?: contributionsCreateManySavings_circleInputEnvelope
+    set?: contributionsWhereUniqueInput | contributionsWhereUniqueInput[]
+    disconnect?: contributionsWhereUniqueInput | contributionsWhereUniqueInput[]
+    delete?: contributionsWhereUniqueInput | contributionsWhereUniqueInput[]
+    connect?: contributionsWhereUniqueInput | contributionsWhereUniqueInput[]
+    update?: contributionsUpdateWithWhereUniqueWithoutSavings_circleInput | contributionsUpdateWithWhereUniqueWithoutSavings_circleInput[]
+    updateMany?: contributionsUpdateManyWithWhereWithoutSavings_circleInput | contributionsUpdateManyWithWhereWithoutSavings_circleInput[]
+    deleteMany?: contributionsScalarWhereInput | contributionsScalarWhereInput[]
   }
 
-  export type payoutsUpdateOneWithoutSavings_circleNestedInput = {
-    create?: XOR<payoutsCreateWithoutSavings_circleInput, payoutsUncheckedCreateWithoutSavings_circleInput>
-    connectOrCreate?: payoutsCreateOrConnectWithoutSavings_circleInput
-    upsert?: payoutsUpsertWithoutSavings_circleInput
-    disconnect?: payoutsWhereInput | boolean
-    delete?: payoutsWhereInput | boolean
-    connect?: payoutsWhereUniqueInput
-    update?: XOR<XOR<payoutsUpdateToOneWithWhereWithoutSavings_circleInput, payoutsUpdateWithoutSavings_circleInput>, payoutsUncheckedUpdateWithoutSavings_circleInput>
+  export type payoutsUpdateManyWithoutSavings_circleNestedInput = {
+    create?: XOR<payoutsCreateWithoutSavings_circleInput, payoutsUncheckedCreateWithoutSavings_circleInput> | payoutsCreateWithoutSavings_circleInput[] | payoutsUncheckedCreateWithoutSavings_circleInput[]
+    connectOrCreate?: payoutsCreateOrConnectWithoutSavings_circleInput | payoutsCreateOrConnectWithoutSavings_circleInput[]
+    upsert?: payoutsUpsertWithWhereUniqueWithoutSavings_circleInput | payoutsUpsertWithWhereUniqueWithoutSavings_circleInput[]
+    createMany?: payoutsCreateManySavings_circleInputEnvelope
+    set?: payoutsWhereUniqueInput | payoutsWhereUniqueInput[]
+    disconnect?: payoutsWhereUniqueInput | payoutsWhereUniqueInput[]
+    delete?: payoutsWhereUniqueInput | payoutsWhereUniqueInput[]
+    connect?: payoutsWhereUniqueInput | payoutsWhereUniqueInput[]
+    update?: payoutsUpdateWithWhereUniqueWithoutSavings_circleInput | payoutsUpdateWithWhereUniqueWithoutSavings_circleInput[]
+    updateMany?: payoutsUpdateManyWithWhereWithoutSavings_circleInput | payoutsUpdateManyWithWhereWithoutSavings_circleInput[]
+    deleteMany?: payoutsScalarWhereInput | payoutsScalarWhereInput[]
   }
 
-  export type circle_membersUncheckedUpdateOneWithoutSavings_circleNestedInput = {
-    create?: XOR<circle_membersCreateWithoutSavings_circleInput, circle_membersUncheckedCreateWithoutSavings_circleInput>
-    connectOrCreate?: circle_membersCreateOrConnectWithoutSavings_circleInput
-    upsert?: circle_membersUpsertWithoutSavings_circleInput
-    disconnect?: circle_membersWhereInput | boolean
-    delete?: circle_membersWhereInput | boolean
-    connect?: circle_membersWhereUniqueInput
-    update?: XOR<XOR<circle_membersUpdateToOneWithWhereWithoutSavings_circleInput, circle_membersUpdateWithoutSavings_circleInput>, circle_membersUncheckedUpdateWithoutSavings_circleInput>
+  export type circle_membersUncheckedUpdateManyWithoutSavings_circleNestedInput = {
+    create?: XOR<circle_membersCreateWithoutSavings_circleInput, circle_membersUncheckedCreateWithoutSavings_circleInput> | circle_membersCreateWithoutSavings_circleInput[] | circle_membersUncheckedCreateWithoutSavings_circleInput[]
+    connectOrCreate?: circle_membersCreateOrConnectWithoutSavings_circleInput | circle_membersCreateOrConnectWithoutSavings_circleInput[]
+    upsert?: circle_membersUpsertWithWhereUniqueWithoutSavings_circleInput | circle_membersUpsertWithWhereUniqueWithoutSavings_circleInput[]
+    createMany?: circle_membersCreateManySavings_circleInputEnvelope
+    set?: circle_membersWhereUniqueInput | circle_membersWhereUniqueInput[]
+    disconnect?: circle_membersWhereUniqueInput | circle_membersWhereUniqueInput[]
+    delete?: circle_membersWhereUniqueInput | circle_membersWhereUniqueInput[]
+    connect?: circle_membersWhereUniqueInput | circle_membersWhereUniqueInput[]
+    update?: circle_membersUpdateWithWhereUniqueWithoutSavings_circleInput | circle_membersUpdateWithWhereUniqueWithoutSavings_circleInput[]
+    updateMany?: circle_membersUpdateManyWithWhereWithoutSavings_circleInput | circle_membersUpdateManyWithWhereWithoutSavings_circleInput[]
+    deleteMany?: circle_membersScalarWhereInput | circle_membersScalarWhereInput[]
   }
 
-  export type circle_invitationsUncheckedUpdateOneWithoutSavings_circleNestedInput = {
-    create?: XOR<circle_invitationsCreateWithoutSavings_circleInput, circle_invitationsUncheckedCreateWithoutSavings_circleInput>
-    connectOrCreate?: circle_invitationsCreateOrConnectWithoutSavings_circleInput
-    upsert?: circle_invitationsUpsertWithoutSavings_circleInput
-    disconnect?: circle_invitationsWhereInput | boolean
-    delete?: circle_invitationsWhereInput | boolean
-    connect?: circle_invitationsWhereUniqueInput
-    update?: XOR<XOR<circle_invitationsUpdateToOneWithWhereWithoutSavings_circleInput, circle_invitationsUpdateWithoutSavings_circleInput>, circle_invitationsUncheckedUpdateWithoutSavings_circleInput>
+  export type circle_invitationsUncheckedUpdateManyWithoutSavings_circleNestedInput = {
+    create?: XOR<circle_invitationsCreateWithoutSavings_circleInput, circle_invitationsUncheckedCreateWithoutSavings_circleInput> | circle_invitationsCreateWithoutSavings_circleInput[] | circle_invitationsUncheckedCreateWithoutSavings_circleInput[]
+    connectOrCreate?: circle_invitationsCreateOrConnectWithoutSavings_circleInput | circle_invitationsCreateOrConnectWithoutSavings_circleInput[]
+    upsert?: circle_invitationsUpsertWithWhereUniqueWithoutSavings_circleInput | circle_invitationsUpsertWithWhereUniqueWithoutSavings_circleInput[]
+    createMany?: circle_invitationsCreateManySavings_circleInputEnvelope
+    set?: circle_invitationsWhereUniqueInput | circle_invitationsWhereUniqueInput[]
+    disconnect?: circle_invitationsWhereUniqueInput | circle_invitationsWhereUniqueInput[]
+    delete?: circle_invitationsWhereUniqueInput | circle_invitationsWhereUniqueInput[]
+    connect?: circle_invitationsWhereUniqueInput | circle_invitationsWhereUniqueInput[]
+    update?: circle_invitationsUpdateWithWhereUniqueWithoutSavings_circleInput | circle_invitationsUpdateWithWhereUniqueWithoutSavings_circleInput[]
+    updateMany?: circle_invitationsUpdateManyWithWhereWithoutSavings_circleInput | circle_invitationsUpdateManyWithWhereWithoutSavings_circleInput[]
+    deleteMany?: circle_invitationsScalarWhereInput | circle_invitationsScalarWhereInput[]
   }
 
-  export type savings_schedulesUncheckedUpdateOneWithoutSavings_circleNestedInput = {
-    create?: XOR<savings_schedulesCreateWithoutSavings_circleInput, savings_schedulesUncheckedCreateWithoutSavings_circleInput>
-    connectOrCreate?: savings_schedulesCreateOrConnectWithoutSavings_circleInput
-    upsert?: savings_schedulesUpsertWithoutSavings_circleInput
-    disconnect?: savings_schedulesWhereInput | boolean
-    delete?: savings_schedulesWhereInput | boolean
-    connect?: savings_schedulesWhereUniqueInput
-    update?: XOR<XOR<savings_schedulesUpdateToOneWithWhereWithoutSavings_circleInput, savings_schedulesUpdateWithoutSavings_circleInput>, savings_schedulesUncheckedUpdateWithoutSavings_circleInput>
+  export type savings_schedulesUncheckedUpdateManyWithoutSavings_circleNestedInput = {
+    create?: XOR<savings_schedulesCreateWithoutSavings_circleInput, savings_schedulesUncheckedCreateWithoutSavings_circleInput> | savings_schedulesCreateWithoutSavings_circleInput[] | savings_schedulesUncheckedCreateWithoutSavings_circleInput[]
+    connectOrCreate?: savings_schedulesCreateOrConnectWithoutSavings_circleInput | savings_schedulesCreateOrConnectWithoutSavings_circleInput[]
+    upsert?: savings_schedulesUpsertWithWhereUniqueWithoutSavings_circleInput | savings_schedulesUpsertWithWhereUniqueWithoutSavings_circleInput[]
+    createMany?: savings_schedulesCreateManySavings_circleInputEnvelope
+    set?: savings_schedulesWhereUniqueInput | savings_schedulesWhereUniqueInput[]
+    disconnect?: savings_schedulesWhereUniqueInput | savings_schedulesWhereUniqueInput[]
+    delete?: savings_schedulesWhereUniqueInput | savings_schedulesWhereUniqueInput[]
+    connect?: savings_schedulesWhereUniqueInput | savings_schedulesWhereUniqueInput[]
+    update?: savings_schedulesUpdateWithWhereUniqueWithoutSavings_circleInput | savings_schedulesUpdateWithWhereUniqueWithoutSavings_circleInput[]
+    updateMany?: savings_schedulesUpdateManyWithWhereWithoutSavings_circleInput | savings_schedulesUpdateManyWithWhereWithoutSavings_circleInput[]
+    deleteMany?: savings_schedulesScalarWhereInput | savings_schedulesScalarWhereInput[]
   }
 
-  export type contributionsUncheckedUpdateOneWithoutSavings_circleNestedInput = {
-    create?: XOR<contributionsCreateWithoutSavings_circleInput, contributionsUncheckedCreateWithoutSavings_circleInput>
-    connectOrCreate?: contributionsCreateOrConnectWithoutSavings_circleInput
-    upsert?: contributionsUpsertWithoutSavings_circleInput
-    disconnect?: contributionsWhereInput | boolean
-    delete?: contributionsWhereInput | boolean
-    connect?: contributionsWhereUniqueInput
-    update?: XOR<XOR<contributionsUpdateToOneWithWhereWithoutSavings_circleInput, contributionsUpdateWithoutSavings_circleInput>, contributionsUncheckedUpdateWithoutSavings_circleInput>
+  export type contributionsUncheckedUpdateManyWithoutSavings_circleNestedInput = {
+    create?: XOR<contributionsCreateWithoutSavings_circleInput, contributionsUncheckedCreateWithoutSavings_circleInput> | contributionsCreateWithoutSavings_circleInput[] | contributionsUncheckedCreateWithoutSavings_circleInput[]
+    connectOrCreate?: contributionsCreateOrConnectWithoutSavings_circleInput | contributionsCreateOrConnectWithoutSavings_circleInput[]
+    upsert?: contributionsUpsertWithWhereUniqueWithoutSavings_circleInput | contributionsUpsertWithWhereUniqueWithoutSavings_circleInput[]
+    createMany?: contributionsCreateManySavings_circleInputEnvelope
+    set?: contributionsWhereUniqueInput | contributionsWhereUniqueInput[]
+    disconnect?: contributionsWhereUniqueInput | contributionsWhereUniqueInput[]
+    delete?: contributionsWhereUniqueInput | contributionsWhereUniqueInput[]
+    connect?: contributionsWhereUniqueInput | contributionsWhereUniqueInput[]
+    update?: contributionsUpdateWithWhereUniqueWithoutSavings_circleInput | contributionsUpdateWithWhereUniqueWithoutSavings_circleInput[]
+    updateMany?: contributionsUpdateManyWithWhereWithoutSavings_circleInput | contributionsUpdateManyWithWhereWithoutSavings_circleInput[]
+    deleteMany?: contributionsScalarWhereInput | contributionsScalarWhereInput[]
   }
 
-  export type payoutsUncheckedUpdateOneWithoutSavings_circleNestedInput = {
-    create?: XOR<payoutsCreateWithoutSavings_circleInput, payoutsUncheckedCreateWithoutSavings_circleInput>
-    connectOrCreate?: payoutsCreateOrConnectWithoutSavings_circleInput
-    upsert?: payoutsUpsertWithoutSavings_circleInput
-    disconnect?: payoutsWhereInput | boolean
-    delete?: payoutsWhereInput | boolean
-    connect?: payoutsWhereUniqueInput
-    update?: XOR<XOR<payoutsUpdateToOneWithWhereWithoutSavings_circleInput, payoutsUpdateWithoutSavings_circleInput>, payoutsUncheckedUpdateWithoutSavings_circleInput>
+  export type payoutsUncheckedUpdateManyWithoutSavings_circleNestedInput = {
+    create?: XOR<payoutsCreateWithoutSavings_circleInput, payoutsUncheckedCreateWithoutSavings_circleInput> | payoutsCreateWithoutSavings_circleInput[] | payoutsUncheckedCreateWithoutSavings_circleInput[]
+    connectOrCreate?: payoutsCreateOrConnectWithoutSavings_circleInput | payoutsCreateOrConnectWithoutSavings_circleInput[]
+    upsert?: payoutsUpsertWithWhereUniqueWithoutSavings_circleInput | payoutsUpsertWithWhereUniqueWithoutSavings_circleInput[]
+    createMany?: payoutsCreateManySavings_circleInputEnvelope
+    set?: payoutsWhereUniqueInput | payoutsWhereUniqueInput[]
+    disconnect?: payoutsWhereUniqueInput | payoutsWhereUniqueInput[]
+    delete?: payoutsWhereUniqueInput | payoutsWhereUniqueInput[]
+    connect?: payoutsWhereUniqueInput | payoutsWhereUniqueInput[]
+    update?: payoutsUpdateWithWhereUniqueWithoutSavings_circleInput | payoutsUpdateWithWhereUniqueWithoutSavings_circleInput[]
+    updateMany?: payoutsUpdateManyWithWhereWithoutSavings_circleInput | payoutsUpdateManyWithWhereWithoutSavings_circleInput[]
+    deleteMany?: payoutsScalarWhereInput | payoutsScalarWhereInput[]
   }
 
   export type savings_circlesCreateNestedOneWithoutCircle_membersInput = {
@@ -21467,24 +22085,22 @@ export namespace Prisma {
     connect?: usersWhereUniqueInput
   }
 
-  export type payoutsCreateNestedOneWithoutCircle_memberInput = {
-    create?: XOR<payoutsCreateWithoutCircle_memberInput, payoutsUncheckedCreateWithoutCircle_memberInput>
-    connectOrCreate?: payoutsCreateOrConnectWithoutCircle_memberInput
-    connect?: payoutsWhereUniqueInput
+  export type payoutsCreateNestedManyWithoutCircle_memberInput = {
+    create?: XOR<payoutsCreateWithoutCircle_memberInput, payoutsUncheckedCreateWithoutCircle_memberInput> | payoutsCreateWithoutCircle_memberInput[] | payoutsUncheckedCreateWithoutCircle_memberInput[]
+    connectOrCreate?: payoutsCreateOrConnectWithoutCircle_memberInput | payoutsCreateOrConnectWithoutCircle_memberInput[]
+    createMany?: payoutsCreateManyCircle_memberInputEnvelope
+    connect?: payoutsWhereUniqueInput | payoutsWhereUniqueInput[]
   }
 
-  export type payoutsUncheckedCreateNestedOneWithoutCircle_memberInput = {
-    create?: XOR<payoutsCreateWithoutCircle_memberInput, payoutsUncheckedCreateWithoutCircle_memberInput>
-    connectOrCreate?: payoutsCreateOrConnectWithoutCircle_memberInput
-    connect?: payoutsWhereUniqueInput
+  export type payoutsUncheckedCreateNestedManyWithoutCircle_memberInput = {
+    create?: XOR<payoutsCreateWithoutCircle_memberInput, payoutsUncheckedCreateWithoutCircle_memberInput> | payoutsCreateWithoutCircle_memberInput[] | payoutsUncheckedCreateWithoutCircle_memberInput[]
+    connectOrCreate?: payoutsCreateOrConnectWithoutCircle_memberInput | payoutsCreateOrConnectWithoutCircle_memberInput[]
+    createMany?: payoutsCreateManyCircle_memberInputEnvelope
+    connect?: payoutsWhereUniqueInput | payoutsWhereUniqueInput[]
   }
 
   export type EnumRoleFieldUpdateOperationsInput = {
     set?: $Enums.Role
-  }
-
-  export type EnumCircle_StatusFieldUpdateOperationsInput = {
-    set?: $Enums.Circle_Status
   }
 
   export type savings_circlesUpdateOneRequiredWithoutCircle_membersNestedInput = {
@@ -21503,24 +22119,32 @@ export namespace Prisma {
     update?: XOR<XOR<usersUpdateToOneWithWhereWithoutCircle_membersInput, usersUpdateWithoutCircle_membersInput>, usersUncheckedUpdateWithoutCircle_membersInput>
   }
 
-  export type payoutsUpdateOneWithoutCircle_memberNestedInput = {
-    create?: XOR<payoutsCreateWithoutCircle_memberInput, payoutsUncheckedCreateWithoutCircle_memberInput>
-    connectOrCreate?: payoutsCreateOrConnectWithoutCircle_memberInput
-    upsert?: payoutsUpsertWithoutCircle_memberInput
-    disconnect?: payoutsWhereInput | boolean
-    delete?: payoutsWhereInput | boolean
-    connect?: payoutsWhereUniqueInput
-    update?: XOR<XOR<payoutsUpdateToOneWithWhereWithoutCircle_memberInput, payoutsUpdateWithoutCircle_memberInput>, payoutsUncheckedUpdateWithoutCircle_memberInput>
+  export type payoutsUpdateManyWithoutCircle_memberNestedInput = {
+    create?: XOR<payoutsCreateWithoutCircle_memberInput, payoutsUncheckedCreateWithoutCircle_memberInput> | payoutsCreateWithoutCircle_memberInput[] | payoutsUncheckedCreateWithoutCircle_memberInput[]
+    connectOrCreate?: payoutsCreateOrConnectWithoutCircle_memberInput | payoutsCreateOrConnectWithoutCircle_memberInput[]
+    upsert?: payoutsUpsertWithWhereUniqueWithoutCircle_memberInput | payoutsUpsertWithWhereUniqueWithoutCircle_memberInput[]
+    createMany?: payoutsCreateManyCircle_memberInputEnvelope
+    set?: payoutsWhereUniqueInput | payoutsWhereUniqueInput[]
+    disconnect?: payoutsWhereUniqueInput | payoutsWhereUniqueInput[]
+    delete?: payoutsWhereUniqueInput | payoutsWhereUniqueInput[]
+    connect?: payoutsWhereUniqueInput | payoutsWhereUniqueInput[]
+    update?: payoutsUpdateWithWhereUniqueWithoutCircle_memberInput | payoutsUpdateWithWhereUniqueWithoutCircle_memberInput[]
+    updateMany?: payoutsUpdateManyWithWhereWithoutCircle_memberInput | payoutsUpdateManyWithWhereWithoutCircle_memberInput[]
+    deleteMany?: payoutsScalarWhereInput | payoutsScalarWhereInput[]
   }
 
-  export type payoutsUncheckedUpdateOneWithoutCircle_memberNestedInput = {
-    create?: XOR<payoutsCreateWithoutCircle_memberInput, payoutsUncheckedCreateWithoutCircle_memberInput>
-    connectOrCreate?: payoutsCreateOrConnectWithoutCircle_memberInput
-    upsert?: payoutsUpsertWithoutCircle_memberInput
-    disconnect?: payoutsWhereInput | boolean
-    delete?: payoutsWhereInput | boolean
-    connect?: payoutsWhereUniqueInput
-    update?: XOR<XOR<payoutsUpdateToOneWithWhereWithoutCircle_memberInput, payoutsUpdateWithoutCircle_memberInput>, payoutsUncheckedUpdateWithoutCircle_memberInput>
+  export type payoutsUncheckedUpdateManyWithoutCircle_memberNestedInput = {
+    create?: XOR<payoutsCreateWithoutCircle_memberInput, payoutsUncheckedCreateWithoutCircle_memberInput> | payoutsCreateWithoutCircle_memberInput[] | payoutsUncheckedCreateWithoutCircle_memberInput[]
+    connectOrCreate?: payoutsCreateOrConnectWithoutCircle_memberInput | payoutsCreateOrConnectWithoutCircle_memberInput[]
+    upsert?: payoutsUpsertWithWhereUniqueWithoutCircle_memberInput | payoutsUpsertWithWhereUniqueWithoutCircle_memberInput[]
+    createMany?: payoutsCreateManyCircle_memberInputEnvelope
+    set?: payoutsWhereUniqueInput | payoutsWhereUniqueInput[]
+    disconnect?: payoutsWhereUniqueInput | payoutsWhereUniqueInput[]
+    delete?: payoutsWhereUniqueInput | payoutsWhereUniqueInput[]
+    connect?: payoutsWhereUniqueInput | payoutsWhereUniqueInput[]
+    update?: payoutsUpdateWithWhereUniqueWithoutCircle_memberInput | payoutsUpdateWithWhereUniqueWithoutCircle_memberInput[]
+    updateMany?: payoutsUpdateManyWithWhereWithoutCircle_memberInput | payoutsUpdateManyWithWhereWithoutCircle_memberInput[]
+    deleteMany?: payoutsScalarWhereInput | payoutsScalarWhereInput[]
   }
 
   export type savings_circlesCreateNestedOneWithoutCircle_invitationsInput = {
@@ -21577,6 +22201,12 @@ export namespace Prisma {
     connect?: usersWhereUniqueInput
   }
 
+  export type payment_transactionsCreateNestedOneWithoutContributionInput = {
+    create?: XOR<payment_transactionsCreateWithoutContributionInput, payment_transactionsUncheckedCreateWithoutContributionInput>
+    connectOrCreate?: payment_transactionsCreateOrConnectWithoutContributionInput
+    connect?: payment_transactionsWhereUniqueInput
+  }
+
   export type EnumContribution_statusFieldUpdateOperationsInput = {
     set?: $Enums.Contribution_status
   }
@@ -21597,6 +22227,16 @@ export namespace Prisma {
     update?: XOR<XOR<usersUpdateToOneWithWhereWithoutContributionsInput, usersUpdateWithoutContributionsInput>, usersUncheckedUpdateWithoutContributionsInput>
   }
 
+  export type payment_transactionsUpdateOneWithoutContributionNestedInput = {
+    create?: XOR<payment_transactionsCreateWithoutContributionInput, payment_transactionsUncheckedCreateWithoutContributionInput>
+    connectOrCreate?: payment_transactionsCreateOrConnectWithoutContributionInput
+    upsert?: payment_transactionsUpsertWithoutContributionInput
+    disconnect?: payment_transactionsWhereInput | boolean
+    delete?: payment_transactionsWhereInput | boolean
+    connect?: payment_transactionsWhereUniqueInput
+    update?: XOR<XOR<payment_transactionsUpdateToOneWithWhereWithoutContributionInput, payment_transactionsUpdateWithoutContributionInput>, payment_transactionsUncheckedUpdateWithoutContributionInput>
+  }
+
   export type savings_circlesCreateNestedOneWithoutPayoutsInput = {
     create?: XOR<savings_circlesCreateWithoutPayoutsInput, savings_circlesUncheckedCreateWithoutPayoutsInput>
     connectOrCreate?: savings_circlesCreateOrConnectWithoutPayoutsInput
@@ -21607,6 +22247,16 @@ export namespace Prisma {
     create?: XOR<circle_membersCreateWithoutPayoutsInput, circle_membersUncheckedCreateWithoutPayoutsInput>
     connectOrCreate?: circle_membersCreateOrConnectWithoutPayoutsInput
     connect?: circle_membersWhereUniqueInput
+  }
+
+  export type payment_transactionsCreateNestedOneWithoutPayoutInput = {
+    create?: XOR<payment_transactionsCreateWithoutPayoutInput, payment_transactionsUncheckedCreateWithoutPayoutInput>
+    connectOrCreate?: payment_transactionsCreateOrConnectWithoutPayoutInput
+    connect?: payment_transactionsWhereUniqueInput
+  }
+
+  export type EnumPayout_StatusFieldUpdateOperationsInput = {
+    set?: $Enums.Payout_Status
   }
 
   export type savings_circlesUpdateOneRequiredWithoutPayoutsNestedInput = {
@@ -21625,22 +22275,58 @@ export namespace Prisma {
     update?: XOR<XOR<circle_membersUpdateToOneWithWhereWithoutPayoutsInput, circle_membersUpdateWithoutPayoutsInput>, circle_membersUncheckedUpdateWithoutPayoutsInput>
   }
 
+  export type payment_transactionsUpdateOneWithoutPayoutNestedInput = {
+    create?: XOR<payment_transactionsCreateWithoutPayoutInput, payment_transactionsUncheckedCreateWithoutPayoutInput>
+    connectOrCreate?: payment_transactionsCreateOrConnectWithoutPayoutInput
+    upsert?: payment_transactionsUpsertWithoutPayoutInput
+    disconnect?: payment_transactionsWhereInput | boolean
+    delete?: payment_transactionsWhereInput | boolean
+    connect?: payment_transactionsWhereUniqueInput
+    update?: XOR<XOR<payment_transactionsUpdateToOneWithWhereWithoutPayoutInput, payment_transactionsUpdateWithoutPayoutInput>, payment_transactionsUncheckedUpdateWithoutPayoutInput>
+  }
+
   export type usersCreateNestedOneWithoutPayment_transactionsInput = {
     create?: XOR<usersCreateWithoutPayment_transactionsInput, usersUncheckedCreateWithoutPayment_transactionsInput>
     connectOrCreate?: usersCreateOrConnectWithoutPayment_transactionsInput
     connect?: usersWhereUniqueInput
   }
 
-  export type payment_status_historyCreateNestedOneWithoutPayment_transactionsInput = {
-    create?: XOR<payment_status_historyCreateWithoutPayment_transactionsInput, payment_status_historyUncheckedCreateWithoutPayment_transactionsInput>
-    connectOrCreate?: payment_status_historyCreateOrConnectWithoutPayment_transactionsInput
-    connect?: payment_status_historyWhereUniqueInput
+  export type contributionsCreateNestedOneWithoutPayment_transactionInput = {
+    create?: XOR<contributionsCreateWithoutPayment_transactionInput, contributionsUncheckedCreateWithoutPayment_transactionInput>
+    connectOrCreate?: contributionsCreateOrConnectWithoutPayment_transactionInput
+    connect?: contributionsWhereUniqueInput
   }
 
-  export type payment_status_historyUncheckedCreateNestedOneWithoutPayment_transactionsInput = {
-    create?: XOR<payment_status_historyCreateWithoutPayment_transactionsInput, payment_status_historyUncheckedCreateWithoutPayment_transactionsInput>
-    connectOrCreate?: payment_status_historyCreateOrConnectWithoutPayment_transactionsInput
-    connect?: payment_status_historyWhereUniqueInput
+  export type payoutsCreateNestedOneWithoutPayment_transactionInput = {
+    create?: XOR<payoutsCreateWithoutPayment_transactionInput, payoutsUncheckedCreateWithoutPayment_transactionInput>
+    connectOrCreate?: payoutsCreateOrConnectWithoutPayment_transactionInput
+    connect?: payoutsWhereUniqueInput
+  }
+
+  export type payment_status_historyCreateNestedManyWithoutPayment_transactionsInput = {
+    create?: XOR<payment_status_historyCreateWithoutPayment_transactionsInput, payment_status_historyUncheckedCreateWithoutPayment_transactionsInput> | payment_status_historyCreateWithoutPayment_transactionsInput[] | payment_status_historyUncheckedCreateWithoutPayment_transactionsInput[]
+    connectOrCreate?: payment_status_historyCreateOrConnectWithoutPayment_transactionsInput | payment_status_historyCreateOrConnectWithoutPayment_transactionsInput[]
+    createMany?: payment_status_historyCreateManyPayment_transactionsInputEnvelope
+    connect?: payment_status_historyWhereUniqueInput | payment_status_historyWhereUniqueInput[]
+  }
+
+  export type contributionsUncheckedCreateNestedOneWithoutPayment_transactionInput = {
+    create?: XOR<contributionsCreateWithoutPayment_transactionInput, contributionsUncheckedCreateWithoutPayment_transactionInput>
+    connectOrCreate?: contributionsCreateOrConnectWithoutPayment_transactionInput
+    connect?: contributionsWhereUniqueInput
+  }
+
+  export type payoutsUncheckedCreateNestedOneWithoutPayment_transactionInput = {
+    create?: XOR<payoutsCreateWithoutPayment_transactionInput, payoutsUncheckedCreateWithoutPayment_transactionInput>
+    connectOrCreate?: payoutsCreateOrConnectWithoutPayment_transactionInput
+    connect?: payoutsWhereUniqueInput
+  }
+
+  export type payment_status_historyUncheckedCreateNestedManyWithoutPayment_transactionsInput = {
+    create?: XOR<payment_status_historyCreateWithoutPayment_transactionsInput, payment_status_historyUncheckedCreateWithoutPayment_transactionsInput> | payment_status_historyCreateWithoutPayment_transactionsInput[] | payment_status_historyUncheckedCreateWithoutPayment_transactionsInput[]
+    connectOrCreate?: payment_status_historyCreateOrConnectWithoutPayment_transactionsInput | payment_status_historyCreateOrConnectWithoutPayment_transactionsInput[]
+    createMany?: payment_status_historyCreateManyPayment_transactionsInputEnvelope
+    connect?: payment_status_historyWhereUniqueInput | payment_status_historyWhereUniqueInput[]
   }
 
   export type EnumProviderFieldUpdateOperationsInput = {
@@ -21651,8 +22337,8 @@ export namespace Prisma {
     set?: $Enums.Payment_type
   }
 
-  export type EnumPayoutFieldUpdateOperationsInput = {
-    set?: $Enums.Payout
+  export type EnumPayment_StatusFieldUpdateOperationsInput = {
+    set?: $Enums.Payment_Status
   }
 
   export type usersUpdateOneRequiredWithoutPayment_transactionsNestedInput = {
@@ -21663,24 +22349,72 @@ export namespace Prisma {
     update?: XOR<XOR<usersUpdateToOneWithWhereWithoutPayment_transactionsInput, usersUpdateWithoutPayment_transactionsInput>, usersUncheckedUpdateWithoutPayment_transactionsInput>
   }
 
-  export type payment_status_historyUpdateOneWithoutPayment_transactionsNestedInput = {
-    create?: XOR<payment_status_historyCreateWithoutPayment_transactionsInput, payment_status_historyUncheckedCreateWithoutPayment_transactionsInput>
-    connectOrCreate?: payment_status_historyCreateOrConnectWithoutPayment_transactionsInput
-    upsert?: payment_status_historyUpsertWithoutPayment_transactionsInput
-    disconnect?: payment_status_historyWhereInput | boolean
-    delete?: payment_status_historyWhereInput | boolean
-    connect?: payment_status_historyWhereUniqueInput
-    update?: XOR<XOR<payment_status_historyUpdateToOneWithWhereWithoutPayment_transactionsInput, payment_status_historyUpdateWithoutPayment_transactionsInput>, payment_status_historyUncheckedUpdateWithoutPayment_transactionsInput>
+  export type contributionsUpdateOneWithoutPayment_transactionNestedInput = {
+    create?: XOR<contributionsCreateWithoutPayment_transactionInput, contributionsUncheckedCreateWithoutPayment_transactionInput>
+    connectOrCreate?: contributionsCreateOrConnectWithoutPayment_transactionInput
+    upsert?: contributionsUpsertWithoutPayment_transactionInput
+    disconnect?: contributionsWhereInput | boolean
+    delete?: contributionsWhereInput | boolean
+    connect?: contributionsWhereUniqueInput
+    update?: XOR<XOR<contributionsUpdateToOneWithWhereWithoutPayment_transactionInput, contributionsUpdateWithoutPayment_transactionInput>, contributionsUncheckedUpdateWithoutPayment_transactionInput>
   }
 
-  export type payment_status_historyUncheckedUpdateOneWithoutPayment_transactionsNestedInput = {
-    create?: XOR<payment_status_historyCreateWithoutPayment_transactionsInput, payment_status_historyUncheckedCreateWithoutPayment_transactionsInput>
-    connectOrCreate?: payment_status_historyCreateOrConnectWithoutPayment_transactionsInput
-    upsert?: payment_status_historyUpsertWithoutPayment_transactionsInput
-    disconnect?: payment_status_historyWhereInput | boolean
-    delete?: payment_status_historyWhereInput | boolean
-    connect?: payment_status_historyWhereUniqueInput
-    update?: XOR<XOR<payment_status_historyUpdateToOneWithWhereWithoutPayment_transactionsInput, payment_status_historyUpdateWithoutPayment_transactionsInput>, payment_status_historyUncheckedUpdateWithoutPayment_transactionsInput>
+  export type payoutsUpdateOneWithoutPayment_transactionNestedInput = {
+    create?: XOR<payoutsCreateWithoutPayment_transactionInput, payoutsUncheckedCreateWithoutPayment_transactionInput>
+    connectOrCreate?: payoutsCreateOrConnectWithoutPayment_transactionInput
+    upsert?: payoutsUpsertWithoutPayment_transactionInput
+    disconnect?: payoutsWhereInput | boolean
+    delete?: payoutsWhereInput | boolean
+    connect?: payoutsWhereUniqueInput
+    update?: XOR<XOR<payoutsUpdateToOneWithWhereWithoutPayment_transactionInput, payoutsUpdateWithoutPayment_transactionInput>, payoutsUncheckedUpdateWithoutPayment_transactionInput>
+  }
+
+  export type payment_status_historyUpdateManyWithoutPayment_transactionsNestedInput = {
+    create?: XOR<payment_status_historyCreateWithoutPayment_transactionsInput, payment_status_historyUncheckedCreateWithoutPayment_transactionsInput> | payment_status_historyCreateWithoutPayment_transactionsInput[] | payment_status_historyUncheckedCreateWithoutPayment_transactionsInput[]
+    connectOrCreate?: payment_status_historyCreateOrConnectWithoutPayment_transactionsInput | payment_status_historyCreateOrConnectWithoutPayment_transactionsInput[]
+    upsert?: payment_status_historyUpsertWithWhereUniqueWithoutPayment_transactionsInput | payment_status_historyUpsertWithWhereUniqueWithoutPayment_transactionsInput[]
+    createMany?: payment_status_historyCreateManyPayment_transactionsInputEnvelope
+    set?: payment_status_historyWhereUniqueInput | payment_status_historyWhereUniqueInput[]
+    disconnect?: payment_status_historyWhereUniqueInput | payment_status_historyWhereUniqueInput[]
+    delete?: payment_status_historyWhereUniqueInput | payment_status_historyWhereUniqueInput[]
+    connect?: payment_status_historyWhereUniqueInput | payment_status_historyWhereUniqueInput[]
+    update?: payment_status_historyUpdateWithWhereUniqueWithoutPayment_transactionsInput | payment_status_historyUpdateWithWhereUniqueWithoutPayment_transactionsInput[]
+    updateMany?: payment_status_historyUpdateManyWithWhereWithoutPayment_transactionsInput | payment_status_historyUpdateManyWithWhereWithoutPayment_transactionsInput[]
+    deleteMany?: payment_status_historyScalarWhereInput | payment_status_historyScalarWhereInput[]
+  }
+
+  export type contributionsUncheckedUpdateOneWithoutPayment_transactionNestedInput = {
+    create?: XOR<contributionsCreateWithoutPayment_transactionInput, contributionsUncheckedCreateWithoutPayment_transactionInput>
+    connectOrCreate?: contributionsCreateOrConnectWithoutPayment_transactionInput
+    upsert?: contributionsUpsertWithoutPayment_transactionInput
+    disconnect?: contributionsWhereInput | boolean
+    delete?: contributionsWhereInput | boolean
+    connect?: contributionsWhereUniqueInput
+    update?: XOR<XOR<contributionsUpdateToOneWithWhereWithoutPayment_transactionInput, contributionsUpdateWithoutPayment_transactionInput>, contributionsUncheckedUpdateWithoutPayment_transactionInput>
+  }
+
+  export type payoutsUncheckedUpdateOneWithoutPayment_transactionNestedInput = {
+    create?: XOR<payoutsCreateWithoutPayment_transactionInput, payoutsUncheckedCreateWithoutPayment_transactionInput>
+    connectOrCreate?: payoutsCreateOrConnectWithoutPayment_transactionInput
+    upsert?: payoutsUpsertWithoutPayment_transactionInput
+    disconnect?: payoutsWhereInput | boolean
+    delete?: payoutsWhereInput | boolean
+    connect?: payoutsWhereUniqueInput
+    update?: XOR<XOR<payoutsUpdateToOneWithWhereWithoutPayment_transactionInput, payoutsUpdateWithoutPayment_transactionInput>, payoutsUncheckedUpdateWithoutPayment_transactionInput>
+  }
+
+  export type payment_status_historyUncheckedUpdateManyWithoutPayment_transactionsNestedInput = {
+    create?: XOR<payment_status_historyCreateWithoutPayment_transactionsInput, payment_status_historyUncheckedCreateWithoutPayment_transactionsInput> | payment_status_historyCreateWithoutPayment_transactionsInput[] | payment_status_historyUncheckedCreateWithoutPayment_transactionsInput[]
+    connectOrCreate?: payment_status_historyCreateOrConnectWithoutPayment_transactionsInput | payment_status_historyCreateOrConnectWithoutPayment_transactionsInput[]
+    upsert?: payment_status_historyUpsertWithWhereUniqueWithoutPayment_transactionsInput | payment_status_historyUpsertWithWhereUniqueWithoutPayment_transactionsInput[]
+    createMany?: payment_status_historyCreateManyPayment_transactionsInputEnvelope
+    set?: payment_status_historyWhereUniqueInput | payment_status_historyWhereUniqueInput[]
+    disconnect?: payment_status_historyWhereUniqueInput | payment_status_historyWhereUniqueInput[]
+    delete?: payment_status_historyWhereUniqueInput | payment_status_historyWhereUniqueInput[]
+    connect?: payment_status_historyWhereUniqueInput | payment_status_historyWhereUniqueInput[]
+    update?: payment_status_historyUpdateWithWhereUniqueWithoutPayment_transactionsInput | payment_status_historyUpdateWithWhereUniqueWithoutPayment_transactionsInput[]
+    updateMany?: payment_status_historyUpdateManyWithWhereWithoutPayment_transactionsInput | payment_status_historyUpdateManyWithWhereWithoutPayment_transactionsInput[]
+    deleteMany?: payment_status_historyScalarWhereInput | payment_status_historyScalarWhereInput[]
   }
 
   export type payment_transactionsCreateNestedOneWithoutPayment_status_historyInput = {
@@ -21713,10 +22447,6 @@ export namespace Prisma {
     upsert?: usersUpsertWithoutNotificationsInput
     connect?: usersWhereUniqueInput
     update?: XOR<XOR<usersUpdateToOneWithWhereWithoutNotificationsInput, usersUpdateWithoutNotificationsInput>, usersUncheckedUpdateWithoutNotificationsInput>
-  }
-
-  export type NullableEnumStatusFieldUpdateOperationsInput = {
-    set?: $Enums.Status | null
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -21888,6 +22618,13 @@ export namespace Prisma {
     not?: NestedEnumFrequencyFilter<$PrismaModel> | $Enums.Frequency
   }
 
+  export type NestedEnumCircle_StatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.Circle_Status | EnumCircle_StatusFieldRefInput<$PrismaModel>
+    in?: $Enums.Circle_Status[] | ListEnumCircle_StatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Circle_Status[] | ListEnumCircle_StatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumCircle_StatusFilter<$PrismaModel> | $Enums.Circle_Status
+  }
+
   export type NestedDecimalWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
     in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
@@ -21941,18 +22678,21 @@ export namespace Prisma {
     not?: NestedFloatFilter<$PrismaModel> | number
   }
 
+  export type NestedEnumCircle_StatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Circle_Status | EnumCircle_StatusFieldRefInput<$PrismaModel>
+    in?: $Enums.Circle_Status[] | ListEnumCircle_StatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Circle_Status[] | ListEnumCircle_StatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumCircle_StatusWithAggregatesFilter<$PrismaModel> | $Enums.Circle_Status
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumCircle_StatusFilter<$PrismaModel>
+    _max?: NestedEnumCircle_StatusFilter<$PrismaModel>
+  }
+
   export type NestedEnumRoleFilter<$PrismaModel = never> = {
     equals?: $Enums.Role | EnumRoleFieldRefInput<$PrismaModel>
     in?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
     notIn?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
     not?: NestedEnumRoleFilter<$PrismaModel> | $Enums.Role
-  }
-
-  export type NestedEnumCircle_StatusFilter<$PrismaModel = never> = {
-    equals?: $Enums.Circle_Status | EnumCircle_StatusFieldRefInput<$PrismaModel>
-    in?: $Enums.Circle_Status[] | ListEnumCircle_StatusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.Circle_Status[] | ListEnumCircle_StatusFieldRefInput<$PrismaModel>
-    not?: NestedEnumCircle_StatusFilter<$PrismaModel> | $Enums.Circle_Status
   }
 
   export type NestedEnumRoleWithAggregatesFilter<$PrismaModel = never> = {
@@ -21963,16 +22703,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumRoleFilter<$PrismaModel>
     _max?: NestedEnumRoleFilter<$PrismaModel>
-  }
-
-  export type NestedEnumCircle_StatusWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.Circle_Status | EnumCircle_StatusFieldRefInput<$PrismaModel>
-    in?: $Enums.Circle_Status[] | ListEnumCircle_StatusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.Circle_Status[] | ListEnumCircle_StatusFieldRefInput<$PrismaModel>
-    not?: NestedEnumCircle_StatusWithAggregatesFilter<$PrismaModel> | $Enums.Circle_Status
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumCircle_StatusFilter<$PrismaModel>
-    _max?: NestedEnumCircle_StatusFilter<$PrismaModel>
   }
 
   export type NestedEnumContribution_statusFilter<$PrismaModel = never> = {
@@ -21992,6 +22722,23 @@ export namespace Prisma {
     _max?: NestedEnumContribution_statusFilter<$PrismaModel>
   }
 
+  export type NestedEnumPayout_StatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.Payout_Status | EnumPayout_StatusFieldRefInput<$PrismaModel>
+    in?: $Enums.Payout_Status[] | ListEnumPayout_StatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Payout_Status[] | ListEnumPayout_StatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumPayout_StatusFilter<$PrismaModel> | $Enums.Payout_Status
+  }
+
+  export type NestedEnumPayout_StatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Payout_Status | EnumPayout_StatusFieldRefInput<$PrismaModel>
+    in?: $Enums.Payout_Status[] | ListEnumPayout_StatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Payout_Status[] | ListEnumPayout_StatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumPayout_StatusWithAggregatesFilter<$PrismaModel> | $Enums.Payout_Status
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumPayout_StatusFilter<$PrismaModel>
+    _max?: NestedEnumPayout_StatusFilter<$PrismaModel>
+  }
+
   export type NestedEnumProviderFilter<$PrismaModel = never> = {
     equals?: $Enums.Provider | EnumProviderFieldRefInput<$PrismaModel>
     in?: $Enums.Provider[] | ListEnumProviderFieldRefInput<$PrismaModel>
@@ -22006,11 +22753,11 @@ export namespace Prisma {
     not?: NestedEnumPayment_typeFilter<$PrismaModel> | $Enums.Payment_type
   }
 
-  export type NestedEnumPayoutFilter<$PrismaModel = never> = {
-    equals?: $Enums.Payout | EnumPayoutFieldRefInput<$PrismaModel>
-    in?: $Enums.Payout[] | ListEnumPayoutFieldRefInput<$PrismaModel>
-    notIn?: $Enums.Payout[] | ListEnumPayoutFieldRefInput<$PrismaModel>
-    not?: NestedEnumPayoutFilter<$PrismaModel> | $Enums.Payout
+  export type NestedEnumPayment_StatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.Payment_Status | EnumPayment_StatusFieldRefInput<$PrismaModel>
+    in?: $Enums.Payment_Status[] | ListEnumPayment_StatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Payment_Status[] | ListEnumPayment_StatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumPayment_StatusFilter<$PrismaModel> | $Enums.Payment_Status
   }
 
   export type NestedEnumProviderWithAggregatesFilter<$PrismaModel = never> = {
@@ -22033,14 +22780,14 @@ export namespace Prisma {
     _max?: NestedEnumPayment_typeFilter<$PrismaModel>
   }
 
-  export type NestedEnumPayoutWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.Payout | EnumPayoutFieldRefInput<$PrismaModel>
-    in?: $Enums.Payout[] | ListEnumPayoutFieldRefInput<$PrismaModel>
-    notIn?: $Enums.Payout[] | ListEnumPayoutFieldRefInput<$PrismaModel>
-    not?: NestedEnumPayoutWithAggregatesFilter<$PrismaModel> | $Enums.Payout
+  export type NestedEnumPayment_StatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Payment_Status | EnumPayment_StatusFieldRefInput<$PrismaModel>
+    in?: $Enums.Payment_Status[] | ListEnumPayment_StatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Payment_Status[] | ListEnumPayment_StatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumPayment_StatusWithAggregatesFilter<$PrismaModel> | $Enums.Payment_Status
     _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumPayoutFilter<$PrismaModel>
-    _max?: NestedEnumPayoutFilter<$PrismaModel>
+    _min?: NestedEnumPayment_StatusFilter<$PrismaModel>
+    _max?: NestedEnumPayment_StatusFilter<$PrismaModel>
   }
   export type NestedJsonFilter<$PrismaModel = never> =
     | PatchUndefined<
@@ -22082,23 +22829,6 @@ export namespace Prisma {
     _min?: NestedEnumNotificationsFilter<$PrismaModel>
     _max?: NestedEnumNotificationsFilter<$PrismaModel>
   }
-
-  export type NestedEnumStatusNullableFilter<$PrismaModel = never> = {
-    equals?: $Enums.Status | EnumStatusFieldRefInput<$PrismaModel> | null
-    in?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel> | null
-    notIn?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel> | null
-    not?: NestedEnumStatusNullableFilter<$PrismaModel> | $Enums.Status | null
-  }
-
-  export type NestedEnumStatusNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.Status | EnumStatusFieldRefInput<$PrismaModel> | null
-    in?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel> | null
-    notIn?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel> | null
-    not?: NestedEnumStatusNullableWithAggregatesFilter<$PrismaModel> | $Enums.Status | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedEnumStatusNullableFilter<$PrismaModel>
-    _max?: NestedEnumStatusNullableFilter<$PrismaModel>
-  }
   export type NestedJsonNullableFilter<$PrismaModel = never> =
     | PatchUndefined<
         Either<Required<NestedJsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>,
@@ -22136,12 +22866,12 @@ export namespace Prisma {
     created_at?: Date | string
     updated_at?: Date | string
     session?: sessionsCreateNestedOneWithoutUserInput
-    savings_circles?: savings_circlesCreateNestedOneWithoutUsersInput
-    circle_members?: circle_membersCreateNestedOneWithoutUsersInput
-    circle_invitations?: circle_invitationsCreateNestedOneWithoutUsersInput
-    contributions?: contributionsCreateNestedOneWithoutUsersInput
-    payment_transactions?: payment_transactionsCreateNestedOneWithoutUsersInput
-    notifications?: notificationsCreateNestedOneWithoutUsersInput
+    savings_circles?: savings_circlesCreateNestedManyWithoutUsersInput
+    circle_members?: circle_membersCreateNestedManyWithoutUsersInput
+    circle_invitations?: circle_invitationsCreateNestedManyWithoutUsersInput
+    contributions?: contributionsCreateNestedManyWithoutUsersInput
+    payment_transactions?: payment_transactionsCreateNestedManyWithoutUsersInput
+    notifications?: notificationsCreateNestedManyWithoutUsersInput
   }
 
   export type usersUncheckedCreateWithoutWaitlistEntryInput = {
@@ -22157,12 +22887,12 @@ export namespace Prisma {
     created_at?: Date | string
     updated_at?: Date | string
     session?: sessionsUncheckedCreateNestedOneWithoutUserInput
-    savings_circles?: savings_circlesUncheckedCreateNestedOneWithoutUsersInput
-    circle_members?: circle_membersUncheckedCreateNestedOneWithoutUsersInput
-    circle_invitations?: circle_invitationsUncheckedCreateNestedOneWithoutUsersInput
-    contributions?: contributionsUncheckedCreateNestedOneWithoutUsersInput
-    payment_transactions?: payment_transactionsUncheckedCreateNestedOneWithoutUsersInput
-    notifications?: notificationsUncheckedCreateNestedOneWithoutUsersInput
+    savings_circles?: savings_circlesUncheckedCreateNestedManyWithoutUsersInput
+    circle_members?: circle_membersUncheckedCreateNestedManyWithoutUsersInput
+    circle_invitations?: circle_invitationsUncheckedCreateNestedManyWithoutUsersInput
+    contributions?: contributionsUncheckedCreateNestedManyWithoutUsersInput
+    payment_transactions?: payment_transactionsUncheckedCreateNestedManyWithoutUsersInput
+    notifications?: notificationsUncheckedCreateNestedManyWithoutUsersInput
   }
 
   export type usersCreateOrConnectWithoutWaitlistEntryInput = {
@@ -22194,12 +22924,12 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     session?: sessionsUpdateOneWithoutUserNestedInput
-    savings_circles?: savings_circlesUpdateOneWithoutUsersNestedInput
-    circle_members?: circle_membersUpdateOneWithoutUsersNestedInput
-    circle_invitations?: circle_invitationsUpdateOneWithoutUsersNestedInput
-    contributions?: contributionsUpdateOneWithoutUsersNestedInput
-    payment_transactions?: payment_transactionsUpdateOneWithoutUsersNestedInput
-    notifications?: notificationsUpdateOneWithoutUsersNestedInput
+    savings_circles?: savings_circlesUpdateManyWithoutUsersNestedInput
+    circle_members?: circle_membersUpdateManyWithoutUsersNestedInput
+    circle_invitations?: circle_invitationsUpdateManyWithoutUsersNestedInput
+    contributions?: contributionsUpdateManyWithoutUsersNestedInput
+    payment_transactions?: payment_transactionsUpdateManyWithoutUsersNestedInput
+    notifications?: notificationsUpdateManyWithoutUsersNestedInput
   }
 
   export type usersUncheckedUpdateWithoutWaitlistEntryInput = {
@@ -22215,12 +22945,12 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     session?: sessionsUncheckedUpdateOneWithoutUserNestedInput
-    savings_circles?: savings_circlesUncheckedUpdateOneWithoutUsersNestedInput
-    circle_members?: circle_membersUncheckedUpdateOneWithoutUsersNestedInput
-    circle_invitations?: circle_invitationsUncheckedUpdateOneWithoutUsersNestedInput
-    contributions?: contributionsUncheckedUpdateOneWithoutUsersNestedInput
-    payment_transactions?: payment_transactionsUncheckedUpdateOneWithoutUsersNestedInput
-    notifications?: notificationsUncheckedUpdateOneWithoutUsersNestedInput
+    savings_circles?: savings_circlesUncheckedUpdateManyWithoutUsersNestedInput
+    circle_members?: circle_membersUncheckedUpdateManyWithoutUsersNestedInput
+    circle_invitations?: circle_invitationsUncheckedUpdateManyWithoutUsersNestedInput
+    contributions?: contributionsUncheckedUpdateManyWithoutUsersNestedInput
+    payment_transactions?: payment_transactionsUncheckedUpdateManyWithoutUsersNestedInput
+    notifications?: notificationsUncheckedUpdateManyWithoutUsersNestedInput
   }
 
   export type waitlistEntryCreateWithoutUserInput = {
@@ -22280,14 +23010,14 @@ export namespace Prisma {
     frequency: $Enums.Frequency
     member_limit: number
     start_date: Date | string
-    status: $Enums.Status
+    status?: $Enums.Circle_Status
     created_at?: Date | string
     updated_at?: Date | string
-    circle_members?: circle_membersCreateNestedOneWithoutSavings_circleInput
-    circle_invitations?: circle_invitationsCreateNestedOneWithoutSavings_circleInput
-    savings_schedules?: savings_schedulesCreateNestedOneWithoutSavings_circleInput
-    contributions?: contributionsCreateNestedOneWithoutSavings_circleInput
-    payouts?: payoutsCreateNestedOneWithoutSavings_circleInput
+    circle_members?: circle_membersCreateNestedManyWithoutSavings_circleInput
+    circle_invitations?: circle_invitationsCreateNestedManyWithoutSavings_circleInput
+    savings_schedules?: savings_schedulesCreateNestedManyWithoutSavings_circleInput
+    contributions?: contributionsCreateNestedManyWithoutSavings_circleInput
+    payouts?: payoutsCreateNestedManyWithoutSavings_circleInput
   }
 
   export type savings_circlesUncheckedCreateWithoutUsersInput = {
@@ -22299,14 +23029,14 @@ export namespace Prisma {
     frequency: $Enums.Frequency
     member_limit: number
     start_date: Date | string
-    status: $Enums.Status
+    status?: $Enums.Circle_Status
     created_at?: Date | string
     updated_at?: Date | string
-    circle_members?: circle_membersUncheckedCreateNestedOneWithoutSavings_circleInput
-    circle_invitations?: circle_invitationsUncheckedCreateNestedOneWithoutSavings_circleInput
-    savings_schedules?: savings_schedulesUncheckedCreateNestedOneWithoutSavings_circleInput
-    contributions?: contributionsUncheckedCreateNestedOneWithoutSavings_circleInput
-    payouts?: payoutsUncheckedCreateNestedOneWithoutSavings_circleInput
+    circle_members?: circle_membersUncheckedCreateNestedManyWithoutSavings_circleInput
+    circle_invitations?: circle_invitationsUncheckedCreateNestedManyWithoutSavings_circleInput
+    savings_schedules?: savings_schedulesUncheckedCreateNestedManyWithoutSavings_circleInput
+    contributions?: contributionsUncheckedCreateNestedManyWithoutSavings_circleInput
+    payouts?: payoutsUncheckedCreateNestedManyWithoutSavings_circleInput
   }
 
   export type savings_circlesCreateOrConnectWithoutUsersInput = {
@@ -22314,28 +23044,33 @@ export namespace Prisma {
     create: XOR<savings_circlesCreateWithoutUsersInput, savings_circlesUncheckedCreateWithoutUsersInput>
   }
 
+  export type savings_circlesCreateManyUsersInputEnvelope = {
+    data: savings_circlesCreateManyUsersInput | savings_circlesCreateManyUsersInput[]
+    skipDuplicates?: boolean
+  }
+
   export type circle_membersCreateWithoutUsersInput = {
     id?: string
-    role: $Enums.Role
-    status: $Enums.Circle_Status
-    joined_at: Date | string
+    role?: $Enums.Role
+    status?: $Enums.Circle_Status
+    joined_at?: Date | string
     left_at?: Date | string | null
-    created_at: Date | string
+    created_at?: Date | string
     updated_at?: Date | string
     savings_circle: savings_circlesCreateNestedOneWithoutCircle_membersInput
-    payouts?: payoutsCreateNestedOneWithoutCircle_memberInput
+    payouts?: payoutsCreateNestedManyWithoutCircle_memberInput
   }
 
   export type circle_membersUncheckedCreateWithoutUsersInput = {
     id?: string
     circle_id: string
-    role: $Enums.Role
-    status: $Enums.Circle_Status
-    joined_at: Date | string
+    role?: $Enums.Role
+    status?: $Enums.Circle_Status
+    joined_at?: Date | string
     left_at?: Date | string | null
-    created_at: Date | string
+    created_at?: Date | string
     updated_at?: Date | string
-    payouts?: payoutsUncheckedCreateNestedOneWithoutCircle_memberInput
+    payouts?: payoutsUncheckedCreateNestedManyWithoutCircle_memberInput
   }
 
   export type circle_membersCreateOrConnectWithoutUsersInput = {
@@ -22343,14 +23078,19 @@ export namespace Prisma {
     create: XOR<circle_membersCreateWithoutUsersInput, circle_membersUncheckedCreateWithoutUsersInput>
   }
 
+  export type circle_membersCreateManyUsersInputEnvelope = {
+    data: circle_membersCreateManyUsersInput | circle_membersCreateManyUsersInput[]
+    skipDuplicates?: boolean
+  }
+
   export type circle_invitationsCreateWithoutUsersInput = {
     id?: string
     email: string
     token_hash: string
-    status: $Enums.Status
+    status?: $Enums.Status
     expires_at: Date | string
     accepted_at?: Date | string | null
-    created_at: Date | string
+    created_at?: Date | string
     savings_circle: savings_circlesCreateNestedOneWithoutCircle_invitationsInput
   }
 
@@ -22359,15 +23099,20 @@ export namespace Prisma {
     circle_id: string
     email: string
     token_hash: string
-    status: $Enums.Status
+    status?: $Enums.Status
     expires_at: Date | string
     accepted_at?: Date | string | null
-    created_at: Date | string
+    created_at?: Date | string
   }
 
   export type circle_invitationsCreateOrConnectWithoutUsersInput = {
     where: circle_invitationsWhereUniqueInput
     create: XOR<circle_invitationsCreateWithoutUsersInput, circle_invitationsUncheckedCreateWithoutUsersInput>
+  }
+
+  export type circle_invitationsCreateManyUsersInputEnvelope = {
+    data: circle_invitationsCreateManyUsersInput | circle_invitationsCreateManyUsersInput[]
+    skipDuplicates?: boolean
   }
 
   export type contributionsCreateWithoutUsersInput = {
@@ -22376,11 +23121,11 @@ export namespace Prisma {
     amount: Decimal | DecimalJsLike | number | string
     due_date: Date | string
     paid_at?: Date | string | null
-    status: $Enums.Contribution_status
-    transaction_id?: string | null
-    create_at?: Date | string
+    status?: $Enums.Contribution_status
+    created_at?: Date | string
     updated_at?: Date | string
     savings_circle: savings_circlesCreateNestedOneWithoutContributionsInput
+    payment_transaction?: payment_transactionsCreateNestedOneWithoutContributionInput
   }
 
   export type contributionsUncheckedCreateWithoutUsersInput = {
@@ -22390,15 +23135,20 @@ export namespace Prisma {
     amount: Decimal | DecimalJsLike | number | string
     due_date: Date | string
     paid_at?: Date | string | null
-    status: $Enums.Contribution_status
+    status?: $Enums.Contribution_status
     transaction_id?: string | null
-    create_at?: Date | string
+    created_at?: Date | string
     updated_at?: Date | string
   }
 
   export type contributionsCreateOrConnectWithoutUsersInput = {
     where: contributionsWhereUniqueInput
     create: XOR<contributionsCreateWithoutUsersInput, contributionsUncheckedCreateWithoutUsersInput>
+  }
+
+  export type contributionsCreateManyUsersInputEnvelope = {
+    data: contributionsCreateManyUsersInput | contributionsCreateManyUsersInput[]
+    skipDuplicates?: boolean
   }
 
   export type payment_transactionsCreateWithoutUsersInput = {
@@ -22410,11 +23160,13 @@ export namespace Prisma {
     type: $Enums.Payment_type
     amount: Decimal | DecimalJsLike | number | string
     currency: string
-    status: $Enums.Payout
+    status?: $Enums.Payment_Status
     metadata: JsonNullValueInput | InputJsonValue
-    created_at: Date | string
+    created_at?: Date | string
     updated_at?: Date | string
-    payment_status_history?: payment_status_historyCreateNestedOneWithoutPayment_transactionsInput
+    contribution?: contributionsCreateNestedOneWithoutPayment_transactionInput
+    payout?: payoutsCreateNestedOneWithoutPayment_transactionInput
+    payment_status_history?: payment_status_historyCreateNestedManyWithoutPayment_transactionsInput
   }
 
   export type payment_transactionsUncheckedCreateWithoutUsersInput = {
@@ -22426,16 +23178,23 @@ export namespace Prisma {
     type: $Enums.Payment_type
     amount: Decimal | DecimalJsLike | number | string
     currency: string
-    status: $Enums.Payout
+    status?: $Enums.Payment_Status
     metadata: JsonNullValueInput | InputJsonValue
-    created_at: Date | string
+    created_at?: Date | string
     updated_at?: Date | string
-    payment_status_history?: payment_status_historyUncheckedCreateNestedOneWithoutPayment_transactionsInput
+    contribution?: contributionsUncheckedCreateNestedOneWithoutPayment_transactionInput
+    payout?: payoutsUncheckedCreateNestedOneWithoutPayment_transactionInput
+    payment_status_history?: payment_status_historyUncheckedCreateNestedManyWithoutPayment_transactionsInput
   }
 
   export type payment_transactionsCreateOrConnectWithoutUsersInput = {
     where: payment_transactionsWhereUniqueInput
     create: XOR<payment_transactionsCreateWithoutUsersInput, payment_transactionsUncheckedCreateWithoutUsersInput>
+  }
+
+  export type payment_transactionsCreateManyUsersInputEnvelope = {
+    data: payment_transactionsCreateManyUsersInput | payment_transactionsCreateManyUsersInput[]
+    skipDuplicates?: boolean
   }
 
   export type notificationsCreateWithoutUsersInput = {
@@ -22444,8 +23203,8 @@ export namespace Prisma {
     title: string
     message: string
     data: JsonNullValueInput | InputJsonValue
-    read_at: Date | string
-    created_at: Date | string
+    read_at?: Date | string | null
+    created_at?: Date | string
   }
 
   export type notificationsUncheckedCreateWithoutUsersInput = {
@@ -22454,13 +23213,18 @@ export namespace Prisma {
     title: string
     message: string
     data: JsonNullValueInput | InputJsonValue
-    read_at: Date | string
-    created_at: Date | string
+    read_at?: Date | string | null
+    created_at?: Date | string
   }
 
   export type notificationsCreateOrConnectWithoutUsersInput = {
     where: notificationsWhereUniqueInput
     create: XOR<notificationsCreateWithoutUsersInput, notificationsUncheckedCreateWithoutUsersInput>
+  }
+
+  export type notificationsCreateManyUsersInputEnvelope = {
+    data: notificationsCreateManyUsersInput | notificationsCreateManyUsersInput[]
+    skipDuplicates?: boolean
   }
 
   export type waitlistEntryUpsertWithoutUserInput = {
@@ -22523,232 +23287,198 @@ export namespace Prisma {
     revoked_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
-  export type savings_circlesUpsertWithoutUsersInput = {
+  export type savings_circlesUpsertWithWhereUniqueWithoutUsersInput = {
+    where: savings_circlesWhereUniqueInput
     update: XOR<savings_circlesUpdateWithoutUsersInput, savings_circlesUncheckedUpdateWithoutUsersInput>
     create: XOR<savings_circlesCreateWithoutUsersInput, savings_circlesUncheckedCreateWithoutUsersInput>
-    where?: savings_circlesWhereInput
   }
 
-  export type savings_circlesUpdateToOneWithWhereWithoutUsersInput = {
-    where?: savings_circlesWhereInput
+  export type savings_circlesUpdateWithWhereUniqueWithoutUsersInput = {
+    where: savings_circlesWhereUniqueInput
     data: XOR<savings_circlesUpdateWithoutUsersInput, savings_circlesUncheckedUpdateWithoutUsersInput>
   }
 
-  export type savings_circlesUpdateWithoutUsersInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    decription?: StringFieldUpdateOperationsInput | string
-    contribution_amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    currency?: StringFieldUpdateOperationsInput | string
-    frequency?: EnumFrequencyFieldUpdateOperationsInput | $Enums.Frequency
-    member_limit?: IntFieldUpdateOperationsInput | number
-    start_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    circle_members?: circle_membersUpdateOneWithoutSavings_circleNestedInput
-    circle_invitations?: circle_invitationsUpdateOneWithoutSavings_circleNestedInput
-    savings_schedules?: savings_schedulesUpdateOneWithoutSavings_circleNestedInput
-    contributions?: contributionsUpdateOneWithoutSavings_circleNestedInput
-    payouts?: payoutsUpdateOneWithoutSavings_circleNestedInput
+  export type savings_circlesUpdateManyWithWhereWithoutUsersInput = {
+    where: savings_circlesScalarWhereInput
+    data: XOR<savings_circlesUpdateManyMutationInput, savings_circlesUncheckedUpdateManyWithoutUsersInput>
   }
 
-  export type savings_circlesUncheckedUpdateWithoutUsersInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    decription?: StringFieldUpdateOperationsInput | string
-    contribution_amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    currency?: StringFieldUpdateOperationsInput | string
-    frequency?: EnumFrequencyFieldUpdateOperationsInput | $Enums.Frequency
-    member_limit?: IntFieldUpdateOperationsInput | number
-    start_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    circle_members?: circle_membersUncheckedUpdateOneWithoutSavings_circleNestedInput
-    circle_invitations?: circle_invitationsUncheckedUpdateOneWithoutSavings_circleNestedInput
-    savings_schedules?: savings_schedulesUncheckedUpdateOneWithoutSavings_circleNestedInput
-    contributions?: contributionsUncheckedUpdateOneWithoutSavings_circleNestedInput
-    payouts?: payoutsUncheckedUpdateOneWithoutSavings_circleNestedInput
+  export type savings_circlesScalarWhereInput = {
+    AND?: savings_circlesScalarWhereInput | savings_circlesScalarWhereInput[]
+    OR?: savings_circlesScalarWhereInput[]
+    NOT?: savings_circlesScalarWhereInput | savings_circlesScalarWhereInput[]
+    id?: StringFilter<"savings_circles"> | string
+    name?: StringFilter<"savings_circles"> | string
+    decription?: StringFilter<"savings_circles"> | string
+    owner_id?: StringFilter<"savings_circles"> | string
+    contribution_amount?: DecimalFilter<"savings_circles"> | Decimal | DecimalJsLike | number | string
+    currency?: StringFilter<"savings_circles"> | string
+    frequency?: EnumFrequencyFilter<"savings_circles"> | $Enums.Frequency
+    member_limit?: IntFilter<"savings_circles"> | number
+    start_date?: DateTimeFilter<"savings_circles"> | Date | string
+    status?: EnumCircle_StatusFilter<"savings_circles"> | $Enums.Circle_Status
+    created_at?: DateTimeFilter<"savings_circles"> | Date | string
+    updated_at?: DateTimeFilter<"savings_circles"> | Date | string
   }
 
-  export type circle_membersUpsertWithoutUsersInput = {
+  export type circle_membersUpsertWithWhereUniqueWithoutUsersInput = {
+    where: circle_membersWhereUniqueInput
     update: XOR<circle_membersUpdateWithoutUsersInput, circle_membersUncheckedUpdateWithoutUsersInput>
     create: XOR<circle_membersCreateWithoutUsersInput, circle_membersUncheckedCreateWithoutUsersInput>
-    where?: circle_membersWhereInput
   }
 
-  export type circle_membersUpdateToOneWithWhereWithoutUsersInput = {
-    where?: circle_membersWhereInput
+  export type circle_membersUpdateWithWhereUniqueWithoutUsersInput = {
+    where: circle_membersWhereUniqueInput
     data: XOR<circle_membersUpdateWithoutUsersInput, circle_membersUncheckedUpdateWithoutUsersInput>
   }
 
-  export type circle_membersUpdateWithoutUsersInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    status?: EnumCircle_StatusFieldUpdateOperationsInput | $Enums.Circle_Status
-    joined_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    left_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    savings_circle?: savings_circlesUpdateOneRequiredWithoutCircle_membersNestedInput
-    payouts?: payoutsUpdateOneWithoutCircle_memberNestedInput
+  export type circle_membersUpdateManyWithWhereWithoutUsersInput = {
+    where: circle_membersScalarWhereInput
+    data: XOR<circle_membersUpdateManyMutationInput, circle_membersUncheckedUpdateManyWithoutUsersInput>
   }
 
-  export type circle_membersUncheckedUpdateWithoutUsersInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    circle_id?: StringFieldUpdateOperationsInput | string
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    status?: EnumCircle_StatusFieldUpdateOperationsInput | $Enums.Circle_Status
-    joined_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    left_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    payouts?: payoutsUncheckedUpdateOneWithoutCircle_memberNestedInput
+  export type circle_membersScalarWhereInput = {
+    AND?: circle_membersScalarWhereInput | circle_membersScalarWhereInput[]
+    OR?: circle_membersScalarWhereInput[]
+    NOT?: circle_membersScalarWhereInput | circle_membersScalarWhereInput[]
+    id?: StringFilter<"circle_members"> | string
+    circle_id?: StringFilter<"circle_members"> | string
+    user_id?: StringFilter<"circle_members"> | string
+    role?: EnumRoleFilter<"circle_members"> | $Enums.Role
+    status?: EnumCircle_StatusFilter<"circle_members"> | $Enums.Circle_Status
+    joined_at?: DateTimeFilter<"circle_members"> | Date | string
+    left_at?: DateTimeNullableFilter<"circle_members"> | Date | string | null
+    created_at?: DateTimeFilter<"circle_members"> | Date | string
+    updated_at?: DateTimeFilter<"circle_members"> | Date | string
   }
 
-  export type circle_invitationsUpsertWithoutUsersInput = {
+  export type circle_invitationsUpsertWithWhereUniqueWithoutUsersInput = {
+    where: circle_invitationsWhereUniqueInput
     update: XOR<circle_invitationsUpdateWithoutUsersInput, circle_invitationsUncheckedUpdateWithoutUsersInput>
     create: XOR<circle_invitationsCreateWithoutUsersInput, circle_invitationsUncheckedCreateWithoutUsersInput>
-    where?: circle_invitationsWhereInput
   }
 
-  export type circle_invitationsUpdateToOneWithWhereWithoutUsersInput = {
-    where?: circle_invitationsWhereInput
+  export type circle_invitationsUpdateWithWhereUniqueWithoutUsersInput = {
+    where: circle_invitationsWhereUniqueInput
     data: XOR<circle_invitationsUpdateWithoutUsersInput, circle_invitationsUncheckedUpdateWithoutUsersInput>
   }
 
-  export type circle_invitationsUpdateWithoutUsersInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    token_hash?: StringFieldUpdateOperationsInput | string
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
-    expires_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    accepted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    savings_circle?: savings_circlesUpdateOneRequiredWithoutCircle_invitationsNestedInput
+  export type circle_invitationsUpdateManyWithWhereWithoutUsersInput = {
+    where: circle_invitationsScalarWhereInput
+    data: XOR<circle_invitationsUpdateManyMutationInput, circle_invitationsUncheckedUpdateManyWithoutUsersInput>
   }
 
-  export type circle_invitationsUncheckedUpdateWithoutUsersInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    circle_id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    token_hash?: StringFieldUpdateOperationsInput | string
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
-    expires_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    accepted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  export type circle_invitationsScalarWhereInput = {
+    AND?: circle_invitationsScalarWhereInput | circle_invitationsScalarWhereInput[]
+    OR?: circle_invitationsScalarWhereInput[]
+    NOT?: circle_invitationsScalarWhereInput | circle_invitationsScalarWhereInput[]
+    id?: StringFilter<"circle_invitations"> | string
+    circle_id?: StringFilter<"circle_invitations"> | string
+    invited_by?: StringFilter<"circle_invitations"> | string
+    email?: StringFilter<"circle_invitations"> | string
+    token_hash?: StringFilter<"circle_invitations"> | string
+    status?: EnumStatusFilter<"circle_invitations"> | $Enums.Status
+    expires_at?: DateTimeFilter<"circle_invitations"> | Date | string
+    accepted_at?: DateTimeNullableFilter<"circle_invitations"> | Date | string | null
+    created_at?: DateTimeFilter<"circle_invitations"> | Date | string
   }
 
-  export type contributionsUpsertWithoutUsersInput = {
+  export type contributionsUpsertWithWhereUniqueWithoutUsersInput = {
+    where: contributionsWhereUniqueInput
     update: XOR<contributionsUpdateWithoutUsersInput, contributionsUncheckedUpdateWithoutUsersInput>
     create: XOR<contributionsCreateWithoutUsersInput, contributionsUncheckedCreateWithoutUsersInput>
-    where?: contributionsWhereInput
   }
 
-  export type contributionsUpdateToOneWithWhereWithoutUsersInput = {
-    where?: contributionsWhereInput
+  export type contributionsUpdateWithWhereUniqueWithoutUsersInput = {
+    where: contributionsWhereUniqueInput
     data: XOR<contributionsUpdateWithoutUsersInput, contributionsUncheckedUpdateWithoutUsersInput>
   }
 
-  export type contributionsUpdateWithoutUsersInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    cycle_number?: IntFieldUpdateOperationsInput | number
-    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    due_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    paid_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    status?: EnumContribution_statusFieldUpdateOperationsInput | $Enums.Contribution_status
-    transaction_id?: NullableStringFieldUpdateOperationsInput | string | null
-    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    savings_circle?: savings_circlesUpdateOneRequiredWithoutContributionsNestedInput
+  export type contributionsUpdateManyWithWhereWithoutUsersInput = {
+    where: contributionsScalarWhereInput
+    data: XOR<contributionsUpdateManyMutationInput, contributionsUncheckedUpdateManyWithoutUsersInput>
   }
 
-  export type contributionsUncheckedUpdateWithoutUsersInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    circle_id?: StringFieldUpdateOperationsInput | string
-    cycle_number?: IntFieldUpdateOperationsInput | number
-    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    due_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    paid_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    status?: EnumContribution_statusFieldUpdateOperationsInput | $Enums.Contribution_status
-    transaction_id?: NullableStringFieldUpdateOperationsInput | string | null
-    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  export type contributionsScalarWhereInput = {
+    AND?: contributionsScalarWhereInput | contributionsScalarWhereInput[]
+    OR?: contributionsScalarWhereInput[]
+    NOT?: contributionsScalarWhereInput | contributionsScalarWhereInput[]
+    id?: StringFilter<"contributions"> | string
+    circle_id?: StringFilter<"contributions"> | string
+    circle_member?: StringFilter<"contributions"> | string
+    cycle_number?: IntFilter<"contributions"> | number
+    amount?: DecimalFilter<"contributions"> | Decimal | DecimalJsLike | number | string
+    due_date?: DateTimeFilter<"contributions"> | Date | string
+    paid_at?: DateTimeNullableFilter<"contributions"> | Date | string | null
+    status?: EnumContribution_statusFilter<"contributions"> | $Enums.Contribution_status
+    transaction_id?: StringNullableFilter<"contributions"> | string | null
+    created_at?: DateTimeFilter<"contributions"> | Date | string
+    updated_at?: DateTimeFilter<"contributions"> | Date | string
   }
 
-  export type payment_transactionsUpsertWithoutUsersInput = {
+  export type payment_transactionsUpsertWithWhereUniqueWithoutUsersInput = {
+    where: payment_transactionsWhereUniqueInput
     update: XOR<payment_transactionsUpdateWithoutUsersInput, payment_transactionsUncheckedUpdateWithoutUsersInput>
     create: XOR<payment_transactionsCreateWithoutUsersInput, payment_transactionsUncheckedCreateWithoutUsersInput>
-    where?: payment_transactionsWhereInput
   }
 
-  export type payment_transactionsUpdateToOneWithWhereWithoutUsersInput = {
-    where?: payment_transactionsWhereInput
+  export type payment_transactionsUpdateWithWhereUniqueWithoutUsersInput = {
+    where: payment_transactionsWhereUniqueInput
     data: XOR<payment_transactionsUpdateWithoutUsersInput, payment_transactionsUncheckedUpdateWithoutUsersInput>
   }
 
-  export type payment_transactionsUpdateWithoutUsersInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    refernce?: StringFieldUpdateOperationsInput | string
-    idempotency_key?: StringFieldUpdateOperationsInput | string
-    provider?: EnumProviderFieldUpdateOperationsInput | $Enums.Provider
-    provider_reference?: NullableStringFieldUpdateOperationsInput | string | null
-    type?: EnumPayment_typeFieldUpdateOperationsInput | $Enums.Payment_type
-    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    currency?: StringFieldUpdateOperationsInput | string
-    status?: EnumPayoutFieldUpdateOperationsInput | $Enums.Payout
-    metadata?: JsonNullValueInput | InputJsonValue
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    payment_status_history?: payment_status_historyUpdateOneWithoutPayment_transactionsNestedInput
+  export type payment_transactionsUpdateManyWithWhereWithoutUsersInput = {
+    where: payment_transactionsScalarWhereInput
+    data: XOR<payment_transactionsUpdateManyMutationInput, payment_transactionsUncheckedUpdateManyWithoutUsersInput>
   }
 
-  export type payment_transactionsUncheckedUpdateWithoutUsersInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    refernce?: StringFieldUpdateOperationsInput | string
-    idempotency_key?: StringFieldUpdateOperationsInput | string
-    provider?: EnumProviderFieldUpdateOperationsInput | $Enums.Provider
-    provider_reference?: NullableStringFieldUpdateOperationsInput | string | null
-    type?: EnumPayment_typeFieldUpdateOperationsInput | $Enums.Payment_type
-    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    currency?: StringFieldUpdateOperationsInput | string
-    status?: EnumPayoutFieldUpdateOperationsInput | $Enums.Payout
-    metadata?: JsonNullValueInput | InputJsonValue
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    payment_status_history?: payment_status_historyUncheckedUpdateOneWithoutPayment_transactionsNestedInput
+  export type payment_transactionsScalarWhereInput = {
+    AND?: payment_transactionsScalarWhereInput | payment_transactionsScalarWhereInput[]
+    OR?: payment_transactionsScalarWhereInput[]
+    NOT?: payment_transactionsScalarWhereInput | payment_transactionsScalarWhereInput[]
+    id?: StringFilter<"payment_transactions"> | string
+    user_id?: StringFilter<"payment_transactions"> | string
+    refernce?: StringFilter<"payment_transactions"> | string
+    idempotency_key?: StringFilter<"payment_transactions"> | string
+    provider?: EnumProviderFilter<"payment_transactions"> | $Enums.Provider
+    provider_reference?: StringNullableFilter<"payment_transactions"> | string | null
+    type?: EnumPayment_typeFilter<"payment_transactions"> | $Enums.Payment_type
+    amount?: DecimalFilter<"payment_transactions"> | Decimal | DecimalJsLike | number | string
+    currency?: StringFilter<"payment_transactions"> | string
+    status?: EnumPayment_StatusFilter<"payment_transactions"> | $Enums.Payment_Status
+    metadata?: JsonFilter<"payment_transactions">
+    created_at?: DateTimeFilter<"payment_transactions"> | Date | string
+    updated_at?: DateTimeFilter<"payment_transactions"> | Date | string
   }
 
-  export type notificationsUpsertWithoutUsersInput = {
+  export type notificationsUpsertWithWhereUniqueWithoutUsersInput = {
+    where: notificationsWhereUniqueInput
     update: XOR<notificationsUpdateWithoutUsersInput, notificationsUncheckedUpdateWithoutUsersInput>
     create: XOR<notificationsCreateWithoutUsersInput, notificationsUncheckedCreateWithoutUsersInput>
-    where?: notificationsWhereInput
   }
 
-  export type notificationsUpdateToOneWithWhereWithoutUsersInput = {
-    where?: notificationsWhereInput
+  export type notificationsUpdateWithWhereUniqueWithoutUsersInput = {
+    where: notificationsWhereUniqueInput
     data: XOR<notificationsUpdateWithoutUsersInput, notificationsUncheckedUpdateWithoutUsersInput>
   }
 
-  export type notificationsUpdateWithoutUsersInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    type?: EnumNotificationsFieldUpdateOperationsInput | $Enums.Notifications
-    title?: StringFieldUpdateOperationsInput | string
-    message?: StringFieldUpdateOperationsInput | string
-    data?: JsonNullValueInput | InputJsonValue
-    read_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  export type notificationsUpdateManyWithWhereWithoutUsersInput = {
+    where: notificationsScalarWhereInput
+    data: XOR<notificationsUpdateManyMutationInput, notificationsUncheckedUpdateManyWithoutUsersInput>
   }
 
-  export type notificationsUncheckedUpdateWithoutUsersInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    type?: EnumNotificationsFieldUpdateOperationsInput | $Enums.Notifications
-    title?: StringFieldUpdateOperationsInput | string
-    message?: StringFieldUpdateOperationsInput | string
-    data?: JsonNullValueInput | InputJsonValue
-    read_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  export type notificationsScalarWhereInput = {
+    AND?: notificationsScalarWhereInput | notificationsScalarWhereInput[]
+    OR?: notificationsScalarWhereInput[]
+    NOT?: notificationsScalarWhereInput | notificationsScalarWhereInput[]
+    id?: StringFilter<"notifications"> | string
+    user_id?: StringFilter<"notifications"> | string
+    type?: EnumNotificationsFilter<"notifications"> | $Enums.Notifications
+    title?: StringFilter<"notifications"> | string
+    message?: StringFilter<"notifications"> | string
+    data?: JsonFilter<"notifications">
+    read_at?: DateTimeNullableFilter<"notifications"> | Date | string | null
+    created_at?: DateTimeFilter<"notifications"> | Date | string
   }
 
   export type usersCreateWithoutSessionInput = {
@@ -22764,12 +23494,12 @@ export namespace Prisma {
     created_at?: Date | string
     updated_at?: Date | string
     waitlistEntry?: waitlistEntryCreateNestedOneWithoutUserInput
-    savings_circles?: savings_circlesCreateNestedOneWithoutUsersInput
-    circle_members?: circle_membersCreateNestedOneWithoutUsersInput
-    circle_invitations?: circle_invitationsCreateNestedOneWithoutUsersInput
-    contributions?: contributionsCreateNestedOneWithoutUsersInput
-    payment_transactions?: payment_transactionsCreateNestedOneWithoutUsersInput
-    notifications?: notificationsCreateNestedOneWithoutUsersInput
+    savings_circles?: savings_circlesCreateNestedManyWithoutUsersInput
+    circle_members?: circle_membersCreateNestedManyWithoutUsersInput
+    circle_invitations?: circle_invitationsCreateNestedManyWithoutUsersInput
+    contributions?: contributionsCreateNestedManyWithoutUsersInput
+    payment_transactions?: payment_transactionsCreateNestedManyWithoutUsersInput
+    notifications?: notificationsCreateNestedManyWithoutUsersInput
   }
 
   export type usersUncheckedCreateWithoutSessionInput = {
@@ -22785,12 +23515,12 @@ export namespace Prisma {
     created_at?: Date | string
     updated_at?: Date | string
     waitlistEntry?: waitlistEntryUncheckedCreateNestedOneWithoutUserInput
-    savings_circles?: savings_circlesUncheckedCreateNestedOneWithoutUsersInput
-    circle_members?: circle_membersUncheckedCreateNestedOneWithoutUsersInput
-    circle_invitations?: circle_invitationsUncheckedCreateNestedOneWithoutUsersInput
-    contributions?: contributionsUncheckedCreateNestedOneWithoutUsersInput
-    payment_transactions?: payment_transactionsUncheckedCreateNestedOneWithoutUsersInput
-    notifications?: notificationsUncheckedCreateNestedOneWithoutUsersInput
+    savings_circles?: savings_circlesUncheckedCreateNestedManyWithoutUsersInput
+    circle_members?: circle_membersUncheckedCreateNestedManyWithoutUsersInput
+    circle_invitations?: circle_invitationsUncheckedCreateNestedManyWithoutUsersInput
+    contributions?: contributionsUncheckedCreateNestedManyWithoutUsersInput
+    payment_transactions?: payment_transactionsUncheckedCreateNestedManyWithoutUsersInput
+    notifications?: notificationsUncheckedCreateNestedManyWithoutUsersInput
   }
 
   export type usersCreateOrConnectWithoutSessionInput = {
@@ -22822,12 +23552,12 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     waitlistEntry?: waitlistEntryUpdateOneWithoutUserNestedInput
-    savings_circles?: savings_circlesUpdateOneWithoutUsersNestedInput
-    circle_members?: circle_membersUpdateOneWithoutUsersNestedInput
-    circle_invitations?: circle_invitationsUpdateOneWithoutUsersNestedInput
-    contributions?: contributionsUpdateOneWithoutUsersNestedInput
-    payment_transactions?: payment_transactionsUpdateOneWithoutUsersNestedInput
-    notifications?: notificationsUpdateOneWithoutUsersNestedInput
+    savings_circles?: savings_circlesUpdateManyWithoutUsersNestedInput
+    circle_members?: circle_membersUpdateManyWithoutUsersNestedInput
+    circle_invitations?: circle_invitationsUpdateManyWithoutUsersNestedInput
+    contributions?: contributionsUpdateManyWithoutUsersNestedInput
+    payment_transactions?: payment_transactionsUpdateManyWithoutUsersNestedInput
+    notifications?: notificationsUpdateManyWithoutUsersNestedInput
   }
 
   export type usersUncheckedUpdateWithoutSessionInput = {
@@ -22843,12 +23573,12 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     waitlistEntry?: waitlistEntryUncheckedUpdateOneWithoutUserNestedInput
-    savings_circles?: savings_circlesUncheckedUpdateOneWithoutUsersNestedInput
-    circle_members?: circle_membersUncheckedUpdateOneWithoutUsersNestedInput
-    circle_invitations?: circle_invitationsUncheckedUpdateOneWithoutUsersNestedInput
-    contributions?: contributionsUncheckedUpdateOneWithoutUsersNestedInput
-    payment_transactions?: payment_transactionsUncheckedUpdateOneWithoutUsersNestedInput
-    notifications?: notificationsUncheckedUpdateOneWithoutUsersNestedInput
+    savings_circles?: savings_circlesUncheckedUpdateManyWithoutUsersNestedInput
+    circle_members?: circle_membersUncheckedUpdateManyWithoutUsersNestedInput
+    circle_invitations?: circle_invitationsUncheckedUpdateManyWithoutUsersNestedInput
+    contributions?: contributionsUncheckedUpdateManyWithoutUsersNestedInput
+    payment_transactions?: payment_transactionsUncheckedUpdateManyWithoutUsersNestedInput
+    notifications?: notificationsUncheckedUpdateManyWithoutUsersNestedInput
   }
 
   export type usersCreateWithoutSavings_circlesInput = {
@@ -22865,11 +23595,11 @@ export namespace Prisma {
     updated_at?: Date | string
     waitlistEntry?: waitlistEntryCreateNestedOneWithoutUserInput
     session?: sessionsCreateNestedOneWithoutUserInput
-    circle_members?: circle_membersCreateNestedOneWithoutUsersInput
-    circle_invitations?: circle_invitationsCreateNestedOneWithoutUsersInput
-    contributions?: contributionsCreateNestedOneWithoutUsersInput
-    payment_transactions?: payment_transactionsCreateNestedOneWithoutUsersInput
-    notifications?: notificationsCreateNestedOneWithoutUsersInput
+    circle_members?: circle_membersCreateNestedManyWithoutUsersInput
+    circle_invitations?: circle_invitationsCreateNestedManyWithoutUsersInput
+    contributions?: contributionsCreateNestedManyWithoutUsersInput
+    payment_transactions?: payment_transactionsCreateNestedManyWithoutUsersInput
+    notifications?: notificationsCreateNestedManyWithoutUsersInput
   }
 
   export type usersUncheckedCreateWithoutSavings_circlesInput = {
@@ -22886,11 +23616,11 @@ export namespace Prisma {
     updated_at?: Date | string
     waitlistEntry?: waitlistEntryUncheckedCreateNestedOneWithoutUserInput
     session?: sessionsUncheckedCreateNestedOneWithoutUserInput
-    circle_members?: circle_membersUncheckedCreateNestedOneWithoutUsersInput
-    circle_invitations?: circle_invitationsUncheckedCreateNestedOneWithoutUsersInput
-    contributions?: contributionsUncheckedCreateNestedOneWithoutUsersInput
-    payment_transactions?: payment_transactionsUncheckedCreateNestedOneWithoutUsersInput
-    notifications?: notificationsUncheckedCreateNestedOneWithoutUsersInput
+    circle_members?: circle_membersUncheckedCreateNestedManyWithoutUsersInput
+    circle_invitations?: circle_invitationsUncheckedCreateNestedManyWithoutUsersInput
+    contributions?: contributionsUncheckedCreateNestedManyWithoutUsersInput
+    payment_transactions?: payment_transactionsUncheckedCreateNestedManyWithoutUsersInput
+    notifications?: notificationsUncheckedCreateNestedManyWithoutUsersInput
   }
 
   export type usersCreateOrConnectWithoutSavings_circlesInput = {
@@ -22900,26 +23630,26 @@ export namespace Prisma {
 
   export type circle_membersCreateWithoutSavings_circleInput = {
     id?: string
-    role: $Enums.Role
-    status: $Enums.Circle_Status
-    joined_at: Date | string
+    role?: $Enums.Role
+    status?: $Enums.Circle_Status
+    joined_at?: Date | string
     left_at?: Date | string | null
-    created_at: Date | string
+    created_at?: Date | string
     updated_at?: Date | string
     users: usersCreateNestedOneWithoutCircle_membersInput
-    payouts?: payoutsCreateNestedOneWithoutCircle_memberInput
+    payouts?: payoutsCreateNestedManyWithoutCircle_memberInput
   }
 
   export type circle_membersUncheckedCreateWithoutSavings_circleInput = {
     id?: string
     user_id: string
-    role: $Enums.Role
-    status: $Enums.Circle_Status
-    joined_at: Date | string
+    role?: $Enums.Role
+    status?: $Enums.Circle_Status
+    joined_at?: Date | string
     left_at?: Date | string | null
-    created_at: Date | string
+    created_at?: Date | string
     updated_at?: Date | string
-    payouts?: payoutsUncheckedCreateNestedOneWithoutCircle_memberInput
+    payouts?: payoutsUncheckedCreateNestedManyWithoutCircle_memberInput
   }
 
   export type circle_membersCreateOrConnectWithoutSavings_circleInput = {
@@ -22927,14 +23657,19 @@ export namespace Prisma {
     create: XOR<circle_membersCreateWithoutSavings_circleInput, circle_membersUncheckedCreateWithoutSavings_circleInput>
   }
 
+  export type circle_membersCreateManySavings_circleInputEnvelope = {
+    data: circle_membersCreateManySavings_circleInput | circle_membersCreateManySavings_circleInput[]
+    skipDuplicates?: boolean
+  }
+
   export type circle_invitationsCreateWithoutSavings_circleInput = {
     id?: string
     email: string
     token_hash: string
-    status: $Enums.Status
+    status?: $Enums.Status
     expires_at: Date | string
     accepted_at?: Date | string | null
-    created_at: Date | string
+    created_at?: Date | string
     users: usersCreateNestedOneWithoutCircle_invitationsInput
   }
 
@@ -22943,15 +23678,20 @@ export namespace Prisma {
     invited_by: string
     email: string
     token_hash: string
-    status: $Enums.Status
+    status?: $Enums.Status
     expires_at: Date | string
     accepted_at?: Date | string | null
-    created_at: Date | string
+    created_at?: Date | string
   }
 
   export type circle_invitationsCreateOrConnectWithoutSavings_circleInput = {
     where: circle_invitationsWhereUniqueInput
     create: XOR<circle_invitationsCreateWithoutSavings_circleInput, circle_invitationsUncheckedCreateWithoutSavings_circleInput>
+  }
+
+  export type circle_invitationsCreateManySavings_circleInputEnvelope = {
+    data: circle_invitationsCreateManySavings_circleInput | circle_invitationsCreateManySavings_circleInput[]
+    skipDuplicates?: boolean
   }
 
   export type savings_schedulesCreateWithoutSavings_circleInput = {
@@ -22961,8 +23701,8 @@ export namespace Prisma {
     start_date: Date | string
     end_date?: Date | string | null
     total_cycles: number
-    current_cycle: number
-    created_at: Date | string
+    current_cycle?: number
+    created_at?: Date | string
     updated_at?: Date | string
   }
 
@@ -22973,8 +23713,8 @@ export namespace Prisma {
     start_date: Date | string
     end_date?: Date | string | null
     total_cycles: number
-    current_cycle: number
-    created_at: Date | string
+    current_cycle?: number
+    created_at?: Date | string
     updated_at?: Date | string
   }
 
@@ -22983,17 +23723,22 @@ export namespace Prisma {
     create: XOR<savings_schedulesCreateWithoutSavings_circleInput, savings_schedulesUncheckedCreateWithoutSavings_circleInput>
   }
 
+  export type savings_schedulesCreateManySavings_circleInputEnvelope = {
+    data: savings_schedulesCreateManySavings_circleInput | savings_schedulesCreateManySavings_circleInput[]
+    skipDuplicates?: boolean
+  }
+
   export type contributionsCreateWithoutSavings_circleInput = {
     id?: string
     cycle_number: number
     amount: Decimal | DecimalJsLike | number | string
     due_date: Date | string
     paid_at?: Date | string | null
-    status: $Enums.Contribution_status
-    transaction_id?: string | null
-    create_at?: Date | string
+    status?: $Enums.Contribution_status
+    created_at?: Date | string
     updated_at?: Date | string
     users: usersCreateNestedOneWithoutContributionsInput
+    payment_transaction?: payment_transactionsCreateNestedOneWithoutContributionInput
   }
 
   export type contributionsUncheckedCreateWithoutSavings_circleInput = {
@@ -23003,9 +23748,9 @@ export namespace Prisma {
     amount: Decimal | DecimalJsLike | number | string
     due_date: Date | string
     paid_at?: Date | string | null
-    status: $Enums.Contribution_status
+    status?: $Enums.Contribution_status
     transaction_id?: string | null
-    create_at?: Date | string
+    created_at?: Date | string
     updated_at?: Date | string
   }
 
@@ -23014,17 +23759,22 @@ export namespace Prisma {
     create: XOR<contributionsCreateWithoutSavings_circleInput, contributionsUncheckedCreateWithoutSavings_circleInput>
   }
 
+  export type contributionsCreateManySavings_circleInputEnvelope = {
+    data: contributionsCreateManySavings_circleInput | contributionsCreateManySavings_circleInput[]
+    skipDuplicates?: boolean
+  }
+
   export type payoutsCreateWithoutSavings_circleInput = {
     id?: string
     cycle_number: number
     amount: Decimal | DecimalJsLike | number | string
     scheduled_date: Date | string
     paid_at?: Date | string | null
-    status: $Enums.Contribution_status
-    transaction_id?: string | null
-    create_at?: Date | string
+    status?: $Enums.Payout_Status
+    created_at?: Date | string
     updated_at?: Date | string
     circle_member: circle_membersCreateNestedOneWithoutPayoutsInput
+    payment_transaction?: payment_transactionsCreateNestedOneWithoutPayoutInput
   }
 
   export type payoutsUncheckedCreateWithoutSavings_circleInput = {
@@ -23034,15 +23784,20 @@ export namespace Prisma {
     amount: Decimal | DecimalJsLike | number | string
     scheduled_date: Date | string
     paid_at?: Date | string | null
-    status: $Enums.Contribution_status
+    status?: $Enums.Payout_Status
     transaction_id?: string | null
-    create_at?: Date | string
+    created_at?: Date | string
     updated_at?: Date | string
   }
 
   export type payoutsCreateOrConnectWithoutSavings_circleInput = {
     where: payoutsWhereUniqueInput
     create: XOR<payoutsCreateWithoutSavings_circleInput, payoutsUncheckedCreateWithoutSavings_circleInput>
+  }
+
+  export type payoutsCreateManySavings_circleInputEnvelope = {
+    data: payoutsCreateManySavings_circleInput | payoutsCreateManySavings_circleInput[]
+    skipDuplicates?: boolean
   }
 
   export type usersUpsertWithoutSavings_circlesInput = {
@@ -23070,11 +23825,11 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     waitlistEntry?: waitlistEntryUpdateOneWithoutUserNestedInput
     session?: sessionsUpdateOneWithoutUserNestedInput
-    circle_members?: circle_membersUpdateOneWithoutUsersNestedInput
-    circle_invitations?: circle_invitationsUpdateOneWithoutUsersNestedInput
-    contributions?: contributionsUpdateOneWithoutUsersNestedInput
-    payment_transactions?: payment_transactionsUpdateOneWithoutUsersNestedInput
-    notifications?: notificationsUpdateOneWithoutUsersNestedInput
+    circle_members?: circle_membersUpdateManyWithoutUsersNestedInput
+    circle_invitations?: circle_invitationsUpdateManyWithoutUsersNestedInput
+    contributions?: contributionsUpdateManyWithoutUsersNestedInput
+    payment_transactions?: payment_transactionsUpdateManyWithoutUsersNestedInput
+    notifications?: notificationsUpdateManyWithoutUsersNestedInput
   }
 
   export type usersUncheckedUpdateWithoutSavings_circlesInput = {
@@ -23091,188 +23846,124 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     waitlistEntry?: waitlistEntryUncheckedUpdateOneWithoutUserNestedInput
     session?: sessionsUncheckedUpdateOneWithoutUserNestedInput
-    circle_members?: circle_membersUncheckedUpdateOneWithoutUsersNestedInput
-    circle_invitations?: circle_invitationsUncheckedUpdateOneWithoutUsersNestedInput
-    contributions?: contributionsUncheckedUpdateOneWithoutUsersNestedInput
-    payment_transactions?: payment_transactionsUncheckedUpdateOneWithoutUsersNestedInput
-    notifications?: notificationsUncheckedUpdateOneWithoutUsersNestedInput
+    circle_members?: circle_membersUncheckedUpdateManyWithoutUsersNestedInput
+    circle_invitations?: circle_invitationsUncheckedUpdateManyWithoutUsersNestedInput
+    contributions?: contributionsUncheckedUpdateManyWithoutUsersNestedInput
+    payment_transactions?: payment_transactionsUncheckedUpdateManyWithoutUsersNestedInput
+    notifications?: notificationsUncheckedUpdateManyWithoutUsersNestedInput
   }
 
-  export type circle_membersUpsertWithoutSavings_circleInput = {
+  export type circle_membersUpsertWithWhereUniqueWithoutSavings_circleInput = {
+    where: circle_membersWhereUniqueInput
     update: XOR<circle_membersUpdateWithoutSavings_circleInput, circle_membersUncheckedUpdateWithoutSavings_circleInput>
     create: XOR<circle_membersCreateWithoutSavings_circleInput, circle_membersUncheckedCreateWithoutSavings_circleInput>
-    where?: circle_membersWhereInput
   }
 
-  export type circle_membersUpdateToOneWithWhereWithoutSavings_circleInput = {
-    where?: circle_membersWhereInput
+  export type circle_membersUpdateWithWhereUniqueWithoutSavings_circleInput = {
+    where: circle_membersWhereUniqueInput
     data: XOR<circle_membersUpdateWithoutSavings_circleInput, circle_membersUncheckedUpdateWithoutSavings_circleInput>
   }
 
-  export type circle_membersUpdateWithoutSavings_circleInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    status?: EnumCircle_StatusFieldUpdateOperationsInput | $Enums.Circle_Status
-    joined_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    left_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    users?: usersUpdateOneRequiredWithoutCircle_membersNestedInput
-    payouts?: payoutsUpdateOneWithoutCircle_memberNestedInput
+  export type circle_membersUpdateManyWithWhereWithoutSavings_circleInput = {
+    where: circle_membersScalarWhereInput
+    data: XOR<circle_membersUpdateManyMutationInput, circle_membersUncheckedUpdateManyWithoutSavings_circleInput>
   }
 
-  export type circle_membersUncheckedUpdateWithoutSavings_circleInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    user_id?: StringFieldUpdateOperationsInput | string
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    status?: EnumCircle_StatusFieldUpdateOperationsInput | $Enums.Circle_Status
-    joined_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    left_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    payouts?: payoutsUncheckedUpdateOneWithoutCircle_memberNestedInput
-  }
-
-  export type circle_invitationsUpsertWithoutSavings_circleInput = {
+  export type circle_invitationsUpsertWithWhereUniqueWithoutSavings_circleInput = {
+    where: circle_invitationsWhereUniqueInput
     update: XOR<circle_invitationsUpdateWithoutSavings_circleInput, circle_invitationsUncheckedUpdateWithoutSavings_circleInput>
     create: XOR<circle_invitationsCreateWithoutSavings_circleInput, circle_invitationsUncheckedCreateWithoutSavings_circleInput>
-    where?: circle_invitationsWhereInput
   }
 
-  export type circle_invitationsUpdateToOneWithWhereWithoutSavings_circleInput = {
-    where?: circle_invitationsWhereInput
+  export type circle_invitationsUpdateWithWhereUniqueWithoutSavings_circleInput = {
+    where: circle_invitationsWhereUniqueInput
     data: XOR<circle_invitationsUpdateWithoutSavings_circleInput, circle_invitationsUncheckedUpdateWithoutSavings_circleInput>
   }
 
-  export type circle_invitationsUpdateWithoutSavings_circleInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    token_hash?: StringFieldUpdateOperationsInput | string
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
-    expires_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    accepted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    users?: usersUpdateOneRequiredWithoutCircle_invitationsNestedInput
+  export type circle_invitationsUpdateManyWithWhereWithoutSavings_circleInput = {
+    where: circle_invitationsScalarWhereInput
+    data: XOR<circle_invitationsUpdateManyMutationInput, circle_invitationsUncheckedUpdateManyWithoutSavings_circleInput>
   }
 
-  export type circle_invitationsUncheckedUpdateWithoutSavings_circleInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    invited_by?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    token_hash?: StringFieldUpdateOperationsInput | string
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
-    expires_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    accepted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type savings_schedulesUpsertWithoutSavings_circleInput = {
+  export type savings_schedulesUpsertWithWhereUniqueWithoutSavings_circleInput = {
+    where: savings_schedulesWhereUniqueInput
     update: XOR<savings_schedulesUpdateWithoutSavings_circleInput, savings_schedulesUncheckedUpdateWithoutSavings_circleInput>
     create: XOR<savings_schedulesCreateWithoutSavings_circleInput, savings_schedulesUncheckedCreateWithoutSavings_circleInput>
-    where?: savings_schedulesWhereInput
   }
 
-  export type savings_schedulesUpdateToOneWithWhereWithoutSavings_circleInput = {
-    where?: savings_schedulesWhereInput
+  export type savings_schedulesUpdateWithWhereUniqueWithoutSavings_circleInput = {
+    where: savings_schedulesWhereUniqueInput
     data: XOR<savings_schedulesUpdateWithoutSavings_circleInput, savings_schedulesUncheckedUpdateWithoutSavings_circleInput>
   }
 
-  export type savings_schedulesUpdateWithoutSavings_circleInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    frequency?: EnumFrequencyFieldUpdateOperationsInput | $Enums.Frequency
-    contribution_amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    start_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    end_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    total_cycles?: IntFieldUpdateOperationsInput | number
-    current_cycle?: IntFieldUpdateOperationsInput | number
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  export type savings_schedulesUpdateManyWithWhereWithoutSavings_circleInput = {
+    where: savings_schedulesScalarWhereInput
+    data: XOR<savings_schedulesUpdateManyMutationInput, savings_schedulesUncheckedUpdateManyWithoutSavings_circleInput>
   }
 
-  export type savings_schedulesUncheckedUpdateWithoutSavings_circleInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    frequency?: EnumFrequencyFieldUpdateOperationsInput | $Enums.Frequency
-    contribution_amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    start_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    end_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    total_cycles?: IntFieldUpdateOperationsInput | number
-    current_cycle?: IntFieldUpdateOperationsInput | number
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  export type savings_schedulesScalarWhereInput = {
+    AND?: savings_schedulesScalarWhereInput | savings_schedulesScalarWhereInput[]
+    OR?: savings_schedulesScalarWhereInput[]
+    NOT?: savings_schedulesScalarWhereInput | savings_schedulesScalarWhereInput[]
+    id?: StringFilter<"savings_schedules"> | string
+    circle_id?: StringFilter<"savings_schedules"> | string
+    frequency?: EnumFrequencyFilter<"savings_schedules"> | $Enums.Frequency
+    contribution_amount?: DecimalFilter<"savings_schedules"> | Decimal | DecimalJsLike | number | string
+    start_date?: DateTimeFilter<"savings_schedules"> | Date | string
+    end_date?: DateTimeNullableFilter<"savings_schedules"> | Date | string | null
+    total_cycles?: IntFilter<"savings_schedules"> | number
+    current_cycle?: IntFilter<"savings_schedules"> | number
+    created_at?: DateTimeFilter<"savings_schedules"> | Date | string
+    updated_at?: DateTimeFilter<"savings_schedules"> | Date | string
   }
 
-  export type contributionsUpsertWithoutSavings_circleInput = {
+  export type contributionsUpsertWithWhereUniqueWithoutSavings_circleInput = {
+    where: contributionsWhereUniqueInput
     update: XOR<contributionsUpdateWithoutSavings_circleInput, contributionsUncheckedUpdateWithoutSavings_circleInput>
     create: XOR<contributionsCreateWithoutSavings_circleInput, contributionsUncheckedCreateWithoutSavings_circleInput>
-    where?: contributionsWhereInput
   }
 
-  export type contributionsUpdateToOneWithWhereWithoutSavings_circleInput = {
-    where?: contributionsWhereInput
+  export type contributionsUpdateWithWhereUniqueWithoutSavings_circleInput = {
+    where: contributionsWhereUniqueInput
     data: XOR<contributionsUpdateWithoutSavings_circleInput, contributionsUncheckedUpdateWithoutSavings_circleInput>
   }
 
-  export type contributionsUpdateWithoutSavings_circleInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    cycle_number?: IntFieldUpdateOperationsInput | number
-    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    due_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    paid_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    status?: EnumContribution_statusFieldUpdateOperationsInput | $Enums.Contribution_status
-    transaction_id?: NullableStringFieldUpdateOperationsInput | string | null
-    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    users?: usersUpdateOneRequiredWithoutContributionsNestedInput
+  export type contributionsUpdateManyWithWhereWithoutSavings_circleInput = {
+    where: contributionsScalarWhereInput
+    data: XOR<contributionsUpdateManyMutationInput, contributionsUncheckedUpdateManyWithoutSavings_circleInput>
   }
 
-  export type contributionsUncheckedUpdateWithoutSavings_circleInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    circle_member?: StringFieldUpdateOperationsInput | string
-    cycle_number?: IntFieldUpdateOperationsInput | number
-    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    due_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    paid_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    status?: EnumContribution_statusFieldUpdateOperationsInput | $Enums.Contribution_status
-    transaction_id?: NullableStringFieldUpdateOperationsInput | string | null
-    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type payoutsUpsertWithoutSavings_circleInput = {
+  export type payoutsUpsertWithWhereUniqueWithoutSavings_circleInput = {
+    where: payoutsWhereUniqueInput
     update: XOR<payoutsUpdateWithoutSavings_circleInput, payoutsUncheckedUpdateWithoutSavings_circleInput>
     create: XOR<payoutsCreateWithoutSavings_circleInput, payoutsUncheckedCreateWithoutSavings_circleInput>
-    where?: payoutsWhereInput
   }
 
-  export type payoutsUpdateToOneWithWhereWithoutSavings_circleInput = {
-    where?: payoutsWhereInput
+  export type payoutsUpdateWithWhereUniqueWithoutSavings_circleInput = {
+    where: payoutsWhereUniqueInput
     data: XOR<payoutsUpdateWithoutSavings_circleInput, payoutsUncheckedUpdateWithoutSavings_circleInput>
   }
 
-  export type payoutsUpdateWithoutSavings_circleInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    cycle_number?: IntFieldUpdateOperationsInput | number
-    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    scheduled_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    paid_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    status?: EnumContribution_statusFieldUpdateOperationsInput | $Enums.Contribution_status
-    transaction_id?: NullableStringFieldUpdateOperationsInput | string | null
-    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    circle_member?: circle_membersUpdateOneRequiredWithoutPayoutsNestedInput
+  export type payoutsUpdateManyWithWhereWithoutSavings_circleInput = {
+    where: payoutsScalarWhereInput
+    data: XOR<payoutsUpdateManyMutationInput, payoutsUncheckedUpdateManyWithoutSavings_circleInput>
   }
 
-  export type payoutsUncheckedUpdateWithoutSavings_circleInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    member_id?: StringFieldUpdateOperationsInput | string
-    cycle_number?: IntFieldUpdateOperationsInput | number
-    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    scheduled_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    paid_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    status?: EnumContribution_statusFieldUpdateOperationsInput | $Enums.Contribution_status
-    transaction_id?: NullableStringFieldUpdateOperationsInput | string | null
-    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  export type payoutsScalarWhereInput = {
+    AND?: payoutsScalarWhereInput | payoutsScalarWhereInput[]
+    OR?: payoutsScalarWhereInput[]
+    NOT?: payoutsScalarWhereInput | payoutsScalarWhereInput[]
+    id?: StringFilter<"payouts"> | string
+    circle_id?: StringFilter<"payouts"> | string
+    member_id?: StringFilter<"payouts"> | string
+    cycle_number?: IntFilter<"payouts"> | number
+    amount?: DecimalFilter<"payouts"> | Decimal | DecimalJsLike | number | string
+    scheduled_date?: DateTimeFilter<"payouts"> | Date | string
+    paid_at?: DateTimeNullableFilter<"payouts"> | Date | string | null
+    status?: EnumPayout_StatusFilter<"payouts"> | $Enums.Payout_Status
+    transaction_id?: StringNullableFilter<"payouts"> | string | null
+    created_at?: DateTimeFilter<"payouts"> | Date | string
+    updated_at?: DateTimeFilter<"payouts"> | Date | string
   }
 
   export type savings_circlesCreateWithoutCircle_membersInput = {
@@ -23284,14 +23975,14 @@ export namespace Prisma {
     frequency: $Enums.Frequency
     member_limit: number
     start_date: Date | string
-    status: $Enums.Status
+    status?: $Enums.Circle_Status
     created_at?: Date | string
     updated_at?: Date | string
     users: usersCreateNestedOneWithoutSavings_circlesInput
-    circle_invitations?: circle_invitationsCreateNestedOneWithoutSavings_circleInput
-    savings_schedules?: savings_schedulesCreateNestedOneWithoutSavings_circleInput
-    contributions?: contributionsCreateNestedOneWithoutSavings_circleInput
-    payouts?: payoutsCreateNestedOneWithoutSavings_circleInput
+    circle_invitations?: circle_invitationsCreateNestedManyWithoutSavings_circleInput
+    savings_schedules?: savings_schedulesCreateNestedManyWithoutSavings_circleInput
+    contributions?: contributionsCreateNestedManyWithoutSavings_circleInput
+    payouts?: payoutsCreateNestedManyWithoutSavings_circleInput
   }
 
   export type savings_circlesUncheckedCreateWithoutCircle_membersInput = {
@@ -23304,13 +23995,13 @@ export namespace Prisma {
     frequency: $Enums.Frequency
     member_limit: number
     start_date: Date | string
-    status: $Enums.Status
+    status?: $Enums.Circle_Status
     created_at?: Date | string
     updated_at?: Date | string
-    circle_invitations?: circle_invitationsUncheckedCreateNestedOneWithoutSavings_circleInput
-    savings_schedules?: savings_schedulesUncheckedCreateNestedOneWithoutSavings_circleInput
-    contributions?: contributionsUncheckedCreateNestedOneWithoutSavings_circleInput
-    payouts?: payoutsUncheckedCreateNestedOneWithoutSavings_circleInput
+    circle_invitations?: circle_invitationsUncheckedCreateNestedManyWithoutSavings_circleInput
+    savings_schedules?: savings_schedulesUncheckedCreateNestedManyWithoutSavings_circleInput
+    contributions?: contributionsUncheckedCreateNestedManyWithoutSavings_circleInput
+    payouts?: payoutsUncheckedCreateNestedManyWithoutSavings_circleInput
   }
 
   export type savings_circlesCreateOrConnectWithoutCircle_membersInput = {
@@ -23332,11 +24023,11 @@ export namespace Prisma {
     updated_at?: Date | string
     waitlistEntry?: waitlistEntryCreateNestedOneWithoutUserInput
     session?: sessionsCreateNestedOneWithoutUserInput
-    savings_circles?: savings_circlesCreateNestedOneWithoutUsersInput
-    circle_invitations?: circle_invitationsCreateNestedOneWithoutUsersInput
-    contributions?: contributionsCreateNestedOneWithoutUsersInput
-    payment_transactions?: payment_transactionsCreateNestedOneWithoutUsersInput
-    notifications?: notificationsCreateNestedOneWithoutUsersInput
+    savings_circles?: savings_circlesCreateNestedManyWithoutUsersInput
+    circle_invitations?: circle_invitationsCreateNestedManyWithoutUsersInput
+    contributions?: contributionsCreateNestedManyWithoutUsersInput
+    payment_transactions?: payment_transactionsCreateNestedManyWithoutUsersInput
+    notifications?: notificationsCreateNestedManyWithoutUsersInput
   }
 
   export type usersUncheckedCreateWithoutCircle_membersInput = {
@@ -23353,11 +24044,11 @@ export namespace Prisma {
     updated_at?: Date | string
     waitlistEntry?: waitlistEntryUncheckedCreateNestedOneWithoutUserInput
     session?: sessionsUncheckedCreateNestedOneWithoutUserInput
-    savings_circles?: savings_circlesUncheckedCreateNestedOneWithoutUsersInput
-    circle_invitations?: circle_invitationsUncheckedCreateNestedOneWithoutUsersInput
-    contributions?: contributionsUncheckedCreateNestedOneWithoutUsersInput
-    payment_transactions?: payment_transactionsUncheckedCreateNestedOneWithoutUsersInput
-    notifications?: notificationsUncheckedCreateNestedOneWithoutUsersInput
+    savings_circles?: savings_circlesUncheckedCreateNestedManyWithoutUsersInput
+    circle_invitations?: circle_invitationsUncheckedCreateNestedManyWithoutUsersInput
+    contributions?: contributionsUncheckedCreateNestedManyWithoutUsersInput
+    payment_transactions?: payment_transactionsUncheckedCreateNestedManyWithoutUsersInput
+    notifications?: notificationsUncheckedCreateNestedManyWithoutUsersInput
   }
 
   export type usersCreateOrConnectWithoutCircle_membersInput = {
@@ -23371,11 +24062,11 @@ export namespace Prisma {
     amount: Decimal | DecimalJsLike | number | string
     scheduled_date: Date | string
     paid_at?: Date | string | null
-    status: $Enums.Contribution_status
-    transaction_id?: string | null
-    create_at?: Date | string
+    status?: $Enums.Payout_Status
+    created_at?: Date | string
     updated_at?: Date | string
     savings_circle: savings_circlesCreateNestedOneWithoutPayoutsInput
+    payment_transaction?: payment_transactionsCreateNestedOneWithoutPayoutInput
   }
 
   export type payoutsUncheckedCreateWithoutCircle_memberInput = {
@@ -23385,15 +24076,20 @@ export namespace Prisma {
     amount: Decimal | DecimalJsLike | number | string
     scheduled_date: Date | string
     paid_at?: Date | string | null
-    status: $Enums.Contribution_status
+    status?: $Enums.Payout_Status
     transaction_id?: string | null
-    create_at?: Date | string
+    created_at?: Date | string
     updated_at?: Date | string
   }
 
   export type payoutsCreateOrConnectWithoutCircle_memberInput = {
     where: payoutsWhereUniqueInput
     create: XOR<payoutsCreateWithoutCircle_memberInput, payoutsUncheckedCreateWithoutCircle_memberInput>
+  }
+
+  export type payoutsCreateManyCircle_memberInputEnvelope = {
+    data: payoutsCreateManyCircle_memberInput | payoutsCreateManyCircle_memberInput[]
+    skipDuplicates?: boolean
   }
 
   export type savings_circlesUpsertWithoutCircle_membersInput = {
@@ -23416,14 +24112,14 @@ export namespace Prisma {
     frequency?: EnumFrequencyFieldUpdateOperationsInput | $Enums.Frequency
     member_limit?: IntFieldUpdateOperationsInput | number
     start_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    status?: EnumCircle_StatusFieldUpdateOperationsInput | $Enums.Circle_Status
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: usersUpdateOneRequiredWithoutSavings_circlesNestedInput
-    circle_invitations?: circle_invitationsUpdateOneWithoutSavings_circleNestedInput
-    savings_schedules?: savings_schedulesUpdateOneWithoutSavings_circleNestedInput
-    contributions?: contributionsUpdateOneWithoutSavings_circleNestedInput
-    payouts?: payoutsUpdateOneWithoutSavings_circleNestedInput
+    circle_invitations?: circle_invitationsUpdateManyWithoutSavings_circleNestedInput
+    savings_schedules?: savings_schedulesUpdateManyWithoutSavings_circleNestedInput
+    contributions?: contributionsUpdateManyWithoutSavings_circleNestedInput
+    payouts?: payoutsUpdateManyWithoutSavings_circleNestedInput
   }
 
   export type savings_circlesUncheckedUpdateWithoutCircle_membersInput = {
@@ -23436,13 +24132,13 @@ export namespace Prisma {
     frequency?: EnumFrequencyFieldUpdateOperationsInput | $Enums.Frequency
     member_limit?: IntFieldUpdateOperationsInput | number
     start_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    status?: EnumCircle_StatusFieldUpdateOperationsInput | $Enums.Circle_Status
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    circle_invitations?: circle_invitationsUncheckedUpdateOneWithoutSavings_circleNestedInput
-    savings_schedules?: savings_schedulesUncheckedUpdateOneWithoutSavings_circleNestedInput
-    contributions?: contributionsUncheckedUpdateOneWithoutSavings_circleNestedInput
-    payouts?: payoutsUncheckedUpdateOneWithoutSavings_circleNestedInput
+    circle_invitations?: circle_invitationsUncheckedUpdateManyWithoutSavings_circleNestedInput
+    savings_schedules?: savings_schedulesUncheckedUpdateManyWithoutSavings_circleNestedInput
+    contributions?: contributionsUncheckedUpdateManyWithoutSavings_circleNestedInput
+    payouts?: payoutsUncheckedUpdateManyWithoutSavings_circleNestedInput
   }
 
   export type usersUpsertWithoutCircle_membersInput = {
@@ -23470,11 +24166,11 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     waitlistEntry?: waitlistEntryUpdateOneWithoutUserNestedInput
     session?: sessionsUpdateOneWithoutUserNestedInput
-    savings_circles?: savings_circlesUpdateOneWithoutUsersNestedInput
-    circle_invitations?: circle_invitationsUpdateOneWithoutUsersNestedInput
-    contributions?: contributionsUpdateOneWithoutUsersNestedInput
-    payment_transactions?: payment_transactionsUpdateOneWithoutUsersNestedInput
-    notifications?: notificationsUpdateOneWithoutUsersNestedInput
+    savings_circles?: savings_circlesUpdateManyWithoutUsersNestedInput
+    circle_invitations?: circle_invitationsUpdateManyWithoutUsersNestedInput
+    contributions?: contributionsUpdateManyWithoutUsersNestedInput
+    payment_transactions?: payment_transactionsUpdateManyWithoutUsersNestedInput
+    notifications?: notificationsUpdateManyWithoutUsersNestedInput
   }
 
   export type usersUncheckedUpdateWithoutCircle_membersInput = {
@@ -23491,48 +24187,27 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     waitlistEntry?: waitlistEntryUncheckedUpdateOneWithoutUserNestedInput
     session?: sessionsUncheckedUpdateOneWithoutUserNestedInput
-    savings_circles?: savings_circlesUncheckedUpdateOneWithoutUsersNestedInput
-    circle_invitations?: circle_invitationsUncheckedUpdateOneWithoutUsersNestedInput
-    contributions?: contributionsUncheckedUpdateOneWithoutUsersNestedInput
-    payment_transactions?: payment_transactionsUncheckedUpdateOneWithoutUsersNestedInput
-    notifications?: notificationsUncheckedUpdateOneWithoutUsersNestedInput
+    savings_circles?: savings_circlesUncheckedUpdateManyWithoutUsersNestedInput
+    circle_invitations?: circle_invitationsUncheckedUpdateManyWithoutUsersNestedInput
+    contributions?: contributionsUncheckedUpdateManyWithoutUsersNestedInput
+    payment_transactions?: payment_transactionsUncheckedUpdateManyWithoutUsersNestedInput
+    notifications?: notificationsUncheckedUpdateManyWithoutUsersNestedInput
   }
 
-  export type payoutsUpsertWithoutCircle_memberInput = {
+  export type payoutsUpsertWithWhereUniqueWithoutCircle_memberInput = {
+    where: payoutsWhereUniqueInput
     update: XOR<payoutsUpdateWithoutCircle_memberInput, payoutsUncheckedUpdateWithoutCircle_memberInput>
     create: XOR<payoutsCreateWithoutCircle_memberInput, payoutsUncheckedCreateWithoutCircle_memberInput>
-    where?: payoutsWhereInput
   }
 
-  export type payoutsUpdateToOneWithWhereWithoutCircle_memberInput = {
-    where?: payoutsWhereInput
+  export type payoutsUpdateWithWhereUniqueWithoutCircle_memberInput = {
+    where: payoutsWhereUniqueInput
     data: XOR<payoutsUpdateWithoutCircle_memberInput, payoutsUncheckedUpdateWithoutCircle_memberInput>
   }
 
-  export type payoutsUpdateWithoutCircle_memberInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    cycle_number?: IntFieldUpdateOperationsInput | number
-    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    scheduled_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    paid_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    status?: EnumContribution_statusFieldUpdateOperationsInput | $Enums.Contribution_status
-    transaction_id?: NullableStringFieldUpdateOperationsInput | string | null
-    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    savings_circle?: savings_circlesUpdateOneRequiredWithoutPayoutsNestedInput
-  }
-
-  export type payoutsUncheckedUpdateWithoutCircle_memberInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    circle_id?: StringFieldUpdateOperationsInput | string
-    cycle_number?: IntFieldUpdateOperationsInput | number
-    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    scheduled_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    paid_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    status?: EnumContribution_statusFieldUpdateOperationsInput | $Enums.Contribution_status
-    transaction_id?: NullableStringFieldUpdateOperationsInput | string | null
-    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  export type payoutsUpdateManyWithWhereWithoutCircle_memberInput = {
+    where: payoutsScalarWhereInput
+    data: XOR<payoutsUpdateManyMutationInput, payoutsUncheckedUpdateManyWithoutCircle_memberInput>
   }
 
   export type savings_circlesCreateWithoutCircle_invitationsInput = {
@@ -23544,14 +24219,14 @@ export namespace Prisma {
     frequency: $Enums.Frequency
     member_limit: number
     start_date: Date | string
-    status: $Enums.Status
+    status?: $Enums.Circle_Status
     created_at?: Date | string
     updated_at?: Date | string
     users: usersCreateNestedOneWithoutSavings_circlesInput
-    circle_members?: circle_membersCreateNestedOneWithoutSavings_circleInput
-    savings_schedules?: savings_schedulesCreateNestedOneWithoutSavings_circleInput
-    contributions?: contributionsCreateNestedOneWithoutSavings_circleInput
-    payouts?: payoutsCreateNestedOneWithoutSavings_circleInput
+    circle_members?: circle_membersCreateNestedManyWithoutSavings_circleInput
+    savings_schedules?: savings_schedulesCreateNestedManyWithoutSavings_circleInput
+    contributions?: contributionsCreateNestedManyWithoutSavings_circleInput
+    payouts?: payoutsCreateNestedManyWithoutSavings_circleInput
   }
 
   export type savings_circlesUncheckedCreateWithoutCircle_invitationsInput = {
@@ -23564,13 +24239,13 @@ export namespace Prisma {
     frequency: $Enums.Frequency
     member_limit: number
     start_date: Date | string
-    status: $Enums.Status
+    status?: $Enums.Circle_Status
     created_at?: Date | string
     updated_at?: Date | string
-    circle_members?: circle_membersUncheckedCreateNestedOneWithoutSavings_circleInput
-    savings_schedules?: savings_schedulesUncheckedCreateNestedOneWithoutSavings_circleInput
-    contributions?: contributionsUncheckedCreateNestedOneWithoutSavings_circleInput
-    payouts?: payoutsUncheckedCreateNestedOneWithoutSavings_circleInput
+    circle_members?: circle_membersUncheckedCreateNestedManyWithoutSavings_circleInput
+    savings_schedules?: savings_schedulesUncheckedCreateNestedManyWithoutSavings_circleInput
+    contributions?: contributionsUncheckedCreateNestedManyWithoutSavings_circleInput
+    payouts?: payoutsUncheckedCreateNestedManyWithoutSavings_circleInput
   }
 
   export type savings_circlesCreateOrConnectWithoutCircle_invitationsInput = {
@@ -23592,11 +24267,11 @@ export namespace Prisma {
     updated_at?: Date | string
     waitlistEntry?: waitlistEntryCreateNestedOneWithoutUserInput
     session?: sessionsCreateNestedOneWithoutUserInput
-    savings_circles?: savings_circlesCreateNestedOneWithoutUsersInput
-    circle_members?: circle_membersCreateNestedOneWithoutUsersInput
-    contributions?: contributionsCreateNestedOneWithoutUsersInput
-    payment_transactions?: payment_transactionsCreateNestedOneWithoutUsersInput
-    notifications?: notificationsCreateNestedOneWithoutUsersInput
+    savings_circles?: savings_circlesCreateNestedManyWithoutUsersInput
+    circle_members?: circle_membersCreateNestedManyWithoutUsersInput
+    contributions?: contributionsCreateNestedManyWithoutUsersInput
+    payment_transactions?: payment_transactionsCreateNestedManyWithoutUsersInput
+    notifications?: notificationsCreateNestedManyWithoutUsersInput
   }
 
   export type usersUncheckedCreateWithoutCircle_invitationsInput = {
@@ -23613,11 +24288,11 @@ export namespace Prisma {
     updated_at?: Date | string
     waitlistEntry?: waitlistEntryUncheckedCreateNestedOneWithoutUserInput
     session?: sessionsUncheckedCreateNestedOneWithoutUserInput
-    savings_circles?: savings_circlesUncheckedCreateNestedOneWithoutUsersInput
-    circle_members?: circle_membersUncheckedCreateNestedOneWithoutUsersInput
-    contributions?: contributionsUncheckedCreateNestedOneWithoutUsersInput
-    payment_transactions?: payment_transactionsUncheckedCreateNestedOneWithoutUsersInput
-    notifications?: notificationsUncheckedCreateNestedOneWithoutUsersInput
+    savings_circles?: savings_circlesUncheckedCreateNestedManyWithoutUsersInput
+    circle_members?: circle_membersUncheckedCreateNestedManyWithoutUsersInput
+    contributions?: contributionsUncheckedCreateNestedManyWithoutUsersInput
+    payment_transactions?: payment_transactionsUncheckedCreateNestedManyWithoutUsersInput
+    notifications?: notificationsUncheckedCreateNestedManyWithoutUsersInput
   }
 
   export type usersCreateOrConnectWithoutCircle_invitationsInput = {
@@ -23645,14 +24320,14 @@ export namespace Prisma {
     frequency?: EnumFrequencyFieldUpdateOperationsInput | $Enums.Frequency
     member_limit?: IntFieldUpdateOperationsInput | number
     start_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    status?: EnumCircle_StatusFieldUpdateOperationsInput | $Enums.Circle_Status
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: usersUpdateOneRequiredWithoutSavings_circlesNestedInput
-    circle_members?: circle_membersUpdateOneWithoutSavings_circleNestedInput
-    savings_schedules?: savings_schedulesUpdateOneWithoutSavings_circleNestedInput
-    contributions?: contributionsUpdateOneWithoutSavings_circleNestedInput
-    payouts?: payoutsUpdateOneWithoutSavings_circleNestedInput
+    circle_members?: circle_membersUpdateManyWithoutSavings_circleNestedInput
+    savings_schedules?: savings_schedulesUpdateManyWithoutSavings_circleNestedInput
+    contributions?: contributionsUpdateManyWithoutSavings_circleNestedInput
+    payouts?: payoutsUpdateManyWithoutSavings_circleNestedInput
   }
 
   export type savings_circlesUncheckedUpdateWithoutCircle_invitationsInput = {
@@ -23665,13 +24340,13 @@ export namespace Prisma {
     frequency?: EnumFrequencyFieldUpdateOperationsInput | $Enums.Frequency
     member_limit?: IntFieldUpdateOperationsInput | number
     start_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    status?: EnumCircle_StatusFieldUpdateOperationsInput | $Enums.Circle_Status
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    circle_members?: circle_membersUncheckedUpdateOneWithoutSavings_circleNestedInput
-    savings_schedules?: savings_schedulesUncheckedUpdateOneWithoutSavings_circleNestedInput
-    contributions?: contributionsUncheckedUpdateOneWithoutSavings_circleNestedInput
-    payouts?: payoutsUncheckedUpdateOneWithoutSavings_circleNestedInput
+    circle_members?: circle_membersUncheckedUpdateManyWithoutSavings_circleNestedInput
+    savings_schedules?: savings_schedulesUncheckedUpdateManyWithoutSavings_circleNestedInput
+    contributions?: contributionsUncheckedUpdateManyWithoutSavings_circleNestedInput
+    payouts?: payoutsUncheckedUpdateManyWithoutSavings_circleNestedInput
   }
 
   export type usersUpsertWithoutCircle_invitationsInput = {
@@ -23699,11 +24374,11 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     waitlistEntry?: waitlistEntryUpdateOneWithoutUserNestedInput
     session?: sessionsUpdateOneWithoutUserNestedInput
-    savings_circles?: savings_circlesUpdateOneWithoutUsersNestedInput
-    circle_members?: circle_membersUpdateOneWithoutUsersNestedInput
-    contributions?: contributionsUpdateOneWithoutUsersNestedInput
-    payment_transactions?: payment_transactionsUpdateOneWithoutUsersNestedInput
-    notifications?: notificationsUpdateOneWithoutUsersNestedInput
+    savings_circles?: savings_circlesUpdateManyWithoutUsersNestedInput
+    circle_members?: circle_membersUpdateManyWithoutUsersNestedInput
+    contributions?: contributionsUpdateManyWithoutUsersNestedInput
+    payment_transactions?: payment_transactionsUpdateManyWithoutUsersNestedInput
+    notifications?: notificationsUpdateManyWithoutUsersNestedInput
   }
 
   export type usersUncheckedUpdateWithoutCircle_invitationsInput = {
@@ -23720,11 +24395,11 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     waitlistEntry?: waitlistEntryUncheckedUpdateOneWithoutUserNestedInput
     session?: sessionsUncheckedUpdateOneWithoutUserNestedInput
-    savings_circles?: savings_circlesUncheckedUpdateOneWithoutUsersNestedInput
-    circle_members?: circle_membersUncheckedUpdateOneWithoutUsersNestedInput
-    contributions?: contributionsUncheckedUpdateOneWithoutUsersNestedInput
-    payment_transactions?: payment_transactionsUncheckedUpdateOneWithoutUsersNestedInput
-    notifications?: notificationsUncheckedUpdateOneWithoutUsersNestedInput
+    savings_circles?: savings_circlesUncheckedUpdateManyWithoutUsersNestedInput
+    circle_members?: circle_membersUncheckedUpdateManyWithoutUsersNestedInput
+    contributions?: contributionsUncheckedUpdateManyWithoutUsersNestedInput
+    payment_transactions?: payment_transactionsUncheckedUpdateManyWithoutUsersNestedInput
+    notifications?: notificationsUncheckedUpdateManyWithoutUsersNestedInput
   }
 
   export type savings_circlesCreateWithoutSavings_schedulesInput = {
@@ -23736,14 +24411,14 @@ export namespace Prisma {
     frequency: $Enums.Frequency
     member_limit: number
     start_date: Date | string
-    status: $Enums.Status
+    status?: $Enums.Circle_Status
     created_at?: Date | string
     updated_at?: Date | string
     users: usersCreateNestedOneWithoutSavings_circlesInput
-    circle_members?: circle_membersCreateNestedOneWithoutSavings_circleInput
-    circle_invitations?: circle_invitationsCreateNestedOneWithoutSavings_circleInput
-    contributions?: contributionsCreateNestedOneWithoutSavings_circleInput
-    payouts?: payoutsCreateNestedOneWithoutSavings_circleInput
+    circle_members?: circle_membersCreateNestedManyWithoutSavings_circleInput
+    circle_invitations?: circle_invitationsCreateNestedManyWithoutSavings_circleInput
+    contributions?: contributionsCreateNestedManyWithoutSavings_circleInput
+    payouts?: payoutsCreateNestedManyWithoutSavings_circleInput
   }
 
   export type savings_circlesUncheckedCreateWithoutSavings_schedulesInput = {
@@ -23756,13 +24431,13 @@ export namespace Prisma {
     frequency: $Enums.Frequency
     member_limit: number
     start_date: Date | string
-    status: $Enums.Status
+    status?: $Enums.Circle_Status
     created_at?: Date | string
     updated_at?: Date | string
-    circle_members?: circle_membersUncheckedCreateNestedOneWithoutSavings_circleInput
-    circle_invitations?: circle_invitationsUncheckedCreateNestedOneWithoutSavings_circleInput
-    contributions?: contributionsUncheckedCreateNestedOneWithoutSavings_circleInput
-    payouts?: payoutsUncheckedCreateNestedOneWithoutSavings_circleInput
+    circle_members?: circle_membersUncheckedCreateNestedManyWithoutSavings_circleInput
+    circle_invitations?: circle_invitationsUncheckedCreateNestedManyWithoutSavings_circleInput
+    contributions?: contributionsUncheckedCreateNestedManyWithoutSavings_circleInput
+    payouts?: payoutsUncheckedCreateNestedManyWithoutSavings_circleInput
   }
 
   export type savings_circlesCreateOrConnectWithoutSavings_schedulesInput = {
@@ -23790,14 +24465,14 @@ export namespace Prisma {
     frequency?: EnumFrequencyFieldUpdateOperationsInput | $Enums.Frequency
     member_limit?: IntFieldUpdateOperationsInput | number
     start_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    status?: EnumCircle_StatusFieldUpdateOperationsInput | $Enums.Circle_Status
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: usersUpdateOneRequiredWithoutSavings_circlesNestedInput
-    circle_members?: circle_membersUpdateOneWithoutSavings_circleNestedInput
-    circle_invitations?: circle_invitationsUpdateOneWithoutSavings_circleNestedInput
-    contributions?: contributionsUpdateOneWithoutSavings_circleNestedInput
-    payouts?: payoutsUpdateOneWithoutSavings_circleNestedInput
+    circle_members?: circle_membersUpdateManyWithoutSavings_circleNestedInput
+    circle_invitations?: circle_invitationsUpdateManyWithoutSavings_circleNestedInput
+    contributions?: contributionsUpdateManyWithoutSavings_circleNestedInput
+    payouts?: payoutsUpdateManyWithoutSavings_circleNestedInput
   }
 
   export type savings_circlesUncheckedUpdateWithoutSavings_schedulesInput = {
@@ -23810,13 +24485,13 @@ export namespace Prisma {
     frequency?: EnumFrequencyFieldUpdateOperationsInput | $Enums.Frequency
     member_limit?: IntFieldUpdateOperationsInput | number
     start_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    status?: EnumCircle_StatusFieldUpdateOperationsInput | $Enums.Circle_Status
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    circle_members?: circle_membersUncheckedUpdateOneWithoutSavings_circleNestedInput
-    circle_invitations?: circle_invitationsUncheckedUpdateOneWithoutSavings_circleNestedInput
-    contributions?: contributionsUncheckedUpdateOneWithoutSavings_circleNestedInput
-    payouts?: payoutsUncheckedUpdateOneWithoutSavings_circleNestedInput
+    circle_members?: circle_membersUncheckedUpdateManyWithoutSavings_circleNestedInput
+    circle_invitations?: circle_invitationsUncheckedUpdateManyWithoutSavings_circleNestedInput
+    contributions?: contributionsUncheckedUpdateManyWithoutSavings_circleNestedInput
+    payouts?: payoutsUncheckedUpdateManyWithoutSavings_circleNestedInput
   }
 
   export type savings_circlesCreateWithoutContributionsInput = {
@@ -23828,14 +24503,14 @@ export namespace Prisma {
     frequency: $Enums.Frequency
     member_limit: number
     start_date: Date | string
-    status: $Enums.Status
+    status?: $Enums.Circle_Status
     created_at?: Date | string
     updated_at?: Date | string
     users: usersCreateNestedOneWithoutSavings_circlesInput
-    circle_members?: circle_membersCreateNestedOneWithoutSavings_circleInput
-    circle_invitations?: circle_invitationsCreateNestedOneWithoutSavings_circleInput
-    savings_schedules?: savings_schedulesCreateNestedOneWithoutSavings_circleInput
-    payouts?: payoutsCreateNestedOneWithoutSavings_circleInput
+    circle_members?: circle_membersCreateNestedManyWithoutSavings_circleInput
+    circle_invitations?: circle_invitationsCreateNestedManyWithoutSavings_circleInput
+    savings_schedules?: savings_schedulesCreateNestedManyWithoutSavings_circleInput
+    payouts?: payoutsCreateNestedManyWithoutSavings_circleInput
   }
 
   export type savings_circlesUncheckedCreateWithoutContributionsInput = {
@@ -23848,13 +24523,13 @@ export namespace Prisma {
     frequency: $Enums.Frequency
     member_limit: number
     start_date: Date | string
-    status: $Enums.Status
+    status?: $Enums.Circle_Status
     created_at?: Date | string
     updated_at?: Date | string
-    circle_members?: circle_membersUncheckedCreateNestedOneWithoutSavings_circleInput
-    circle_invitations?: circle_invitationsUncheckedCreateNestedOneWithoutSavings_circleInput
-    savings_schedules?: savings_schedulesUncheckedCreateNestedOneWithoutSavings_circleInput
-    payouts?: payoutsUncheckedCreateNestedOneWithoutSavings_circleInput
+    circle_members?: circle_membersUncheckedCreateNestedManyWithoutSavings_circleInput
+    circle_invitations?: circle_invitationsUncheckedCreateNestedManyWithoutSavings_circleInput
+    savings_schedules?: savings_schedulesUncheckedCreateNestedManyWithoutSavings_circleInput
+    payouts?: payoutsUncheckedCreateNestedManyWithoutSavings_circleInput
   }
 
   export type savings_circlesCreateOrConnectWithoutContributionsInput = {
@@ -23876,11 +24551,11 @@ export namespace Prisma {
     updated_at?: Date | string
     waitlistEntry?: waitlistEntryCreateNestedOneWithoutUserInput
     session?: sessionsCreateNestedOneWithoutUserInput
-    savings_circles?: savings_circlesCreateNestedOneWithoutUsersInput
-    circle_members?: circle_membersCreateNestedOneWithoutUsersInput
-    circle_invitations?: circle_invitationsCreateNestedOneWithoutUsersInput
-    payment_transactions?: payment_transactionsCreateNestedOneWithoutUsersInput
-    notifications?: notificationsCreateNestedOneWithoutUsersInput
+    savings_circles?: savings_circlesCreateNestedManyWithoutUsersInput
+    circle_members?: circle_membersCreateNestedManyWithoutUsersInput
+    circle_invitations?: circle_invitationsCreateNestedManyWithoutUsersInput
+    payment_transactions?: payment_transactionsCreateNestedManyWithoutUsersInput
+    notifications?: notificationsCreateNestedManyWithoutUsersInput
   }
 
   export type usersUncheckedCreateWithoutContributionsInput = {
@@ -23897,16 +24572,57 @@ export namespace Prisma {
     updated_at?: Date | string
     waitlistEntry?: waitlistEntryUncheckedCreateNestedOneWithoutUserInput
     session?: sessionsUncheckedCreateNestedOneWithoutUserInput
-    savings_circles?: savings_circlesUncheckedCreateNestedOneWithoutUsersInput
-    circle_members?: circle_membersUncheckedCreateNestedOneWithoutUsersInput
-    circle_invitations?: circle_invitationsUncheckedCreateNestedOneWithoutUsersInput
-    payment_transactions?: payment_transactionsUncheckedCreateNestedOneWithoutUsersInput
-    notifications?: notificationsUncheckedCreateNestedOneWithoutUsersInput
+    savings_circles?: savings_circlesUncheckedCreateNestedManyWithoutUsersInput
+    circle_members?: circle_membersUncheckedCreateNestedManyWithoutUsersInput
+    circle_invitations?: circle_invitationsUncheckedCreateNestedManyWithoutUsersInput
+    payment_transactions?: payment_transactionsUncheckedCreateNestedManyWithoutUsersInput
+    notifications?: notificationsUncheckedCreateNestedManyWithoutUsersInput
   }
 
   export type usersCreateOrConnectWithoutContributionsInput = {
     where: usersWhereUniqueInput
     create: XOR<usersCreateWithoutContributionsInput, usersUncheckedCreateWithoutContributionsInput>
+  }
+
+  export type payment_transactionsCreateWithoutContributionInput = {
+    id?: string
+    refernce: string
+    idempotency_key: string
+    provider: $Enums.Provider
+    provider_reference?: string | null
+    type: $Enums.Payment_type
+    amount: Decimal | DecimalJsLike | number | string
+    currency: string
+    status?: $Enums.Payment_Status
+    metadata: JsonNullValueInput | InputJsonValue
+    created_at?: Date | string
+    updated_at?: Date | string
+    users: usersCreateNestedOneWithoutPayment_transactionsInput
+    payout?: payoutsCreateNestedOneWithoutPayment_transactionInput
+    payment_status_history?: payment_status_historyCreateNestedManyWithoutPayment_transactionsInput
+  }
+
+  export type payment_transactionsUncheckedCreateWithoutContributionInput = {
+    id?: string
+    user_id: string
+    refernce: string
+    idempotency_key: string
+    provider: $Enums.Provider
+    provider_reference?: string | null
+    type: $Enums.Payment_type
+    amount: Decimal | DecimalJsLike | number | string
+    currency: string
+    status?: $Enums.Payment_Status
+    metadata: JsonNullValueInput | InputJsonValue
+    created_at?: Date | string
+    updated_at?: Date | string
+    payout?: payoutsUncheckedCreateNestedOneWithoutPayment_transactionInput
+    payment_status_history?: payment_status_historyUncheckedCreateNestedManyWithoutPayment_transactionsInput
+  }
+
+  export type payment_transactionsCreateOrConnectWithoutContributionInput = {
+    where: payment_transactionsWhereUniqueInput
+    create: XOR<payment_transactionsCreateWithoutContributionInput, payment_transactionsUncheckedCreateWithoutContributionInput>
   }
 
   export type savings_circlesUpsertWithoutContributionsInput = {
@@ -23929,14 +24645,14 @@ export namespace Prisma {
     frequency?: EnumFrequencyFieldUpdateOperationsInput | $Enums.Frequency
     member_limit?: IntFieldUpdateOperationsInput | number
     start_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    status?: EnumCircle_StatusFieldUpdateOperationsInput | $Enums.Circle_Status
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: usersUpdateOneRequiredWithoutSavings_circlesNestedInput
-    circle_members?: circle_membersUpdateOneWithoutSavings_circleNestedInput
-    circle_invitations?: circle_invitationsUpdateOneWithoutSavings_circleNestedInput
-    savings_schedules?: savings_schedulesUpdateOneWithoutSavings_circleNestedInput
-    payouts?: payoutsUpdateOneWithoutSavings_circleNestedInput
+    circle_members?: circle_membersUpdateManyWithoutSavings_circleNestedInput
+    circle_invitations?: circle_invitationsUpdateManyWithoutSavings_circleNestedInput
+    savings_schedules?: savings_schedulesUpdateManyWithoutSavings_circleNestedInput
+    payouts?: payoutsUpdateManyWithoutSavings_circleNestedInput
   }
 
   export type savings_circlesUncheckedUpdateWithoutContributionsInput = {
@@ -23949,13 +24665,13 @@ export namespace Prisma {
     frequency?: EnumFrequencyFieldUpdateOperationsInput | $Enums.Frequency
     member_limit?: IntFieldUpdateOperationsInput | number
     start_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    status?: EnumCircle_StatusFieldUpdateOperationsInput | $Enums.Circle_Status
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    circle_members?: circle_membersUncheckedUpdateOneWithoutSavings_circleNestedInput
-    circle_invitations?: circle_invitationsUncheckedUpdateOneWithoutSavings_circleNestedInput
-    savings_schedules?: savings_schedulesUncheckedUpdateOneWithoutSavings_circleNestedInput
-    payouts?: payoutsUncheckedUpdateOneWithoutSavings_circleNestedInput
+    circle_members?: circle_membersUncheckedUpdateManyWithoutSavings_circleNestedInput
+    circle_invitations?: circle_invitationsUncheckedUpdateManyWithoutSavings_circleNestedInput
+    savings_schedules?: savings_schedulesUncheckedUpdateManyWithoutSavings_circleNestedInput
+    payouts?: payoutsUncheckedUpdateManyWithoutSavings_circleNestedInput
   }
 
   export type usersUpsertWithoutContributionsInput = {
@@ -23983,11 +24699,11 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     waitlistEntry?: waitlistEntryUpdateOneWithoutUserNestedInput
     session?: sessionsUpdateOneWithoutUserNestedInput
-    savings_circles?: savings_circlesUpdateOneWithoutUsersNestedInput
-    circle_members?: circle_membersUpdateOneWithoutUsersNestedInput
-    circle_invitations?: circle_invitationsUpdateOneWithoutUsersNestedInput
-    payment_transactions?: payment_transactionsUpdateOneWithoutUsersNestedInput
-    notifications?: notificationsUpdateOneWithoutUsersNestedInput
+    savings_circles?: savings_circlesUpdateManyWithoutUsersNestedInput
+    circle_members?: circle_membersUpdateManyWithoutUsersNestedInput
+    circle_invitations?: circle_invitationsUpdateManyWithoutUsersNestedInput
+    payment_transactions?: payment_transactionsUpdateManyWithoutUsersNestedInput
+    notifications?: notificationsUpdateManyWithoutUsersNestedInput
   }
 
   export type usersUncheckedUpdateWithoutContributionsInput = {
@@ -24004,11 +24720,58 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     waitlistEntry?: waitlistEntryUncheckedUpdateOneWithoutUserNestedInput
     session?: sessionsUncheckedUpdateOneWithoutUserNestedInput
-    savings_circles?: savings_circlesUncheckedUpdateOneWithoutUsersNestedInput
-    circle_members?: circle_membersUncheckedUpdateOneWithoutUsersNestedInput
-    circle_invitations?: circle_invitationsUncheckedUpdateOneWithoutUsersNestedInput
-    payment_transactions?: payment_transactionsUncheckedUpdateOneWithoutUsersNestedInput
-    notifications?: notificationsUncheckedUpdateOneWithoutUsersNestedInput
+    savings_circles?: savings_circlesUncheckedUpdateManyWithoutUsersNestedInput
+    circle_members?: circle_membersUncheckedUpdateManyWithoutUsersNestedInput
+    circle_invitations?: circle_invitationsUncheckedUpdateManyWithoutUsersNestedInput
+    payment_transactions?: payment_transactionsUncheckedUpdateManyWithoutUsersNestedInput
+    notifications?: notificationsUncheckedUpdateManyWithoutUsersNestedInput
+  }
+
+  export type payment_transactionsUpsertWithoutContributionInput = {
+    update: XOR<payment_transactionsUpdateWithoutContributionInput, payment_transactionsUncheckedUpdateWithoutContributionInput>
+    create: XOR<payment_transactionsCreateWithoutContributionInput, payment_transactionsUncheckedCreateWithoutContributionInput>
+    where?: payment_transactionsWhereInput
+  }
+
+  export type payment_transactionsUpdateToOneWithWhereWithoutContributionInput = {
+    where?: payment_transactionsWhereInput
+    data: XOR<payment_transactionsUpdateWithoutContributionInput, payment_transactionsUncheckedUpdateWithoutContributionInput>
+  }
+
+  export type payment_transactionsUpdateWithoutContributionInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    refernce?: StringFieldUpdateOperationsInput | string
+    idempotency_key?: StringFieldUpdateOperationsInput | string
+    provider?: EnumProviderFieldUpdateOperationsInput | $Enums.Provider
+    provider_reference?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: EnumPayment_typeFieldUpdateOperationsInput | $Enums.Payment_type
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    currency?: StringFieldUpdateOperationsInput | string
+    status?: EnumPayment_StatusFieldUpdateOperationsInput | $Enums.Payment_Status
+    metadata?: JsonNullValueInput | InputJsonValue
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: usersUpdateOneRequiredWithoutPayment_transactionsNestedInput
+    payout?: payoutsUpdateOneWithoutPayment_transactionNestedInput
+    payment_status_history?: payment_status_historyUpdateManyWithoutPayment_transactionsNestedInput
+  }
+
+  export type payment_transactionsUncheckedUpdateWithoutContributionInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    user_id?: StringFieldUpdateOperationsInput | string
+    refernce?: StringFieldUpdateOperationsInput | string
+    idempotency_key?: StringFieldUpdateOperationsInput | string
+    provider?: EnumProviderFieldUpdateOperationsInput | $Enums.Provider
+    provider_reference?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: EnumPayment_typeFieldUpdateOperationsInput | $Enums.Payment_type
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    currency?: StringFieldUpdateOperationsInput | string
+    status?: EnumPayment_StatusFieldUpdateOperationsInput | $Enums.Payment_Status
+    metadata?: JsonNullValueInput | InputJsonValue
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    payout?: payoutsUncheckedUpdateOneWithoutPayment_transactionNestedInput
+    payment_status_history?: payment_status_historyUncheckedUpdateManyWithoutPayment_transactionsNestedInput
   }
 
   export type savings_circlesCreateWithoutPayoutsInput = {
@@ -24020,14 +24783,14 @@ export namespace Prisma {
     frequency: $Enums.Frequency
     member_limit: number
     start_date: Date | string
-    status: $Enums.Status
+    status?: $Enums.Circle_Status
     created_at?: Date | string
     updated_at?: Date | string
     users: usersCreateNestedOneWithoutSavings_circlesInput
-    circle_members?: circle_membersCreateNestedOneWithoutSavings_circleInput
-    circle_invitations?: circle_invitationsCreateNestedOneWithoutSavings_circleInput
-    savings_schedules?: savings_schedulesCreateNestedOneWithoutSavings_circleInput
-    contributions?: contributionsCreateNestedOneWithoutSavings_circleInput
+    circle_members?: circle_membersCreateNestedManyWithoutSavings_circleInput
+    circle_invitations?: circle_invitationsCreateNestedManyWithoutSavings_circleInput
+    savings_schedules?: savings_schedulesCreateNestedManyWithoutSavings_circleInput
+    contributions?: contributionsCreateNestedManyWithoutSavings_circleInput
   }
 
   export type savings_circlesUncheckedCreateWithoutPayoutsInput = {
@@ -24040,13 +24803,13 @@ export namespace Prisma {
     frequency: $Enums.Frequency
     member_limit: number
     start_date: Date | string
-    status: $Enums.Status
+    status?: $Enums.Circle_Status
     created_at?: Date | string
     updated_at?: Date | string
-    circle_members?: circle_membersUncheckedCreateNestedOneWithoutSavings_circleInput
-    circle_invitations?: circle_invitationsUncheckedCreateNestedOneWithoutSavings_circleInput
-    savings_schedules?: savings_schedulesUncheckedCreateNestedOneWithoutSavings_circleInput
-    contributions?: contributionsUncheckedCreateNestedOneWithoutSavings_circleInput
+    circle_members?: circle_membersUncheckedCreateNestedManyWithoutSavings_circleInput
+    circle_invitations?: circle_invitationsUncheckedCreateNestedManyWithoutSavings_circleInput
+    savings_schedules?: savings_schedulesUncheckedCreateNestedManyWithoutSavings_circleInput
+    contributions?: contributionsUncheckedCreateNestedManyWithoutSavings_circleInput
   }
 
   export type savings_circlesCreateOrConnectWithoutPayoutsInput = {
@@ -24056,11 +24819,11 @@ export namespace Prisma {
 
   export type circle_membersCreateWithoutPayoutsInput = {
     id?: string
-    role: $Enums.Role
-    status: $Enums.Circle_Status
-    joined_at: Date | string
+    role?: $Enums.Role
+    status?: $Enums.Circle_Status
+    joined_at?: Date | string
     left_at?: Date | string | null
-    created_at: Date | string
+    created_at?: Date | string
     updated_at?: Date | string
     savings_circle: savings_circlesCreateNestedOneWithoutCircle_membersInput
     users: usersCreateNestedOneWithoutCircle_membersInput
@@ -24070,17 +24833,58 @@ export namespace Prisma {
     id?: string
     circle_id: string
     user_id: string
-    role: $Enums.Role
-    status: $Enums.Circle_Status
-    joined_at: Date | string
+    role?: $Enums.Role
+    status?: $Enums.Circle_Status
+    joined_at?: Date | string
     left_at?: Date | string | null
-    created_at: Date | string
+    created_at?: Date | string
     updated_at?: Date | string
   }
 
   export type circle_membersCreateOrConnectWithoutPayoutsInput = {
     where: circle_membersWhereUniqueInput
     create: XOR<circle_membersCreateWithoutPayoutsInput, circle_membersUncheckedCreateWithoutPayoutsInput>
+  }
+
+  export type payment_transactionsCreateWithoutPayoutInput = {
+    id?: string
+    refernce: string
+    idempotency_key: string
+    provider: $Enums.Provider
+    provider_reference?: string | null
+    type: $Enums.Payment_type
+    amount: Decimal | DecimalJsLike | number | string
+    currency: string
+    status?: $Enums.Payment_Status
+    metadata: JsonNullValueInput | InputJsonValue
+    created_at?: Date | string
+    updated_at?: Date | string
+    users: usersCreateNestedOneWithoutPayment_transactionsInput
+    contribution?: contributionsCreateNestedOneWithoutPayment_transactionInput
+    payment_status_history?: payment_status_historyCreateNestedManyWithoutPayment_transactionsInput
+  }
+
+  export type payment_transactionsUncheckedCreateWithoutPayoutInput = {
+    id?: string
+    user_id: string
+    refernce: string
+    idempotency_key: string
+    provider: $Enums.Provider
+    provider_reference?: string | null
+    type: $Enums.Payment_type
+    amount: Decimal | DecimalJsLike | number | string
+    currency: string
+    status?: $Enums.Payment_Status
+    metadata: JsonNullValueInput | InputJsonValue
+    created_at?: Date | string
+    updated_at?: Date | string
+    contribution?: contributionsUncheckedCreateNestedOneWithoutPayment_transactionInput
+    payment_status_history?: payment_status_historyUncheckedCreateNestedManyWithoutPayment_transactionsInput
+  }
+
+  export type payment_transactionsCreateOrConnectWithoutPayoutInput = {
+    where: payment_transactionsWhereUniqueInput
+    create: XOR<payment_transactionsCreateWithoutPayoutInput, payment_transactionsUncheckedCreateWithoutPayoutInput>
   }
 
   export type savings_circlesUpsertWithoutPayoutsInput = {
@@ -24103,14 +24907,14 @@ export namespace Prisma {
     frequency?: EnumFrequencyFieldUpdateOperationsInput | $Enums.Frequency
     member_limit?: IntFieldUpdateOperationsInput | number
     start_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    status?: EnumCircle_StatusFieldUpdateOperationsInput | $Enums.Circle_Status
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: usersUpdateOneRequiredWithoutSavings_circlesNestedInput
-    circle_members?: circle_membersUpdateOneWithoutSavings_circleNestedInput
-    circle_invitations?: circle_invitationsUpdateOneWithoutSavings_circleNestedInput
-    savings_schedules?: savings_schedulesUpdateOneWithoutSavings_circleNestedInput
-    contributions?: contributionsUpdateOneWithoutSavings_circleNestedInput
+    circle_members?: circle_membersUpdateManyWithoutSavings_circleNestedInput
+    circle_invitations?: circle_invitationsUpdateManyWithoutSavings_circleNestedInput
+    savings_schedules?: savings_schedulesUpdateManyWithoutSavings_circleNestedInput
+    contributions?: contributionsUpdateManyWithoutSavings_circleNestedInput
   }
 
   export type savings_circlesUncheckedUpdateWithoutPayoutsInput = {
@@ -24123,13 +24927,13 @@ export namespace Prisma {
     frequency?: EnumFrequencyFieldUpdateOperationsInput | $Enums.Frequency
     member_limit?: IntFieldUpdateOperationsInput | number
     start_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    status?: EnumCircle_StatusFieldUpdateOperationsInput | $Enums.Circle_Status
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    circle_members?: circle_membersUncheckedUpdateOneWithoutSavings_circleNestedInput
-    circle_invitations?: circle_invitationsUncheckedUpdateOneWithoutSavings_circleNestedInput
-    savings_schedules?: savings_schedulesUncheckedUpdateOneWithoutSavings_circleNestedInput
-    contributions?: contributionsUncheckedUpdateOneWithoutSavings_circleNestedInput
+    circle_members?: circle_membersUncheckedUpdateManyWithoutSavings_circleNestedInput
+    circle_invitations?: circle_invitationsUncheckedUpdateManyWithoutSavings_circleNestedInput
+    savings_schedules?: savings_schedulesUncheckedUpdateManyWithoutSavings_circleNestedInput
+    contributions?: contributionsUncheckedUpdateManyWithoutSavings_circleNestedInput
   }
 
   export type circle_membersUpsertWithoutPayoutsInput = {
@@ -24167,6 +24971,53 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type payment_transactionsUpsertWithoutPayoutInput = {
+    update: XOR<payment_transactionsUpdateWithoutPayoutInput, payment_transactionsUncheckedUpdateWithoutPayoutInput>
+    create: XOR<payment_transactionsCreateWithoutPayoutInput, payment_transactionsUncheckedCreateWithoutPayoutInput>
+    where?: payment_transactionsWhereInput
+  }
+
+  export type payment_transactionsUpdateToOneWithWhereWithoutPayoutInput = {
+    where?: payment_transactionsWhereInput
+    data: XOR<payment_transactionsUpdateWithoutPayoutInput, payment_transactionsUncheckedUpdateWithoutPayoutInput>
+  }
+
+  export type payment_transactionsUpdateWithoutPayoutInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    refernce?: StringFieldUpdateOperationsInput | string
+    idempotency_key?: StringFieldUpdateOperationsInput | string
+    provider?: EnumProviderFieldUpdateOperationsInput | $Enums.Provider
+    provider_reference?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: EnumPayment_typeFieldUpdateOperationsInput | $Enums.Payment_type
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    currency?: StringFieldUpdateOperationsInput | string
+    status?: EnumPayment_StatusFieldUpdateOperationsInput | $Enums.Payment_Status
+    metadata?: JsonNullValueInput | InputJsonValue
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: usersUpdateOneRequiredWithoutPayment_transactionsNestedInput
+    contribution?: contributionsUpdateOneWithoutPayment_transactionNestedInput
+    payment_status_history?: payment_status_historyUpdateManyWithoutPayment_transactionsNestedInput
+  }
+
+  export type payment_transactionsUncheckedUpdateWithoutPayoutInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    user_id?: StringFieldUpdateOperationsInput | string
+    refernce?: StringFieldUpdateOperationsInput | string
+    idempotency_key?: StringFieldUpdateOperationsInput | string
+    provider?: EnumProviderFieldUpdateOperationsInput | $Enums.Provider
+    provider_reference?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: EnumPayment_typeFieldUpdateOperationsInput | $Enums.Payment_type
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    currency?: StringFieldUpdateOperationsInput | string
+    status?: EnumPayment_StatusFieldUpdateOperationsInput | $Enums.Payment_Status
+    metadata?: JsonNullValueInput | InputJsonValue
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    contribution?: contributionsUncheckedUpdateOneWithoutPayment_transactionNestedInput
+    payment_status_history?: payment_status_historyUncheckedUpdateManyWithoutPayment_transactionsNestedInput
+  }
+
   export type usersCreateWithoutPayment_transactionsInput = {
     id?: string
     email: string
@@ -24181,11 +25032,11 @@ export namespace Prisma {
     updated_at?: Date | string
     waitlistEntry?: waitlistEntryCreateNestedOneWithoutUserInput
     session?: sessionsCreateNestedOneWithoutUserInput
-    savings_circles?: savings_circlesCreateNestedOneWithoutUsersInput
-    circle_members?: circle_membersCreateNestedOneWithoutUsersInput
-    circle_invitations?: circle_invitationsCreateNestedOneWithoutUsersInput
-    contributions?: contributionsCreateNestedOneWithoutUsersInput
-    notifications?: notificationsCreateNestedOneWithoutUsersInput
+    savings_circles?: savings_circlesCreateNestedManyWithoutUsersInput
+    circle_members?: circle_membersCreateNestedManyWithoutUsersInput
+    circle_invitations?: circle_invitationsCreateNestedManyWithoutUsersInput
+    contributions?: contributionsCreateNestedManyWithoutUsersInput
+    notifications?: notificationsCreateNestedManyWithoutUsersInput
   }
 
   export type usersUncheckedCreateWithoutPayment_transactionsInput = {
@@ -24202,11 +25053,11 @@ export namespace Prisma {
     updated_at?: Date | string
     waitlistEntry?: waitlistEntryUncheckedCreateNestedOneWithoutUserInput
     session?: sessionsUncheckedCreateNestedOneWithoutUserInput
-    savings_circles?: savings_circlesUncheckedCreateNestedOneWithoutUsersInput
-    circle_members?: circle_membersUncheckedCreateNestedOneWithoutUsersInput
-    circle_invitations?: circle_invitationsUncheckedCreateNestedOneWithoutUsersInput
-    contributions?: contributionsUncheckedCreateNestedOneWithoutUsersInput
-    notifications?: notificationsUncheckedCreateNestedOneWithoutUsersInput
+    savings_circles?: savings_circlesUncheckedCreateNestedManyWithoutUsersInput
+    circle_members?: circle_membersUncheckedCreateNestedManyWithoutUsersInput
+    circle_invitations?: circle_invitationsUncheckedCreateNestedManyWithoutUsersInput
+    contributions?: contributionsUncheckedCreateNestedManyWithoutUsersInput
+    notifications?: notificationsUncheckedCreateNestedManyWithoutUsersInput
   }
 
   export type usersCreateOrConnectWithoutPayment_transactionsInput = {
@@ -24214,25 +25065,92 @@ export namespace Prisma {
     create: XOR<usersCreateWithoutPayment_transactionsInput, usersUncheckedCreateWithoutPayment_transactionsInput>
   }
 
+  export type contributionsCreateWithoutPayment_transactionInput = {
+    id?: string
+    cycle_number: number
+    amount: Decimal | DecimalJsLike | number | string
+    due_date: Date | string
+    paid_at?: Date | string | null
+    status?: $Enums.Contribution_status
+    created_at?: Date | string
+    updated_at?: Date | string
+    savings_circle: savings_circlesCreateNestedOneWithoutContributionsInput
+    users: usersCreateNestedOneWithoutContributionsInput
+  }
+
+  export type contributionsUncheckedCreateWithoutPayment_transactionInput = {
+    id?: string
+    circle_id: string
+    circle_member: string
+    cycle_number: number
+    amount: Decimal | DecimalJsLike | number | string
+    due_date: Date | string
+    paid_at?: Date | string | null
+    status?: $Enums.Contribution_status
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type contributionsCreateOrConnectWithoutPayment_transactionInput = {
+    where: contributionsWhereUniqueInput
+    create: XOR<contributionsCreateWithoutPayment_transactionInput, contributionsUncheckedCreateWithoutPayment_transactionInput>
+  }
+
+  export type payoutsCreateWithoutPayment_transactionInput = {
+    id?: string
+    cycle_number: number
+    amount: Decimal | DecimalJsLike | number | string
+    scheduled_date: Date | string
+    paid_at?: Date | string | null
+    status?: $Enums.Payout_Status
+    created_at?: Date | string
+    updated_at?: Date | string
+    savings_circle: savings_circlesCreateNestedOneWithoutPayoutsInput
+    circle_member: circle_membersCreateNestedOneWithoutPayoutsInput
+  }
+
+  export type payoutsUncheckedCreateWithoutPayment_transactionInput = {
+    id?: string
+    circle_id: string
+    member_id: string
+    cycle_number: number
+    amount: Decimal | DecimalJsLike | number | string
+    scheduled_date: Date | string
+    paid_at?: Date | string | null
+    status?: $Enums.Payout_Status
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type payoutsCreateOrConnectWithoutPayment_transactionInput = {
+    where: payoutsWhereUniqueInput
+    create: XOR<payoutsCreateWithoutPayment_transactionInput, payoutsUncheckedCreateWithoutPayment_transactionInput>
+  }
+
   export type payment_status_historyCreateWithoutPayment_transactionsInput = {
     id?: string
-    status: $Enums.Payout
+    status: $Enums.Payment_Status
     message: string
     metadata: JsonNullValueInput | InputJsonValue
-    created_at: Date | string
+    created_at?: Date | string
   }
 
   export type payment_status_historyUncheckedCreateWithoutPayment_transactionsInput = {
     id?: string
-    status: $Enums.Payout
+    status: $Enums.Payment_Status
     message: string
     metadata: JsonNullValueInput | InputJsonValue
-    created_at: Date | string
+    created_at?: Date | string
   }
 
   export type payment_status_historyCreateOrConnectWithoutPayment_transactionsInput = {
     where: payment_status_historyWhereUniqueInput
     create: XOR<payment_status_historyCreateWithoutPayment_transactionsInput, payment_status_historyUncheckedCreateWithoutPayment_transactionsInput>
+  }
+
+  export type payment_status_historyCreateManyPayment_transactionsInputEnvelope = {
+    data: payment_status_historyCreateManyPayment_transactionsInput | payment_status_historyCreateManyPayment_transactionsInput[]
+    skipDuplicates?: boolean
   }
 
   export type usersUpsertWithoutPayment_transactionsInput = {
@@ -24260,11 +25178,11 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     waitlistEntry?: waitlistEntryUpdateOneWithoutUserNestedInput
     session?: sessionsUpdateOneWithoutUserNestedInput
-    savings_circles?: savings_circlesUpdateOneWithoutUsersNestedInput
-    circle_members?: circle_membersUpdateOneWithoutUsersNestedInput
-    circle_invitations?: circle_invitationsUpdateOneWithoutUsersNestedInput
-    contributions?: contributionsUpdateOneWithoutUsersNestedInput
-    notifications?: notificationsUpdateOneWithoutUsersNestedInput
+    savings_circles?: savings_circlesUpdateManyWithoutUsersNestedInput
+    circle_members?: circle_membersUpdateManyWithoutUsersNestedInput
+    circle_invitations?: circle_invitationsUpdateManyWithoutUsersNestedInput
+    contributions?: contributionsUpdateManyWithoutUsersNestedInput
+    notifications?: notificationsUpdateManyWithoutUsersNestedInput
   }
 
   export type usersUncheckedUpdateWithoutPayment_transactionsInput = {
@@ -24281,38 +25199,113 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     waitlistEntry?: waitlistEntryUncheckedUpdateOneWithoutUserNestedInput
     session?: sessionsUncheckedUpdateOneWithoutUserNestedInput
-    savings_circles?: savings_circlesUncheckedUpdateOneWithoutUsersNestedInput
-    circle_members?: circle_membersUncheckedUpdateOneWithoutUsersNestedInput
-    circle_invitations?: circle_invitationsUncheckedUpdateOneWithoutUsersNestedInput
-    contributions?: contributionsUncheckedUpdateOneWithoutUsersNestedInput
-    notifications?: notificationsUncheckedUpdateOneWithoutUsersNestedInput
+    savings_circles?: savings_circlesUncheckedUpdateManyWithoutUsersNestedInput
+    circle_members?: circle_membersUncheckedUpdateManyWithoutUsersNestedInput
+    circle_invitations?: circle_invitationsUncheckedUpdateManyWithoutUsersNestedInput
+    contributions?: contributionsUncheckedUpdateManyWithoutUsersNestedInput
+    notifications?: notificationsUncheckedUpdateManyWithoutUsersNestedInput
   }
 
-  export type payment_status_historyUpsertWithoutPayment_transactionsInput = {
+  export type contributionsUpsertWithoutPayment_transactionInput = {
+    update: XOR<contributionsUpdateWithoutPayment_transactionInput, contributionsUncheckedUpdateWithoutPayment_transactionInput>
+    create: XOR<contributionsCreateWithoutPayment_transactionInput, contributionsUncheckedCreateWithoutPayment_transactionInput>
+    where?: contributionsWhereInput
+  }
+
+  export type contributionsUpdateToOneWithWhereWithoutPayment_transactionInput = {
+    where?: contributionsWhereInput
+    data: XOR<contributionsUpdateWithoutPayment_transactionInput, contributionsUncheckedUpdateWithoutPayment_transactionInput>
+  }
+
+  export type contributionsUpdateWithoutPayment_transactionInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    cycle_number?: IntFieldUpdateOperationsInput | number
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    due_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    paid_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumContribution_statusFieldUpdateOperationsInput | $Enums.Contribution_status
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    savings_circle?: savings_circlesUpdateOneRequiredWithoutContributionsNestedInput
+    users?: usersUpdateOneRequiredWithoutContributionsNestedInput
+  }
+
+  export type contributionsUncheckedUpdateWithoutPayment_transactionInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    circle_id?: StringFieldUpdateOperationsInput | string
+    circle_member?: StringFieldUpdateOperationsInput | string
+    cycle_number?: IntFieldUpdateOperationsInput | number
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    due_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    paid_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumContribution_statusFieldUpdateOperationsInput | $Enums.Contribution_status
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type payoutsUpsertWithoutPayment_transactionInput = {
+    update: XOR<payoutsUpdateWithoutPayment_transactionInput, payoutsUncheckedUpdateWithoutPayment_transactionInput>
+    create: XOR<payoutsCreateWithoutPayment_transactionInput, payoutsUncheckedCreateWithoutPayment_transactionInput>
+    where?: payoutsWhereInput
+  }
+
+  export type payoutsUpdateToOneWithWhereWithoutPayment_transactionInput = {
+    where?: payoutsWhereInput
+    data: XOR<payoutsUpdateWithoutPayment_transactionInput, payoutsUncheckedUpdateWithoutPayment_transactionInput>
+  }
+
+  export type payoutsUpdateWithoutPayment_transactionInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    cycle_number?: IntFieldUpdateOperationsInput | number
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    scheduled_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    paid_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumPayout_StatusFieldUpdateOperationsInput | $Enums.Payout_Status
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    savings_circle?: savings_circlesUpdateOneRequiredWithoutPayoutsNestedInput
+    circle_member?: circle_membersUpdateOneRequiredWithoutPayoutsNestedInput
+  }
+
+  export type payoutsUncheckedUpdateWithoutPayment_transactionInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    circle_id?: StringFieldUpdateOperationsInput | string
+    member_id?: StringFieldUpdateOperationsInput | string
+    cycle_number?: IntFieldUpdateOperationsInput | number
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    scheduled_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    paid_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumPayout_StatusFieldUpdateOperationsInput | $Enums.Payout_Status
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type payment_status_historyUpsertWithWhereUniqueWithoutPayment_transactionsInput = {
+    where: payment_status_historyWhereUniqueInput
     update: XOR<payment_status_historyUpdateWithoutPayment_transactionsInput, payment_status_historyUncheckedUpdateWithoutPayment_transactionsInput>
     create: XOR<payment_status_historyCreateWithoutPayment_transactionsInput, payment_status_historyUncheckedCreateWithoutPayment_transactionsInput>
-    where?: payment_status_historyWhereInput
   }
 
-  export type payment_status_historyUpdateToOneWithWhereWithoutPayment_transactionsInput = {
-    where?: payment_status_historyWhereInput
+  export type payment_status_historyUpdateWithWhereUniqueWithoutPayment_transactionsInput = {
+    where: payment_status_historyWhereUniqueInput
     data: XOR<payment_status_historyUpdateWithoutPayment_transactionsInput, payment_status_historyUncheckedUpdateWithoutPayment_transactionsInput>
   }
 
-  export type payment_status_historyUpdateWithoutPayment_transactionsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    status?: EnumPayoutFieldUpdateOperationsInput | $Enums.Payout
-    message?: StringFieldUpdateOperationsInput | string
-    metadata?: JsonNullValueInput | InputJsonValue
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  export type payment_status_historyUpdateManyWithWhereWithoutPayment_transactionsInput = {
+    where: payment_status_historyScalarWhereInput
+    data: XOR<payment_status_historyUpdateManyMutationInput, payment_status_historyUncheckedUpdateManyWithoutPayment_transactionsInput>
   }
 
-  export type payment_status_historyUncheckedUpdateWithoutPayment_transactionsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    status?: EnumPayoutFieldUpdateOperationsInput | $Enums.Payout
-    message?: StringFieldUpdateOperationsInput | string
-    metadata?: JsonNullValueInput | InputJsonValue
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  export type payment_status_historyScalarWhereInput = {
+    AND?: payment_status_historyScalarWhereInput | payment_status_historyScalarWhereInput[]
+    OR?: payment_status_historyScalarWhereInput[]
+    NOT?: payment_status_historyScalarWhereInput | payment_status_historyScalarWhereInput[]
+    id?: StringFilter<"payment_status_history"> | string
+    transaction_id?: StringFilter<"payment_status_history"> | string
+    status?: EnumPayment_StatusFilter<"payment_status_history"> | $Enums.Payment_Status
+    message?: StringFilter<"payment_status_history"> | string
+    metadata?: JsonFilter<"payment_status_history">
+    created_at?: DateTimeFilter<"payment_status_history"> | Date | string
   }
 
   export type payment_transactionsCreateWithoutPayment_status_historyInput = {
@@ -24324,11 +25317,13 @@ export namespace Prisma {
     type: $Enums.Payment_type
     amount: Decimal | DecimalJsLike | number | string
     currency: string
-    status: $Enums.Payout
+    status?: $Enums.Payment_Status
     metadata: JsonNullValueInput | InputJsonValue
-    created_at: Date | string
+    created_at?: Date | string
     updated_at?: Date | string
     users: usersCreateNestedOneWithoutPayment_transactionsInput
+    contribution?: contributionsCreateNestedOneWithoutPayment_transactionInput
+    payout?: payoutsCreateNestedOneWithoutPayment_transactionInput
   }
 
   export type payment_transactionsUncheckedCreateWithoutPayment_status_historyInput = {
@@ -24341,10 +25336,12 @@ export namespace Prisma {
     type: $Enums.Payment_type
     amount: Decimal | DecimalJsLike | number | string
     currency: string
-    status: $Enums.Payout
+    status?: $Enums.Payment_Status
     metadata: JsonNullValueInput | InputJsonValue
-    created_at: Date | string
+    created_at?: Date | string
     updated_at?: Date | string
+    contribution?: contributionsUncheckedCreateNestedOneWithoutPayment_transactionInput
+    payout?: payoutsUncheckedCreateNestedOneWithoutPayment_transactionInput
   }
 
   export type payment_transactionsCreateOrConnectWithoutPayment_status_historyInput = {
@@ -24372,11 +25369,13 @@ export namespace Prisma {
     type?: EnumPayment_typeFieldUpdateOperationsInput | $Enums.Payment_type
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     currency?: StringFieldUpdateOperationsInput | string
-    status?: EnumPayoutFieldUpdateOperationsInput | $Enums.Payout
+    status?: EnumPayment_StatusFieldUpdateOperationsInput | $Enums.Payment_Status
     metadata?: JsonNullValueInput | InputJsonValue
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: usersUpdateOneRequiredWithoutPayment_transactionsNestedInput
+    contribution?: contributionsUpdateOneWithoutPayment_transactionNestedInput
+    payout?: payoutsUpdateOneWithoutPayment_transactionNestedInput
   }
 
   export type payment_transactionsUncheckedUpdateWithoutPayment_status_historyInput = {
@@ -24389,10 +25388,12 @@ export namespace Prisma {
     type?: EnumPayment_typeFieldUpdateOperationsInput | $Enums.Payment_type
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     currency?: StringFieldUpdateOperationsInput | string
-    status?: EnumPayoutFieldUpdateOperationsInput | $Enums.Payout
+    status?: EnumPayment_StatusFieldUpdateOperationsInput | $Enums.Payment_Status
     metadata?: JsonNullValueInput | InputJsonValue
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    contribution?: contributionsUncheckedUpdateOneWithoutPayment_transactionNestedInput
+    payout?: payoutsUncheckedUpdateOneWithoutPayment_transactionNestedInput
   }
 
   export type usersCreateWithoutNotificationsInput = {
@@ -24409,11 +25410,11 @@ export namespace Prisma {
     updated_at?: Date | string
     waitlistEntry?: waitlistEntryCreateNestedOneWithoutUserInput
     session?: sessionsCreateNestedOneWithoutUserInput
-    savings_circles?: savings_circlesCreateNestedOneWithoutUsersInput
-    circle_members?: circle_membersCreateNestedOneWithoutUsersInput
-    circle_invitations?: circle_invitationsCreateNestedOneWithoutUsersInput
-    contributions?: contributionsCreateNestedOneWithoutUsersInput
-    payment_transactions?: payment_transactionsCreateNestedOneWithoutUsersInput
+    savings_circles?: savings_circlesCreateNestedManyWithoutUsersInput
+    circle_members?: circle_membersCreateNestedManyWithoutUsersInput
+    circle_invitations?: circle_invitationsCreateNestedManyWithoutUsersInput
+    contributions?: contributionsCreateNestedManyWithoutUsersInput
+    payment_transactions?: payment_transactionsCreateNestedManyWithoutUsersInput
   }
 
   export type usersUncheckedCreateWithoutNotificationsInput = {
@@ -24430,11 +25431,11 @@ export namespace Prisma {
     updated_at?: Date | string
     waitlistEntry?: waitlistEntryUncheckedCreateNestedOneWithoutUserInput
     session?: sessionsUncheckedCreateNestedOneWithoutUserInput
-    savings_circles?: savings_circlesUncheckedCreateNestedOneWithoutUsersInput
-    circle_members?: circle_membersUncheckedCreateNestedOneWithoutUsersInput
-    circle_invitations?: circle_invitationsUncheckedCreateNestedOneWithoutUsersInput
-    contributions?: contributionsUncheckedCreateNestedOneWithoutUsersInput
-    payment_transactions?: payment_transactionsUncheckedCreateNestedOneWithoutUsersInput
+    savings_circles?: savings_circlesUncheckedCreateNestedManyWithoutUsersInput
+    circle_members?: circle_membersUncheckedCreateNestedManyWithoutUsersInput
+    circle_invitations?: circle_invitationsUncheckedCreateNestedManyWithoutUsersInput
+    contributions?: contributionsUncheckedCreateNestedManyWithoutUsersInput
+    payment_transactions?: payment_transactionsUncheckedCreateNestedManyWithoutUsersInput
   }
 
   export type usersCreateOrConnectWithoutNotificationsInput = {
@@ -24467,11 +25468,11 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     waitlistEntry?: waitlistEntryUpdateOneWithoutUserNestedInput
     session?: sessionsUpdateOneWithoutUserNestedInput
-    savings_circles?: savings_circlesUpdateOneWithoutUsersNestedInput
-    circle_members?: circle_membersUpdateOneWithoutUsersNestedInput
-    circle_invitations?: circle_invitationsUpdateOneWithoutUsersNestedInput
-    contributions?: contributionsUpdateOneWithoutUsersNestedInput
-    payment_transactions?: payment_transactionsUpdateOneWithoutUsersNestedInput
+    savings_circles?: savings_circlesUpdateManyWithoutUsersNestedInput
+    circle_members?: circle_membersUpdateManyWithoutUsersNestedInput
+    circle_invitations?: circle_invitationsUpdateManyWithoutUsersNestedInput
+    contributions?: contributionsUpdateManyWithoutUsersNestedInput
+    payment_transactions?: payment_transactionsUpdateManyWithoutUsersNestedInput
   }
 
   export type usersUncheckedUpdateWithoutNotificationsInput = {
@@ -24488,11 +25489,651 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     waitlistEntry?: waitlistEntryUncheckedUpdateOneWithoutUserNestedInput
     session?: sessionsUncheckedUpdateOneWithoutUserNestedInput
-    savings_circles?: savings_circlesUncheckedUpdateOneWithoutUsersNestedInput
-    circle_members?: circle_membersUncheckedUpdateOneWithoutUsersNestedInput
-    circle_invitations?: circle_invitationsUncheckedUpdateOneWithoutUsersNestedInput
-    contributions?: contributionsUncheckedUpdateOneWithoutUsersNestedInput
-    payment_transactions?: payment_transactionsUncheckedUpdateOneWithoutUsersNestedInput
+    savings_circles?: savings_circlesUncheckedUpdateManyWithoutUsersNestedInput
+    circle_members?: circle_membersUncheckedUpdateManyWithoutUsersNestedInput
+    circle_invitations?: circle_invitationsUncheckedUpdateManyWithoutUsersNestedInput
+    contributions?: contributionsUncheckedUpdateManyWithoutUsersNestedInput
+    payment_transactions?: payment_transactionsUncheckedUpdateManyWithoutUsersNestedInput
+  }
+
+  export type savings_circlesCreateManyUsersInput = {
+    id?: string
+    name: string
+    decription: string
+    contribution_amount: Decimal | DecimalJsLike | number | string
+    currency: string
+    frequency: $Enums.Frequency
+    member_limit: number
+    start_date: Date | string
+    status?: $Enums.Circle_Status
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type circle_membersCreateManyUsersInput = {
+    id?: string
+    circle_id: string
+    role?: $Enums.Role
+    status?: $Enums.Circle_Status
+    joined_at?: Date | string
+    left_at?: Date | string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type circle_invitationsCreateManyUsersInput = {
+    id?: string
+    circle_id: string
+    email: string
+    token_hash: string
+    status?: $Enums.Status
+    expires_at: Date | string
+    accepted_at?: Date | string | null
+    created_at?: Date | string
+  }
+
+  export type contributionsCreateManyUsersInput = {
+    id?: string
+    circle_id: string
+    cycle_number: number
+    amount: Decimal | DecimalJsLike | number | string
+    due_date: Date | string
+    paid_at?: Date | string | null
+    status?: $Enums.Contribution_status
+    transaction_id?: string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type payment_transactionsCreateManyUsersInput = {
+    id?: string
+    refernce: string
+    idempotency_key: string
+    provider: $Enums.Provider
+    provider_reference?: string | null
+    type: $Enums.Payment_type
+    amount: Decimal | DecimalJsLike | number | string
+    currency: string
+    status?: $Enums.Payment_Status
+    metadata: JsonNullValueInput | InputJsonValue
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type notificationsCreateManyUsersInput = {
+    id?: string
+    type: $Enums.Notifications
+    title: string
+    message: string
+    data: JsonNullValueInput | InputJsonValue
+    read_at?: Date | string | null
+    created_at?: Date | string
+  }
+
+  export type savings_circlesUpdateWithoutUsersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    decription?: StringFieldUpdateOperationsInput | string
+    contribution_amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    currency?: StringFieldUpdateOperationsInput | string
+    frequency?: EnumFrequencyFieldUpdateOperationsInput | $Enums.Frequency
+    member_limit?: IntFieldUpdateOperationsInput | number
+    start_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: EnumCircle_StatusFieldUpdateOperationsInput | $Enums.Circle_Status
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    circle_members?: circle_membersUpdateManyWithoutSavings_circleNestedInput
+    circle_invitations?: circle_invitationsUpdateManyWithoutSavings_circleNestedInput
+    savings_schedules?: savings_schedulesUpdateManyWithoutSavings_circleNestedInput
+    contributions?: contributionsUpdateManyWithoutSavings_circleNestedInput
+    payouts?: payoutsUpdateManyWithoutSavings_circleNestedInput
+  }
+
+  export type savings_circlesUncheckedUpdateWithoutUsersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    decription?: StringFieldUpdateOperationsInput | string
+    contribution_amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    currency?: StringFieldUpdateOperationsInput | string
+    frequency?: EnumFrequencyFieldUpdateOperationsInput | $Enums.Frequency
+    member_limit?: IntFieldUpdateOperationsInput | number
+    start_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: EnumCircle_StatusFieldUpdateOperationsInput | $Enums.Circle_Status
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    circle_members?: circle_membersUncheckedUpdateManyWithoutSavings_circleNestedInput
+    circle_invitations?: circle_invitationsUncheckedUpdateManyWithoutSavings_circleNestedInput
+    savings_schedules?: savings_schedulesUncheckedUpdateManyWithoutSavings_circleNestedInput
+    contributions?: contributionsUncheckedUpdateManyWithoutSavings_circleNestedInput
+    payouts?: payoutsUncheckedUpdateManyWithoutSavings_circleNestedInput
+  }
+
+  export type savings_circlesUncheckedUpdateManyWithoutUsersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    decription?: StringFieldUpdateOperationsInput | string
+    contribution_amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    currency?: StringFieldUpdateOperationsInput | string
+    frequency?: EnumFrequencyFieldUpdateOperationsInput | $Enums.Frequency
+    member_limit?: IntFieldUpdateOperationsInput | number
+    start_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: EnumCircle_StatusFieldUpdateOperationsInput | $Enums.Circle_Status
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type circle_membersUpdateWithoutUsersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    status?: EnumCircle_StatusFieldUpdateOperationsInput | $Enums.Circle_Status
+    joined_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    left_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    savings_circle?: savings_circlesUpdateOneRequiredWithoutCircle_membersNestedInput
+    payouts?: payoutsUpdateManyWithoutCircle_memberNestedInput
+  }
+
+  export type circle_membersUncheckedUpdateWithoutUsersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    circle_id?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    status?: EnumCircle_StatusFieldUpdateOperationsInput | $Enums.Circle_Status
+    joined_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    left_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    payouts?: payoutsUncheckedUpdateManyWithoutCircle_memberNestedInput
+  }
+
+  export type circle_membersUncheckedUpdateManyWithoutUsersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    circle_id?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    status?: EnumCircle_StatusFieldUpdateOperationsInput | $Enums.Circle_Status
+    joined_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    left_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type circle_invitationsUpdateWithoutUsersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    token_hash?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    expires_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    accepted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    savings_circle?: savings_circlesUpdateOneRequiredWithoutCircle_invitationsNestedInput
+  }
+
+  export type circle_invitationsUncheckedUpdateWithoutUsersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    circle_id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    token_hash?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    expires_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    accepted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type circle_invitationsUncheckedUpdateManyWithoutUsersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    circle_id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    token_hash?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    expires_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    accepted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type contributionsUpdateWithoutUsersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    cycle_number?: IntFieldUpdateOperationsInput | number
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    due_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    paid_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumContribution_statusFieldUpdateOperationsInput | $Enums.Contribution_status
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    savings_circle?: savings_circlesUpdateOneRequiredWithoutContributionsNestedInput
+    payment_transaction?: payment_transactionsUpdateOneWithoutContributionNestedInput
+  }
+
+  export type contributionsUncheckedUpdateWithoutUsersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    circle_id?: StringFieldUpdateOperationsInput | string
+    cycle_number?: IntFieldUpdateOperationsInput | number
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    due_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    paid_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumContribution_statusFieldUpdateOperationsInput | $Enums.Contribution_status
+    transaction_id?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type contributionsUncheckedUpdateManyWithoutUsersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    circle_id?: StringFieldUpdateOperationsInput | string
+    cycle_number?: IntFieldUpdateOperationsInput | number
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    due_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    paid_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumContribution_statusFieldUpdateOperationsInput | $Enums.Contribution_status
+    transaction_id?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type payment_transactionsUpdateWithoutUsersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    refernce?: StringFieldUpdateOperationsInput | string
+    idempotency_key?: StringFieldUpdateOperationsInput | string
+    provider?: EnumProviderFieldUpdateOperationsInput | $Enums.Provider
+    provider_reference?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: EnumPayment_typeFieldUpdateOperationsInput | $Enums.Payment_type
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    currency?: StringFieldUpdateOperationsInput | string
+    status?: EnumPayment_StatusFieldUpdateOperationsInput | $Enums.Payment_Status
+    metadata?: JsonNullValueInput | InputJsonValue
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    contribution?: contributionsUpdateOneWithoutPayment_transactionNestedInput
+    payout?: payoutsUpdateOneWithoutPayment_transactionNestedInput
+    payment_status_history?: payment_status_historyUpdateManyWithoutPayment_transactionsNestedInput
+  }
+
+  export type payment_transactionsUncheckedUpdateWithoutUsersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    refernce?: StringFieldUpdateOperationsInput | string
+    idempotency_key?: StringFieldUpdateOperationsInput | string
+    provider?: EnumProviderFieldUpdateOperationsInput | $Enums.Provider
+    provider_reference?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: EnumPayment_typeFieldUpdateOperationsInput | $Enums.Payment_type
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    currency?: StringFieldUpdateOperationsInput | string
+    status?: EnumPayment_StatusFieldUpdateOperationsInput | $Enums.Payment_Status
+    metadata?: JsonNullValueInput | InputJsonValue
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    contribution?: contributionsUncheckedUpdateOneWithoutPayment_transactionNestedInput
+    payout?: payoutsUncheckedUpdateOneWithoutPayment_transactionNestedInput
+    payment_status_history?: payment_status_historyUncheckedUpdateManyWithoutPayment_transactionsNestedInput
+  }
+
+  export type payment_transactionsUncheckedUpdateManyWithoutUsersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    refernce?: StringFieldUpdateOperationsInput | string
+    idempotency_key?: StringFieldUpdateOperationsInput | string
+    provider?: EnumProviderFieldUpdateOperationsInput | $Enums.Provider
+    provider_reference?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: EnumPayment_typeFieldUpdateOperationsInput | $Enums.Payment_type
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    currency?: StringFieldUpdateOperationsInput | string
+    status?: EnumPayment_StatusFieldUpdateOperationsInput | $Enums.Payment_Status
+    metadata?: JsonNullValueInput | InputJsonValue
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type notificationsUpdateWithoutUsersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumNotificationsFieldUpdateOperationsInput | $Enums.Notifications
+    title?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    data?: JsonNullValueInput | InputJsonValue
+    read_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type notificationsUncheckedUpdateWithoutUsersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumNotificationsFieldUpdateOperationsInput | $Enums.Notifications
+    title?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    data?: JsonNullValueInput | InputJsonValue
+    read_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type notificationsUncheckedUpdateManyWithoutUsersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumNotificationsFieldUpdateOperationsInput | $Enums.Notifications
+    title?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    data?: JsonNullValueInput | InputJsonValue
+    read_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type circle_membersCreateManySavings_circleInput = {
+    id?: string
+    user_id: string
+    role?: $Enums.Role
+    status?: $Enums.Circle_Status
+    joined_at?: Date | string
+    left_at?: Date | string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type circle_invitationsCreateManySavings_circleInput = {
+    id?: string
+    invited_by: string
+    email: string
+    token_hash: string
+    status?: $Enums.Status
+    expires_at: Date | string
+    accepted_at?: Date | string | null
+    created_at?: Date | string
+  }
+
+  export type savings_schedulesCreateManySavings_circleInput = {
+    id?: string
+    frequency: $Enums.Frequency
+    contribution_amount: Decimal | DecimalJsLike | number | string
+    start_date: Date | string
+    end_date?: Date | string | null
+    total_cycles: number
+    current_cycle?: number
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type contributionsCreateManySavings_circleInput = {
+    id?: string
+    circle_member: string
+    cycle_number: number
+    amount: Decimal | DecimalJsLike | number | string
+    due_date: Date | string
+    paid_at?: Date | string | null
+    status?: $Enums.Contribution_status
+    transaction_id?: string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type payoutsCreateManySavings_circleInput = {
+    id?: string
+    member_id: string
+    cycle_number: number
+    amount: Decimal | DecimalJsLike | number | string
+    scheduled_date: Date | string
+    paid_at?: Date | string | null
+    status?: $Enums.Payout_Status
+    transaction_id?: string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type circle_membersUpdateWithoutSavings_circleInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    status?: EnumCircle_StatusFieldUpdateOperationsInput | $Enums.Circle_Status
+    joined_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    left_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: usersUpdateOneRequiredWithoutCircle_membersNestedInput
+    payouts?: payoutsUpdateManyWithoutCircle_memberNestedInput
+  }
+
+  export type circle_membersUncheckedUpdateWithoutSavings_circleInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    user_id?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    status?: EnumCircle_StatusFieldUpdateOperationsInput | $Enums.Circle_Status
+    joined_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    left_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    payouts?: payoutsUncheckedUpdateManyWithoutCircle_memberNestedInput
+  }
+
+  export type circle_membersUncheckedUpdateManyWithoutSavings_circleInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    user_id?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    status?: EnumCircle_StatusFieldUpdateOperationsInput | $Enums.Circle_Status
+    joined_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    left_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type circle_invitationsUpdateWithoutSavings_circleInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    token_hash?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    expires_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    accepted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: usersUpdateOneRequiredWithoutCircle_invitationsNestedInput
+  }
+
+  export type circle_invitationsUncheckedUpdateWithoutSavings_circleInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    invited_by?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    token_hash?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    expires_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    accepted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type circle_invitationsUncheckedUpdateManyWithoutSavings_circleInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    invited_by?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    token_hash?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    expires_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    accepted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type savings_schedulesUpdateWithoutSavings_circleInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    frequency?: EnumFrequencyFieldUpdateOperationsInput | $Enums.Frequency
+    contribution_amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    start_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    end_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    total_cycles?: IntFieldUpdateOperationsInput | number
+    current_cycle?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type savings_schedulesUncheckedUpdateWithoutSavings_circleInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    frequency?: EnumFrequencyFieldUpdateOperationsInput | $Enums.Frequency
+    contribution_amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    start_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    end_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    total_cycles?: IntFieldUpdateOperationsInput | number
+    current_cycle?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type savings_schedulesUncheckedUpdateManyWithoutSavings_circleInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    frequency?: EnumFrequencyFieldUpdateOperationsInput | $Enums.Frequency
+    contribution_amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    start_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    end_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    total_cycles?: IntFieldUpdateOperationsInput | number
+    current_cycle?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type contributionsUpdateWithoutSavings_circleInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    cycle_number?: IntFieldUpdateOperationsInput | number
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    due_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    paid_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumContribution_statusFieldUpdateOperationsInput | $Enums.Contribution_status
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: usersUpdateOneRequiredWithoutContributionsNestedInput
+    payment_transaction?: payment_transactionsUpdateOneWithoutContributionNestedInput
+  }
+
+  export type contributionsUncheckedUpdateWithoutSavings_circleInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    circle_member?: StringFieldUpdateOperationsInput | string
+    cycle_number?: IntFieldUpdateOperationsInput | number
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    due_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    paid_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumContribution_statusFieldUpdateOperationsInput | $Enums.Contribution_status
+    transaction_id?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type contributionsUncheckedUpdateManyWithoutSavings_circleInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    circle_member?: StringFieldUpdateOperationsInput | string
+    cycle_number?: IntFieldUpdateOperationsInput | number
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    due_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    paid_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumContribution_statusFieldUpdateOperationsInput | $Enums.Contribution_status
+    transaction_id?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type payoutsUpdateWithoutSavings_circleInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    cycle_number?: IntFieldUpdateOperationsInput | number
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    scheduled_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    paid_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumPayout_StatusFieldUpdateOperationsInput | $Enums.Payout_Status
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    circle_member?: circle_membersUpdateOneRequiredWithoutPayoutsNestedInput
+    payment_transaction?: payment_transactionsUpdateOneWithoutPayoutNestedInput
+  }
+
+  export type payoutsUncheckedUpdateWithoutSavings_circleInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    member_id?: StringFieldUpdateOperationsInput | string
+    cycle_number?: IntFieldUpdateOperationsInput | number
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    scheduled_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    paid_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumPayout_StatusFieldUpdateOperationsInput | $Enums.Payout_Status
+    transaction_id?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type payoutsUncheckedUpdateManyWithoutSavings_circleInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    member_id?: StringFieldUpdateOperationsInput | string
+    cycle_number?: IntFieldUpdateOperationsInput | number
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    scheduled_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    paid_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumPayout_StatusFieldUpdateOperationsInput | $Enums.Payout_Status
+    transaction_id?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type payoutsCreateManyCircle_memberInput = {
+    id?: string
+    circle_id: string
+    cycle_number: number
+    amount: Decimal | DecimalJsLike | number | string
+    scheduled_date: Date | string
+    paid_at?: Date | string | null
+    status?: $Enums.Payout_Status
+    transaction_id?: string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type payoutsUpdateWithoutCircle_memberInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    cycle_number?: IntFieldUpdateOperationsInput | number
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    scheduled_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    paid_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumPayout_StatusFieldUpdateOperationsInput | $Enums.Payout_Status
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    savings_circle?: savings_circlesUpdateOneRequiredWithoutPayoutsNestedInput
+    payment_transaction?: payment_transactionsUpdateOneWithoutPayoutNestedInput
+  }
+
+  export type payoutsUncheckedUpdateWithoutCircle_memberInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    circle_id?: StringFieldUpdateOperationsInput | string
+    cycle_number?: IntFieldUpdateOperationsInput | number
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    scheduled_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    paid_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumPayout_StatusFieldUpdateOperationsInput | $Enums.Payout_Status
+    transaction_id?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type payoutsUncheckedUpdateManyWithoutCircle_memberInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    circle_id?: StringFieldUpdateOperationsInput | string
+    cycle_number?: IntFieldUpdateOperationsInput | number
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    scheduled_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    paid_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumPayout_StatusFieldUpdateOperationsInput | $Enums.Payout_Status
+    transaction_id?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type payment_status_historyCreateManyPayment_transactionsInput = {
+    id?: string
+    status: $Enums.Payment_Status
+    message: string
+    metadata: JsonNullValueInput | InputJsonValue
+    created_at?: Date | string
+  }
+
+  export type payment_status_historyUpdateWithoutPayment_transactionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    status?: EnumPayment_StatusFieldUpdateOperationsInput | $Enums.Payment_Status
+    message?: StringFieldUpdateOperationsInput | string
+    metadata?: JsonNullValueInput | InputJsonValue
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type payment_status_historyUncheckedUpdateWithoutPayment_transactionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    status?: EnumPayment_StatusFieldUpdateOperationsInput | $Enums.Payment_Status
+    message?: StringFieldUpdateOperationsInput | string
+    metadata?: JsonNullValueInput | InputJsonValue
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type payment_status_historyUncheckedUpdateManyWithoutPayment_transactionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    status?: EnumPayment_StatusFieldUpdateOperationsInput | $Enums.Payment_Status
+    message?: StringFieldUpdateOperationsInput | string
+    metadata?: JsonNullValueInput | InputJsonValue
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 

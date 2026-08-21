@@ -9,7 +9,7 @@ import { useState } from "react"
 import { type ChangeEvent } from "react"
 import api from "@/lib/apiAxios"
 import { toast } from "react-toastify"
-import { redirect } from "next/navigation"
+import { useRouter } from "next/navigation"
 
 interface Waitlist1Props {
   className?: string
@@ -17,24 +17,31 @@ interface Waitlist1Props {
 
 const Waitlist1 = ({ className }: Waitlist1Props) => {
   const [email, setEmail] = useState<string>("")
-  
+  const [submitting, setSubmitting] = useState(false)
+  const router = useRouter()
 
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
     setEmail(e.target.value)
   }
 
   async function joinWaitList(email: string) {
+    if (submitting) return
+    setSubmitting(true)
     try {
       const { data } = await api.post<{ message: string, redirectUrl: string }>(
         "/api/v1/waiting-list",
         { email }
       )
       toast.success(data.message || "Successfully joined the waitlist!")
-      data.redirectUrl && redirect(data.redirectUrl)
+      if (data.redirectUrl) {
+        router.push(data.redirectUrl)
+      }
     } catch (error: Error | any) {
       const errorMessage =
         error?.response?.data?.message || "Something went wrong!"
       toast.error(errorMessage)
+    } finally {
+      setSubmitting(false)
     }
   }
 
@@ -64,8 +71,9 @@ const Waitlist1 = ({ className }: Waitlist1Props) => {
           <Button
             className="h-10 rounded-xl"
             onClick={() => joinWaitList(email)}
+            disabled={submitting}
           >
-            Join the Waitlist
+            {submitting ? "Joining..." : "Join the Waitlist"}
           </Button>
         </div>
         <div className="mt-10 flex items-center gap-2">
@@ -80,7 +88,7 @@ const Waitlist1 = ({ className }: Waitlist1Props) => {
             ))}
           </span>
           <p className="tracking-tight text-muted-foreground/80">
-            +1000 people already joined
+            be a part of our growing community
           </p>
         </div>
       </BackgroundLines>

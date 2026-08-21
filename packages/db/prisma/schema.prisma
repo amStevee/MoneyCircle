@@ -41,7 +41,15 @@ enum Contribution_status {
   CANCELLED
 }
 
-enum Payout {
+enum Payout_Status {
+  PENDING
+  PROCESSING
+  PAID
+  FAILED
+  CANCELLED
+}
+
+enum Payment_Status {
   PENDING
   PROCESSING
   PAID
@@ -55,7 +63,7 @@ enum Provider {
 }
 
 enum Payment_type {
-  CONTRIBUTION 
+  CONTRIBUTION
   PAYOUT
 }
 
@@ -72,14 +80,18 @@ enum Notifications {
 model waitlistEntry {
   id String @id @default(uuid())
   email String @unique @db.VarChar(255)
+
   status Status @default(PENDING)
+
   verification_token_hash String? @db.VarChar(255)
-  verification_expires_at DateTime 
-  verified_at DateTime? 
+  verification_expires_at DateTime
+  verified_at DateTime?
+
   userId String? @unique
   user users? @relation(fields: [userId], references: [id])
-  created_at DateTime @default(now()) 
-  updated_at DateTime @updatedAt 
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
 
   @@index([status])
   @@index([created_at])
@@ -87,183 +99,323 @@ model waitlistEntry {
 
 model users {
   id String @id @default(uuid())
+
   email String @unique @db.VarChar(255)
   phone String? @unique @db.VarChar(255)
+
   password_hash String @db.VarChar(255)
+
   first_name String @db.VarChar(255)
   last_name String @db.VarChar(255)
-  avatar_url String? @db.VarChar(255)
-  email_verified_at DateTime?
-  status Status @default(PENDING)
-  created_at DateTime @default(now()) 
-  updated_at DateTime @updatedAt 
 
+  avatar_url String? @db.VarChar(255)
+
+  email_verified_at DateTime?
+
+  status Status @default(PENDING)
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  // One-to-one
   waitlistEntry waitlistEntry?
   session sessions?
-  savings_circles savings_circles?
-  circle_members circle_members?
-  circle_invitations circle_invitations?
-  contributions contributions?
-  payment_transactions payment_transactions?
-  notifications notifications?
+
+  // One-to-many
+  savings_circles savings_circles[]
+  circle_members circle_members[]
+  circle_invitations circle_invitations[]
+  contributions contributions[]
+  payment_transactions payment_transactions[]
+  notifications notifications[]
 }
 
 model sessions {
   id String @id @default(uuid())
+
   user_id String @unique
-  user users @relation(fields: [user_id], references: [id])
+  user users @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
   token_hash String @db.VarChar(225)
   expires_at DateTime?
+
   created_at DateTime @default(now())
   revoked_at DateTime?
 }
 
 model savings_circles {
   id String @id @default(uuid())
+
   name String @db.VarChar(255)
   decription String @db.VarChar(255)
-  owner_id String @unique
-  users users @relation(fields: [owner_id], references: [id])
+
+  owner_id String
+  users users @relation(fields: [owner_id], references: [id], onDelete: Cascade)
+
   contribution_amount Decimal
   currency String @db.VarChar(255)
+
   frequency Frequency
   member_limit Int
+
   start_date DateTime
-  status Status
+
+  status Circle_Status @default(ACTIVE)
+
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 
-  circle_members circle_members?
-  circle_invitations circle_invitations?
-  savings_schedules savings_schedules?
-  contributions contributions?
-  payouts payouts?
+  // Relationships
+  circle_members circle_members[]
+  circle_invitations circle_invitations[]
+  savings_schedules savings_schedules[]
+  contributions contributions[]
+  payouts payouts[]
+
+  @@index([owner_id])
+  @@index([status])
+  @@index([created_at])
 }
 
 model circle_members {
   id String @id @default(uuid())
-  circle_id String @unique
-  savings_circle savings_circles @relation(fields: [circle_id], references: [id])
-  user_id String @unique
-  users users @relation(fields: [user_id], references: [id])
-  role Role
-  status Circle_Status
-  joined_at DateTime
+
+  circle_id String
+  savings_circle savings_circles @relation(fields: [circle_id], references: [id], onDelete: Cascade)
+
+  user_id String
+  users users @relation(fields: [user_id], references: [id],onDelete: Cascade)
+
+  role Role @default(MEMBER)
+  status Circle_Status @default(ACTIVE)
+
+  joined_at DateTime @default(now())
   left_at DateTime?
-  created_at DateTime
+
+  created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 
-  payouts payouts?
+  payouts payouts[]
+
+  @@unique([circle_id, user_id])
+  @@index([circle_id])
+  @@index([user_id])
+  @@index([status])
 }
 
 model circle_invitations {
   id String @id @default(uuid())
-  circle_id String @unique
-  savings_circle savings_circles @relation(fields: [circle_id], references: [id])
-  invited_by String @unique
-  users users @relation(fields: [invited_by], references: [id])
+
+  circle_id String
+  savings_circle savings_circles @relation(fields: [circle_id],references: [id],onDelete: Cascade)
+
+  invited_by String
+  users users @relation( fields: [invited_by], references: [id], onDelete: Cascade)
+
   email String @db.VarChar(255)
+
   token_hash String @unique
-  status Status
+
+  status Status @default(PENDING)
+
   expires_at DateTime
   accepted_at DateTime?
-  created_at DateTime
+
+  created_at DateTime @default(now())
+
+  @@index([circle_id])
+  @@index([invited_by])
+  @@index([email])
+  @@index([status])
 }
 
 model savings_schedules {
   id String @id @default(uuid())
-  circle_id String @unique
-  savings_circle savings_circles @relation(fields: [circle_id], references: [id])
+
+  circle_id String
+  savings_circle savings_circles @relation( fields: [circle_id], references: [id], onDelete: Cascade)
+
   frequency Frequency
   contribution_amount Decimal
+
   start_date DateTime
   end_date DateTime?
+
   total_cycles Int
-  current_cycle Int
-  created_at DateTime
+  current_cycle Int @default(0)
+
+  created_at DateTime @default(now())
   updated_at DateTime @updatedAt
+
+  @@index([circle_id])
 }
 
 model contributions {
   id String @id @default(uuid())
-  circle_id String @unique
-  savings_circle savings_circles @relation(fields: [circle_id], references: [id])
-  circle_member String @unique
-  users users @relation(fields: [circle_member], references: [id])
+
+  circle_id String
+  savings_circle savings_circles @relation(fields: [circle_id],references: [id],onDelete: Cascade)
+
+  circle_member String
+  users users @relation(fields: [circle_member],references: [id],onDelete: Cascade)
+
   cycle_number Int
+
   amount Decimal
+
   due_date DateTime
   paid_at DateTime?
-  status Contribution_status
+
+  status Contribution_status @default(PENDING)
+
   transaction_id String? @unique
-  create_at DateTime @default(now())
+  payment_transaction payment_transactions? @relation(fields: [transaction_id],references: [id],onDelete: SetNull)
+
+  created_at DateTime @default(now())
   updated_at DateTime @updatedAt
+
+  @@unique([circle_id, circle_member, cycle_number])
+  @@index([circle_id])
+  @@index([circle_member])
+  @@index([status])
+  @@index([due_date])
 }
 
 model payouts {
   id String @id @default(uuid())
-  circle_id String @unique
-  savings_circle savings_circles @relation(fields: [circle_id], references: [id])
-  member_id String @unique
-  circle_member circle_members @relation(fields: [member_id], references: [id])
+
+  circle_id String
+  savings_circle savings_circles @relation(fields: [circle_id],references: [id],onDelete: Cascade )
+
+  member_id String
+  circle_member circle_members @relation(fields: [member_id],references: [id],onDelete: Cascade)
+
   cycle_number Int
+
   amount Decimal
+
   scheduled_date DateTime
   paid_at DateTime?
-  status Contribution_status
+
+  status Payout_Status @default(PENDING)
+
   transaction_id String? @unique
-  create_at DateTime @default(now())
+  payment_transaction payment_transactions? @relation(fields: [transaction_id],references: [id],onDelete: SetNull)
+
+  created_at DateTime @default(now())
   updated_at DateTime @updatedAt
+
+  @@unique([circle_id, member_id, cycle_number])
+  @@index([circle_id])
+  @@index([member_id])
+  @@index([status])
+  @@index([scheduled_date])
 }
 
 model payment_transactions {
   id String @id @default(uuid())
-  user_id String @unique
-  users users @relation(fields: [user_id], references: [id])
-  refernce String @unique 
-  idempotency_key String @unique 
+
+  user_id String
+  users users @relation(fields: [user_id],references: [id],onDelete: Cascade)
+
+  refernce String @unique
+
+  idempotency_key String @unique
+
   provider Provider
+
   provider_reference String?
+
   type Payment_type
+
   amount Decimal
+
   currency String
-  status Payout
+
+  status Payment_Status @default(PENDING)
+
   metadata Json
-  created_at DateTime
+
+  created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 
-  payment_status_history payment_status_history?
+  // A payment transaction can belong to either
+  // a contribution or a payout.
+  contribution contributions?
+  payout payouts?
+
+  payment_status_history payment_status_history[]
+
+  @@index([user_id])
+  @@index([provider])
+  @@index([provider_reference])
+  @@index([type])
+  @@index([status])
+  @@index([created_at])
 }
 
 model payment_status_history {
   id String @id @default(uuid())
-  transaction_id String @unique
-  payment_transactions payment_transactions @relation(fields: [transaction_id], references: [id])
-  status Payout
+
+  transaction_id String
+
+  payment_transactions payment_transactions @relation(fields: [transaction_id],references: [id],onDelete: Cascade)
+
+  status Payment_Status
+
   message String @db.VarChar(255)
+
   metadata Json
-  created_at DateTime
+
+  created_at DateTime @default(now())
+
+  @@index([transaction_id])
+  @@index([status])
+  @@index([created_at])
 }
 
 model notifications {
   id String @id @default(uuid())
-  user_id String @unique
-  users users @relation(fields: [user_id], references: [id])
+
+  user_id String
+  users users @relation(fields: [user_id],references: [id],onDelete: Cascade)
+
   type Notifications
+
   title String @db.VarChar(255)
+
   message String @db.VarChar(255)
+
   data Json
-  read_at DateTime
-  created_at DateTime
+
+  read_at DateTime?
+
+  created_at DateTime @default(now())
+
+  @@index([user_id])
+  @@index([type])
+  @@index([read_at])
+  @@index([created_at])
 }
 
 model audit_log {
   id String @id @default(uuid())
-  user_id Status?
+
+  user_id String?
+
   action String @db.VarChar(255)
+
   entity_type String @db.VarChar(255)
+
   entity_id String?
+
   metadata Json?
+
   ip_address String?
-  created_at DateTime
+
+  created_at DateTime @default(now())
+
+  @@index([user_id])
+  @@index([entity_type, entity_id])
+  @@index([created_at])
 }

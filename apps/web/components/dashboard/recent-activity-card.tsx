@@ -14,7 +14,7 @@ export function RecentActivityCard({ activity }: RecentActivityCardProps) {
       <div className="flex items-center justify-between">
         <span className="text-base font-semibold">Recent Activity</span>
         <a
-          href="#"
+          href="/payments"
           className="text-sm font-medium text-primary hover:underline"
         >
           View all

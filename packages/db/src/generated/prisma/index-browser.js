@@ -217,7 +217,7 @@ exports.Prisma.ContributionsScalarFieldEnum = {
   paid_at: 'paid_at',
   status: 'status',
   transaction_id: 'transaction_id',
-  create_at: 'create_at',
+  created_at: 'created_at',
   updated_at: 'updated_at'
 };
 
@@ -231,7 +231,7 @@ exports.Prisma.PayoutsScalarFieldEnum = {
   paid_at: 'paid_at',
   status: 'status',
   transaction_id: 'transaction_id',
-  create_at: 'create_at',
+  created_at: 'created_at',
   updated_at: 'updated_at'
 };
 
@@ -323,12 +323,6 @@ exports.Frequency = exports.$Enums.Frequency = {
   YEARLY: 'YEARLY'
 };
 
-exports.Role = exports.$Enums.Role = {
-  OWNER: 'OWNER',
-  ADMIN: 'ADMIN',
-  MEMBER: 'MEMBER'
-};
-
 exports.Circle_Status = exports.$Enums.Circle_Status = {
   INVITED: 'INVITED',
   ACTIVE: 'ACTIVE',
@@ -337,10 +331,24 @@ exports.Circle_Status = exports.$Enums.Circle_Status = {
   REMOVED: 'REMOVED'
 };
 
+exports.Role = exports.$Enums.Role = {
+  OWNER: 'OWNER',
+  ADMIN: 'ADMIN',
+  MEMBER: 'MEMBER'
+};
+
 exports.Contribution_status = exports.$Enums.Contribution_status = {
   PENDING: 'PENDING',
   PAID: 'PAID',
   OVERDUE: 'OVERDUE',
+  FAILED: 'FAILED',
+  CANCELLED: 'CANCELLED'
+};
+
+exports.Payout_Status = exports.$Enums.Payout_Status = {
+  PENDING: 'PENDING',
+  PROCESSING: 'PROCESSING',
+  PAID: 'PAID',
   FAILED: 'FAILED',
   CANCELLED: 'CANCELLED'
 };
@@ -355,7 +363,7 @@ exports.Payment_type = exports.$Enums.Payment_type = {
   PAYOUT: 'PAYOUT'
 };
 
-exports.Payout = exports.$Enums.Payout = {
+exports.Payment_Status = exports.$Enums.Payment_Status = {
   PENDING: 'PENDING',
   PROCESSING: 'PROCESSING',
   PAID: 'PAID',

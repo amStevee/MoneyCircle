@@ -2,7 +2,7 @@ import { PrismaClient } from "./generated/prisma/index.js";
 import { PrismaPg } from "@prisma/adapter-pg";
 import pg from "pg";
 import dotenv from "dotenv";
-// import path from "path";
+export type { Prisma } from "./generated/prisma/index.js";
 
 dotenv.config()
 
@@ -10,7 +10,7 @@ const connectionString = process.env.DATABASE_URL;
 
 if (!connectionString) {
   throw new Error(
-    "Missing DATABASE_URL. Add it to apps/api/.env or packages/db/.env, for example: postgresql://postgres:postgres@localhost:5432/moneycircle?schema=public",
+    "Missing DATABASE_URL. Add it to apps/api/.env or packages/db/.env, for example: postgresql://postgres:postgres@localhost:1234/moneycircle?schema=public",
   );
 }
 

@@ -1,6 +1,7 @@
+import Link from "next/link"
 import { Calendar } from "lucide-react"
 
-import { Button } from "@/components/ui/button"
+import { buttonVariants } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { formatNaira } from "@/lib/dashboard-data"
 
@@ -33,9 +34,7 @@ export function UpcomingContributionCard({
           </div>
         </div>
 
-        <Button size="lg" className="w-full rounded-xl sm:w-auto">
-          Pay contribution
-        </Button>
+        <Link href="/payments" className={buttonVariants({ size: "lg", className: "w-full rounded-xl sm:w-auto" })}>Pay contribution</Link>
       </div>
     </Card>
   )

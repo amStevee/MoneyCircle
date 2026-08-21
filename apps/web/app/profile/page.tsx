@@ -1,7 +1,7 @@
 "use client"
 
-import { useState } from "react"
 import { LogOut, Mail, Phone, Save, ShieldCheck, User } from "lucide-react"
+import { useState } from "react"
 
 import { PageShell } from "@/components/dashboard/page-shell"
 import { apiClient } from "@/lib/api"
@@ -13,32 +13,9 @@ import { useUserStore } from "@/store/useUserStore"
 
 export default function ProfilePage() {
   const user = useUserStore((state) => state.user)
-
   const isHydrated = useUserStore((state) => state.isHydrated)
-
   const clearUser = useUserStore((state) => state.clearUser)
 
-  /*
-   * Do not initialize form state from `user` here.
-   *
-   * During the first render:
-   *
-   * user = null
-   * isHydrated = false
-   *
-   * Therefore these values must have safe defaults.
-   */
-  const [firstName, setFirstName] = useState("")
-  const [lastName, setLastName] = useState("")
-  const [phone, setPhone] = useState("")
-
-  const [saved, setSaved] = useState(false)
-  const [isSaving, setIsSaving] = useState(false)
-
-  /**
-   * Zustand has not finished restoring the persisted
-   * state from localStorage.
-   */
   if (!isHydrated) {
     return (
       <PageShell
@@ -54,9 +31,6 @@ export default function ProfilePage() {
     )
   }
 
-  /**
-   * Hydration has completed but there is no user.
-   */
   if (!user) {
     return (
       <PageShell
@@ -80,92 +54,25 @@ export default function ProfilePage() {
     )
   }
 
-  /**
-   * IMPORTANT:
-   *
-   * We are now guaranteed to have a user.
-   *
-   * However, React hooks cannot be conditionally called.
-   * Therefore we cannot put useState() below the `if (!user)`
-   * return.
-   *
-   * The solution is to keep the form state above and populate
-   * it when the page is first rendered with a user.
-   */
-
-  return (
-    <ProfileForm
-      user={user}
-      firstName={firstName}
-      lastName={lastName}
-      phone={phone}
-      saved={saved}
-      isSaving={isSaving}
-      setFirstName={setFirstName}
-      setLastName={setLastName}
-      setPhone={setPhone}
-      setSaved={setSaved}
-      setIsSaving={setIsSaving}
-      clearUser={clearUser}
-    />
-  )
+  return <ProfileContent user={user} clearUser={clearUser} />
 }
 
-/**
- * Separate form component.
- *
- * This component is only mounted after:
- *
- * 1. Zustand has hydrated.
- * 2. A user exists.
- *
- * Therefore we can safely initialize the form from `user`.
- */
-type ProfileFormProps = {
-  user: {
-    email: string
-    first_name: string
-    last_name: string
-    phone?: string | null
-  }
-
-  firstName: string
-  lastName: string
-  phone: string
-
-  saved: boolean
-  isSaving: boolean
-
-  setFirstName: React.Dispatch<React.SetStateAction<string>>
-
-  setLastName: React.Dispatch<React.SetStateAction<string>>
-
-  setPhone: React.Dispatch<React.SetStateAction<string>>
-
-  setSaved: React.Dispatch<React.SetStateAction<boolean>>
-
-  setIsSaving: React.Dispatch<React.SetStateAction<boolean>>
-
-  clearUser: () => void
-}
-
-function ProfileForm({
+function ProfileContent({
   user,
-  firstName,
-  lastName,
-  phone,
-  saved,
-  isSaving,
-  setFirstName,
-  setLastName,
-  setPhone,
-  setSaved,
-  setIsSaving,
   clearUser,
-}: ProfileFormProps) {
-  /**
-   * Save profile information.
-   */
+}: {
+  user: NonNullable<ReturnType<typeof useUserStore.getState>["user"]>
+  clearUser: () => void
+}) {
+  const [firstName, setFirstName] = useState(user.first_name)
+
+  const [lastName, setLastName] = useState(user.last_name)
+
+  const [phone, setPhone] = useState(user.phone ?? "")
+
+  const [saved, setSaved] = useState(false)
+  const [isSaving, setIsSaving] = useState(false)
+
   async function saveProfile(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
 
@@ -179,10 +86,6 @@ function ProfileForm({
         phone: phone.trim() || null,
       })
 
-      /**
-       * Update the Zustand store with the
-       * latest user returned by the API.
-       */
       useUserStore.setState({
         user: updated,
       })
@@ -193,23 +96,17 @@ function ProfileForm({
         setSaved(false)
       }, 2500)
     } catch {
-      // Add toast/error handling here.
+      // Handle error with toast.
     } finally {
       setIsSaving(false)
     }
   }
 
-  /**
-   * Sign out.
-   */
   async function handleLogout() {
     await apiClient.logout().catch(() => {})
     clearUser()
   }
 
-  /**
-   * Generate initials safely.
-   */
   const initials = `${firstName?.[0] ?? ""}${lastName?.[0] ?? ""}`.toUpperCase()
 
   return (
@@ -217,7 +114,6 @@ function ProfileForm({
       title="Profile"
       description="Manage your MoneyCircle account information."
     >
-      {/* Profile summary */}
       <Card className="items-center p-6 text-center">
         <div className="flex size-20 items-center justify-center rounded-full bg-accent text-xl font-bold text-primary">
           {initials || <User className="size-7" />}
@@ -230,7 +126,6 @@ function ProfileForm({
         <p className="text-sm text-muted-foreground">{user.email}</p>
       </Card>
 
-      {/* Personal information */}
       <form onSubmit={saveProfile}>
         <Card className="p-5">
           <div className="flex items-center gap-2">
@@ -240,7 +135,6 @@ function ProfileForm({
           </div>
 
           <div className="mt-4 flex flex-col gap-4">
-            {/* First and last name */}
             <div className="grid grid-cols-2 gap-3">
               <div className="grid gap-2">
                 <Label htmlFor="first-name">First name</Label>
@@ -265,7 +159,6 @@ function ProfileForm({
               </div>
             </div>
 
-            {/* Phone */}
             <div className="grid gap-2">
               <Label htmlFor="phone">Phone</Label>
 
@@ -282,7 +175,6 @@ function ProfileForm({
               </div>
             </div>
 
-            {/* Email */}
             <div className="grid gap-2">
               <Label htmlFor="email">Email</Label>
 
@@ -298,7 +190,6 @@ function ProfileForm({
               </div>
             </div>
 
-            {/* Save */}
             <Button
               type="submit"
               className="w-full rounded-xl"
@@ -312,7 +203,6 @@ function ProfileForm({
         </Card>
       </form>
 
-      {/* Account security */}
       <Card className="p-5">
         <div className="flex items-start gap-3">
           <ShieldCheck className="mt-0.5 size-5 text-green-600" />
@@ -328,7 +218,6 @@ function ProfileForm({
         </div>
       </Card>
 
-      {/* Sign out */}
       <Button
         variant="destructive"
         className="w-full rounded-xl"

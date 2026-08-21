@@ -16,12 +16,13 @@ export function PageShell({ title, description, children }: PageShellProps) {
   const router = useRouter()
   const token = useUserStore((state) => state.token)
   const user = useUserStore((state) => state.user)
+  const isHydrated = useUserStore((state) => state.isHydrated)
 
   useEffect(() => {
-    if (!token) router.replace("/login")
-  }, [router, token])
+    if (isHydrated && !token) router.replace("/login")
+  }, [router, token, isHydrated])
 
-  if (!token || !user) return null
+  if (!isHydrated || !token || !user) return null
 
   return (
     <div className="flex min-h-svh flex-col bg-muted/30">

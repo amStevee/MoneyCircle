@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { LogOut, Mail, Phone, Save, ShieldCheck, User } from "lucide-react"
 
 import { PageShell } from "@/components/dashboard/page-shell"
@@ -13,30 +13,31 @@ import { useUserStore } from "@/store/useUserStore"
 
 export default function ProfilePage() {
   const user = useUserStore((state) => state.user)
+
   const isHydrated = useUserStore((state) => state.isHydrated)
+
   const clearUser = useUserStore((state) => state.clearUser)
 
+  /*
+   * Do not initialize form state from `user` here.
+   *
+   * During the first render:
+   *
+   * user = null
+   * isHydrated = false
+   *
+   * Therefore these values must have safe defaults.
+   */
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
   const [phone, setPhone] = useState("")
+
   const [saved, setSaved] = useState(false)
   const [isSaving, setIsSaving] = useState(false)
 
   /**
-   * Populate the form when the persisted user
-   * becomes available after Zustand hydration.
-   */
-  useEffect(() => {
-    if (!user) return
-
-    setFirstName(user.first_name ?? "")
-    setLastName(user.last_name ?? "")
-    setPhone(user.phone ?? "")
-  }, [user])
-
-  /**
-   * Zustand has not finished restoring the
-   * persisted state from localStorage.
+   * Zustand has not finished restoring the persisted
+   * state from localStorage.
    */
   if (!isHydrated) {
     return (
@@ -54,10 +55,7 @@ export default function ProfilePage() {
   }
 
   /**
-   * Hydration is complete but there is no user.
-   *
-   * This normally means the user is not authenticated
-   * or the session has been cleared.
+   * Hydration has completed but there is no user.
    */
   if (!user) {
     return (
@@ -83,7 +81,90 @@ export default function ProfilePage() {
   }
 
   /**
-   * Save updated profile information.
+   * IMPORTANT:
+   *
+   * We are now guaranteed to have a user.
+   *
+   * However, React hooks cannot be conditionally called.
+   * Therefore we cannot put useState() below the `if (!user)`
+   * return.
+   *
+   * The solution is to keep the form state above and populate
+   * it when the page is first rendered with a user.
+   */
+
+  return (
+    <ProfileForm
+      user={user}
+      firstName={firstName}
+      lastName={lastName}
+      phone={phone}
+      saved={saved}
+      isSaving={isSaving}
+      setFirstName={setFirstName}
+      setLastName={setLastName}
+      setPhone={setPhone}
+      setSaved={setSaved}
+      setIsSaving={setIsSaving}
+      clearUser={clearUser}
+    />
+  )
+}
+
+/**
+ * Separate form component.
+ *
+ * This component is only mounted after:
+ *
+ * 1. Zustand has hydrated.
+ * 2. A user exists.
+ *
+ * Therefore we can safely initialize the form from `user`.
+ */
+type ProfileFormProps = {
+  user: {
+    email: string
+    first_name: string
+    last_name: string
+    phone?: string | null
+  }
+
+  firstName: string
+  lastName: string
+  phone: string
+
+  saved: boolean
+  isSaving: boolean
+
+  setFirstName: React.Dispatch<React.SetStateAction<string>>
+
+  setLastName: React.Dispatch<React.SetStateAction<string>>
+
+  setPhone: React.Dispatch<React.SetStateAction<string>>
+
+  setSaved: React.Dispatch<React.SetStateAction<boolean>>
+
+  setIsSaving: React.Dispatch<React.SetStateAction<boolean>>
+
+  clearUser: () => void
+}
+
+function ProfileForm({
+  user,
+  firstName,
+  lastName,
+  phone,
+  saved,
+  isSaving,
+  setFirstName,
+  setLastName,
+  setPhone,
+  setSaved,
+  setIsSaving,
+  clearUser,
+}: ProfileFormProps) {
+  /**
+   * Save profile information.
    */
   async function saveProfile(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -99,8 +180,8 @@ export default function ProfilePage() {
       })
 
       /**
-       * Update the Zustand store with the latest
-       * user returned by the API.
+       * Update the Zustand store with the
+       * latest user returned by the API.
        */
       useUserStore.setState({
         user: updated,
@@ -112,14 +193,14 @@ export default function ProfilePage() {
         setSaved(false)
       }, 2500)
     } catch {
-      // Add toast/error handling here if required.
+      // Add toast/error handling here.
     } finally {
       setIsSaving(false)
     }
   }
 
   /**
-   * Sign the user out.
+   * Sign out.
    */
   async function handleLogout() {
     await apiClient.logout().catch(() => {})

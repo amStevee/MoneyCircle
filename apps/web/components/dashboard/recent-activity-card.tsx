@@ -3,6 +3,7 @@ import { CircleAlert, CircleCheck } from "lucide-react"
 import { Card } from "@/components/ui/card"
 import { cn } from "@/lib/utils"
 import { formatNaira, type ActivityItem } from "@/lib/dashboard-data"
+import Link from "next/link"
 
 interface RecentActivityCardProps {
   activity: ActivityItem[]
@@ -13,12 +14,12 @@ export function RecentActivityCard({ activity }: RecentActivityCardProps) {
     <Card className="p-6">
       <div className="flex items-center justify-between">
         <span className="text-base font-semibold">Recent Activity</span>
-        <a
+        <Link
           href="/payments"
           className="text-sm font-medium text-primary hover:underline"
         >
           View all
-        </a>
+        </Link>
       </div>
 
       <div className="flex flex-col">

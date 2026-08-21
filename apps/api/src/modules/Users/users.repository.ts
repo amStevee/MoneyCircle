@@ -1,7 +1,20 @@
 import { prisma } from "@repo/db";
-import { User } from "./user.type.js";
+import type { Prisma } from "@repo/db";
+import type { User } from "./user.type.js";
 
-async function createUser(user: User) {
+/**
+ * Prisma representation of a user.
+ *
+ * Keeping this type explicit prevents TypeScript from
+ * generating a non-portable inferred return type that
+ * references Prisma's generated Status enum.
+ */
+type UserRecord = Prisma.usersGetPayload<{}>;
+
+/**
+ * Create a new user.
+ */
+async function createUser(user: User): Promise<UserRecord> {
   try {
     return await prisma.users.create({
       data: {
@@ -18,17 +31,31 @@ async function createUser(user: User) {
   }
 }
 
-async function findUserByEmail(email: string) {
+/**
+ * Find a user by email.
+ */
+async function findUserByEmail(email: string): Promise<UserRecord | null> {
   try {
-    return await prisma.users.findUnique({ where: { email } });
+    return await prisma.users.findUnique({
+      where: {
+        email,
+      },
+    });
   } catch (error) {
     throw new Error("Error occurred while finding the user by email");
   }
 }
 
-async function findUserById(id: string) {
+/**
+ * Find a user by ID.
+ */
+async function findUserById(id: string): Promise<UserRecord | null> {
   try {
-    return await prisma.users.findUnique({ where: { id } });
+    return await prisma.users.findUnique({
+      where: {
+        id,
+      },
+    });
   } catch (error) {
     throw new Error("Error occurred while finding the user by id");
   }

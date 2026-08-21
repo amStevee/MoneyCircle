@@ -1,12 +1,15 @@
 import express, { Router } from "express";
 import waitingListRouter from "../../modules/waiting-list/waitingList.routes.js";
-import authRouter from "../../modules/Auth/auth.routes.js"
-
+import authRouter from "../../modules/Auth/auth.routes.js";
+import usersRouter from "../../modules/Users/users.routes.js";
+import dashboardRouter from "../../modules/Dashboard/dashboard.routes.js";
+import groupsRouter from "../../modules/Groups/groups.routes.js";
+import paymentsRouter from "../../modules/Payments/payments.routes.js";
 const router: Router = express.Router();
-
-// Mount waiting-list routes under /api/v1/waiting-list
 router.use("/waiting-list", waitingListRouter);
-// Mount auth routes under /api/v1/auth
 router.use("/auth", authRouter);
-
+router.use("/users", usersRouter);
+router.use("/dashboard", dashboardRouter);
+router.use("/groups", groupsRouter);
+router.use("/payments", paymentsRouter);
 export default router;

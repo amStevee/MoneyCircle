@@ -14,12 +14,12 @@ export function SavingsGroupsCard({ groups }: SavingsGroupsCardProps) {
     <Card className="p-6">
       <div className="flex items-center justify-between">
         <span className="text-base font-semibold">My Savings Groups</span>
-        <a
+        <Link
           href="/groups"
           className="text-sm font-medium text-primary hover:underline"
         >
           View all
-        </a>
+        </Link>
       </div>
 
       <div className="flex flex-col gap-3">

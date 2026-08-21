@@ -100,14 +100,21 @@ export const useUserStore = create<UserState>()(
       }),
 
       onRehydrateStorage: () => {
-        return (_state, error) => {
+        return (state, error) => {
           if (error) {
             console.error("Failed to hydrate user store:", error)
           }
 
-          useUserStore.setState({
-            isHydrated: true,
-          })
+          // Mutate the rehydrated state object directly instead of calling
+          // useUserStore.setState here. At this point in the persist
+          // lifecycle, rehydration can run synchronously during the
+          // `create(...)` call itself — before the `useUserStore` const
+          // finishes being assigned — so referencing `useUserStore` inside
+          // this callback throws a TDZ ReferenceError ("Cannot access
+          // 'useUserStore' before initialization").
+          if (state) {
+            state.isHydrated = true
+          }
         }
       },
     }

@@ -59,7 +59,7 @@ export function SavingsGroupsCard({ groups }: SavingsGroupsCardProps) {
                     indicatorClassName="bg-green-500"
                   />
                   <span className="shrink-0 rounded-full border border-green-200 px-2.5 py-1 text-sm font-medium text-green-600 dark:border-green-900 dark:text-green-500">
-                    {percent}%
+                    {Number(percent)}%
                   </span>
                 </div>
               </div>

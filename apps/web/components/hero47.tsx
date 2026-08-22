@@ -99,16 +99,15 @@ const Hero47 = ({
         <div className="relative z-10 w-[450px]">
           {/* Dashboard */}
           <div className="absolute top-[2.93%] left-[14.9%] z-0 h-[94.08%] w-[68.23%] overflow-hidden rounded-[30px]">
-            <Image
+            <img
               src="/dashboard.svg"
               alt="MoneyCircle dashboard"
-              fill
               className="size-full object-fill"
             />
           </div>
 
           {/* iPhone frame */}
-          <Image
+          <img
             src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/mockups/phone-2.png"
             width={450}
             height={889}

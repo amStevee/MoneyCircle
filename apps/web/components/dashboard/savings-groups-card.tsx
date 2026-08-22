@@ -29,9 +29,7 @@ export function SavingsGroupsCard({ groups }: SavingsGroupsCardProps) {
           )
 
           {
-            console.log(
-              `My percent is: ${group}`
-            )
+            console.log(`My percent is: ${group}`)
           }
 
           return (

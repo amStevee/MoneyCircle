@@ -28,6 +28,10 @@ export function SavingsGroupsCard({ groups }: SavingsGroupsCardProps) {
             (group.contributionsMade / group.totalContributions) * 100
           )
 
+          {
+            console.log(`My percent is: ${percent}`)
+          }
+
           return (
             <Link
               key={group.id}
@@ -59,7 +63,7 @@ export function SavingsGroupsCard({ groups }: SavingsGroupsCardProps) {
                     indicatorClassName="bg-green-500"
                   />
                   <span className="shrink-0 rounded-full border border-green-200 px-2.5 py-1 text-sm font-medium text-green-600 dark:border-green-900 dark:text-green-500">
-                    {Number(percent)}%
+                    {String(percent)}%
                   </span>
                 </div>
               </div>

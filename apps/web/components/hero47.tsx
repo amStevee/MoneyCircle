@@ -80,7 +80,7 @@ const Hero47 = ({
             </Button>
           </div>
         </div>
-        <div className="relative z-10">
+        {/* <div className="relative z-10">
           <div className="absolute top-2.5 left-1/2! h-[92%]! w-[69%]! -translate-x-[52%] overflow-hidden rounded-[35px]">
             <Image
               src={image.src}
@@ -94,6 +94,26 @@ const Hero47 = ({
             width={450}
             height={889}
             alt="iphone"
+          />
+        </div> */}
+        <div className="relative z-10 w-[450px]">
+          {/* Dashboard */}
+          <div className="absolute top-[2.93%] left-[14.9%] z-0 h-[94.08%] w-[68.23%] overflow-hidden rounded-[30px]">
+            <Image
+              src="/dashboard.svg"
+              alt="MoneyCircle dashboard"
+              fill
+              className="size-full object-fill"
+            />
+          </div>
+
+          {/* iPhone frame */}
+          <Image
+            src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/mockups/phone-2.png"
+            width={450}
+            height={889}
+            alt="iPhone"
+            className="relative z-10 h-auto w-full"
           />
         </div>
       </div>

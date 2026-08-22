@@ -8,3 +8,7 @@ export interface CreateGroupInput {
   totalCycles: number;
   startDate: Date;
 }
+
+export interface InviteMemberInput {
+  email: string;
+}

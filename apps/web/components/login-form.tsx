@@ -51,7 +51,16 @@ export function LoginForm({
       const { user, token: authToken } = data.data
       setSession(user, authToken)
       toast.success("Logged in successfully")
-      router.push("/dashboard")
+
+      const pendingInvite = window.sessionStorage?.getItem(
+        "moneycircle_pending_invite"
+      )
+      if (pendingInvite) {
+        window.sessionStorage.removeItem("moneycircle_pending_invite")
+        router.push(`/invitations/${pendingInvite}`)
+      } else {
+        router.push("/dashboard")
+      }
     } catch (error: any) {
       toast.error(error.response?.data?.error || "Login failed")
     } finally {

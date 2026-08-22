@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils"
 import Link from "next/link"
 
 const navItems = [
-  { label: "Home", href: "#", icon: Home },
+  { label: "Home", href: "/dashboard", icon: Home },
   { label: "Groups", href: "/groups", icon: Users },
   { label: "Payments", href: "/payments", icon: CreditCard },
   { label: "Profile", href: "/profile", icon: User },

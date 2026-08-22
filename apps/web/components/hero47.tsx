@@ -100,8 +100,8 @@ const Hero47 = ({
           {/* Dashboard */}
           <div className="absolute top-[2.93%] left-[14.9%] z-0 h-[94.08%] w-[68.23%] overflow-hidden rounded-[30px]">
             <img
-              src="/dashboard.svg"
-              alt="MoneyCircle dashboard"
+              src={image.src}
+              alt={image.alt}
               className="size-full object-fill"
             />
           </div>

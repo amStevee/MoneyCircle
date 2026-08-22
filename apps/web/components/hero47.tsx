@@ -98,7 +98,7 @@ const Hero47 = ({
         </div> */}
         <div className="relative z-10 w-[450px]">
           {/* Dashboard */}
-          <div className="absolute top-[2.93%] left-[14.9%] z-0 h-full w-[68.23%] overflow-hidden rounded-[30px]">
+          <div className="absolute top-[0.93%] left-[14.9%] z-0 h-full w-[68.23%] overflow-hidden rounded-[30px]">
             <img
               src={image.src}
               alt={image.alt}

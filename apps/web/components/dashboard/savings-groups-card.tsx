@@ -28,10 +28,6 @@ export function SavingsGroupsCard({ groups }: SavingsGroupsCardProps) {
             (group.contributionsMade / group.totalContributions) * 100
           )
 
-          {
-            console.log(`My percent is: ${{ group }}`)
-          }
-
           return (
             <Link
               key={group.id}

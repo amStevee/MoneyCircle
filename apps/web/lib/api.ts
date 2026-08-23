@@ -1,9 +1,56 @@
 import axios from "axios"
 
-export interface ApiGroup { id: string; name: string; description: string; contributionAmount: number; currency: string; frequency: string; memberCount: number; memberLimit: number; contributionsMade: number; status: string; startDate: string }
-export interface ApiPayment { id: string; reference: string; groupId: string | null; groupName: string; amount: number; currency: string; date: string; status: string; type: string; cycle: number | null }
-export interface DueContribution { id: string; groupId: string; groupName: string; amount: number; currency: string; cycle: number; dueDate: string; status: string }
-export interface ApiNotification { id: string; type: string; title: string; message: string; data: unknown; read: boolean; createdAt: string }
+export interface ApiGroup {
+  id: string
+  name: string
+  description: string
+  contributionAmount: number
+  currency: string
+  frequency: string
+  memberCount: number
+  memberLimit: number
+  contributionsMade: number
+  status: string
+  startDate: string
+}
+export interface ApiInvitation {
+  id: string
+  email: string
+  status: string
+  expiresAt: string
+  createdAt: string
+}
+export interface ApiPayment {
+  id: string
+  reference: string
+  groupId: string | null
+  groupName: string
+  amount: number
+  currency: string
+  date: string
+  status: string
+  type: string
+  cycle: number | null
+}
+export interface DueContribution {
+  id: string
+  groupId: string
+  groupName: string
+  amount: number
+  currency: string
+  cycle: number
+  dueDate: string
+  status: string
+}
+export interface ApiNotification {
+  id: string
+  type: string
+  title: string
+  message: string
+  data: unknown
+  read: boolean
+  createdAt: string
+}
 
 // Internal client: hits this app's own /api/* route handlers (relative URLs),
 // which proxy to the external API server-side. Do NOT set a baseURL pointing
@@ -33,6 +80,18 @@ export const apiClient = {
   groups: () => api.get<ApiGroup[]>("/groups").then((r) => r.data),
   group: (id: string) => api.get(`/groups/${id}`).then((r) => r.data),
   createGroup: (data: unknown) => api.post("/groups", data).then((r) => r.data),
+  inviteToGroup: (groupId: string, email: string) =>
+    api
+      .post(`/groups/${groupId}/invitations`, { email })
+      .then((r) => r.data as { invitation: ApiInvitation; inviteUrl: string }),
+  groupInvitations: (groupId: string) =>
+    api
+      .get<ApiInvitation[]>(`/groups/${groupId}/invitations`)
+      .then((r) => r.data),
+  acceptInvitation: (token: string) =>
+    api
+      .post(`/groups/invitations/${token}/accept`)
+      .then((r) => r.data as { groupId: string; groupName: string }),
   payments: () => api.get<ApiPayment[]>("/payments").then((r) => r.data),
   payment: (id: string) => api.get(`/payments/${id}`).then((r) => r.data),
   dueContributions: () =>

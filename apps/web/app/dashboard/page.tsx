@@ -23,12 +23,13 @@ export default function DashboardPage() {
         .then(setData)
         .catch(() => {})
   }, [token, router])
-  console.log(`My percent is: ${data}`)
+
   if (!token || !user || !data) return null
   const groups = data.groups.map((g: any) => ({
     ...g,
     frequencyLabel: g.frequency.toLowerCase().replace("ly", ""),
   }))
+  
   const upcoming = data.upcomingContribution
   return (
     <div className="flex min-h-svh flex-col bg-muted/30">

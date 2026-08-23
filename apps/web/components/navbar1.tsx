@@ -183,9 +183,10 @@ const Navbar1 = ({
               {auth.waitlist.title}
             </Button>
             <Button
+              variant="outline"
               size="sm"
               render={<a href={auth.login.url} />}
-              nativeButton={true}
+              nativeButton={false}
             >
               {auth.login.title}
             </Button>

@@ -1,5 +1,5 @@
+import { GoogleAnalytics } from "@next/third-parties/google"
 import { Geist_Mono, Inter } from "next/font/google"
-
 import "react-toastify/dist/ReactToastify.css"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
@@ -33,6 +33,7 @@ export default function RootLayout({
         <ThemeProvider>{children}</ThemeProvider>
         <ToastContainer />
       </body>
+      <GoogleAnalytics gaId="G-833SRFTWFV" />
     </html>
   )
 }

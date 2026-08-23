@@ -22,9 +22,8 @@ export default function DashboardPage() {
         .dashboard()
         .then(setData)
         .catch(() => {})
-
-          console.log(`My percent is: ${data}`)
   }, [token, router])
+  console.log(`My percent is: ${data}`)
   if (!token || !user || !data) return null
   const groups = data.groups.map((g: any) => ({
     ...g,

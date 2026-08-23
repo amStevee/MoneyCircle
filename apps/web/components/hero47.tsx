@@ -2,7 +2,6 @@ import { ArrowUpRight } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
-import Image from "next/image"
 
 interface Hero47Props {
   heading?: string

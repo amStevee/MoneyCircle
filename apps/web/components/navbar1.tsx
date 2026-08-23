@@ -50,10 +50,10 @@ interface Navbar1Props {
       title: string
       url: string
     }
-    // signup: {
-    //   title: string;
-    //   url: string;
-    // };
+    login: {
+      title: string
+      url: string
+    }
   }
 }
 
@@ -138,6 +138,7 @@ const Navbar1 = ({
   ],
   auth = {
     waitlist: { title: "join the waitlist", url: "#waitlist" },
+    login: { title: "Login", url: "/login" },
   },
   // auth = {
   //   login: { title: "Login", url: "#" },
@@ -241,12 +242,12 @@ const Navbar1 = ({
                     >
                       {auth.waitlist.title}
                     </Button>
-                    {/* <Button
-                      render={<a href={auth.signup.url} />}
+                    <Button
+                      render={<a href={auth.login.url} />}
                       nativeButton={false}
                     >
-                      {auth.signup.title}
-                    </Button> */}
+                      {auth.login.title}
+                    </Button>
                   </div>
                 </div>
               </SheetContent>

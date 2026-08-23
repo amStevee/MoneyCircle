@@ -319,6 +319,21 @@ async function markTransactionPaid(
       },
     });
 
+    await tx.notifications.create({
+      data: {
+        user_id: transaction.user_id,
+        type: "CONTRIBUTION_SUCCESS",
+        title: "Payment successful",
+        message: `Your contribution of ₦${Number(
+          transaction.amount,
+        ).toLocaleString("en-NG")} was received.`,
+        data: {
+          transactionId: transaction.id,
+          reference: transaction.refernce,
+        },
+      },
+    });
+
     return transaction;
   });
 }

@@ -34,6 +34,24 @@ type DashboardMemberCount = {
 };
 
 /**
+ * Application-level representation of a user's paid
+ * contribution count within a circle.
+ */
+type DashboardContributionCount = {
+  circle_id: string;
+  count: number;
+};
+
+/**
+ * Application-level representation of a circle's
+ * total planned contribution cycles.
+ */
+type DashboardCircleCycles = {
+  circle_id: string;
+  total_cycles: number;
+};
+
+/**
  * Find the savings groups the user belongs to.
  */
 async function findDashboardMemberships(
@@ -180,10 +198,94 @@ async function findGroupMemberCounts(
   );
 }
 
+/**
+ * Count this user's paid contributions in each savings circle.
+ *
+ * Used to compute each group's contribution progress
+ * on the dashboard (mirrors groups.repository.ts).
+ */
+async function findUserPaidContributionCounts(
+  userId: string,
+  circleIds: string[],
+): Promise<DashboardContributionCount[]> {
+  if (!circleIds.length) {
+    return [];
+  }
+
+  const counts = await prisma.contributions.groupBy({
+    by: ["circle_id"],
+
+    where: {
+      circle_id: {
+        in: circleIds,
+      },
+      circle_member: userId,
+      status: "PAID",
+    },
+
+    _count: {
+      _all: true,
+    },
+  });
+
+  return counts.map(
+    (item): DashboardContributionCount => ({
+      circle_id: item.circle_id,
+      count: item._count._all,
+    }),
+  );
+}
+
+/**
+ * Find each circle's total planned contribution cycles,
+ * used as the denominator for contribution progress.
+ */
+async function findCircleTotalCycles(
+  circleIds: string[],
+): Promise<DashboardCircleCycles[]> {
+  if (!circleIds.length) {
+    return [];
+  }
+
+  const schedules = await prisma.savings_schedules.findMany({
+    where: {
+      circle_id: {
+        in: circleIds,
+      },
+    },
+
+    orderBy: {
+      created_at: "desc",
+    },
+
+    select: {
+      circle_id: true,
+      total_cycles: true,
+    },
+  });
+
+  /**
+   * A circle can have more than one schedule historically;
+   * keep only the most recent one per circle.
+   */
+  const seen = new Set<string>();
+  const latest: DashboardCircleCycles[] = [];
+
+  for (const schedule of schedules) {
+    if (seen.has(schedule.circle_id)) continue;
+    seen.add(schedule.circle_id);
+    latest.push(schedule);
+  }
+
+  return latest;
+}
+
 export {
+  findCircleTotalCycles,
   findDashboardMemberships,
   findGroupMemberCounts,
   findPaidContributions,
   findRecentContributions,
   findUpcomingContribution,
+  findUserPaidContributionCounts,
 };

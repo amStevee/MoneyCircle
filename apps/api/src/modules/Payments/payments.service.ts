@@ -76,9 +76,72 @@ function serializeTransaction(transaction: any): SerializedTransaction {
 }
 
 class PaymentsService {
+  /**
+   * If a transaction is still PENDING, check its real status
+   * directly with Paystack instead of waiting on the webhook.
+   *
+   * The webhook remains the source of truth for background
+   * confirmation, but relying on it alone means a user who is
+   * redirected straight back from checkout can see a stale
+   * "pending" status if the webhook hasn't arrived yet (or is
+   * unreachable, e.g. in local development). Verifying on read
+   * closes that gap without needing the frontend to poll.
+   */
+  private async verifyPendingTransaction<
+    T extends { id: string; refernce: string; status: string; provider_reference: string | null },
+  >(transaction: T): Promise<T> {
+    if (transaction.status !== "PENDING") return transaction;
+
+    const secret = process.env.PAYSTACK_SECRET_KEY;
+    if (!secret) return transaction;
+
+    try {
+      const response = await fetch(
+        `https://api.paystack.co/transaction/verify/${encodeURIComponent(transaction.refernce)}`,
+        {
+          headers: {
+            Authorization: `Bearer ${secret}`,
+          },
+        },
+      );
+
+      const payload = await response.json();
+
+      if (
+        response.ok &&
+        payload?.status &&
+        payload?.data?.status === "success"
+      ) {
+        await markTransactionPaid(
+          transaction.id,
+          payload.data.id
+            ? String(payload.data.id)
+            : transaction.provider_reference,
+          payload.data,
+        );
+
+        return { ...transaction, status: "PAID" };
+      }
+    } catch {
+      /**
+       * Paystack unreachable or verification failed - leave the
+       * status as-is. The webhook will still update it later.
+       */
+    }
+
+    return transaction;
+  }
+
   async getPayments(userId: string): Promise<SerializedTransaction[]> {
     const transactions = await findUserTransactions(userId);
-    return transactions.map(serializeTransaction);
+
+    const verified = await Promise.all(
+      transactions.map((transaction) =>
+        this.verifyPendingTransaction(transaction),
+      ),
+    );
+
+    return verified.map(serializeTransaction);
   }
 
   async getPayment(
@@ -87,9 +150,23 @@ class PaymentsService {
   ): Promise<PaymentResponse> {
     const transaction = await findUserTransaction(userId, transactionId);
     if (!transaction) throw new Error("Payment not found");
+
+    if (transaction.status === "PENDING") {
+      await this.verifyPendingTransaction(transaction);
+    }
+
+    /**
+     * Re-fetch after verification so the returned status and
+     * status history reflect the just-confirmed payment.
+     */
+    const latest =
+      transaction.status === "PENDING"
+        ? ((await findUserTransaction(userId, transactionId)) ?? transaction)
+        : transaction;
+
     return {
-      ...serializeTransaction(transaction),
-      history: transaction.payment_status_history,
+      ...serializeTransaction(latest),
+      history: latest.payment_status_history,
     };
   }
 

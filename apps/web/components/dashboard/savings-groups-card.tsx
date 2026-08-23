@@ -24,9 +24,12 @@ export function SavingsGroupsCard({ groups }: SavingsGroupsCardProps) {
 
       <div className="flex flex-col gap-3">
         {groups.map((group) => {
-          const percent = Math.round(
-            (group.contributionsMade / group.totalContributions) * 100
-          )
+          const percent =
+            group.totalContributions > 0
+              ? Math.round(
+                  (group.contributionsMade / group.totalContributions) * 100
+                )
+              : 0
 
           return (
             <Link
@@ -59,7 +62,7 @@ export function SavingsGroupsCard({ groups }: SavingsGroupsCardProps) {
                     indicatorClassName="bg-green-500"
                   />
                   <span className="shrink-0 rounded-full border border-green-200 px-2.5 py-1 text-sm font-medium text-green-600 dark:border-green-900 dark:text-green-500">
-                    {String(percent)}%
+                    {percent}%
                   </span>
                 </div>
               </div>

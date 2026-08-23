@@ -1,9 +1,11 @@
 import {
+  findCircleTotalCycles,
   findDashboardMemberships,
   findGroupMemberCounts,
   findPaidContributions,
   findRecentContributions,
   findUpcomingContribution,
+  findUserPaidContributionCounts,
 } from "./dashboard.repository.js";
 
 /**
@@ -17,6 +19,8 @@ type DashboardGroup = {
   frequency: string;
   memberCount: number;
   memberLimit: number;
+  contributionsMade: number;
+  totalContributions: number;
   status: string;
   startDate: Date;
   nextContributionDate: Date | null;
@@ -84,7 +88,11 @@ class DashboardService {
     /**
      * Get member counts for all groups at once.
      */
-    const counts = await findGroupMemberCounts(circleIds);
+    const [counts, contributionCounts, circleCycles] = await Promise.all([
+      findGroupMemberCounts(circleIds),
+      findUserPaidContributionCounts(userId, circleIds),
+      findCircleTotalCycles(circleIds),
+    ]);
 
     /**
      * The repository already converts Prisma's
@@ -92,6 +100,14 @@ class DashboardService {
      */
     const countMap = new Map(
       counts.map((item) => [item.circle_id, item.count]),
+    );
+
+    const contributionCountMap = new Map(
+      contributionCounts.map((item) => [item.circle_id, item.count]),
+    );
+
+    const totalCyclesMap = new Map(
+      circleCycles.map((item) => [item.circle_id, item.total_cycles]),
     );
 
     /**
@@ -110,6 +126,10 @@ class DashboardService {
         memberCount: countMap.get(group.id) ?? 0,
 
         memberLimit: group.member_limit,
+
+        contributionsMade: contributionCountMap.get(group.id) ?? 0,
+
+        totalContributions: totalCyclesMap.get(group.id) ?? 0,
 
         status: group.status,
 

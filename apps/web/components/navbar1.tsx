@@ -185,7 +185,7 @@ const Navbar1 = ({
             <Button
               size="sm"
               render={<a href={auth.login.url} />}
-              nativeButton={false}
+              nativeButton={true}
             >
               {auth.login.title}
             </Button>

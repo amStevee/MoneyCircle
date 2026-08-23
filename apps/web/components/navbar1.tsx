@@ -182,13 +182,13 @@ const Navbar1 = ({
             >
               {auth.waitlist.title}
             </Button>
-            {/* <Button
+            <Button
               size="sm"
-              render={<a href={auth.signup.url} />}
+              render={<a href={auth.login.url} />}
               nativeButton={false}
             >
-              {auth.signup.title}
-            </Button> */}
+              {auth.login.title}
+            </Button>
           </div>
         </nav>
 

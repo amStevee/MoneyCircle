@@ -237,13 +237,13 @@ const Navbar1 = ({
 
                   <div className="flex flex-col gap-3">
                     <Button
-                      // variant="outline"
                       render={<a href={auth.waitlist.url} />}
                       nativeButton={false}
                     >
                       {auth.waitlist.title}
                     </Button>
                     <Button
+                      variant="outline"
                       render={<a href={auth.login.url} />}
                       nativeButton={false}
                     >

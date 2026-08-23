@@ -87,7 +87,7 @@ const About3 = ({
               alt={secondaryImage.alt}
               className="grow basis-0 rounded-xl object-cover md:w-1/2 lg:min-h-0 lg:w-auto"
             />
-            <a href="https://storyset.com/people">
+            <a className="hidden" href="https://storyset.com/people">
               People illustrations by Storyset
             </a>
           </div>

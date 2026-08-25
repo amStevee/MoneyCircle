@@ -1,6 +1,7 @@
 "use client"
 
 import { CreditCard, Home, User, Users } from "lucide-react"
+import Link from "next/link"
 import { usePathname } from "next/navigation"
 
 import { cn } from "@/lib/utils"
@@ -23,7 +24,7 @@ export function BottomNav() {
           const Icon = item.icon
 
           return (
-            <a
+            <Link
               key={item.href}
               href={item.href}
               className={cn(
@@ -33,7 +34,7 @@ export function BottomNav() {
             >
               <Icon className="size-6" />
               {item.label}
-            </a>
+            </Link>
           )
         })}
       </div>

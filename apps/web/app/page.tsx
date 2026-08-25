@@ -8,6 +8,7 @@ import { Navbar1 } from "@/components/navbar1"
 import { Problems17 } from "@/components/problems17"
 import { Process1 } from "@/components/process1"
 import { Research17 } from "@/components/research"
+import { ScrollToTopButton } from "@/components/scroll-to-top-button"
 import { Waitlist1 } from "@/components/waitlist1"
 
 export default function Page() {
@@ -28,7 +29,7 @@ export default function Page() {
           }}
         />
         <Problems17
-          label="Saving together shouldn't be strssful."
+          label="Saving together shouldn't be stressful."
           heading="Traditional Ajo works because of trust, but managing it often doesn't."
         />
         <Process1 />
@@ -59,6 +60,7 @@ export default function Page() {
         <Contact7 />
         <Footer2 />
       </div>
+      <ScrollToTopButton />
     </>
   )
 }

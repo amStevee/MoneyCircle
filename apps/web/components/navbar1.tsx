@@ -26,6 +26,7 @@ import {
 } from "@/components/ui/sheet"
 import { cn } from "@/lib/utils"
 import Image from "next/image"
+import Link from "next/link"
 
 interface MenuItem {
   title: string
@@ -316,7 +317,7 @@ const renderMobileMenuItem = (item: MenuItem) => {
 
 const SubMenuLink = ({ item }: { item: MenuItem }) => {
   return (
-    <a
+    <Link
       className="flex min-w-80 flex-row gap-4 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none hover:bg-muted hover:text-accent-foreground"
       href={item.url}
     >
@@ -329,7 +330,7 @@ const SubMenuLink = ({ item }: { item: MenuItem }) => {
           </p>
         )}
       </div>
-    </a>
+    </Link>
   )
 }
 

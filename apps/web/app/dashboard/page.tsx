@@ -14,17 +14,19 @@ export default function DashboardPage() {
   const router = useRouter()
   const user = useUserStore((s) => s.user)
   const token = useUserStore((s) => s.token)
+  const isHydrated = useUserStore((s) => s.isHydrated)
   const [data, setData] = useState<any>(null)
   useEffect(() => {
+    if (!isHydrated) return
     if (!token) router.replace("/login")
     else
       apiClient
         .dashboard()
         .then(setData)
         .catch(() => {})
-  }, [token, router])
+  }, [token, router, isHydrated])
 
-  if (!token || !user || !data) return null
+  if (!isHydrated || !token || !user || !data) return null
   const groups = data.groups.map((g: any) => ({
     ...g,
     frequencyLabel: g.frequency.toLowerCase().replace("ly", ""),

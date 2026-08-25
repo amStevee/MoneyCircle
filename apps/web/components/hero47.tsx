@@ -95,7 +95,7 @@ const Hero47 = ({
             alt="iphone"
           />
         </div> */}
-        <div className="relative z-10 w-[450px]">
+        <div className="relative z-10 w-full max-w-[260px] sm:max-w-[320px] lg:w-[450px] lg:max-w-[450px]">
           {/* Dashboard */}
           <div className="absolute top-[0.93%] left-[14.9%] z-0 h-full w-[68.23%] overflow-hidden rounded-[30px]">
             <img

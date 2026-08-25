@@ -1,7 +1,7 @@
 import { Asterisk, CornerDownRight } from "lucide-react"
 import React from "react"
 
-import { Button } from "@/components/ui/button"
+// import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
 interface Process1Props {
@@ -29,7 +29,7 @@ const Process1 = ({ className }: Process1Props) => {
     },
     {
       step: "04",
-      title: "Traack Contributions",
+      title: "Track Contributions",
       description:
         'Everyone can see who has paid, upcoming contributions, group progress and payout schedule. No more asking, "who has paid"',
     },

@@ -157,9 +157,9 @@ const Navbar1 = ({
               <Image
                 src={logo.src}
                 alt={logo.alt}
-                width={45}
+                width={63}
                 height={45}
-                className="h-7 w-7 dark:invert"
+                className="h-9 w-auto dark:invert"
               />
               <span className="text-lg font-semibold tracking-tighter">
                 {logo.title}
@@ -201,8 +201,9 @@ const Navbar1 = ({
               <Image
                 src={logo.src}
                 alt={logo.alt}
-                width={80}
-                className="h-7 w-7 dark:invert"
+                width={78}
+                height={56}
+                className="h-8 w-auto dark:invert"
               />
             </a>
             <Sheet>

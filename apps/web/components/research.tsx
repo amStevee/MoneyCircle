@@ -107,7 +107,7 @@ const Research17 = (props: Props) => {
             </div>
           ))}
         </div>
-        <p className="text-sm text-muted-foreground md:text-base p-5">
+        <p className="text-sm text-muted-foreground md:text-base p-5 self-center">
           I am building Money Circle to solve these everyday frustrations.
         </p>
         {/* {buttons?.primary?.url && (

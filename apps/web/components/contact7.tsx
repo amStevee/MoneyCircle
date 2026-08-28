@@ -58,7 +58,7 @@ const Contact7 = ({
               <p className="mb-4 text-sm text-muted-foreground">
                 {chatDescription}
               </p>
-              <a href="https://linkedin.com/in/steven-anongo" className="hover:underline">
+              <a href="https://linkedin.com/in/steven-anongo" className="hover:underline mr-5">
                 {chatLink[0]}
               </a>
               <a href="https://x.com/am_stevenanong" className="hover:underline">

@@ -25,7 +25,7 @@ const Process1 = ({ className }: Process1Props) => {
       step: "03",
       title: "Set the Rules",
       description:
-        "Choose contribution a,ount, frequency, number of members, payout order and start date.",
+        "Choose contribution amount, frequency, number of members, payout order and start date.",
     },
     {
       step: "04",

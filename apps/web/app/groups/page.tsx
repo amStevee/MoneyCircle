@@ -10,7 +10,8 @@ import { Input } from "@/components/ui/input"
 import { Progress } from "@/components/ui/progress"
 import { apiClient, type ApiGroup } from "@/lib/api"
 import { formatNaira } from "@/lib/dashboard-data"
-import { GroupsLoading } from "./loading"
+import GroupsLoading from "./loading"
+
 export default function GroupsPage() {
   const [groups, setGroups] = useState<ApiGroup[]>([])
   const [isLoading, setIsLoading] = useState(true)
@@ -35,6 +36,9 @@ export default function GroupsPage() {
       )
       .finally(() => setIsLoading(false))
   }, [])
+
+  if (isLoading) return <GroupsLoading />
+
   const filtered = useMemo(
     () =>
       groups.filter((g) => g.name.toLowerCase().includes(query.toLowerCase())),
@@ -70,7 +74,6 @@ export default function GroupsPage() {
       setError(e?.response?.data?.message || "Unable to create group")
     }
   }
-  if (isLoading) return <GroupsLoading />
   return (
     <PageShell
       title="Savings Groups"

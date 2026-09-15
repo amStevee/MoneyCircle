@@ -3,13 +3,13 @@ import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import { BottomNav } from "@/components/dashboard/bottom-nav"
 import { DashboardHeader } from "@/components/dashboard/dashboard-header"
-import { DashboardLoading } from "./loading"
 import { RecentActivityCard } from "@/components/dashboard/recent-activity-card"
 import { SavingsGroupsCard } from "@/components/dashboard/savings-groups-card"
 import { TotalContributionsCard } from "@/components/dashboard/total-contributions-card"
 import { UpcomingContributionCard } from "@/components/dashboard/upcoming-contribution-card"
 import { apiClient } from "@/lib/api"
 import { useUserStore } from "@/store/useUserStore"
+import DashboardLoading from "./loading"
 
 export default function DashboardPage() {
   const router = useRouter()
@@ -27,9 +27,9 @@ export default function DashboardPage() {
         .catch(() => {})
   }, [token, router, isHydrated])
 
-  if (!isHydrated || !token || !user || !data) return null
-    if (!isHydrated || !token || !user) return null
-    if (!data) return <DashboardLoading />
+  if (!isHydrated || !token || !user) return null
+  if (!data) return <DashboardLoading />
+
   const groups = data.groups.map((g: any) => ({
     ...g,
     frequencyLabel: g.frequency.toLowerCase().replace("ly", ""),

@@ -4,7 +4,7 @@ function Placeholder({ className = "" }: { className?: string }) {
   return <div className={`animate-pulse rounded-lg bg-muted ${className}`} />
 }
 
-export default function GroupsLoading() {
+export function GroupsLoading() {
   return (
     <div
       aria-busy="true"
@@ -46,7 +46,6 @@ export default function GroupsLoading() {
       <BottomNav />
     </div>
   )
-export function GroupsLoading() {
 }
 
 export default GroupsLoading

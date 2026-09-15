@@ -58,4 +58,7 @@ export default function PaymentsLoading() {
       <BottomNav />
     </div>
   )
+export function PaymentsLoading() {
 }
+
+export default PaymentsLoading

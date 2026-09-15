@@ -65,4 +65,7 @@ export default function DashboardLoading() {
 			<BottomNav />
 		</div>
 	)
+export function DashboardLoading() {
 }
+
+export default DashboardLoading

@@ -46,4 +46,7 @@ export default function GroupsLoading() {
       <BottomNav />
     </div>
   )
+export function GroupsLoading() {
 }
+
+export default GroupsLoading

@@ -37,13 +37,13 @@ export default function GroupsPage() {
       .finally(() => setIsLoading(false))
   }, [])
 
-  if (isLoading) return <GroupsLoading />
-
   const filtered = useMemo(
     () =>
       groups.filter((g) => g.name.toLowerCase().includes(query.toLowerCase())),
     [groups, query]
   )
+
+  if (isLoading) return <GroupsLoading />
   async function create(e: React.FormEvent) {
     e.preventDefault()
     try {

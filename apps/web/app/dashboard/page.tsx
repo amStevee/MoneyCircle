@@ -41,7 +41,7 @@ export default function DashboardPage() {
       <div className="mx-auto flex w-full max-w-xl flex-1 flex-col gap-6 p-4 pb-6 sm:p-6">
         <DashboardHeader firstName={user.first_name} />
         <TotalContributionsCard {...data.summary} />
-        {upcoming && (
+        {upcoming ? (
           <UpcomingContributionCard
             amount={upcoming.amount}
             groupName={upcoming.groupName}
@@ -50,6 +50,8 @@ export default function DashboardPage() {
               day: "numeric",
             })}
           />
+        ) : (
+          <UpcomingContributionCard amount={0} groupName="" dueDate="" />
         )}
         <SavingsGroupsCard groups={groups} />
         <RecentActivityCard

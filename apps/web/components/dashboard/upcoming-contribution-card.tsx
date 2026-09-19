@@ -25,16 +25,20 @@ export function UpcomingContributionCard({
           <div className="flex size-14 shrink-0 items-center justify-center rounded-full bg-accent">
             <Calendar className="size-6 text-primary" />
           </div>
-          {amount && groupName && dueDate ? <div className="flex flex-col">
-            <span className="text-xl font-bold">{formatNaira(amount)}</span>
-            <span className="text-sm text-muted-foreground">{groupName}</span>
-            <span className="text-sm text-muted-foreground">
-              Due <span className="font-medium text-primary">{dueDate}</span>
-            </span>
-          </div> : <span className="text-sm text-muted-foreground">No upcoming contributions</span>}
+          {amount && groupName && dueDate ? (
+            <>
+              <div className="flex flex-col">
+                <span className="text-xl font-bold">{formatNaira(amount)}</span>
+                <span className="text-sm text-muted-foreground">{groupName}</span>
+                <span className="text-sm text-muted-foreground">
+                  Due <span className="font-medium text-primary">{dueDate}</span>
+                </span>
+              </div>
+              <Link href="/payments" className={buttonVariants({ size: "lg", className: "w-full rounded-xl sm:w-auto" })}>Pay contribution</Link>
+            </>
+        ) : <span className="text-sm text-muted-foreground">No upcoming contributions</span>}
         </div>
 
-        <Link href="/payments" className={buttonVariants({ size: "lg", className: "w-full rounded-xl sm:w-auto" })}>Pay contribution</Link>
       </div>
     </Card>
   )

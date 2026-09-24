@@ -185,7 +185,6 @@ async function findDueContributions(
           currency: true,
           frequency: true,
           start_date: true,
-          cycle_number: true,
         },
       },
     },

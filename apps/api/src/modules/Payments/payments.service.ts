@@ -10,6 +10,7 @@ import {
   findUserTransactions,
   markTransactionPaid,
 } from "./payments.repository.js";
+import { calculateCircleDueDate } from "../../utils.js";
 
 type SerializedTransaction = {
   id: string;
@@ -181,7 +182,15 @@ class PaymentsService {
       amount: Number(contribution.amount),
       currency: contribution.savings_circle.currency,
       cycle: contribution.cycle_number,
-      dueDate: contribution.due_date,
+      dueDate: calculateCircleDueDate(
+        (contribution.savings_circle as typeof contribution.savings_circle & {
+          start_date: Date;
+        }).start_date,
+        (contribution.savings_circle as typeof contribution.savings_circle & {
+          frequency: Parameters<typeof calculateCircleDueDate>[1];
+        }).frequency,
+        contribution.cycle_number,
+      ),
       status: contribution.status,
     }));
   }

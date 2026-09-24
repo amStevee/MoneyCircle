@@ -1,5 +1,6 @@
 import { prisma } from "@repo/db";
 import type { Prisma } from "@repo/db";
+import { Decimal } from "../../../../../packages/db/src/generated/prisma/runtime/client.js";
 
 /**
  * Dashboard membership with the associated savings circle.
@@ -110,27 +111,79 @@ async function findPaidContributions(
 async function findUpcomingContribution(
   userId: string,
 ): Promise<DashboardContribution | null> {
-  return prisma.contributions.findFirst({
+  const memberships = await prisma.circle_members.findMany({
     where: {
-      circle_member: userId,
-      status: {
-        in: ["PENDING", "OVERDUE"],
-      },
+      user_id: userId,
+      status: "ACTIVE"
     },
-
     include: {
       savings_circle: {
-        select: {
-          id: true,
-          name: true,
+        include: {
+          savings_schedules: true,
         },
       },
-    },
-
-    orderBy: {
-      due_date: "asc",
-    },
+      payouts: {
+        where: {
+          status: "PAID",
+        }
+      }
+    }
   });
+
+  for (const membership of memberships) {
+    const schedule = membership.savings_circle.savings_schedules;
+
+    const currentCycle = schedule[0]?.current_cycle;
+
+    const hasPaid = membership.payouts.some(
+      payout =>
+        payout.cycle_number === currentCycle &&
+        payout.circle_id === membership.circle_id
+    );
+
+    if (!hasPaid) {
+      return {
+        id: `${membership.circle_id}-${currentCycle}`,
+        circle_id: membership.circle_id,
+        savings_circle: {
+          id: membership.savings_circle.id,
+          name: membership.savings_circle.name,
+        },
+        created_at: new Date(),
+        updated_at: new Date(),
+        circle_member: userId,
+        cycle_number: (currentCycle as number),
+        amount: (schedule[0]?.contribution_amount as Decimal),
+        due_date: (schedule[0]?.end_date as Date),
+        paid_at: null,
+        transaction_id: null,
+        status: "PENDING",
+      }
+    }
+  }
+
+  return null;  
+  // return prisma.contributions.findFirst({
+  //   where: {
+  //     circle_member: userId,
+  //     status: {
+  //       in: ["PENDING", "OVERDUE"],
+  //     },
+  //   },
+
+  //   include: {
+  //     savings_circle: {
+  //       select: {
+  //         id: true,
+  //         name: true,
+  //       },
+  //     },
+  //   },
+
+  //   orderBy: {
+  //     due_date: "asc",
+  //   },
+  // });
 }
 
 /**

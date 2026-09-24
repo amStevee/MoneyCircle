@@ -1,6 +1,7 @@
 import { prisma } from "@repo/db";
 import type { Prisma } from "@repo/db";
 import { Decimal } from "../../../../../packages/db/src/generated/prisma/runtime/client.js";
+import { calculateCircleDueDate } from "../../utils.js";
 
 /**
  * Dashboard membership with the associated savings circle.
@@ -154,10 +155,16 @@ async function findUpcomingContribution(
         circle_member: userId,
         cycle_number: (currentCycle as number),
         amount: (schedule[0]?.contribution_amount as Decimal),
-        due_date: (schedule[0]?.end_date as Date),
+        due_date: calculateCircleDueDate(
+          schedule[0]?.start_date as Date,
+          schedule[0]?.frequency as unknown as Parameters<typeof calculateCircleDueDate>[1],
+          currentCycle as number
+        ),
         paid_at: null,
         transaction_id: null,
-        status: "PENDING",
+        status: schedule[0]?.end_date && schedule[0].end_date < new Date()
+          ? "OVERDUE"
+          : "PENDING",
       }
     }
   }

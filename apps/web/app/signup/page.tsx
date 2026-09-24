@@ -25,11 +25,11 @@ export default function SignupPage() {
           </div>
         </div>
       </div>
-      <div className="relative hidden bg-muted lg:block">
+      <div className="relative hidden overflow-hidden bg-muted lg:block">
         <Image
           src="/signup-sid.svg"
           alt="Signup illustration"
-          className="absolute inset-0 h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
+          className="h-full w-full object-contain dark:brightness-[0.2] dark:grayscale"
         />
       </div>
     </div>

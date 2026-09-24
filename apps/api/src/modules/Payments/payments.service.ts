@@ -191,10 +191,7 @@ class PaymentsService {
         }).frequency,
         contribution.cycle_number,
       ),
-      status: (contribution.savings_circle as typeof contribution.savings_circle & {
-        start_date: Date;
-        frequency: Parameters<typeof calculateCircleDueDate>[1];
-      }).frequency,
+      status: contribution.status,
     }));
   }
 

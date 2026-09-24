@@ -25,6 +25,7 @@ export default function SignupPage() {
         </div>
       </div>
       <div className="relative hidden bg-muted lg:block">
+        {/* T */}
         <img
           src="/public/signup-sid.png"
           alt="Image"

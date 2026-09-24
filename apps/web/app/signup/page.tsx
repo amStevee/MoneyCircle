@@ -2,6 +2,7 @@
 
 import { Suspense } from "react"
 import { SignupForm } from "@/components/signup-form"
+import Image from "next/image"
 // import { GalleryVerticalEndIcon } from "lucide-react"
 
 export default function SignupPage() {
@@ -25,8 +26,7 @@ export default function SignupPage() {
         </div>
       </div>
       <div className="relative hidden bg-muted lg:block">
-        {/* T */}
-        <img
+        <Image
           src="/public/signup-sid.png"
           alt="Image"
           className="absolute inset-0 h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"

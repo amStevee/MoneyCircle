@@ -88,7 +88,7 @@ const Waitlist1 = ({ className }: Waitlist1Props) => {
             ))}
           </span>
           <p className="tracking-tight text-muted-foreground/80">
-            Be among the first to experience Money Circle. Join our waitlist and be part of the future of digital Ajo.
+            Be among the first to experience Money Circle.
           </p>
         </div>
       </BackgroundLines>

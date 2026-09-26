@@ -112,85 +112,30 @@ async function findPaidContributions(
 async function findUpcomingContribution(
   userId: string,
 ): Promise<DashboardContribution | null> {
-  const memberships = await prisma.circle_members.findMany({
+  return prisma.contributions.findFirst({
     where: {
-      user_id: userId,
-      status: "ACTIVE"
+      circle_member: userId,
+      status: {
+        in: ["PENDING", "OVERDUE"],
+      },
     },
+
     include: {
       savings_circle: {
-        include: {
-          savings_schedules: true,
+        select: {
+          id: true,
+          name: true,
         },
       },
-      payouts: {
-        where: {
-          status: "PAID",
-        }
-      }
-    }
+    },
+
+    orderBy: [
+      {
+        due_date: "asc",
+      },
+      { created_at: "asc" },
+    ],
   });
-
-  for (const membership of memberships) {
-    const schedule = membership.savings_circle.savings_schedules;
-
-    const currentCycle = schedule[0]?.current_cycle;
-
-    const hasPaid = membership.payouts.some(
-      payout =>
-        payout.cycle_number === currentCycle &&
-        payout.circle_id === membership.circle_id
-    );
-
-    if (!hasPaid) {
-      return {
-        id: `${membership.circle_id}-${currentCycle}`,
-        circle_id: membership.circle_id,
-        savings_circle: {
-          id: membership.savings_circle.id,
-          name: membership.savings_circle.name,
-        },
-        created_at: new Date(),
-        updated_at: new Date(),
-        circle_member: userId,
-        cycle_number: (currentCycle as number),
-        amount: (schedule[0]?.contribution_amount as Decimal),
-        due_date: calculateCircleDueDate(
-          schedule[0]?.start_date as Date,
-          schedule[0]?.frequency as unknown as Parameters<typeof calculateCircleDueDate>[1],
-          currentCycle as number
-        ),
-        paid_at: null,
-        transaction_id: null,
-        status: schedule[0]?.end_date && schedule[0].end_date < new Date()
-          ? "OVERDUE"
-          : "PENDING",
-      }
-    }
-  }
-
-  return null;  
-  // return prisma.contributions.findFirst({
-  //   where: {
-  //     circle_member: userId,
-  //     status: {
-  //       in: ["PENDING", "OVERDUE"],
-  //     },
-  //   },
-
-  //   include: {
-  //     savings_circle: {
-  //       select: {
-  //         id: true,
-  //         name: true,
-  //       },
-  //     },
-  //   },
-
-  //   orderBy: {
-  //     due_date: "asc",
-  //   },
-  // });
 }
 
 /**

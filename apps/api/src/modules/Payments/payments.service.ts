@@ -182,15 +182,7 @@ class PaymentsService {
       amount: Number(contribution.amount),
       currency: contribution.savings_circle.currency,
       cycle: contribution.cycle_number,
-      dueDate: calculateCircleDueDate(
-        (contribution.savings_circle as typeof contribution.savings_circle & {
-          start_date: Date;
-        }).start_date,
-        (contribution.savings_circle as typeof contribution.savings_circle & {
-          frequency: Parameters<typeof calculateCircleDueDate>[1];
-        }).frequency,
-        contribution.cycle_number,
-      ),
+      dueDate: contribution.due_date,
       status: contribution.status,
     }));
   }

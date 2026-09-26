@@ -175,6 +175,7 @@ class PaymentsService {
     userId: string,
   ): Promise<DueContributionResponse[]> {
     const contributions = await findDueContributions(userId);
+
     return contributions.map((contribution) => ({
       id: contribution.id,
       groupId: contribution.circle_id,
@@ -183,7 +184,7 @@ class PaymentsService {
       currency: contribution.savings_circle.currency,
       cycle: contribution.cycle_number,
       dueDate: contribution.due_date,
-      status: contribution.status,
+      status: contribution.status === "OVERDUE" || contribution.due_date < new Date() ? "OVERDUE" : "PENDING",
     }));
   }
 

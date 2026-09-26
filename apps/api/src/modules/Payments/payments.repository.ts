@@ -163,6 +163,7 @@ async function findUserTransaction(
 
 /**
  * Find outstanding contributions for a user.
+ * Bug: does not transition PENDING contributions to OVERDUE if past due date. This is handled in the service layer.
  */
 async function findDueContributions(
   userId: string,

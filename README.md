@@ -1,58 +1,147 @@
-# Turborepo Tailwind CSS starter
+# MoneyCircle
 
-This Turborepo starter is maintained by the Turborepo core team.
+**A modern, transparent way for trusted groups to save together.**
 
-## Using this example
+MoneyCircle is a web platform that digitises *Ajo* (also known as *Esusu* or *Adashe*), the traditional rotational savings system common across West Africa. Members of a group contribute a fixed amount on a schedule, and each cycle one member receives the pooled payout. MoneyCircle replaces notebooks, spreadsheets and WhatsApp reminders with a clear, shared record of every contribution and payout.
 
-Run the following command:
+**Live site:** [money-circle-web.vercel.app](https://money-circle-web.vercel.app)
 
-```sh
-npx create-turbo@latest -e with-tailwind
+> **Status:** Early development. The public landing page and waitlist are live. Core group-savings features are being built.
+
+---
+
+## The Problem
+
+Ajo works because of trust, but managing it is hard. After speaking with people who take part in Ajo groups, the same problems came up repeatedly:
+
+- Contributions get forgotten.
+- Payment records are difficult to track and easy to dispute.
+- Group organisers spend more time chasing reminders than managing the savings.
+- Disagreements happen when information is not visible to everyone.
+
+## The Solution
+
+MoneyCircle gives every group one transparent source of truth:
+
+| Feature | Description |
+| --- | --- |
+| **Savings groups** | Create a private group with people you already know and trust |
+| **Secure invites** | Invite members through a shareable link |
+| **Configurable rules** | Set contribution amount, frequency, number of members, payout order and start date |
+| **Contribution tracking** | See who has paid, what is due and how the group is progressing |
+| **Payout schedule** | Everyone can see whose turn is next and when |
+| **Reminders** | Keep members informed without the organiser chasing them |
+
+Designed for families, friends, coworkers, cooperatives and local associations. No accounting knowledge required.
+
+## Tech Stack
+
+| Area | Technology |
+| --- | --- |
+| Framework | [Next.js](https://nextjs.org/) with React |
+| Language | [TypeScript](https://www.typescriptlang.org/) |
+| Styling | [Tailwind CSS](https://tailwindcss.com/) |
+| Monorepo tooling | [Turborepo](https://turbo.build/repo) with [pnpm](https://pnpm.io/) workspaces |
+| Code quality | ESLint, Prettier, shared TypeScript config |
+| CI/CD | GitHub Actions |
+| Hosting | [Vercel](https://vercel.com/) |
+
+## Project Structure
+
+This is a Turborepo monorepo.
+
+```
+MoneyCircle/
+├── apps/
+│   ├── web/                 # Main Next.js application (landing page and product)
+│   └── docs/                # Next.js documentation app
+├── packages/
+│   ├── ui/                  # Shared React component library
+│   ├── tailwind-config/     # Shared Tailwind configuration
+│   ├── eslint-config/       # Shared ESLint rules
+│   └── typescript-config/   # Shared tsconfig files
+├── .github/workflows/       # CI workflows
+├── turbo.json               # Turborepo pipeline configuration
+├── pnpm-workspace.yaml      # pnpm workspace definition
+└── package.json
 ```
 
-## What's inside?
+## Getting Started
 
-This Turborepo includes the following packages/apps:
+### Prerequisites
 
-### Apps and Packages
+- [Node.js](https://nodejs.org/) 18 or later
+- [pnpm](https://pnpm.io/installation)
 
-- `docs`: a [Next.js](https://nextjs.org/) app with [Tailwind CSS](https://tailwindcss.com/)
-- `web`: another [Next.js](https://nextjs.org/) app with [Tailwind CSS](https://tailwindcss.com/)
-- `ui`: a stub React component library with [Tailwind CSS](https://tailwindcss.com/) shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+### Installation
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+```bash
+# Clone the repository
+git clone https://github.com/amStevee/MoneyCircle.git
+cd MoneyCircle
 
-### Building packages/ui
-
-This example is set up to produce compiled styles for `ui` components into the `dist` directory. The component `.tsx` files are consumed by the Next.js apps directly using `transpilePackages` in `next.config.ts`. This was chosen for several reasons:
-
-- Make sharing one `tailwind.config.ts` to apps and packages as easy as possible.
-- Make package compilation simple by only depending on the Next.js Compiler and `tailwindcss`.
-- Ensure Tailwind classes do not overwrite each other. The `ui` package uses a `ui-` prefix for it's classes.
-- Maintain clear package export boundaries.
-
-Another option is to consume `packages/ui` directly from source without building. If using this option, you will need to update the `tailwind.config.ts` in your apps to be aware of your package locations, so it can find all usages of the `tailwindcss` class names for CSS compilation.
-
-For example, in [tailwind.config.ts](packages/tailwind-config/tailwind.config.ts):
-
-```js
-  content: [
-    // app content
-    `src/**/*.{js,ts,jsx,tsx}`,
-    // include packages if not transpiling
-    "../../packages/ui/*.{js,ts,jsx,tsx}",
-  ],
+# Install dependencies for all apps and packages
+pnpm install
 ```
 
-If you choose this strategy, you can remove the `tailwindcss` and `autoprefixer` dependencies from the `ui` package.
+### Run in development
 
-### Utilities
+```bash
+# Start every app
+pnpm dev
 
-This Turborepo has some additional tools already setup for you:
+# Or start only the web app
+pnpm dev --filter=web
+```
 
-- [Tailwind CSS](https://tailwindcss.com/) for styles
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+The web app runs at [http://localhost:3000](http://localhost:3000).
+
+### Build, lint and type-check
+
+```bash
+pnpm build
+pnpm lint
+```
+
+## Roadmap
+
+- [x] Landing page with waitlist, FAQ and product overview
+- [x] Monorepo setup with shared UI, Tailwind and TypeScript configuration
+- [x] CI pipeline and deployment on Vercel
+- [ ] User authentication
+- [ ] Create and manage savings groups
+- [ ] Member invitations
+- [ ] Contribution and payout tracking
+- [ ] Notifications and reminders
+- [ ] Group history and exportable records
+
+## Design Principles
+
+- **Built for trust:** transparency instead of assumptions.
+- **Simple to use:** anyone in the group can understand it at a glance.
+- **Organised:** every contribution is recorded and every payout is tracked.
+- **Community first:** modernises Ajo without losing what makes it work.
+
+## Contributing
+
+Contributions, ideas and feedback are welcome.
+
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature/your-feature`
+3. Commit your changes: `git commit -m "Add your feature"`
+4. Push to the branch: `git push origin feature/your-feature`
+5. Open a pull request
+
+## Author
+
+**Steven Anongo**, Backend and Full-Stack Developer, Abuja, Nigeria
+
+- LinkedIn: [linkedin.com/in/steven-anongo](https://www.linkedin.com/in/steven-anongo)
+- GitHub: [@amStevee](https://github.com/amStevee)
+- X: [@am_stevenanong](https://x.com/am_stevenanong)
+
+MoneyCircle began as the capstone project for a software development bootcamp.
+
+## License
+
+Add a license file (for example MIT) and reference it here.

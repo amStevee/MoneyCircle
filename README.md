@@ -138,7 +138,7 @@ Contributions, ideas and feedback are welcome.
 
 - LinkedIn: [linkedin.com/in/steven-anongo](https://www.linkedin.com/in/steven-anongo)
 - GitHub: [@amStevee](https://github.com/amStevee)
-- X: [@am_stevenanong](https://x.com/am_stevenanong)
+- X: [@am_stevenanongo](https://x.com/am_stevenanongo)
 
 MoneyCircle began as the capstone project for a software development bootcamp.
 

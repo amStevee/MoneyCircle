@@ -16,6 +16,7 @@ import { Card } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { apiClient, type ApiPayment, type DueContribution } from "@/lib/api"
 import { formatNaira } from "@/lib/dashboard-data"
+import { PaymentsLoading } from "@/components/dashboard/page-loaders"
 const meta: any = {
   PAID: { label: "Completed", icon: CheckCircle2, className: "text-green-600" },
   PENDING: { label: "Pending", icon: Clock3, className: "text-orange-500" },
@@ -25,6 +26,7 @@ const meta: any = {
 export default function PaymentsPage() {
   const [payments, setPayments] = useState<ApiPayment[]>([])
   const [due, setDue] = useState<DueContribution[]>([])
+  const [isLoading, setIsLoading] = useState(true)
   const [query, setQuery] = useState("")
   const [busy, setBusy] = useState("")
   const load = () =>
@@ -35,7 +37,9 @@ export default function PaymentsPage() {
       }
     )
   useEffect(() => {
-    load().catch(() => {})
+    load()
+      .catch(() => {})
+      .finally(() => setIsLoading(false))
   }, [])
   const filtered = useMemo(
     () =>
@@ -60,6 +64,9 @@ export default function PaymentsPage() {
   const total = payments
     .filter((p) => p.status === "PAID")
     .reduce((s, p) => s + p.amount, 0)
+
+  if (isLoading) return <PaymentsLoading />
+
   return (
     <PageShell
       title="Payments"

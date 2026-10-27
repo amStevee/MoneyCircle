@@ -33,6 +33,23 @@ enum Circle_Status {
   REMOVED
 }
 
+enum Group_Status {
+  INVITED
+  ACTIVE
+  SUSPENDED
+  LEFT
+  REMOVED
+  PENDING_RESOLUTION
+  ARCHIVED
+}
+
+enum Ownership_Transfer_Status {
+  PENDING
+  ACCEPTED
+  DECLINED
+  CANCELLED
+}
+
 enum Contribution_status {
   PENDING
   PAID
@@ -128,6 +145,8 @@ model users {
   contributions contributions[]
   payment_transactions payment_transactions[]
   notifications notifications[]
+  ownership_transfers_sent group_ownership_transfers[] @relation("ownership_transfer_from")
+  ownership_transfers_received group_ownership_transfers[] @relation("ownership_transfer_to")
 }
 
 model sessions {
@@ -160,7 +179,7 @@ model savings_circles {
 
   start_date DateTime
 
-  status Circle_Status @default(ACTIVE)
+  status Group_Status @default(ACTIVE)
 
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
@@ -171,10 +190,33 @@ model savings_circles {
   savings_schedules savings_schedules[]
   contributions contributions[]
   payouts payouts[]
+  ownership_transfers group_ownership_transfers[]
 
   @@index([owner_id])
   @@index([status])
   @@index([created_at])
+}
+
+model group_ownership_transfers {
+  id String @id @default(uuid())
+
+  circle_id String
+  savings_circle savings_circles @relation(fields: [circle_id], references: [id], onDelete: Cascade)
+
+  from_user_id String
+  from_user users @relation("ownership_transfer_from", fields: [from_user_id], references: [id], onDelete: Restrict)
+
+  to_user_id String
+  to_user users @relation("ownership_transfer_to", fields: [to_user_id], references: [id], onDelete: Restrict)
+
+  status Ownership_Transfer_Status @default(PENDING)
+
+  created_at DateTime @default(now())
+  responded_at DateTime?
+
+  @@index([circle_id, status])
+  @@index([to_user_id, status])
+  @@index([from_user_id])
 }
 
 model circle_members {

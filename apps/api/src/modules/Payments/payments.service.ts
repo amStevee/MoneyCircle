@@ -205,6 +205,8 @@ class PaymentsService {
 
     if (!contribution)
       throw new Error("Contribution not found or already paid");
+    if (contribution.savings_circle.status === "ARCHIVED")
+      throw new Error("This group has been archived and cannot accept payments");
     if (!user) throw new Error("User not found");
 
     const reference = `MC-${Date.now()}-${crypto.randomBytes(4).toString("hex").toUpperCase()}`;

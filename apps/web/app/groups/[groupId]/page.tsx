@@ -12,6 +12,7 @@ import { Progress } from "@/components/ui/progress"
 import { apiClient, type ApiInvitation } from "@/lib/api"
 import { formatNaira } from "@/lib/dashboard-data"
 import { useUserStore } from "@/store/useUserStore"
+import { GroupDetailsLoading } from "@/components/dashboard/page-loaders"
 
 export default function GroupDetailsPage() {
   const { groupId } = useParams<{ groupId: string }>()
@@ -102,7 +103,7 @@ export default function GroupDetailsPage() {
     )
   }
 
-  if (!group) return null
+  if (!group) return <GroupDetailsLoading />
 
   const progress = Math.min(
     ((group.schedule?.current_cycle ?? 1) /
@@ -134,7 +135,7 @@ export default function GroupDetailsPage() {
               </p>
             </div>
           </div>
-          <Badge>Active</Badge>
+          <Badge>{group.status.replaceAll("_", " ").toLowerCase()}</Badge>
         </div>
         <div className="mt-5 flex flex-col gap-2">
           <div className="flex justify-between text-sm">

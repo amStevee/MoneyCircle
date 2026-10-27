@@ -170,6 +170,16 @@ exports.Prisma.Savings_circlesScalarFieldEnum = {
   updated_at: 'updated_at'
 };
 
+exports.Prisma.Group_ownership_transfersScalarFieldEnum = {
+  id: 'id',
+  circle_id: 'circle_id',
+  from_user_id: 'from_user_id',
+  to_user_id: 'to_user_id',
+  status: 'status',
+  created_at: 'created_at',
+  responded_at: 'responded_at'
+};
+
 exports.Prisma.Circle_membersScalarFieldEnum = {
   id: 'id',
   circle_id: 'circle_id',
@@ -323,18 +333,35 @@ exports.Frequency = exports.$Enums.Frequency = {
   YEARLY: 'YEARLY'
 };
 
-exports.Circle_Status = exports.$Enums.Circle_Status = {
+exports.Group_Status = exports.$Enums.Group_Status = {
   INVITED: 'INVITED',
   ACTIVE: 'ACTIVE',
   SUSPENDED: 'SUSPENDED',
   LEFT: 'LEFT',
-  REMOVED: 'REMOVED'
+  REMOVED: 'REMOVED',
+  PENDING_RESOLUTION: 'PENDING_RESOLUTION',
+  ARCHIVED: 'ARCHIVED'
+};
+
+exports.Ownership_Transfer_Status = exports.$Enums.Ownership_Transfer_Status = {
+  PENDING: 'PENDING',
+  ACCEPTED: 'ACCEPTED',
+  DECLINED: 'DECLINED',
+  CANCELLED: 'CANCELLED'
 };
 
 exports.Role = exports.$Enums.Role = {
   OWNER: 'OWNER',
   ADMIN: 'ADMIN',
   MEMBER: 'MEMBER'
+};
+
+exports.Circle_Status = exports.$Enums.Circle_Status = {
+  INVITED: 'INVITED',
+  ACTIVE: 'ACTIVE',
+  SUSPENDED: 'SUSPENDED',
+  LEFT: 'LEFT',
+  REMOVED: 'REMOVED'
 };
 
 exports.Contribution_status = exports.$Enums.Contribution_status = {
@@ -386,6 +413,7 @@ exports.Prisma.ModelName = {
   users: 'users',
   sessions: 'sessions',
   savings_circles: 'savings_circles',
+  group_ownership_transfers: 'group_ownership_transfers',
   circle_members: 'circle_members',
   circle_invitations: 'circle_invitations',
   savings_schedules: 'savings_schedules',

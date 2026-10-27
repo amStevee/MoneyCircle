@@ -34,6 +34,11 @@ export type sessions = $Result.DefaultSelection<Prisma.$sessionsPayload>
  */
 export type savings_circles = $Result.DefaultSelection<Prisma.$savings_circlesPayload>
 /**
+ * Model group_ownership_transfers
+ * 
+ */
+export type group_ownership_transfers = $Result.DefaultSelection<Prisma.$group_ownership_transfersPayload>
+/**
  * Model circle_members
  * 
  */
@@ -121,6 +126,29 @@ export const Circle_Status: {
 export type Circle_Status = (typeof Circle_Status)[keyof typeof Circle_Status]
 
 
+export const Group_Status: {
+  INVITED: 'INVITED',
+  ACTIVE: 'ACTIVE',
+  SUSPENDED: 'SUSPENDED',
+  LEFT: 'LEFT',
+  REMOVED: 'REMOVED',
+  PENDING_RESOLUTION: 'PENDING_RESOLUTION',
+  ARCHIVED: 'ARCHIVED'
+};
+
+export type Group_Status = (typeof Group_Status)[keyof typeof Group_Status]
+
+
+export const Ownership_Transfer_Status: {
+  PENDING: 'PENDING',
+  ACCEPTED: 'ACCEPTED',
+  DECLINED: 'DECLINED',
+  CANCELLED: 'CANCELLED'
+};
+
+export type Ownership_Transfer_Status = (typeof Ownership_Transfer_Status)[keyof typeof Ownership_Transfer_Status]
+
+
 export const Contribution_status: {
   PENDING: 'PENDING',
   PAID: 'PAID',
@@ -199,6 +227,14 @@ export const Role: typeof $Enums.Role
 export type Circle_Status = $Enums.Circle_Status
 
 export const Circle_Status: typeof $Enums.Circle_Status
+
+export type Group_Status = $Enums.Group_Status
+
+export const Group_Status: typeof $Enums.Group_Status
+
+export type Ownership_Transfer_Status = $Enums.Ownership_Transfer_Status
+
+export const Ownership_Transfer_Status: typeof $Enums.Ownership_Transfer_Status
 
 export type Contribution_status = $Enums.Contribution_status
 
@@ -384,6 +420,16 @@ export class PrismaClient<
     * ```
     */
   get savings_circles(): Prisma.savings_circlesDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.group_ownership_transfers`: Exposes CRUD operations for the **group_ownership_transfers** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Group_ownership_transfers
+    * const group_ownership_transfers = await prisma.group_ownership_transfers.findMany()
+    * ```
+    */
+  get group_ownership_transfers(): Prisma.group_ownership_transfersDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.circle_members`: Exposes CRUD operations for the **circle_members** model.
@@ -925,6 +971,7 @@ export namespace Prisma {
     users: 'users',
     sessions: 'sessions',
     savings_circles: 'savings_circles',
+    group_ownership_transfers: 'group_ownership_transfers',
     circle_members: 'circle_members',
     circle_invitations: 'circle_invitations',
     savings_schedules: 'savings_schedules',
@@ -949,7 +996,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "waitlistEntry" | "users" | "sessions" | "savings_circles" | "circle_members" | "circle_invitations" | "savings_schedules" | "contributions" | "payouts" | "payment_transactions" | "payment_status_history" | "notifications" | "audit_log"
+      modelProps: "waitlistEntry" | "users" | "sessions" | "savings_circles" | "group_ownership_transfers" | "circle_members" | "circle_invitations" | "savings_schedules" | "contributions" | "payouts" | "payment_transactions" | "payment_status_history" | "notifications" | "audit_log"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1246,6 +1293,80 @@ export namespace Prisma {
           count: {
             args: Prisma.savings_circlesCountArgs<ExtArgs>
             result: $Utils.Optional<Savings_circlesCountAggregateOutputType> | number
+          }
+        }
+      }
+      group_ownership_transfers: {
+        payload: Prisma.$group_ownership_transfersPayload<ExtArgs>
+        fields: Prisma.group_ownership_transfersFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.group_ownership_transfersFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$group_ownership_transfersPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.group_ownership_transfersFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$group_ownership_transfersPayload>
+          }
+          findFirst: {
+            args: Prisma.group_ownership_transfersFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$group_ownership_transfersPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.group_ownership_transfersFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$group_ownership_transfersPayload>
+          }
+          findMany: {
+            args: Prisma.group_ownership_transfersFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$group_ownership_transfersPayload>[]
+          }
+          create: {
+            args: Prisma.group_ownership_transfersCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$group_ownership_transfersPayload>
+          }
+          createMany: {
+            args: Prisma.group_ownership_transfersCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.group_ownership_transfersCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$group_ownership_transfersPayload>[]
+          }
+          delete: {
+            args: Prisma.group_ownership_transfersDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$group_ownership_transfersPayload>
+          }
+          update: {
+            args: Prisma.group_ownership_transfersUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$group_ownership_transfersPayload>
+          }
+          deleteMany: {
+            args: Prisma.group_ownership_transfersDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.group_ownership_transfersUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.group_ownership_transfersUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$group_ownership_transfersPayload>[]
+          }
+          upsert: {
+            args: Prisma.group_ownership_transfersUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$group_ownership_transfersPayload>
+          }
+          aggregate: {
+            args: Prisma.Group_ownership_transfersAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateGroup_ownership_transfers>
+          }
+          groupBy: {
+            args: Prisma.group_ownership_transfersGroupByArgs<ExtArgs>
+            result: $Utils.Optional<Group_ownership_transfersGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.group_ownership_transfersCountArgs<ExtArgs>
+            result: $Utils.Optional<Group_ownership_transfersCountAggregateOutputType> | number
           }
         }
       }
@@ -2042,6 +2163,7 @@ export namespace Prisma {
     users?: usersOmit
     sessions?: sessionsOmit
     savings_circles?: savings_circlesOmit
+    group_ownership_transfers?: group_ownership_transfersOmit
     circle_members?: circle_membersOmit
     circle_invitations?: circle_invitationsOmit
     savings_schedules?: savings_schedulesOmit
@@ -2137,6 +2259,8 @@ export namespace Prisma {
     contributions: number
     payment_transactions: number
     notifications: number
+    ownership_transfers_sent: number
+    ownership_transfers_received: number
   }
 
   export type UsersCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2146,6 +2270,8 @@ export namespace Prisma {
     contributions?: boolean | UsersCountOutputTypeCountContributionsArgs
     payment_transactions?: boolean | UsersCountOutputTypeCountPayment_transactionsArgs
     notifications?: boolean | UsersCountOutputTypeCountNotificationsArgs
+    ownership_transfers_sent?: boolean | UsersCountOutputTypeCountOwnership_transfers_sentArgs
+    ownership_transfers_received?: boolean | UsersCountOutputTypeCountOwnership_transfers_receivedArgs
   }
 
   // Custom InputTypes
@@ -2201,6 +2327,20 @@ export namespace Prisma {
     where?: notificationsWhereInput
   }
 
+  /**
+   * UsersCountOutputType without action
+   */
+  export type UsersCountOutputTypeCountOwnership_transfers_sentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: group_ownership_transfersWhereInput
+  }
+
+  /**
+   * UsersCountOutputType without action
+   */
+  export type UsersCountOutputTypeCountOwnership_transfers_receivedArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: group_ownership_transfersWhereInput
+  }
+
 
   /**
    * Count Type Savings_circlesCountOutputType
@@ -2212,6 +2352,7 @@ export namespace Prisma {
     savings_schedules: number
     contributions: number
     payouts: number
+    ownership_transfers: number
   }
 
   export type Savings_circlesCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2220,6 +2361,7 @@ export namespace Prisma {
     savings_schedules?: boolean | Savings_circlesCountOutputTypeCountSavings_schedulesArgs
     contributions?: boolean | Savings_circlesCountOutputTypeCountContributionsArgs
     payouts?: boolean | Savings_circlesCountOutputTypeCountPayoutsArgs
+    ownership_transfers?: boolean | Savings_circlesCountOutputTypeCountOwnership_transfersArgs
   }
 
   // Custom InputTypes
@@ -2266,6 +2408,13 @@ export namespace Prisma {
    */
   export type Savings_circlesCountOutputTypeCountPayoutsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: payoutsWhereInput
+  }
+
+  /**
+   * Savings_circlesCountOutputType without action
+   */
+  export type Savings_circlesCountOutputTypeCountOwnership_transfersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: group_ownership_transfersWhereInput
   }
 
 
@@ -3689,6 +3838,8 @@ export namespace Prisma {
     contributions?: boolean | users$contributionsArgs<ExtArgs>
     payment_transactions?: boolean | users$payment_transactionsArgs<ExtArgs>
     notifications?: boolean | users$notificationsArgs<ExtArgs>
+    ownership_transfers_sent?: boolean | users$ownership_transfers_sentArgs<ExtArgs>
+    ownership_transfers_received?: boolean | users$ownership_transfers_receivedArgs<ExtArgs>
     _count?: boolean | UsersCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["users"]>
 
@@ -3744,6 +3895,8 @@ export namespace Prisma {
     contributions?: boolean | users$contributionsArgs<ExtArgs>
     payment_transactions?: boolean | users$payment_transactionsArgs<ExtArgs>
     notifications?: boolean | users$notificationsArgs<ExtArgs>
+    ownership_transfers_sent?: boolean | users$ownership_transfers_sentArgs<ExtArgs>
+    ownership_transfers_received?: boolean | users$ownership_transfers_receivedArgs<ExtArgs>
     _count?: boolean | UsersCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type usersIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -3760,6 +3913,8 @@ export namespace Prisma {
       contributions: Prisma.$contributionsPayload<ExtArgs>[]
       payment_transactions: Prisma.$payment_transactionsPayload<ExtArgs>[]
       notifications: Prisma.$notificationsPayload<ExtArgs>[]
+      ownership_transfers_sent: Prisma.$group_ownership_transfersPayload<ExtArgs>[]
+      ownership_transfers_received: Prisma.$group_ownership_transfersPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -4175,6 +4330,8 @@ export namespace Prisma {
     contributions<T extends users$contributionsArgs<ExtArgs> = {}>(args?: Subset<T, users$contributionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$contributionsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     payment_transactions<T extends users$payment_transactionsArgs<ExtArgs> = {}>(args?: Subset<T, users$payment_transactionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$payment_transactionsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     notifications<T extends users$notificationsArgs<ExtArgs> = {}>(args?: Subset<T, users$notificationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$notificationsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    ownership_transfers_sent<T extends users$ownership_transfers_sentArgs<ExtArgs> = {}>(args?: Subset<T, users$ownership_transfers_sentArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$group_ownership_transfersPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    ownership_transfers_received<T extends users$ownership_transfers_receivedArgs<ExtArgs> = {}>(args?: Subset<T, users$ownership_transfers_receivedArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$group_ownership_transfersPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4787,6 +4944,54 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: NotificationsScalarFieldEnum | NotificationsScalarFieldEnum[]
+  }
+
+  /**
+   * users.ownership_transfers_sent
+   */
+  export type users$ownership_transfers_sentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the group_ownership_transfers
+     */
+    select?: group_ownership_transfersSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the group_ownership_transfers
+     */
+    omit?: group_ownership_transfersOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: group_ownership_transfersInclude<ExtArgs> | null
+    where?: group_ownership_transfersWhereInput
+    orderBy?: group_ownership_transfersOrderByWithRelationInput | group_ownership_transfersOrderByWithRelationInput[]
+    cursor?: group_ownership_transfersWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Group_ownership_transfersScalarFieldEnum | Group_ownership_transfersScalarFieldEnum[]
+  }
+
+  /**
+   * users.ownership_transfers_received
+   */
+  export type users$ownership_transfers_receivedArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the group_ownership_transfers
+     */
+    select?: group_ownership_transfersSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the group_ownership_transfers
+     */
+    omit?: group_ownership_transfersOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: group_ownership_transfersInclude<ExtArgs> | null
+    where?: group_ownership_transfersWhereInput
+    orderBy?: group_ownership_transfersOrderByWithRelationInput | group_ownership_transfersOrderByWithRelationInput[]
+    cursor?: group_ownership_transfersWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Group_ownership_transfersScalarFieldEnum | Group_ownership_transfersScalarFieldEnum[]
   }
 
   /**
@@ -5916,7 +6121,7 @@ export namespace Prisma {
     frequency: $Enums.Frequency | null
     member_limit: number | null
     start_date: Date | null
-    status: $Enums.Circle_Status | null
+    status: $Enums.Group_Status | null
     created_at: Date | null
     updated_at: Date | null
   }
@@ -5931,7 +6136,7 @@ export namespace Prisma {
     frequency: $Enums.Frequency | null
     member_limit: number | null
     start_date: Date | null
-    status: $Enums.Circle_Status | null
+    status: $Enums.Group_Status | null
     created_at: Date | null
     updated_at: Date | null
   }
@@ -6105,7 +6310,7 @@ export namespace Prisma {
     frequency: $Enums.Frequency
     member_limit: number
     start_date: Date
-    status: $Enums.Circle_Status
+    status: $Enums.Group_Status
     created_at: Date
     updated_at: Date
     _count: Savings_circlesCountAggregateOutputType | null
@@ -6148,6 +6353,7 @@ export namespace Prisma {
     savings_schedules?: boolean | savings_circles$savings_schedulesArgs<ExtArgs>
     contributions?: boolean | savings_circles$contributionsArgs<ExtArgs>
     payouts?: boolean | savings_circles$payoutsArgs<ExtArgs>
+    ownership_transfers?: boolean | savings_circles$ownership_transfersArgs<ExtArgs>
     _count?: boolean | Savings_circlesCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["savings_circles"]>
 
@@ -6206,6 +6412,7 @@ export namespace Prisma {
     savings_schedules?: boolean | savings_circles$savings_schedulesArgs<ExtArgs>
     contributions?: boolean | savings_circles$contributionsArgs<ExtArgs>
     payouts?: boolean | savings_circles$payoutsArgs<ExtArgs>
+    ownership_transfers?: boolean | savings_circles$ownership_transfersArgs<ExtArgs>
     _count?: boolean | Savings_circlesCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type savings_circlesIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6224,6 +6431,7 @@ export namespace Prisma {
       savings_schedules: Prisma.$savings_schedulesPayload<ExtArgs>[]
       contributions: Prisma.$contributionsPayload<ExtArgs>[]
       payouts: Prisma.$payoutsPayload<ExtArgs>[]
+      ownership_transfers: Prisma.$group_ownership_transfersPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -6235,7 +6443,7 @@ export namespace Prisma {
       frequency: $Enums.Frequency
       member_limit: number
       start_date: Date
-      status: $Enums.Circle_Status
+      status: $Enums.Group_Status
       created_at: Date
       updated_at: Date
     }, ExtArgs["result"]["savings_circles"]>
@@ -6638,6 +6846,7 @@ export namespace Prisma {
     savings_schedules<T extends savings_circles$savings_schedulesArgs<ExtArgs> = {}>(args?: Subset<T, savings_circles$savings_schedulesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$savings_schedulesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     contributions<T extends savings_circles$contributionsArgs<ExtArgs> = {}>(args?: Subset<T, savings_circles$contributionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$contributionsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     payouts<T extends savings_circles$payoutsArgs<ExtArgs> = {}>(args?: Subset<T, savings_circles$payoutsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$payoutsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    ownership_transfers<T extends savings_circles$ownership_transfersArgs<ExtArgs> = {}>(args?: Subset<T, savings_circles$ownership_transfersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$group_ownership_transfersPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -6676,7 +6885,7 @@ export namespace Prisma {
     readonly frequency: FieldRef<"savings_circles", 'Frequency'>
     readonly member_limit: FieldRef<"savings_circles", 'Int'>
     readonly start_date: FieldRef<"savings_circles", 'DateTime'>
-    readonly status: FieldRef<"savings_circles", 'Circle_Status'>
+    readonly status: FieldRef<"savings_circles", 'Group_Status'>
     readonly created_at: FieldRef<"savings_circles", 'DateTime'>
     readonly updated_at: FieldRef<"savings_circles", 'DateTime'>
   }
@@ -7200,6 +7409,30 @@ export namespace Prisma {
   }
 
   /**
+   * savings_circles.ownership_transfers
+   */
+  export type savings_circles$ownership_transfersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the group_ownership_transfers
+     */
+    select?: group_ownership_transfersSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the group_ownership_transfers
+     */
+    omit?: group_ownership_transfersOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: group_ownership_transfersInclude<ExtArgs> | null
+    where?: group_ownership_transfersWhereInput
+    orderBy?: group_ownership_transfersOrderByWithRelationInput | group_ownership_transfersOrderByWithRelationInput[]
+    cursor?: group_ownership_transfersWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Group_ownership_transfersScalarFieldEnum | Group_ownership_transfersScalarFieldEnum[]
+  }
+
+  /**
    * savings_circles without action
    */
   export type savings_circlesDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -7215,6 +7448,1111 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: savings_circlesInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model group_ownership_transfers
+   */
+
+  export type AggregateGroup_ownership_transfers = {
+    _count: Group_ownership_transfersCountAggregateOutputType | null
+    _min: Group_ownership_transfersMinAggregateOutputType | null
+    _max: Group_ownership_transfersMaxAggregateOutputType | null
+  }
+
+  export type Group_ownership_transfersMinAggregateOutputType = {
+    id: string | null
+    circle_id: string | null
+    from_user_id: string | null
+    to_user_id: string | null
+    status: $Enums.Ownership_Transfer_Status | null
+    created_at: Date | null
+    responded_at: Date | null
+  }
+
+  export type Group_ownership_transfersMaxAggregateOutputType = {
+    id: string | null
+    circle_id: string | null
+    from_user_id: string | null
+    to_user_id: string | null
+    status: $Enums.Ownership_Transfer_Status | null
+    created_at: Date | null
+    responded_at: Date | null
+  }
+
+  export type Group_ownership_transfersCountAggregateOutputType = {
+    id: number
+    circle_id: number
+    from_user_id: number
+    to_user_id: number
+    status: number
+    created_at: number
+    responded_at: number
+    _all: number
+  }
+
+
+  export type Group_ownership_transfersMinAggregateInputType = {
+    id?: true
+    circle_id?: true
+    from_user_id?: true
+    to_user_id?: true
+    status?: true
+    created_at?: true
+    responded_at?: true
+  }
+
+  export type Group_ownership_transfersMaxAggregateInputType = {
+    id?: true
+    circle_id?: true
+    from_user_id?: true
+    to_user_id?: true
+    status?: true
+    created_at?: true
+    responded_at?: true
+  }
+
+  export type Group_ownership_transfersCountAggregateInputType = {
+    id?: true
+    circle_id?: true
+    from_user_id?: true
+    to_user_id?: true
+    status?: true
+    created_at?: true
+    responded_at?: true
+    _all?: true
+  }
+
+  export type Group_ownership_transfersAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which group_ownership_transfers to aggregate.
+     */
+    where?: group_ownership_transfersWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of group_ownership_transfers to fetch.
+     */
+    orderBy?: group_ownership_transfersOrderByWithRelationInput | group_ownership_transfersOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: group_ownership_transfersWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` group_ownership_transfers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` group_ownership_transfers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned group_ownership_transfers
+    **/
+    _count?: true | Group_ownership_transfersCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Group_ownership_transfersMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Group_ownership_transfersMaxAggregateInputType
+  }
+
+  export type GetGroup_ownership_transfersAggregateType<T extends Group_ownership_transfersAggregateArgs> = {
+        [P in keyof T & keyof AggregateGroup_ownership_transfers]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateGroup_ownership_transfers[P]>
+      : GetScalarType<T[P], AggregateGroup_ownership_transfers[P]>
+  }
+
+
+
+
+  export type group_ownership_transfersGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: group_ownership_transfersWhereInput
+    orderBy?: group_ownership_transfersOrderByWithAggregationInput | group_ownership_transfersOrderByWithAggregationInput[]
+    by: Group_ownership_transfersScalarFieldEnum[] | Group_ownership_transfersScalarFieldEnum
+    having?: group_ownership_transfersScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Group_ownership_transfersCountAggregateInputType | true
+    _min?: Group_ownership_transfersMinAggregateInputType
+    _max?: Group_ownership_transfersMaxAggregateInputType
+  }
+
+  export type Group_ownership_transfersGroupByOutputType = {
+    id: string
+    circle_id: string
+    from_user_id: string
+    to_user_id: string
+    status: $Enums.Ownership_Transfer_Status
+    created_at: Date
+    responded_at: Date | null
+    _count: Group_ownership_transfersCountAggregateOutputType | null
+    _min: Group_ownership_transfersMinAggregateOutputType | null
+    _max: Group_ownership_transfersMaxAggregateOutputType | null
+  }
+
+  type GetGroup_ownership_transfersGroupByPayload<T extends group_ownership_transfersGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<Group_ownership_transfersGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Group_ownership_transfersGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Group_ownership_transfersGroupByOutputType[P]>
+            : GetScalarType<T[P], Group_ownership_transfersGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type group_ownership_transfersSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    circle_id?: boolean
+    from_user_id?: boolean
+    to_user_id?: boolean
+    status?: boolean
+    created_at?: boolean
+    responded_at?: boolean
+    savings_circle?: boolean | savings_circlesDefaultArgs<ExtArgs>
+    from_user?: boolean | usersDefaultArgs<ExtArgs>
+    to_user?: boolean | usersDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["group_ownership_transfers"]>
+
+  export type group_ownership_transfersSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    circle_id?: boolean
+    from_user_id?: boolean
+    to_user_id?: boolean
+    status?: boolean
+    created_at?: boolean
+    responded_at?: boolean
+    savings_circle?: boolean | savings_circlesDefaultArgs<ExtArgs>
+    from_user?: boolean | usersDefaultArgs<ExtArgs>
+    to_user?: boolean | usersDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["group_ownership_transfers"]>
+
+  export type group_ownership_transfersSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    circle_id?: boolean
+    from_user_id?: boolean
+    to_user_id?: boolean
+    status?: boolean
+    created_at?: boolean
+    responded_at?: boolean
+    savings_circle?: boolean | savings_circlesDefaultArgs<ExtArgs>
+    from_user?: boolean | usersDefaultArgs<ExtArgs>
+    to_user?: boolean | usersDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["group_ownership_transfers"]>
+
+  export type group_ownership_transfersSelectScalar = {
+    id?: boolean
+    circle_id?: boolean
+    from_user_id?: boolean
+    to_user_id?: boolean
+    status?: boolean
+    created_at?: boolean
+    responded_at?: boolean
+  }
+
+  export type group_ownership_transfersOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "circle_id" | "from_user_id" | "to_user_id" | "status" | "created_at" | "responded_at", ExtArgs["result"]["group_ownership_transfers"]>
+  export type group_ownership_transfersInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    savings_circle?: boolean | savings_circlesDefaultArgs<ExtArgs>
+    from_user?: boolean | usersDefaultArgs<ExtArgs>
+    to_user?: boolean | usersDefaultArgs<ExtArgs>
+  }
+  export type group_ownership_transfersIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    savings_circle?: boolean | savings_circlesDefaultArgs<ExtArgs>
+    from_user?: boolean | usersDefaultArgs<ExtArgs>
+    to_user?: boolean | usersDefaultArgs<ExtArgs>
+  }
+  export type group_ownership_transfersIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    savings_circle?: boolean | savings_circlesDefaultArgs<ExtArgs>
+    from_user?: boolean | usersDefaultArgs<ExtArgs>
+    to_user?: boolean | usersDefaultArgs<ExtArgs>
+  }
+
+  export type $group_ownership_transfersPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "group_ownership_transfers"
+    objects: {
+      savings_circle: Prisma.$savings_circlesPayload<ExtArgs>
+      from_user: Prisma.$usersPayload<ExtArgs>
+      to_user: Prisma.$usersPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      circle_id: string
+      from_user_id: string
+      to_user_id: string
+      status: $Enums.Ownership_Transfer_Status
+      created_at: Date
+      responded_at: Date | null
+    }, ExtArgs["result"]["group_ownership_transfers"]>
+    composites: {}
+  }
+
+  type group_ownership_transfersGetPayload<S extends boolean | null | undefined | group_ownership_transfersDefaultArgs> = $Result.GetResult<Prisma.$group_ownership_transfersPayload, S>
+
+  type group_ownership_transfersCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<group_ownership_transfersFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: Group_ownership_transfersCountAggregateInputType | true
+    }
+
+  export interface group_ownership_transfersDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['group_ownership_transfers'], meta: { name: 'group_ownership_transfers' } }
+    /**
+     * Find zero or one Group_ownership_transfers that matches the filter.
+     * @param {group_ownership_transfersFindUniqueArgs} args - Arguments to find a Group_ownership_transfers
+     * @example
+     * // Get one Group_ownership_transfers
+     * const group_ownership_transfers = await prisma.group_ownership_transfers.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends group_ownership_transfersFindUniqueArgs>(args: SelectSubset<T, group_ownership_transfersFindUniqueArgs<ExtArgs>>): Prisma__group_ownership_transfersClient<$Result.GetResult<Prisma.$group_ownership_transfersPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Group_ownership_transfers that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {group_ownership_transfersFindUniqueOrThrowArgs} args - Arguments to find a Group_ownership_transfers
+     * @example
+     * // Get one Group_ownership_transfers
+     * const group_ownership_transfers = await prisma.group_ownership_transfers.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends group_ownership_transfersFindUniqueOrThrowArgs>(args: SelectSubset<T, group_ownership_transfersFindUniqueOrThrowArgs<ExtArgs>>): Prisma__group_ownership_transfersClient<$Result.GetResult<Prisma.$group_ownership_transfersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Group_ownership_transfers that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {group_ownership_transfersFindFirstArgs} args - Arguments to find a Group_ownership_transfers
+     * @example
+     * // Get one Group_ownership_transfers
+     * const group_ownership_transfers = await prisma.group_ownership_transfers.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends group_ownership_transfersFindFirstArgs>(args?: SelectSubset<T, group_ownership_transfersFindFirstArgs<ExtArgs>>): Prisma__group_ownership_transfersClient<$Result.GetResult<Prisma.$group_ownership_transfersPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Group_ownership_transfers that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {group_ownership_transfersFindFirstOrThrowArgs} args - Arguments to find a Group_ownership_transfers
+     * @example
+     * // Get one Group_ownership_transfers
+     * const group_ownership_transfers = await prisma.group_ownership_transfers.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends group_ownership_transfersFindFirstOrThrowArgs>(args?: SelectSubset<T, group_ownership_transfersFindFirstOrThrowArgs<ExtArgs>>): Prisma__group_ownership_transfersClient<$Result.GetResult<Prisma.$group_ownership_transfersPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Group_ownership_transfers that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {group_ownership_transfersFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Group_ownership_transfers
+     * const group_ownership_transfers = await prisma.group_ownership_transfers.findMany()
+     * 
+     * // Get first 10 Group_ownership_transfers
+     * const group_ownership_transfers = await prisma.group_ownership_transfers.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const group_ownership_transfersWithIdOnly = await prisma.group_ownership_transfers.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends group_ownership_transfersFindManyArgs>(args?: SelectSubset<T, group_ownership_transfersFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$group_ownership_transfersPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Group_ownership_transfers.
+     * @param {group_ownership_transfersCreateArgs} args - Arguments to create a Group_ownership_transfers.
+     * @example
+     * // Create one Group_ownership_transfers
+     * const Group_ownership_transfers = await prisma.group_ownership_transfers.create({
+     *   data: {
+     *     // ... data to create a Group_ownership_transfers
+     *   }
+     * })
+     * 
+     */
+    create<T extends group_ownership_transfersCreateArgs>(args: SelectSubset<T, group_ownership_transfersCreateArgs<ExtArgs>>): Prisma__group_ownership_transfersClient<$Result.GetResult<Prisma.$group_ownership_transfersPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Group_ownership_transfers.
+     * @param {group_ownership_transfersCreateManyArgs} args - Arguments to create many Group_ownership_transfers.
+     * @example
+     * // Create many Group_ownership_transfers
+     * const group_ownership_transfers = await prisma.group_ownership_transfers.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends group_ownership_transfersCreateManyArgs>(args?: SelectSubset<T, group_ownership_transfersCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Group_ownership_transfers and returns the data saved in the database.
+     * @param {group_ownership_transfersCreateManyAndReturnArgs} args - Arguments to create many Group_ownership_transfers.
+     * @example
+     * // Create many Group_ownership_transfers
+     * const group_ownership_transfers = await prisma.group_ownership_transfers.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Group_ownership_transfers and only return the `id`
+     * const group_ownership_transfersWithIdOnly = await prisma.group_ownership_transfers.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends group_ownership_transfersCreateManyAndReturnArgs>(args?: SelectSubset<T, group_ownership_transfersCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$group_ownership_transfersPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Group_ownership_transfers.
+     * @param {group_ownership_transfersDeleteArgs} args - Arguments to delete one Group_ownership_transfers.
+     * @example
+     * // Delete one Group_ownership_transfers
+     * const Group_ownership_transfers = await prisma.group_ownership_transfers.delete({
+     *   where: {
+     *     // ... filter to delete one Group_ownership_transfers
+     *   }
+     * })
+     * 
+     */
+    delete<T extends group_ownership_transfersDeleteArgs>(args: SelectSubset<T, group_ownership_transfersDeleteArgs<ExtArgs>>): Prisma__group_ownership_transfersClient<$Result.GetResult<Prisma.$group_ownership_transfersPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Group_ownership_transfers.
+     * @param {group_ownership_transfersUpdateArgs} args - Arguments to update one Group_ownership_transfers.
+     * @example
+     * // Update one Group_ownership_transfers
+     * const group_ownership_transfers = await prisma.group_ownership_transfers.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends group_ownership_transfersUpdateArgs>(args: SelectSubset<T, group_ownership_transfersUpdateArgs<ExtArgs>>): Prisma__group_ownership_transfersClient<$Result.GetResult<Prisma.$group_ownership_transfersPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Group_ownership_transfers.
+     * @param {group_ownership_transfersDeleteManyArgs} args - Arguments to filter Group_ownership_transfers to delete.
+     * @example
+     * // Delete a few Group_ownership_transfers
+     * const { count } = await prisma.group_ownership_transfers.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends group_ownership_transfersDeleteManyArgs>(args?: SelectSubset<T, group_ownership_transfersDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Group_ownership_transfers.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {group_ownership_transfersUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Group_ownership_transfers
+     * const group_ownership_transfers = await prisma.group_ownership_transfers.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends group_ownership_transfersUpdateManyArgs>(args: SelectSubset<T, group_ownership_transfersUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Group_ownership_transfers and returns the data updated in the database.
+     * @param {group_ownership_transfersUpdateManyAndReturnArgs} args - Arguments to update many Group_ownership_transfers.
+     * @example
+     * // Update many Group_ownership_transfers
+     * const group_ownership_transfers = await prisma.group_ownership_transfers.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Group_ownership_transfers and only return the `id`
+     * const group_ownership_transfersWithIdOnly = await prisma.group_ownership_transfers.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends group_ownership_transfersUpdateManyAndReturnArgs>(args: SelectSubset<T, group_ownership_transfersUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$group_ownership_transfersPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Group_ownership_transfers.
+     * @param {group_ownership_transfersUpsertArgs} args - Arguments to update or create a Group_ownership_transfers.
+     * @example
+     * // Update or create a Group_ownership_transfers
+     * const group_ownership_transfers = await prisma.group_ownership_transfers.upsert({
+     *   create: {
+     *     // ... data to create a Group_ownership_transfers
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Group_ownership_transfers we want to update
+     *   }
+     * })
+     */
+    upsert<T extends group_ownership_transfersUpsertArgs>(args: SelectSubset<T, group_ownership_transfersUpsertArgs<ExtArgs>>): Prisma__group_ownership_transfersClient<$Result.GetResult<Prisma.$group_ownership_transfersPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Group_ownership_transfers.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {group_ownership_transfersCountArgs} args - Arguments to filter Group_ownership_transfers to count.
+     * @example
+     * // Count the number of Group_ownership_transfers
+     * const count = await prisma.group_ownership_transfers.count({
+     *   where: {
+     *     // ... the filter for the Group_ownership_transfers we want to count
+     *   }
+     * })
+    **/
+    count<T extends group_ownership_transfersCountArgs>(
+      args?: Subset<T, group_ownership_transfersCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Group_ownership_transfersCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Group_ownership_transfers.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Group_ownership_transfersAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Group_ownership_transfersAggregateArgs>(args: Subset<T, Group_ownership_transfersAggregateArgs>): Prisma.PrismaPromise<GetGroup_ownership_transfersAggregateType<T>>
+
+    /**
+     * Group by Group_ownership_transfers.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {group_ownership_transfersGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends group_ownership_transfersGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: group_ownership_transfersGroupByArgs['orderBy'] }
+        : { orderBy?: group_ownership_transfersGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, group_ownership_transfersGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetGroup_ownership_transfersGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the group_ownership_transfers model
+   */
+  readonly fields: group_ownership_transfersFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for group_ownership_transfers.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__group_ownership_transfersClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    savings_circle<T extends savings_circlesDefaultArgs<ExtArgs> = {}>(args?: Subset<T, savings_circlesDefaultArgs<ExtArgs>>): Prisma__savings_circlesClient<$Result.GetResult<Prisma.$savings_circlesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    from_user<T extends usersDefaultArgs<ExtArgs> = {}>(args?: Subset<T, usersDefaultArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    to_user<T extends usersDefaultArgs<ExtArgs> = {}>(args?: Subset<T, usersDefaultArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the group_ownership_transfers model
+   */
+  interface group_ownership_transfersFieldRefs {
+    readonly id: FieldRef<"group_ownership_transfers", 'String'>
+    readonly circle_id: FieldRef<"group_ownership_transfers", 'String'>
+    readonly from_user_id: FieldRef<"group_ownership_transfers", 'String'>
+    readonly to_user_id: FieldRef<"group_ownership_transfers", 'String'>
+    readonly status: FieldRef<"group_ownership_transfers", 'Ownership_Transfer_Status'>
+    readonly created_at: FieldRef<"group_ownership_transfers", 'DateTime'>
+    readonly responded_at: FieldRef<"group_ownership_transfers", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * group_ownership_transfers findUnique
+   */
+  export type group_ownership_transfersFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the group_ownership_transfers
+     */
+    select?: group_ownership_transfersSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the group_ownership_transfers
+     */
+    omit?: group_ownership_transfersOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: group_ownership_transfersInclude<ExtArgs> | null
+    /**
+     * Filter, which group_ownership_transfers to fetch.
+     */
+    where: group_ownership_transfersWhereUniqueInput
+  }
+
+  /**
+   * group_ownership_transfers findUniqueOrThrow
+   */
+  export type group_ownership_transfersFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the group_ownership_transfers
+     */
+    select?: group_ownership_transfersSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the group_ownership_transfers
+     */
+    omit?: group_ownership_transfersOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: group_ownership_transfersInclude<ExtArgs> | null
+    /**
+     * Filter, which group_ownership_transfers to fetch.
+     */
+    where: group_ownership_transfersWhereUniqueInput
+  }
+
+  /**
+   * group_ownership_transfers findFirst
+   */
+  export type group_ownership_transfersFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the group_ownership_transfers
+     */
+    select?: group_ownership_transfersSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the group_ownership_transfers
+     */
+    omit?: group_ownership_transfersOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: group_ownership_transfersInclude<ExtArgs> | null
+    /**
+     * Filter, which group_ownership_transfers to fetch.
+     */
+    where?: group_ownership_transfersWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of group_ownership_transfers to fetch.
+     */
+    orderBy?: group_ownership_transfersOrderByWithRelationInput | group_ownership_transfersOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for group_ownership_transfers.
+     */
+    cursor?: group_ownership_transfersWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` group_ownership_transfers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` group_ownership_transfers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of group_ownership_transfers.
+     */
+    distinct?: Group_ownership_transfersScalarFieldEnum | Group_ownership_transfersScalarFieldEnum[]
+  }
+
+  /**
+   * group_ownership_transfers findFirstOrThrow
+   */
+  export type group_ownership_transfersFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the group_ownership_transfers
+     */
+    select?: group_ownership_transfersSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the group_ownership_transfers
+     */
+    omit?: group_ownership_transfersOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: group_ownership_transfersInclude<ExtArgs> | null
+    /**
+     * Filter, which group_ownership_transfers to fetch.
+     */
+    where?: group_ownership_transfersWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of group_ownership_transfers to fetch.
+     */
+    orderBy?: group_ownership_transfersOrderByWithRelationInput | group_ownership_transfersOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for group_ownership_transfers.
+     */
+    cursor?: group_ownership_transfersWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` group_ownership_transfers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` group_ownership_transfers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of group_ownership_transfers.
+     */
+    distinct?: Group_ownership_transfersScalarFieldEnum | Group_ownership_transfersScalarFieldEnum[]
+  }
+
+  /**
+   * group_ownership_transfers findMany
+   */
+  export type group_ownership_transfersFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the group_ownership_transfers
+     */
+    select?: group_ownership_transfersSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the group_ownership_transfers
+     */
+    omit?: group_ownership_transfersOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: group_ownership_transfersInclude<ExtArgs> | null
+    /**
+     * Filter, which group_ownership_transfers to fetch.
+     */
+    where?: group_ownership_transfersWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of group_ownership_transfers to fetch.
+     */
+    orderBy?: group_ownership_transfersOrderByWithRelationInput | group_ownership_transfersOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing group_ownership_transfers.
+     */
+    cursor?: group_ownership_transfersWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` group_ownership_transfers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` group_ownership_transfers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of group_ownership_transfers.
+     */
+    distinct?: Group_ownership_transfersScalarFieldEnum | Group_ownership_transfersScalarFieldEnum[]
+  }
+
+  /**
+   * group_ownership_transfers create
+   */
+  export type group_ownership_transfersCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the group_ownership_transfers
+     */
+    select?: group_ownership_transfersSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the group_ownership_transfers
+     */
+    omit?: group_ownership_transfersOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: group_ownership_transfersInclude<ExtArgs> | null
+    /**
+     * The data needed to create a group_ownership_transfers.
+     */
+    data: XOR<group_ownership_transfersCreateInput, group_ownership_transfersUncheckedCreateInput>
+  }
+
+  /**
+   * group_ownership_transfers createMany
+   */
+  export type group_ownership_transfersCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many group_ownership_transfers.
+     */
+    data: group_ownership_transfersCreateManyInput | group_ownership_transfersCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * group_ownership_transfers createManyAndReturn
+   */
+  export type group_ownership_transfersCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the group_ownership_transfers
+     */
+    select?: group_ownership_transfersSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the group_ownership_transfers
+     */
+    omit?: group_ownership_transfersOmit<ExtArgs> | null
+    /**
+     * The data used to create many group_ownership_transfers.
+     */
+    data: group_ownership_transfersCreateManyInput | group_ownership_transfersCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: group_ownership_transfersIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * group_ownership_transfers update
+   */
+  export type group_ownership_transfersUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the group_ownership_transfers
+     */
+    select?: group_ownership_transfersSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the group_ownership_transfers
+     */
+    omit?: group_ownership_transfersOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: group_ownership_transfersInclude<ExtArgs> | null
+    /**
+     * The data needed to update a group_ownership_transfers.
+     */
+    data: XOR<group_ownership_transfersUpdateInput, group_ownership_transfersUncheckedUpdateInput>
+    /**
+     * Choose, which group_ownership_transfers to update.
+     */
+    where: group_ownership_transfersWhereUniqueInput
+  }
+
+  /**
+   * group_ownership_transfers updateMany
+   */
+  export type group_ownership_transfersUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update group_ownership_transfers.
+     */
+    data: XOR<group_ownership_transfersUpdateManyMutationInput, group_ownership_transfersUncheckedUpdateManyInput>
+    /**
+     * Filter which group_ownership_transfers to update
+     */
+    where?: group_ownership_transfersWhereInput
+    /**
+     * Limit how many group_ownership_transfers to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * group_ownership_transfers updateManyAndReturn
+   */
+  export type group_ownership_transfersUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the group_ownership_transfers
+     */
+    select?: group_ownership_transfersSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the group_ownership_transfers
+     */
+    omit?: group_ownership_transfersOmit<ExtArgs> | null
+    /**
+     * The data used to update group_ownership_transfers.
+     */
+    data: XOR<group_ownership_transfersUpdateManyMutationInput, group_ownership_transfersUncheckedUpdateManyInput>
+    /**
+     * Filter which group_ownership_transfers to update
+     */
+    where?: group_ownership_transfersWhereInput
+    /**
+     * Limit how many group_ownership_transfers to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: group_ownership_transfersIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * group_ownership_transfers upsert
+   */
+  export type group_ownership_transfersUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the group_ownership_transfers
+     */
+    select?: group_ownership_transfersSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the group_ownership_transfers
+     */
+    omit?: group_ownership_transfersOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: group_ownership_transfersInclude<ExtArgs> | null
+    /**
+     * The filter to search for the group_ownership_transfers to update in case it exists.
+     */
+    where: group_ownership_transfersWhereUniqueInput
+    /**
+     * In case the group_ownership_transfers found by the `where` argument doesn't exist, create a new group_ownership_transfers with this data.
+     */
+    create: XOR<group_ownership_transfersCreateInput, group_ownership_transfersUncheckedCreateInput>
+    /**
+     * In case the group_ownership_transfers was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<group_ownership_transfersUpdateInput, group_ownership_transfersUncheckedUpdateInput>
+  }
+
+  /**
+   * group_ownership_transfers delete
+   */
+  export type group_ownership_transfersDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the group_ownership_transfers
+     */
+    select?: group_ownership_transfersSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the group_ownership_transfers
+     */
+    omit?: group_ownership_transfersOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: group_ownership_transfersInclude<ExtArgs> | null
+    /**
+     * Filter which group_ownership_transfers to delete.
+     */
+    where: group_ownership_transfersWhereUniqueInput
+  }
+
+  /**
+   * group_ownership_transfers deleteMany
+   */
+  export type group_ownership_transfersDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which group_ownership_transfers to delete
+     */
+    where?: group_ownership_transfersWhereInput
+    /**
+     * Limit how many group_ownership_transfers to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * group_ownership_transfers without action
+   */
+  export type group_ownership_transfersDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the group_ownership_transfers
+     */
+    select?: group_ownership_transfersSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the group_ownership_transfers
+     */
+    omit?: group_ownership_transfersOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: group_ownership_transfersInclude<ExtArgs> | null
   }
 
 
@@ -17646,6 +18984,19 @@ export namespace Prisma {
   export type Savings_circlesScalarFieldEnum = (typeof Savings_circlesScalarFieldEnum)[keyof typeof Savings_circlesScalarFieldEnum]
 
 
+  export const Group_ownership_transfersScalarFieldEnum: {
+    id: 'id',
+    circle_id: 'circle_id',
+    from_user_id: 'from_user_id',
+    to_user_id: 'to_user_id',
+    status: 'status',
+    created_at: 'created_at',
+    responded_at: 'responded_at'
+  };
+
+  export type Group_ownership_transfersScalarFieldEnum = (typeof Group_ownership_transfersScalarFieldEnum)[keyof typeof Group_ownership_transfersScalarFieldEnum]
+
+
   export const Circle_membersScalarFieldEnum: {
     id: 'id',
     circle_id: 'circle_id',
@@ -17923,16 +19274,30 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Circle_Status'
+   * Reference to a field of type 'Group_Status'
    */
-  export type EnumCircle_StatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Circle_Status'>
+  export type EnumGroup_StatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Group_Status'>
     
 
 
   /**
-   * Reference to a field of type 'Circle_Status[]'
+   * Reference to a field of type 'Group_Status[]'
    */
-  export type ListEnumCircle_StatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Circle_Status[]'>
+  export type ListEnumGroup_StatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Group_Status[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Ownership_Transfer_Status'
+   */
+  export type EnumOwnership_Transfer_StatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Ownership_Transfer_Status'>
+    
+
+
+  /**
+   * Reference to a field of type 'Ownership_Transfer_Status[]'
+   */
+  export type ListEnumOwnership_Transfer_StatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Ownership_Transfer_Status[]'>
     
 
 
@@ -17947,6 +19312,20 @@ export namespace Prisma {
    * Reference to a field of type 'Role[]'
    */
   export type ListEnumRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Role[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Circle_Status'
+   */
+  export type EnumCircle_StatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Circle_Status'>
+    
+
+
+  /**
+   * Reference to a field of type 'Circle_Status[]'
+   */
+  export type ListEnumCircle_StatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Circle_Status[]'>
     
 
 
@@ -18163,6 +19542,8 @@ export namespace Prisma {
     contributions?: ContributionsListRelationFilter
     payment_transactions?: Payment_transactionsListRelationFilter
     notifications?: NotificationsListRelationFilter
+    ownership_transfers_sent?: Group_ownership_transfersListRelationFilter
+    ownership_transfers_received?: Group_ownership_transfersListRelationFilter
   }
 
   export type usersOrderByWithRelationInput = {
@@ -18185,6 +19566,8 @@ export namespace Prisma {
     contributions?: contributionsOrderByRelationAggregateInput
     payment_transactions?: payment_transactionsOrderByRelationAggregateInput
     notifications?: notificationsOrderByRelationAggregateInput
+    ownership_transfers_sent?: group_ownership_transfersOrderByRelationAggregateInput
+    ownership_transfers_received?: group_ownership_transfersOrderByRelationAggregateInput
   }
 
   export type usersWhereUniqueInput = Prisma.AtLeast<{
@@ -18210,6 +19593,8 @@ export namespace Prisma {
     contributions?: ContributionsListRelationFilter
     payment_transactions?: Payment_transactionsListRelationFilter
     notifications?: NotificationsListRelationFilter
+    ownership_transfers_sent?: Group_ownership_transfersListRelationFilter
+    ownership_transfers_received?: Group_ownership_transfersListRelationFilter
   }, "id" | "email" | "phone">
 
   export type usersOrderByWithAggregationInput = {
@@ -18319,7 +19704,7 @@ export namespace Prisma {
     frequency?: EnumFrequencyFilter<"savings_circles"> | $Enums.Frequency
     member_limit?: IntFilter<"savings_circles"> | number
     start_date?: DateTimeFilter<"savings_circles"> | Date | string
-    status?: EnumCircle_StatusFilter<"savings_circles"> | $Enums.Circle_Status
+    status?: EnumGroup_StatusFilter<"savings_circles"> | $Enums.Group_Status
     created_at?: DateTimeFilter<"savings_circles"> | Date | string
     updated_at?: DateTimeFilter<"savings_circles"> | Date | string
     users?: XOR<UsersScalarRelationFilter, usersWhereInput>
@@ -18328,6 +19713,7 @@ export namespace Prisma {
     savings_schedules?: Savings_schedulesListRelationFilter
     contributions?: ContributionsListRelationFilter
     payouts?: PayoutsListRelationFilter
+    ownership_transfers?: Group_ownership_transfersListRelationFilter
   }
 
   export type savings_circlesOrderByWithRelationInput = {
@@ -18349,6 +19735,7 @@ export namespace Prisma {
     savings_schedules?: savings_schedulesOrderByRelationAggregateInput
     contributions?: contributionsOrderByRelationAggregateInput
     payouts?: payoutsOrderByRelationAggregateInput
+    ownership_transfers?: group_ownership_transfersOrderByRelationAggregateInput
   }
 
   export type savings_circlesWhereUniqueInput = Prisma.AtLeast<{
@@ -18364,7 +19751,7 @@ export namespace Prisma {
     frequency?: EnumFrequencyFilter<"savings_circles"> | $Enums.Frequency
     member_limit?: IntFilter<"savings_circles"> | number
     start_date?: DateTimeFilter<"savings_circles"> | Date | string
-    status?: EnumCircle_StatusFilter<"savings_circles"> | $Enums.Circle_Status
+    status?: EnumGroup_StatusFilter<"savings_circles"> | $Enums.Group_Status
     created_at?: DateTimeFilter<"savings_circles"> | Date | string
     updated_at?: DateTimeFilter<"savings_circles"> | Date | string
     users?: XOR<UsersScalarRelationFilter, usersWhereInput>
@@ -18373,6 +19760,7 @@ export namespace Prisma {
     savings_schedules?: Savings_schedulesListRelationFilter
     contributions?: ContributionsListRelationFilter
     payouts?: PayoutsListRelationFilter
+    ownership_transfers?: Group_ownership_transfersListRelationFilter
   }, "id">
 
   export type savings_circlesOrderByWithAggregationInput = {
@@ -18408,9 +19796,80 @@ export namespace Prisma {
     frequency?: EnumFrequencyWithAggregatesFilter<"savings_circles"> | $Enums.Frequency
     member_limit?: IntWithAggregatesFilter<"savings_circles"> | number
     start_date?: DateTimeWithAggregatesFilter<"savings_circles"> | Date | string
-    status?: EnumCircle_StatusWithAggregatesFilter<"savings_circles"> | $Enums.Circle_Status
+    status?: EnumGroup_StatusWithAggregatesFilter<"savings_circles"> | $Enums.Group_Status
     created_at?: DateTimeWithAggregatesFilter<"savings_circles"> | Date | string
     updated_at?: DateTimeWithAggregatesFilter<"savings_circles"> | Date | string
+  }
+
+  export type group_ownership_transfersWhereInput = {
+    AND?: group_ownership_transfersWhereInput | group_ownership_transfersWhereInput[]
+    OR?: group_ownership_transfersWhereInput[]
+    NOT?: group_ownership_transfersWhereInput | group_ownership_transfersWhereInput[]
+    id?: StringFilter<"group_ownership_transfers"> | string
+    circle_id?: StringFilter<"group_ownership_transfers"> | string
+    from_user_id?: StringFilter<"group_ownership_transfers"> | string
+    to_user_id?: StringFilter<"group_ownership_transfers"> | string
+    status?: EnumOwnership_Transfer_StatusFilter<"group_ownership_transfers"> | $Enums.Ownership_Transfer_Status
+    created_at?: DateTimeFilter<"group_ownership_transfers"> | Date | string
+    responded_at?: DateTimeNullableFilter<"group_ownership_transfers"> | Date | string | null
+    savings_circle?: XOR<Savings_circlesScalarRelationFilter, savings_circlesWhereInput>
+    from_user?: XOR<UsersScalarRelationFilter, usersWhereInput>
+    to_user?: XOR<UsersScalarRelationFilter, usersWhereInput>
+  }
+
+  export type group_ownership_transfersOrderByWithRelationInput = {
+    id?: SortOrder
+    circle_id?: SortOrder
+    from_user_id?: SortOrder
+    to_user_id?: SortOrder
+    status?: SortOrder
+    created_at?: SortOrder
+    responded_at?: SortOrderInput | SortOrder
+    savings_circle?: savings_circlesOrderByWithRelationInput
+    from_user?: usersOrderByWithRelationInput
+    to_user?: usersOrderByWithRelationInput
+  }
+
+  export type group_ownership_transfersWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: group_ownership_transfersWhereInput | group_ownership_transfersWhereInput[]
+    OR?: group_ownership_transfersWhereInput[]
+    NOT?: group_ownership_transfersWhereInput | group_ownership_transfersWhereInput[]
+    circle_id?: StringFilter<"group_ownership_transfers"> | string
+    from_user_id?: StringFilter<"group_ownership_transfers"> | string
+    to_user_id?: StringFilter<"group_ownership_transfers"> | string
+    status?: EnumOwnership_Transfer_StatusFilter<"group_ownership_transfers"> | $Enums.Ownership_Transfer_Status
+    created_at?: DateTimeFilter<"group_ownership_transfers"> | Date | string
+    responded_at?: DateTimeNullableFilter<"group_ownership_transfers"> | Date | string | null
+    savings_circle?: XOR<Savings_circlesScalarRelationFilter, savings_circlesWhereInput>
+    from_user?: XOR<UsersScalarRelationFilter, usersWhereInput>
+    to_user?: XOR<UsersScalarRelationFilter, usersWhereInput>
+  }, "id">
+
+  export type group_ownership_transfersOrderByWithAggregationInput = {
+    id?: SortOrder
+    circle_id?: SortOrder
+    from_user_id?: SortOrder
+    to_user_id?: SortOrder
+    status?: SortOrder
+    created_at?: SortOrder
+    responded_at?: SortOrderInput | SortOrder
+    _count?: group_ownership_transfersCountOrderByAggregateInput
+    _max?: group_ownership_transfersMaxOrderByAggregateInput
+    _min?: group_ownership_transfersMinOrderByAggregateInput
+  }
+
+  export type group_ownership_transfersScalarWhereWithAggregatesInput = {
+    AND?: group_ownership_transfersScalarWhereWithAggregatesInput | group_ownership_transfersScalarWhereWithAggregatesInput[]
+    OR?: group_ownership_transfersScalarWhereWithAggregatesInput[]
+    NOT?: group_ownership_transfersScalarWhereWithAggregatesInput | group_ownership_transfersScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"group_ownership_transfers"> | string
+    circle_id?: StringWithAggregatesFilter<"group_ownership_transfers"> | string
+    from_user_id?: StringWithAggregatesFilter<"group_ownership_transfers"> | string
+    to_user_id?: StringWithAggregatesFilter<"group_ownership_transfers"> | string
+    status?: EnumOwnership_Transfer_StatusWithAggregatesFilter<"group_ownership_transfers"> | $Enums.Ownership_Transfer_Status
+    created_at?: DateTimeWithAggregatesFilter<"group_ownership_transfers"> | Date | string
+    responded_at?: DateTimeNullableWithAggregatesFilter<"group_ownership_transfers"> | Date | string | null
   }
 
   export type circle_membersWhereInput = {
@@ -19249,6 +20708,8 @@ export namespace Prisma {
     contributions?: contributionsCreateNestedManyWithoutUsersInput
     payment_transactions?: payment_transactionsCreateNestedManyWithoutUsersInput
     notifications?: notificationsCreateNestedManyWithoutUsersInput
+    ownership_transfers_sent?: group_ownership_transfersCreateNestedManyWithoutFrom_userInput
+    ownership_transfers_received?: group_ownership_transfersCreateNestedManyWithoutTo_userInput
   }
 
   export type usersUncheckedCreateInput = {
@@ -19271,6 +20732,8 @@ export namespace Prisma {
     contributions?: contributionsUncheckedCreateNestedManyWithoutUsersInput
     payment_transactions?: payment_transactionsUncheckedCreateNestedManyWithoutUsersInput
     notifications?: notificationsUncheckedCreateNestedManyWithoutUsersInput
+    ownership_transfers_sent?: group_ownership_transfersUncheckedCreateNestedManyWithoutFrom_userInput
+    ownership_transfers_received?: group_ownership_transfersUncheckedCreateNestedManyWithoutTo_userInput
   }
 
   export type usersUpdateInput = {
@@ -19293,6 +20756,8 @@ export namespace Prisma {
     contributions?: contributionsUpdateManyWithoutUsersNestedInput
     payment_transactions?: payment_transactionsUpdateManyWithoutUsersNestedInput
     notifications?: notificationsUpdateManyWithoutUsersNestedInput
+    ownership_transfers_sent?: group_ownership_transfersUpdateManyWithoutFrom_userNestedInput
+    ownership_transfers_received?: group_ownership_transfersUpdateManyWithoutTo_userNestedInput
   }
 
   export type usersUncheckedUpdateInput = {
@@ -19315,6 +20780,8 @@ export namespace Prisma {
     contributions?: contributionsUncheckedUpdateManyWithoutUsersNestedInput
     payment_transactions?: payment_transactionsUncheckedUpdateManyWithoutUsersNestedInput
     notifications?: notificationsUncheckedUpdateManyWithoutUsersNestedInput
+    ownership_transfers_sent?: group_ownership_transfersUncheckedUpdateManyWithoutFrom_userNestedInput
+    ownership_transfers_received?: group_ownership_transfersUncheckedUpdateManyWithoutTo_userNestedInput
   }
 
   export type usersCreateManyInput = {
@@ -19430,7 +20897,7 @@ export namespace Prisma {
     frequency: $Enums.Frequency
     member_limit: number
     start_date: Date | string
-    status?: $Enums.Circle_Status
+    status?: $Enums.Group_Status
     created_at?: Date | string
     updated_at?: Date | string
     users: usersCreateNestedOneWithoutSavings_circlesInput
@@ -19439,6 +20906,7 @@ export namespace Prisma {
     savings_schedules?: savings_schedulesCreateNestedManyWithoutSavings_circleInput
     contributions?: contributionsCreateNestedManyWithoutSavings_circleInput
     payouts?: payoutsCreateNestedManyWithoutSavings_circleInput
+    ownership_transfers?: group_ownership_transfersCreateNestedManyWithoutSavings_circleInput
   }
 
   export type savings_circlesUncheckedCreateInput = {
@@ -19451,7 +20919,7 @@ export namespace Prisma {
     frequency: $Enums.Frequency
     member_limit: number
     start_date: Date | string
-    status?: $Enums.Circle_Status
+    status?: $Enums.Group_Status
     created_at?: Date | string
     updated_at?: Date | string
     circle_members?: circle_membersUncheckedCreateNestedManyWithoutSavings_circleInput
@@ -19459,6 +20927,7 @@ export namespace Prisma {
     savings_schedules?: savings_schedulesUncheckedCreateNestedManyWithoutSavings_circleInput
     contributions?: contributionsUncheckedCreateNestedManyWithoutSavings_circleInput
     payouts?: payoutsUncheckedCreateNestedManyWithoutSavings_circleInput
+    ownership_transfers?: group_ownership_transfersUncheckedCreateNestedManyWithoutSavings_circleInput
   }
 
   export type savings_circlesUpdateInput = {
@@ -19470,7 +20939,7 @@ export namespace Prisma {
     frequency?: EnumFrequencyFieldUpdateOperationsInput | $Enums.Frequency
     member_limit?: IntFieldUpdateOperationsInput | number
     start_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: EnumCircle_StatusFieldUpdateOperationsInput | $Enums.Circle_Status
+    status?: EnumGroup_StatusFieldUpdateOperationsInput | $Enums.Group_Status
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: usersUpdateOneRequiredWithoutSavings_circlesNestedInput
@@ -19479,6 +20948,7 @@ export namespace Prisma {
     savings_schedules?: savings_schedulesUpdateManyWithoutSavings_circleNestedInput
     contributions?: contributionsUpdateManyWithoutSavings_circleNestedInput
     payouts?: payoutsUpdateManyWithoutSavings_circleNestedInput
+    ownership_transfers?: group_ownership_transfersUpdateManyWithoutSavings_circleNestedInput
   }
 
   export type savings_circlesUncheckedUpdateInput = {
@@ -19491,7 +20961,7 @@ export namespace Prisma {
     frequency?: EnumFrequencyFieldUpdateOperationsInput | $Enums.Frequency
     member_limit?: IntFieldUpdateOperationsInput | number
     start_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: EnumCircle_StatusFieldUpdateOperationsInput | $Enums.Circle_Status
+    status?: EnumGroup_StatusFieldUpdateOperationsInput | $Enums.Group_Status
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     circle_members?: circle_membersUncheckedUpdateManyWithoutSavings_circleNestedInput
@@ -19499,6 +20969,7 @@ export namespace Prisma {
     savings_schedules?: savings_schedulesUncheckedUpdateManyWithoutSavings_circleNestedInput
     contributions?: contributionsUncheckedUpdateManyWithoutSavings_circleNestedInput
     payouts?: payoutsUncheckedUpdateManyWithoutSavings_circleNestedInput
+    ownership_transfers?: group_ownership_transfersUncheckedUpdateManyWithoutSavings_circleNestedInput
   }
 
   export type savings_circlesCreateManyInput = {
@@ -19511,7 +20982,7 @@ export namespace Prisma {
     frequency: $Enums.Frequency
     member_limit: number
     start_date: Date | string
-    status?: $Enums.Circle_Status
+    status?: $Enums.Group_Status
     created_at?: Date | string
     updated_at?: Date | string
   }
@@ -19525,7 +20996,7 @@ export namespace Prisma {
     frequency?: EnumFrequencyFieldUpdateOperationsInput | $Enums.Frequency
     member_limit?: IntFieldUpdateOperationsInput | number
     start_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: EnumCircle_StatusFieldUpdateOperationsInput | $Enums.Circle_Status
+    status?: EnumGroup_StatusFieldUpdateOperationsInput | $Enums.Group_Status
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -19540,9 +21011,76 @@ export namespace Prisma {
     frequency?: EnumFrequencyFieldUpdateOperationsInput | $Enums.Frequency
     member_limit?: IntFieldUpdateOperationsInput | number
     start_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: EnumCircle_StatusFieldUpdateOperationsInput | $Enums.Circle_Status
+    status?: EnumGroup_StatusFieldUpdateOperationsInput | $Enums.Group_Status
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type group_ownership_transfersCreateInput = {
+    id?: string
+    status?: $Enums.Ownership_Transfer_Status
+    created_at?: Date | string
+    responded_at?: Date | string | null
+    savings_circle: savings_circlesCreateNestedOneWithoutOwnership_transfersInput
+    from_user: usersCreateNestedOneWithoutOwnership_transfers_sentInput
+    to_user: usersCreateNestedOneWithoutOwnership_transfers_receivedInput
+  }
+
+  export type group_ownership_transfersUncheckedCreateInput = {
+    id?: string
+    circle_id: string
+    from_user_id: string
+    to_user_id: string
+    status?: $Enums.Ownership_Transfer_Status
+    created_at?: Date | string
+    responded_at?: Date | string | null
+  }
+
+  export type group_ownership_transfersUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    status?: EnumOwnership_Transfer_StatusFieldUpdateOperationsInput | $Enums.Ownership_Transfer_Status
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    responded_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    savings_circle?: savings_circlesUpdateOneRequiredWithoutOwnership_transfersNestedInput
+    from_user?: usersUpdateOneRequiredWithoutOwnership_transfers_sentNestedInput
+    to_user?: usersUpdateOneRequiredWithoutOwnership_transfers_receivedNestedInput
+  }
+
+  export type group_ownership_transfersUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    circle_id?: StringFieldUpdateOperationsInput | string
+    from_user_id?: StringFieldUpdateOperationsInput | string
+    to_user_id?: StringFieldUpdateOperationsInput | string
+    status?: EnumOwnership_Transfer_StatusFieldUpdateOperationsInput | $Enums.Ownership_Transfer_Status
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    responded_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type group_ownership_transfersCreateManyInput = {
+    id?: string
+    circle_id: string
+    from_user_id: string
+    to_user_id: string
+    status?: $Enums.Ownership_Transfer_Status
+    created_at?: Date | string
+    responded_at?: Date | string | null
+  }
+
+  export type group_ownership_transfersUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    status?: EnumOwnership_Transfer_StatusFieldUpdateOperationsInput | $Enums.Ownership_Transfer_Status
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    responded_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type group_ownership_transfersUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    circle_id?: StringFieldUpdateOperationsInput | string
+    from_user_id?: StringFieldUpdateOperationsInput | string
+    to_user_id?: StringFieldUpdateOperationsInput | string
+    status?: EnumOwnership_Transfer_StatusFieldUpdateOperationsInput | $Enums.Ownership_Transfer_Status
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    responded_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type circle_membersCreateInput = {
@@ -20556,6 +22094,12 @@ export namespace Prisma {
     none?: notificationsWhereInput
   }
 
+  export type Group_ownership_transfersListRelationFilter = {
+    every?: group_ownership_transfersWhereInput
+    some?: group_ownership_transfersWhereInput
+    none?: group_ownership_transfersWhereInput
+  }
+
   export type savings_circlesOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -20577,6 +22121,10 @@ export namespace Prisma {
   }
 
   export type notificationsOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type group_ownership_transfersOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -20683,11 +22231,11 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
-  export type EnumCircle_StatusFilter<$PrismaModel = never> = {
-    equals?: $Enums.Circle_Status | EnumCircle_StatusFieldRefInput<$PrismaModel>
-    in?: $Enums.Circle_Status[] | ListEnumCircle_StatusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.Circle_Status[] | ListEnumCircle_StatusFieldRefInput<$PrismaModel>
-    not?: NestedEnumCircle_StatusFilter<$PrismaModel> | $Enums.Circle_Status
+  export type EnumGroup_StatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.Group_Status | EnumGroup_StatusFieldRefInput<$PrismaModel>
+    in?: $Enums.Group_Status[] | ListEnumGroup_StatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Group_Status[] | ListEnumGroup_StatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumGroup_StatusFilter<$PrismaModel> | $Enums.Group_Status
   }
 
   export type Savings_schedulesListRelationFilter = {
@@ -20807,14 +22355,66 @@ export namespace Prisma {
     _max?: NestedIntFilter<$PrismaModel>
   }
 
-  export type EnumCircle_StatusWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.Circle_Status | EnumCircle_StatusFieldRefInput<$PrismaModel>
-    in?: $Enums.Circle_Status[] | ListEnumCircle_StatusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.Circle_Status[] | ListEnumCircle_StatusFieldRefInput<$PrismaModel>
-    not?: NestedEnumCircle_StatusWithAggregatesFilter<$PrismaModel> | $Enums.Circle_Status
+  export type EnumGroup_StatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Group_Status | EnumGroup_StatusFieldRefInput<$PrismaModel>
+    in?: $Enums.Group_Status[] | ListEnumGroup_StatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Group_Status[] | ListEnumGroup_StatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumGroup_StatusWithAggregatesFilter<$PrismaModel> | $Enums.Group_Status
     _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumCircle_StatusFilter<$PrismaModel>
-    _max?: NestedEnumCircle_StatusFilter<$PrismaModel>
+    _min?: NestedEnumGroup_StatusFilter<$PrismaModel>
+    _max?: NestedEnumGroup_StatusFilter<$PrismaModel>
+  }
+
+  export type EnumOwnership_Transfer_StatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.Ownership_Transfer_Status | EnumOwnership_Transfer_StatusFieldRefInput<$PrismaModel>
+    in?: $Enums.Ownership_Transfer_Status[] | ListEnumOwnership_Transfer_StatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Ownership_Transfer_Status[] | ListEnumOwnership_Transfer_StatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumOwnership_Transfer_StatusFilter<$PrismaModel> | $Enums.Ownership_Transfer_Status
+  }
+
+  export type Savings_circlesScalarRelationFilter = {
+    is?: savings_circlesWhereInput
+    isNot?: savings_circlesWhereInput
+  }
+
+  export type group_ownership_transfersCountOrderByAggregateInput = {
+    id?: SortOrder
+    circle_id?: SortOrder
+    from_user_id?: SortOrder
+    to_user_id?: SortOrder
+    status?: SortOrder
+    created_at?: SortOrder
+    responded_at?: SortOrder
+  }
+
+  export type group_ownership_transfersMaxOrderByAggregateInput = {
+    id?: SortOrder
+    circle_id?: SortOrder
+    from_user_id?: SortOrder
+    to_user_id?: SortOrder
+    status?: SortOrder
+    created_at?: SortOrder
+    responded_at?: SortOrder
+  }
+
+  export type group_ownership_transfersMinOrderByAggregateInput = {
+    id?: SortOrder
+    circle_id?: SortOrder
+    from_user_id?: SortOrder
+    to_user_id?: SortOrder
+    status?: SortOrder
+    created_at?: SortOrder
+    responded_at?: SortOrder
+  }
+
+  export type EnumOwnership_Transfer_StatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Ownership_Transfer_Status | EnumOwnership_Transfer_StatusFieldRefInput<$PrismaModel>
+    in?: $Enums.Ownership_Transfer_Status[] | ListEnumOwnership_Transfer_StatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Ownership_Transfer_Status[] | ListEnumOwnership_Transfer_StatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumOwnership_Transfer_StatusWithAggregatesFilter<$PrismaModel> | $Enums.Ownership_Transfer_Status
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumOwnership_Transfer_StatusFilter<$PrismaModel>
+    _max?: NestedEnumOwnership_Transfer_StatusFilter<$PrismaModel>
   }
 
   export type EnumRoleFilter<$PrismaModel = never> = {
@@ -20824,9 +22424,11 @@ export namespace Prisma {
     not?: NestedEnumRoleFilter<$PrismaModel> | $Enums.Role
   }
 
-  export type Savings_circlesScalarRelationFilter = {
-    is?: savings_circlesWhereInput
-    isNot?: savings_circlesWhereInput
+  export type EnumCircle_StatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.Circle_Status | EnumCircle_StatusFieldRefInput<$PrismaModel>
+    in?: $Enums.Circle_Status[] | ListEnumCircle_StatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Circle_Status[] | ListEnumCircle_StatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumCircle_StatusFilter<$PrismaModel> | $Enums.Circle_Status
   }
 
   export type circle_membersCircle_idUser_idCompoundUniqueInput = {
@@ -20878,6 +22480,16 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumRoleFilter<$PrismaModel>
     _max?: NestedEnumRoleFilter<$PrismaModel>
+  }
+
+  export type EnumCircle_StatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Circle_Status | EnumCircle_StatusFieldRefInput<$PrismaModel>
+    in?: $Enums.Circle_Status[] | ListEnumCircle_StatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Circle_Status[] | ListEnumCircle_StatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumCircle_StatusWithAggregatesFilter<$PrismaModel> | $Enums.Circle_Status
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumCircle_StatusFilter<$PrismaModel>
+    _max?: NestedEnumCircle_StatusFilter<$PrismaModel>
   }
 
   export type circle_invitationsCountOrderByAggregateInput = {
@@ -21549,6 +23161,20 @@ export namespace Prisma {
     connect?: notificationsWhereUniqueInput | notificationsWhereUniqueInput[]
   }
 
+  export type group_ownership_transfersCreateNestedManyWithoutFrom_userInput = {
+    create?: XOR<group_ownership_transfersCreateWithoutFrom_userInput, group_ownership_transfersUncheckedCreateWithoutFrom_userInput> | group_ownership_transfersCreateWithoutFrom_userInput[] | group_ownership_transfersUncheckedCreateWithoutFrom_userInput[]
+    connectOrCreate?: group_ownership_transfersCreateOrConnectWithoutFrom_userInput | group_ownership_transfersCreateOrConnectWithoutFrom_userInput[]
+    createMany?: group_ownership_transfersCreateManyFrom_userInputEnvelope
+    connect?: group_ownership_transfersWhereUniqueInput | group_ownership_transfersWhereUniqueInput[]
+  }
+
+  export type group_ownership_transfersCreateNestedManyWithoutTo_userInput = {
+    create?: XOR<group_ownership_transfersCreateWithoutTo_userInput, group_ownership_transfersUncheckedCreateWithoutTo_userInput> | group_ownership_transfersCreateWithoutTo_userInput[] | group_ownership_transfersUncheckedCreateWithoutTo_userInput[]
+    connectOrCreate?: group_ownership_transfersCreateOrConnectWithoutTo_userInput | group_ownership_transfersCreateOrConnectWithoutTo_userInput[]
+    createMany?: group_ownership_transfersCreateManyTo_userInputEnvelope
+    connect?: group_ownership_transfersWhereUniqueInput | group_ownership_transfersWhereUniqueInput[]
+  }
+
   export type waitlistEntryUncheckedCreateNestedOneWithoutUserInput = {
     create?: XOR<waitlistEntryCreateWithoutUserInput, waitlistEntryUncheckedCreateWithoutUserInput>
     connectOrCreate?: waitlistEntryCreateOrConnectWithoutUserInput
@@ -21601,6 +23227,20 @@ export namespace Prisma {
     connectOrCreate?: notificationsCreateOrConnectWithoutUsersInput | notificationsCreateOrConnectWithoutUsersInput[]
     createMany?: notificationsCreateManyUsersInputEnvelope
     connect?: notificationsWhereUniqueInput | notificationsWhereUniqueInput[]
+  }
+
+  export type group_ownership_transfersUncheckedCreateNestedManyWithoutFrom_userInput = {
+    create?: XOR<group_ownership_transfersCreateWithoutFrom_userInput, group_ownership_transfersUncheckedCreateWithoutFrom_userInput> | group_ownership_transfersCreateWithoutFrom_userInput[] | group_ownership_transfersUncheckedCreateWithoutFrom_userInput[]
+    connectOrCreate?: group_ownership_transfersCreateOrConnectWithoutFrom_userInput | group_ownership_transfersCreateOrConnectWithoutFrom_userInput[]
+    createMany?: group_ownership_transfersCreateManyFrom_userInputEnvelope
+    connect?: group_ownership_transfersWhereUniqueInput | group_ownership_transfersWhereUniqueInput[]
+  }
+
+  export type group_ownership_transfersUncheckedCreateNestedManyWithoutTo_userInput = {
+    create?: XOR<group_ownership_transfersCreateWithoutTo_userInput, group_ownership_transfersUncheckedCreateWithoutTo_userInput> | group_ownership_transfersCreateWithoutTo_userInput[] | group_ownership_transfersUncheckedCreateWithoutTo_userInput[]
+    connectOrCreate?: group_ownership_transfersCreateOrConnectWithoutTo_userInput | group_ownership_transfersCreateOrConnectWithoutTo_userInput[]
+    createMany?: group_ownership_transfersCreateManyTo_userInputEnvelope
+    connect?: group_ownership_transfersWhereUniqueInput | group_ownership_transfersWhereUniqueInput[]
   }
 
   export type waitlistEntryUpdateOneWithoutUserNestedInput = {
@@ -21707,6 +23347,34 @@ export namespace Prisma {
     deleteMany?: notificationsScalarWhereInput | notificationsScalarWhereInput[]
   }
 
+  export type group_ownership_transfersUpdateManyWithoutFrom_userNestedInput = {
+    create?: XOR<group_ownership_transfersCreateWithoutFrom_userInput, group_ownership_transfersUncheckedCreateWithoutFrom_userInput> | group_ownership_transfersCreateWithoutFrom_userInput[] | group_ownership_transfersUncheckedCreateWithoutFrom_userInput[]
+    connectOrCreate?: group_ownership_transfersCreateOrConnectWithoutFrom_userInput | group_ownership_transfersCreateOrConnectWithoutFrom_userInput[]
+    upsert?: group_ownership_transfersUpsertWithWhereUniqueWithoutFrom_userInput | group_ownership_transfersUpsertWithWhereUniqueWithoutFrom_userInput[]
+    createMany?: group_ownership_transfersCreateManyFrom_userInputEnvelope
+    set?: group_ownership_transfersWhereUniqueInput | group_ownership_transfersWhereUniqueInput[]
+    disconnect?: group_ownership_transfersWhereUniqueInput | group_ownership_transfersWhereUniqueInput[]
+    delete?: group_ownership_transfersWhereUniqueInput | group_ownership_transfersWhereUniqueInput[]
+    connect?: group_ownership_transfersWhereUniqueInput | group_ownership_transfersWhereUniqueInput[]
+    update?: group_ownership_transfersUpdateWithWhereUniqueWithoutFrom_userInput | group_ownership_transfersUpdateWithWhereUniqueWithoutFrom_userInput[]
+    updateMany?: group_ownership_transfersUpdateManyWithWhereWithoutFrom_userInput | group_ownership_transfersUpdateManyWithWhereWithoutFrom_userInput[]
+    deleteMany?: group_ownership_transfersScalarWhereInput | group_ownership_transfersScalarWhereInput[]
+  }
+
+  export type group_ownership_transfersUpdateManyWithoutTo_userNestedInput = {
+    create?: XOR<group_ownership_transfersCreateWithoutTo_userInput, group_ownership_transfersUncheckedCreateWithoutTo_userInput> | group_ownership_transfersCreateWithoutTo_userInput[] | group_ownership_transfersUncheckedCreateWithoutTo_userInput[]
+    connectOrCreate?: group_ownership_transfersCreateOrConnectWithoutTo_userInput | group_ownership_transfersCreateOrConnectWithoutTo_userInput[]
+    upsert?: group_ownership_transfersUpsertWithWhereUniqueWithoutTo_userInput | group_ownership_transfersUpsertWithWhereUniqueWithoutTo_userInput[]
+    createMany?: group_ownership_transfersCreateManyTo_userInputEnvelope
+    set?: group_ownership_transfersWhereUniqueInput | group_ownership_transfersWhereUniqueInput[]
+    disconnect?: group_ownership_transfersWhereUniqueInput | group_ownership_transfersWhereUniqueInput[]
+    delete?: group_ownership_transfersWhereUniqueInput | group_ownership_transfersWhereUniqueInput[]
+    connect?: group_ownership_transfersWhereUniqueInput | group_ownership_transfersWhereUniqueInput[]
+    update?: group_ownership_transfersUpdateWithWhereUniqueWithoutTo_userInput | group_ownership_transfersUpdateWithWhereUniqueWithoutTo_userInput[]
+    updateMany?: group_ownership_transfersUpdateManyWithWhereWithoutTo_userInput | group_ownership_transfersUpdateManyWithWhereWithoutTo_userInput[]
+    deleteMany?: group_ownership_transfersScalarWhereInput | group_ownership_transfersScalarWhereInput[]
+  }
+
   export type waitlistEntryUncheckedUpdateOneWithoutUserNestedInput = {
     create?: XOR<waitlistEntryCreateWithoutUserInput, waitlistEntryUncheckedCreateWithoutUserInput>
     connectOrCreate?: waitlistEntryCreateOrConnectWithoutUserInput
@@ -21811,6 +23479,34 @@ export namespace Prisma {
     deleteMany?: notificationsScalarWhereInput | notificationsScalarWhereInput[]
   }
 
+  export type group_ownership_transfersUncheckedUpdateManyWithoutFrom_userNestedInput = {
+    create?: XOR<group_ownership_transfersCreateWithoutFrom_userInput, group_ownership_transfersUncheckedCreateWithoutFrom_userInput> | group_ownership_transfersCreateWithoutFrom_userInput[] | group_ownership_transfersUncheckedCreateWithoutFrom_userInput[]
+    connectOrCreate?: group_ownership_transfersCreateOrConnectWithoutFrom_userInput | group_ownership_transfersCreateOrConnectWithoutFrom_userInput[]
+    upsert?: group_ownership_transfersUpsertWithWhereUniqueWithoutFrom_userInput | group_ownership_transfersUpsertWithWhereUniqueWithoutFrom_userInput[]
+    createMany?: group_ownership_transfersCreateManyFrom_userInputEnvelope
+    set?: group_ownership_transfersWhereUniqueInput | group_ownership_transfersWhereUniqueInput[]
+    disconnect?: group_ownership_transfersWhereUniqueInput | group_ownership_transfersWhereUniqueInput[]
+    delete?: group_ownership_transfersWhereUniqueInput | group_ownership_transfersWhereUniqueInput[]
+    connect?: group_ownership_transfersWhereUniqueInput | group_ownership_transfersWhereUniqueInput[]
+    update?: group_ownership_transfersUpdateWithWhereUniqueWithoutFrom_userInput | group_ownership_transfersUpdateWithWhereUniqueWithoutFrom_userInput[]
+    updateMany?: group_ownership_transfersUpdateManyWithWhereWithoutFrom_userInput | group_ownership_transfersUpdateManyWithWhereWithoutFrom_userInput[]
+    deleteMany?: group_ownership_transfersScalarWhereInput | group_ownership_transfersScalarWhereInput[]
+  }
+
+  export type group_ownership_transfersUncheckedUpdateManyWithoutTo_userNestedInput = {
+    create?: XOR<group_ownership_transfersCreateWithoutTo_userInput, group_ownership_transfersUncheckedCreateWithoutTo_userInput> | group_ownership_transfersCreateWithoutTo_userInput[] | group_ownership_transfersUncheckedCreateWithoutTo_userInput[]
+    connectOrCreate?: group_ownership_transfersCreateOrConnectWithoutTo_userInput | group_ownership_transfersCreateOrConnectWithoutTo_userInput[]
+    upsert?: group_ownership_transfersUpsertWithWhereUniqueWithoutTo_userInput | group_ownership_transfersUpsertWithWhereUniqueWithoutTo_userInput[]
+    createMany?: group_ownership_transfersCreateManyTo_userInputEnvelope
+    set?: group_ownership_transfersWhereUniqueInput | group_ownership_transfersWhereUniqueInput[]
+    disconnect?: group_ownership_transfersWhereUniqueInput | group_ownership_transfersWhereUniqueInput[]
+    delete?: group_ownership_transfersWhereUniqueInput | group_ownership_transfersWhereUniqueInput[]
+    connect?: group_ownership_transfersWhereUniqueInput | group_ownership_transfersWhereUniqueInput[]
+    update?: group_ownership_transfersUpdateWithWhereUniqueWithoutTo_userInput | group_ownership_transfersUpdateWithWhereUniqueWithoutTo_userInput[]
+    updateMany?: group_ownership_transfersUpdateManyWithWhereWithoutTo_userInput | group_ownership_transfersUpdateManyWithWhereWithoutTo_userInput[]
+    deleteMany?: group_ownership_transfersScalarWhereInput | group_ownership_transfersScalarWhereInput[]
+  }
+
   export type usersCreateNestedOneWithoutSessionInput = {
     create?: XOR<usersCreateWithoutSessionInput, usersUncheckedCreateWithoutSessionInput>
     connectOrCreate?: usersCreateOrConnectWithoutSessionInput
@@ -21866,6 +23562,13 @@ export namespace Prisma {
     connect?: payoutsWhereUniqueInput | payoutsWhereUniqueInput[]
   }
 
+  export type group_ownership_transfersCreateNestedManyWithoutSavings_circleInput = {
+    create?: XOR<group_ownership_transfersCreateWithoutSavings_circleInput, group_ownership_transfersUncheckedCreateWithoutSavings_circleInput> | group_ownership_transfersCreateWithoutSavings_circleInput[] | group_ownership_transfersUncheckedCreateWithoutSavings_circleInput[]
+    connectOrCreate?: group_ownership_transfersCreateOrConnectWithoutSavings_circleInput | group_ownership_transfersCreateOrConnectWithoutSavings_circleInput[]
+    createMany?: group_ownership_transfersCreateManySavings_circleInputEnvelope
+    connect?: group_ownership_transfersWhereUniqueInput | group_ownership_transfersWhereUniqueInput[]
+  }
+
   export type circle_membersUncheckedCreateNestedManyWithoutSavings_circleInput = {
     create?: XOR<circle_membersCreateWithoutSavings_circleInput, circle_membersUncheckedCreateWithoutSavings_circleInput> | circle_membersCreateWithoutSavings_circleInput[] | circle_membersUncheckedCreateWithoutSavings_circleInput[]
     connectOrCreate?: circle_membersCreateOrConnectWithoutSavings_circleInput | circle_membersCreateOrConnectWithoutSavings_circleInput[]
@@ -21901,6 +23604,13 @@ export namespace Prisma {
     connect?: payoutsWhereUniqueInput | payoutsWhereUniqueInput[]
   }
 
+  export type group_ownership_transfersUncheckedCreateNestedManyWithoutSavings_circleInput = {
+    create?: XOR<group_ownership_transfersCreateWithoutSavings_circleInput, group_ownership_transfersUncheckedCreateWithoutSavings_circleInput> | group_ownership_transfersCreateWithoutSavings_circleInput[] | group_ownership_transfersUncheckedCreateWithoutSavings_circleInput[]
+    connectOrCreate?: group_ownership_transfersCreateOrConnectWithoutSavings_circleInput | group_ownership_transfersCreateOrConnectWithoutSavings_circleInput[]
+    createMany?: group_ownership_transfersCreateManySavings_circleInputEnvelope
+    connect?: group_ownership_transfersWhereUniqueInput | group_ownership_transfersWhereUniqueInput[]
+  }
+
   export type DecimalFieldUpdateOperationsInput = {
     set?: Decimal | DecimalJsLike | number | string
     increment?: Decimal | DecimalJsLike | number | string
@@ -21921,8 +23631,8 @@ export namespace Prisma {
     divide?: number
   }
 
-  export type EnumCircle_StatusFieldUpdateOperationsInput = {
-    set?: $Enums.Circle_Status
+  export type EnumGroup_StatusFieldUpdateOperationsInput = {
+    set?: $Enums.Group_Status
   }
 
   export type usersUpdateOneRequiredWithoutSavings_circlesNestedInput = {
@@ -22003,6 +23713,20 @@ export namespace Prisma {
     deleteMany?: payoutsScalarWhereInput | payoutsScalarWhereInput[]
   }
 
+  export type group_ownership_transfersUpdateManyWithoutSavings_circleNestedInput = {
+    create?: XOR<group_ownership_transfersCreateWithoutSavings_circleInput, group_ownership_transfersUncheckedCreateWithoutSavings_circleInput> | group_ownership_transfersCreateWithoutSavings_circleInput[] | group_ownership_transfersUncheckedCreateWithoutSavings_circleInput[]
+    connectOrCreate?: group_ownership_transfersCreateOrConnectWithoutSavings_circleInput | group_ownership_transfersCreateOrConnectWithoutSavings_circleInput[]
+    upsert?: group_ownership_transfersUpsertWithWhereUniqueWithoutSavings_circleInput | group_ownership_transfersUpsertWithWhereUniqueWithoutSavings_circleInput[]
+    createMany?: group_ownership_transfersCreateManySavings_circleInputEnvelope
+    set?: group_ownership_transfersWhereUniqueInput | group_ownership_transfersWhereUniqueInput[]
+    disconnect?: group_ownership_transfersWhereUniqueInput | group_ownership_transfersWhereUniqueInput[]
+    delete?: group_ownership_transfersWhereUniqueInput | group_ownership_transfersWhereUniqueInput[]
+    connect?: group_ownership_transfersWhereUniqueInput | group_ownership_transfersWhereUniqueInput[]
+    update?: group_ownership_transfersUpdateWithWhereUniqueWithoutSavings_circleInput | group_ownership_transfersUpdateWithWhereUniqueWithoutSavings_circleInput[]
+    updateMany?: group_ownership_transfersUpdateManyWithWhereWithoutSavings_circleInput | group_ownership_transfersUpdateManyWithWhereWithoutSavings_circleInput[]
+    deleteMany?: group_ownership_transfersScalarWhereInput | group_ownership_transfersScalarWhereInput[]
+  }
+
   export type circle_membersUncheckedUpdateManyWithoutSavings_circleNestedInput = {
     create?: XOR<circle_membersCreateWithoutSavings_circleInput, circle_membersUncheckedCreateWithoutSavings_circleInput> | circle_membersCreateWithoutSavings_circleInput[] | circle_membersUncheckedCreateWithoutSavings_circleInput[]
     connectOrCreate?: circle_membersCreateOrConnectWithoutSavings_circleInput | circle_membersCreateOrConnectWithoutSavings_circleInput[]
@@ -22073,6 +23797,66 @@ export namespace Prisma {
     deleteMany?: payoutsScalarWhereInput | payoutsScalarWhereInput[]
   }
 
+  export type group_ownership_transfersUncheckedUpdateManyWithoutSavings_circleNestedInput = {
+    create?: XOR<group_ownership_transfersCreateWithoutSavings_circleInput, group_ownership_transfersUncheckedCreateWithoutSavings_circleInput> | group_ownership_transfersCreateWithoutSavings_circleInput[] | group_ownership_transfersUncheckedCreateWithoutSavings_circleInput[]
+    connectOrCreate?: group_ownership_transfersCreateOrConnectWithoutSavings_circleInput | group_ownership_transfersCreateOrConnectWithoutSavings_circleInput[]
+    upsert?: group_ownership_transfersUpsertWithWhereUniqueWithoutSavings_circleInput | group_ownership_transfersUpsertWithWhereUniqueWithoutSavings_circleInput[]
+    createMany?: group_ownership_transfersCreateManySavings_circleInputEnvelope
+    set?: group_ownership_transfersWhereUniqueInput | group_ownership_transfersWhereUniqueInput[]
+    disconnect?: group_ownership_transfersWhereUniqueInput | group_ownership_transfersWhereUniqueInput[]
+    delete?: group_ownership_transfersWhereUniqueInput | group_ownership_transfersWhereUniqueInput[]
+    connect?: group_ownership_transfersWhereUniqueInput | group_ownership_transfersWhereUniqueInput[]
+    update?: group_ownership_transfersUpdateWithWhereUniqueWithoutSavings_circleInput | group_ownership_transfersUpdateWithWhereUniqueWithoutSavings_circleInput[]
+    updateMany?: group_ownership_transfersUpdateManyWithWhereWithoutSavings_circleInput | group_ownership_transfersUpdateManyWithWhereWithoutSavings_circleInput[]
+    deleteMany?: group_ownership_transfersScalarWhereInput | group_ownership_transfersScalarWhereInput[]
+  }
+
+  export type savings_circlesCreateNestedOneWithoutOwnership_transfersInput = {
+    create?: XOR<savings_circlesCreateWithoutOwnership_transfersInput, savings_circlesUncheckedCreateWithoutOwnership_transfersInput>
+    connectOrCreate?: savings_circlesCreateOrConnectWithoutOwnership_transfersInput
+    connect?: savings_circlesWhereUniqueInput
+  }
+
+  export type usersCreateNestedOneWithoutOwnership_transfers_sentInput = {
+    create?: XOR<usersCreateWithoutOwnership_transfers_sentInput, usersUncheckedCreateWithoutOwnership_transfers_sentInput>
+    connectOrCreate?: usersCreateOrConnectWithoutOwnership_transfers_sentInput
+    connect?: usersWhereUniqueInput
+  }
+
+  export type usersCreateNestedOneWithoutOwnership_transfers_receivedInput = {
+    create?: XOR<usersCreateWithoutOwnership_transfers_receivedInput, usersUncheckedCreateWithoutOwnership_transfers_receivedInput>
+    connectOrCreate?: usersCreateOrConnectWithoutOwnership_transfers_receivedInput
+    connect?: usersWhereUniqueInput
+  }
+
+  export type EnumOwnership_Transfer_StatusFieldUpdateOperationsInput = {
+    set?: $Enums.Ownership_Transfer_Status
+  }
+
+  export type savings_circlesUpdateOneRequiredWithoutOwnership_transfersNestedInput = {
+    create?: XOR<savings_circlesCreateWithoutOwnership_transfersInput, savings_circlesUncheckedCreateWithoutOwnership_transfersInput>
+    connectOrCreate?: savings_circlesCreateOrConnectWithoutOwnership_transfersInput
+    upsert?: savings_circlesUpsertWithoutOwnership_transfersInput
+    connect?: savings_circlesWhereUniqueInput
+    update?: XOR<XOR<savings_circlesUpdateToOneWithWhereWithoutOwnership_transfersInput, savings_circlesUpdateWithoutOwnership_transfersInput>, savings_circlesUncheckedUpdateWithoutOwnership_transfersInput>
+  }
+
+  export type usersUpdateOneRequiredWithoutOwnership_transfers_sentNestedInput = {
+    create?: XOR<usersCreateWithoutOwnership_transfers_sentInput, usersUncheckedCreateWithoutOwnership_transfers_sentInput>
+    connectOrCreate?: usersCreateOrConnectWithoutOwnership_transfers_sentInput
+    upsert?: usersUpsertWithoutOwnership_transfers_sentInput
+    connect?: usersWhereUniqueInput
+    update?: XOR<XOR<usersUpdateToOneWithWhereWithoutOwnership_transfers_sentInput, usersUpdateWithoutOwnership_transfers_sentInput>, usersUncheckedUpdateWithoutOwnership_transfers_sentInput>
+  }
+
+  export type usersUpdateOneRequiredWithoutOwnership_transfers_receivedNestedInput = {
+    create?: XOR<usersCreateWithoutOwnership_transfers_receivedInput, usersUncheckedCreateWithoutOwnership_transfers_receivedInput>
+    connectOrCreate?: usersCreateOrConnectWithoutOwnership_transfers_receivedInput
+    upsert?: usersUpsertWithoutOwnership_transfers_receivedInput
+    connect?: usersWhereUniqueInput
+    update?: XOR<XOR<usersUpdateToOneWithWhereWithoutOwnership_transfers_receivedInput, usersUpdateWithoutOwnership_transfers_receivedInput>, usersUncheckedUpdateWithoutOwnership_transfers_receivedInput>
+  }
+
   export type savings_circlesCreateNestedOneWithoutCircle_membersInput = {
     create?: XOR<savings_circlesCreateWithoutCircle_membersInput, savings_circlesUncheckedCreateWithoutCircle_membersInput>
     connectOrCreate?: savings_circlesCreateOrConnectWithoutCircle_membersInput
@@ -22101,6 +23885,10 @@ export namespace Prisma {
 
   export type EnumRoleFieldUpdateOperationsInput = {
     set?: $Enums.Role
+  }
+
+  export type EnumCircle_StatusFieldUpdateOperationsInput = {
+    set?: $Enums.Circle_Status
   }
 
   export type savings_circlesUpdateOneRequiredWithoutCircle_membersNestedInput = {
@@ -22618,11 +24406,11 @@ export namespace Prisma {
     not?: NestedEnumFrequencyFilter<$PrismaModel> | $Enums.Frequency
   }
 
-  export type NestedEnumCircle_StatusFilter<$PrismaModel = never> = {
-    equals?: $Enums.Circle_Status | EnumCircle_StatusFieldRefInput<$PrismaModel>
-    in?: $Enums.Circle_Status[] | ListEnumCircle_StatusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.Circle_Status[] | ListEnumCircle_StatusFieldRefInput<$PrismaModel>
-    not?: NestedEnumCircle_StatusFilter<$PrismaModel> | $Enums.Circle_Status
+  export type NestedEnumGroup_StatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.Group_Status | EnumGroup_StatusFieldRefInput<$PrismaModel>
+    in?: $Enums.Group_Status[] | ListEnumGroup_StatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Group_Status[] | ListEnumGroup_StatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumGroup_StatusFilter<$PrismaModel> | $Enums.Group_Status
   }
 
   export type NestedDecimalWithAggregatesFilter<$PrismaModel = never> = {
@@ -22678,14 +24466,31 @@ export namespace Prisma {
     not?: NestedFloatFilter<$PrismaModel> | number
   }
 
-  export type NestedEnumCircle_StatusWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.Circle_Status | EnumCircle_StatusFieldRefInput<$PrismaModel>
-    in?: $Enums.Circle_Status[] | ListEnumCircle_StatusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.Circle_Status[] | ListEnumCircle_StatusFieldRefInput<$PrismaModel>
-    not?: NestedEnumCircle_StatusWithAggregatesFilter<$PrismaModel> | $Enums.Circle_Status
+  export type NestedEnumGroup_StatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Group_Status | EnumGroup_StatusFieldRefInput<$PrismaModel>
+    in?: $Enums.Group_Status[] | ListEnumGroup_StatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Group_Status[] | ListEnumGroup_StatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumGroup_StatusWithAggregatesFilter<$PrismaModel> | $Enums.Group_Status
     _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumCircle_StatusFilter<$PrismaModel>
-    _max?: NestedEnumCircle_StatusFilter<$PrismaModel>
+    _min?: NestedEnumGroup_StatusFilter<$PrismaModel>
+    _max?: NestedEnumGroup_StatusFilter<$PrismaModel>
+  }
+
+  export type NestedEnumOwnership_Transfer_StatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.Ownership_Transfer_Status | EnumOwnership_Transfer_StatusFieldRefInput<$PrismaModel>
+    in?: $Enums.Ownership_Transfer_Status[] | ListEnumOwnership_Transfer_StatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Ownership_Transfer_Status[] | ListEnumOwnership_Transfer_StatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumOwnership_Transfer_StatusFilter<$PrismaModel> | $Enums.Ownership_Transfer_Status
+  }
+
+  export type NestedEnumOwnership_Transfer_StatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Ownership_Transfer_Status | EnumOwnership_Transfer_StatusFieldRefInput<$PrismaModel>
+    in?: $Enums.Ownership_Transfer_Status[] | ListEnumOwnership_Transfer_StatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Ownership_Transfer_Status[] | ListEnumOwnership_Transfer_StatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumOwnership_Transfer_StatusWithAggregatesFilter<$PrismaModel> | $Enums.Ownership_Transfer_Status
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumOwnership_Transfer_StatusFilter<$PrismaModel>
+    _max?: NestedEnumOwnership_Transfer_StatusFilter<$PrismaModel>
   }
 
   export type NestedEnumRoleFilter<$PrismaModel = never> = {
@@ -22693,6 +24498,13 @@ export namespace Prisma {
     in?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
     notIn?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
     not?: NestedEnumRoleFilter<$PrismaModel> | $Enums.Role
+  }
+
+  export type NestedEnumCircle_StatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.Circle_Status | EnumCircle_StatusFieldRefInput<$PrismaModel>
+    in?: $Enums.Circle_Status[] | ListEnumCircle_StatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Circle_Status[] | ListEnumCircle_StatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumCircle_StatusFilter<$PrismaModel> | $Enums.Circle_Status
   }
 
   export type NestedEnumRoleWithAggregatesFilter<$PrismaModel = never> = {
@@ -22703,6 +24515,16 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumRoleFilter<$PrismaModel>
     _max?: NestedEnumRoleFilter<$PrismaModel>
+  }
+
+  export type NestedEnumCircle_StatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Circle_Status | EnumCircle_StatusFieldRefInput<$PrismaModel>
+    in?: $Enums.Circle_Status[] | ListEnumCircle_StatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Circle_Status[] | ListEnumCircle_StatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumCircle_StatusWithAggregatesFilter<$PrismaModel> | $Enums.Circle_Status
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumCircle_StatusFilter<$PrismaModel>
+    _max?: NestedEnumCircle_StatusFilter<$PrismaModel>
   }
 
   export type NestedEnumContribution_statusFilter<$PrismaModel = never> = {
@@ -22872,6 +24694,8 @@ export namespace Prisma {
     contributions?: contributionsCreateNestedManyWithoutUsersInput
     payment_transactions?: payment_transactionsCreateNestedManyWithoutUsersInput
     notifications?: notificationsCreateNestedManyWithoutUsersInput
+    ownership_transfers_sent?: group_ownership_transfersCreateNestedManyWithoutFrom_userInput
+    ownership_transfers_received?: group_ownership_transfersCreateNestedManyWithoutTo_userInput
   }
 
   export type usersUncheckedCreateWithoutWaitlistEntryInput = {
@@ -22893,6 +24717,8 @@ export namespace Prisma {
     contributions?: contributionsUncheckedCreateNestedManyWithoutUsersInput
     payment_transactions?: payment_transactionsUncheckedCreateNestedManyWithoutUsersInput
     notifications?: notificationsUncheckedCreateNestedManyWithoutUsersInput
+    ownership_transfers_sent?: group_ownership_transfersUncheckedCreateNestedManyWithoutFrom_userInput
+    ownership_transfers_received?: group_ownership_transfersUncheckedCreateNestedManyWithoutTo_userInput
   }
 
   export type usersCreateOrConnectWithoutWaitlistEntryInput = {
@@ -22930,6 +24756,8 @@ export namespace Prisma {
     contributions?: contributionsUpdateManyWithoutUsersNestedInput
     payment_transactions?: payment_transactionsUpdateManyWithoutUsersNestedInput
     notifications?: notificationsUpdateManyWithoutUsersNestedInput
+    ownership_transfers_sent?: group_ownership_transfersUpdateManyWithoutFrom_userNestedInput
+    ownership_transfers_received?: group_ownership_transfersUpdateManyWithoutTo_userNestedInput
   }
 
   export type usersUncheckedUpdateWithoutWaitlistEntryInput = {
@@ -22951,6 +24779,8 @@ export namespace Prisma {
     contributions?: contributionsUncheckedUpdateManyWithoutUsersNestedInput
     payment_transactions?: payment_transactionsUncheckedUpdateManyWithoutUsersNestedInput
     notifications?: notificationsUncheckedUpdateManyWithoutUsersNestedInput
+    ownership_transfers_sent?: group_ownership_transfersUncheckedUpdateManyWithoutFrom_userNestedInput
+    ownership_transfers_received?: group_ownership_transfersUncheckedUpdateManyWithoutTo_userNestedInput
   }
 
   export type waitlistEntryCreateWithoutUserInput = {
@@ -23010,7 +24840,7 @@ export namespace Prisma {
     frequency: $Enums.Frequency
     member_limit: number
     start_date: Date | string
-    status?: $Enums.Circle_Status
+    status?: $Enums.Group_Status
     created_at?: Date | string
     updated_at?: Date | string
     circle_members?: circle_membersCreateNestedManyWithoutSavings_circleInput
@@ -23018,6 +24848,7 @@ export namespace Prisma {
     savings_schedules?: savings_schedulesCreateNestedManyWithoutSavings_circleInput
     contributions?: contributionsCreateNestedManyWithoutSavings_circleInput
     payouts?: payoutsCreateNestedManyWithoutSavings_circleInput
+    ownership_transfers?: group_ownership_transfersCreateNestedManyWithoutSavings_circleInput
   }
 
   export type savings_circlesUncheckedCreateWithoutUsersInput = {
@@ -23029,7 +24860,7 @@ export namespace Prisma {
     frequency: $Enums.Frequency
     member_limit: number
     start_date: Date | string
-    status?: $Enums.Circle_Status
+    status?: $Enums.Group_Status
     created_at?: Date | string
     updated_at?: Date | string
     circle_members?: circle_membersUncheckedCreateNestedManyWithoutSavings_circleInput
@@ -23037,6 +24868,7 @@ export namespace Prisma {
     savings_schedules?: savings_schedulesUncheckedCreateNestedManyWithoutSavings_circleInput
     contributions?: contributionsUncheckedCreateNestedManyWithoutSavings_circleInput
     payouts?: payoutsUncheckedCreateNestedManyWithoutSavings_circleInput
+    ownership_transfers?: group_ownership_transfersUncheckedCreateNestedManyWithoutSavings_circleInput
   }
 
   export type savings_circlesCreateOrConnectWithoutUsersInput = {
@@ -23227,6 +25059,62 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type group_ownership_transfersCreateWithoutFrom_userInput = {
+    id?: string
+    status?: $Enums.Ownership_Transfer_Status
+    created_at?: Date | string
+    responded_at?: Date | string | null
+    savings_circle: savings_circlesCreateNestedOneWithoutOwnership_transfersInput
+    to_user: usersCreateNestedOneWithoutOwnership_transfers_receivedInput
+  }
+
+  export type group_ownership_transfersUncheckedCreateWithoutFrom_userInput = {
+    id?: string
+    circle_id: string
+    to_user_id: string
+    status?: $Enums.Ownership_Transfer_Status
+    created_at?: Date | string
+    responded_at?: Date | string | null
+  }
+
+  export type group_ownership_transfersCreateOrConnectWithoutFrom_userInput = {
+    where: group_ownership_transfersWhereUniqueInput
+    create: XOR<group_ownership_transfersCreateWithoutFrom_userInput, group_ownership_transfersUncheckedCreateWithoutFrom_userInput>
+  }
+
+  export type group_ownership_transfersCreateManyFrom_userInputEnvelope = {
+    data: group_ownership_transfersCreateManyFrom_userInput | group_ownership_transfersCreateManyFrom_userInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type group_ownership_transfersCreateWithoutTo_userInput = {
+    id?: string
+    status?: $Enums.Ownership_Transfer_Status
+    created_at?: Date | string
+    responded_at?: Date | string | null
+    savings_circle: savings_circlesCreateNestedOneWithoutOwnership_transfersInput
+    from_user: usersCreateNestedOneWithoutOwnership_transfers_sentInput
+  }
+
+  export type group_ownership_transfersUncheckedCreateWithoutTo_userInput = {
+    id?: string
+    circle_id: string
+    from_user_id: string
+    status?: $Enums.Ownership_Transfer_Status
+    created_at?: Date | string
+    responded_at?: Date | string | null
+  }
+
+  export type group_ownership_transfersCreateOrConnectWithoutTo_userInput = {
+    where: group_ownership_transfersWhereUniqueInput
+    create: XOR<group_ownership_transfersCreateWithoutTo_userInput, group_ownership_transfersUncheckedCreateWithoutTo_userInput>
+  }
+
+  export type group_ownership_transfersCreateManyTo_userInputEnvelope = {
+    data: group_ownership_transfersCreateManyTo_userInput | group_ownership_transfersCreateManyTo_userInput[]
+    skipDuplicates?: boolean
+  }
+
   export type waitlistEntryUpsertWithoutUserInput = {
     update: XOR<waitlistEntryUpdateWithoutUserInput, waitlistEntryUncheckedUpdateWithoutUserInput>
     create: XOR<waitlistEntryCreateWithoutUserInput, waitlistEntryUncheckedCreateWithoutUserInput>
@@ -23316,7 +25204,7 @@ export namespace Prisma {
     frequency?: EnumFrequencyFilter<"savings_circles"> | $Enums.Frequency
     member_limit?: IntFilter<"savings_circles"> | number
     start_date?: DateTimeFilter<"savings_circles"> | Date | string
-    status?: EnumCircle_StatusFilter<"savings_circles"> | $Enums.Circle_Status
+    status?: EnumGroup_StatusFilter<"savings_circles"> | $Enums.Group_Status
     created_at?: DateTimeFilter<"savings_circles"> | Date | string
     updated_at?: DateTimeFilter<"savings_circles"> | Date | string
   }
@@ -23481,6 +25369,51 @@ export namespace Prisma {
     created_at?: DateTimeFilter<"notifications"> | Date | string
   }
 
+  export type group_ownership_transfersUpsertWithWhereUniqueWithoutFrom_userInput = {
+    where: group_ownership_transfersWhereUniqueInput
+    update: XOR<group_ownership_transfersUpdateWithoutFrom_userInput, group_ownership_transfersUncheckedUpdateWithoutFrom_userInput>
+    create: XOR<group_ownership_transfersCreateWithoutFrom_userInput, group_ownership_transfersUncheckedCreateWithoutFrom_userInput>
+  }
+
+  export type group_ownership_transfersUpdateWithWhereUniqueWithoutFrom_userInput = {
+    where: group_ownership_transfersWhereUniqueInput
+    data: XOR<group_ownership_transfersUpdateWithoutFrom_userInput, group_ownership_transfersUncheckedUpdateWithoutFrom_userInput>
+  }
+
+  export type group_ownership_transfersUpdateManyWithWhereWithoutFrom_userInput = {
+    where: group_ownership_transfersScalarWhereInput
+    data: XOR<group_ownership_transfersUpdateManyMutationInput, group_ownership_transfersUncheckedUpdateManyWithoutFrom_userInput>
+  }
+
+  export type group_ownership_transfersScalarWhereInput = {
+    AND?: group_ownership_transfersScalarWhereInput | group_ownership_transfersScalarWhereInput[]
+    OR?: group_ownership_transfersScalarWhereInput[]
+    NOT?: group_ownership_transfersScalarWhereInput | group_ownership_transfersScalarWhereInput[]
+    id?: StringFilter<"group_ownership_transfers"> | string
+    circle_id?: StringFilter<"group_ownership_transfers"> | string
+    from_user_id?: StringFilter<"group_ownership_transfers"> | string
+    to_user_id?: StringFilter<"group_ownership_transfers"> | string
+    status?: EnumOwnership_Transfer_StatusFilter<"group_ownership_transfers"> | $Enums.Ownership_Transfer_Status
+    created_at?: DateTimeFilter<"group_ownership_transfers"> | Date | string
+    responded_at?: DateTimeNullableFilter<"group_ownership_transfers"> | Date | string | null
+  }
+
+  export type group_ownership_transfersUpsertWithWhereUniqueWithoutTo_userInput = {
+    where: group_ownership_transfersWhereUniqueInput
+    update: XOR<group_ownership_transfersUpdateWithoutTo_userInput, group_ownership_transfersUncheckedUpdateWithoutTo_userInput>
+    create: XOR<group_ownership_transfersCreateWithoutTo_userInput, group_ownership_transfersUncheckedCreateWithoutTo_userInput>
+  }
+
+  export type group_ownership_transfersUpdateWithWhereUniqueWithoutTo_userInput = {
+    where: group_ownership_transfersWhereUniqueInput
+    data: XOR<group_ownership_transfersUpdateWithoutTo_userInput, group_ownership_transfersUncheckedUpdateWithoutTo_userInput>
+  }
+
+  export type group_ownership_transfersUpdateManyWithWhereWithoutTo_userInput = {
+    where: group_ownership_transfersScalarWhereInput
+    data: XOR<group_ownership_transfersUpdateManyMutationInput, group_ownership_transfersUncheckedUpdateManyWithoutTo_userInput>
+  }
+
   export type usersCreateWithoutSessionInput = {
     id?: string
     email: string
@@ -23500,6 +25433,8 @@ export namespace Prisma {
     contributions?: contributionsCreateNestedManyWithoutUsersInput
     payment_transactions?: payment_transactionsCreateNestedManyWithoutUsersInput
     notifications?: notificationsCreateNestedManyWithoutUsersInput
+    ownership_transfers_sent?: group_ownership_transfersCreateNestedManyWithoutFrom_userInput
+    ownership_transfers_received?: group_ownership_transfersCreateNestedManyWithoutTo_userInput
   }
 
   export type usersUncheckedCreateWithoutSessionInput = {
@@ -23521,6 +25456,8 @@ export namespace Prisma {
     contributions?: contributionsUncheckedCreateNestedManyWithoutUsersInput
     payment_transactions?: payment_transactionsUncheckedCreateNestedManyWithoutUsersInput
     notifications?: notificationsUncheckedCreateNestedManyWithoutUsersInput
+    ownership_transfers_sent?: group_ownership_transfersUncheckedCreateNestedManyWithoutFrom_userInput
+    ownership_transfers_received?: group_ownership_transfersUncheckedCreateNestedManyWithoutTo_userInput
   }
 
   export type usersCreateOrConnectWithoutSessionInput = {
@@ -23558,6 +25495,8 @@ export namespace Prisma {
     contributions?: contributionsUpdateManyWithoutUsersNestedInput
     payment_transactions?: payment_transactionsUpdateManyWithoutUsersNestedInput
     notifications?: notificationsUpdateManyWithoutUsersNestedInput
+    ownership_transfers_sent?: group_ownership_transfersUpdateManyWithoutFrom_userNestedInput
+    ownership_transfers_received?: group_ownership_transfersUpdateManyWithoutTo_userNestedInput
   }
 
   export type usersUncheckedUpdateWithoutSessionInput = {
@@ -23579,6 +25518,8 @@ export namespace Prisma {
     contributions?: contributionsUncheckedUpdateManyWithoutUsersNestedInput
     payment_transactions?: payment_transactionsUncheckedUpdateManyWithoutUsersNestedInput
     notifications?: notificationsUncheckedUpdateManyWithoutUsersNestedInput
+    ownership_transfers_sent?: group_ownership_transfersUncheckedUpdateManyWithoutFrom_userNestedInput
+    ownership_transfers_received?: group_ownership_transfersUncheckedUpdateManyWithoutTo_userNestedInput
   }
 
   export type usersCreateWithoutSavings_circlesInput = {
@@ -23600,6 +25541,8 @@ export namespace Prisma {
     contributions?: contributionsCreateNestedManyWithoutUsersInput
     payment_transactions?: payment_transactionsCreateNestedManyWithoutUsersInput
     notifications?: notificationsCreateNestedManyWithoutUsersInput
+    ownership_transfers_sent?: group_ownership_transfersCreateNestedManyWithoutFrom_userInput
+    ownership_transfers_received?: group_ownership_transfersCreateNestedManyWithoutTo_userInput
   }
 
   export type usersUncheckedCreateWithoutSavings_circlesInput = {
@@ -23621,6 +25564,8 @@ export namespace Prisma {
     contributions?: contributionsUncheckedCreateNestedManyWithoutUsersInput
     payment_transactions?: payment_transactionsUncheckedCreateNestedManyWithoutUsersInput
     notifications?: notificationsUncheckedCreateNestedManyWithoutUsersInput
+    ownership_transfers_sent?: group_ownership_transfersUncheckedCreateNestedManyWithoutFrom_userInput
+    ownership_transfers_received?: group_ownership_transfersUncheckedCreateNestedManyWithoutTo_userInput
   }
 
   export type usersCreateOrConnectWithoutSavings_circlesInput = {
@@ -23800,6 +25745,34 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type group_ownership_transfersCreateWithoutSavings_circleInput = {
+    id?: string
+    status?: $Enums.Ownership_Transfer_Status
+    created_at?: Date | string
+    responded_at?: Date | string | null
+    from_user: usersCreateNestedOneWithoutOwnership_transfers_sentInput
+    to_user: usersCreateNestedOneWithoutOwnership_transfers_receivedInput
+  }
+
+  export type group_ownership_transfersUncheckedCreateWithoutSavings_circleInput = {
+    id?: string
+    from_user_id: string
+    to_user_id: string
+    status?: $Enums.Ownership_Transfer_Status
+    created_at?: Date | string
+    responded_at?: Date | string | null
+  }
+
+  export type group_ownership_transfersCreateOrConnectWithoutSavings_circleInput = {
+    where: group_ownership_transfersWhereUniqueInput
+    create: XOR<group_ownership_transfersCreateWithoutSavings_circleInput, group_ownership_transfersUncheckedCreateWithoutSavings_circleInput>
+  }
+
+  export type group_ownership_transfersCreateManySavings_circleInputEnvelope = {
+    data: group_ownership_transfersCreateManySavings_circleInput | group_ownership_transfersCreateManySavings_circleInput[]
+    skipDuplicates?: boolean
+  }
+
   export type usersUpsertWithoutSavings_circlesInput = {
     update: XOR<usersUpdateWithoutSavings_circlesInput, usersUncheckedUpdateWithoutSavings_circlesInput>
     create: XOR<usersCreateWithoutSavings_circlesInput, usersUncheckedCreateWithoutSavings_circlesInput>
@@ -23830,6 +25803,8 @@ export namespace Prisma {
     contributions?: contributionsUpdateManyWithoutUsersNestedInput
     payment_transactions?: payment_transactionsUpdateManyWithoutUsersNestedInput
     notifications?: notificationsUpdateManyWithoutUsersNestedInput
+    ownership_transfers_sent?: group_ownership_transfersUpdateManyWithoutFrom_userNestedInput
+    ownership_transfers_received?: group_ownership_transfersUpdateManyWithoutTo_userNestedInput
   }
 
   export type usersUncheckedUpdateWithoutSavings_circlesInput = {
@@ -23851,6 +25826,8 @@ export namespace Prisma {
     contributions?: contributionsUncheckedUpdateManyWithoutUsersNestedInput
     payment_transactions?: payment_transactionsUncheckedUpdateManyWithoutUsersNestedInput
     notifications?: notificationsUncheckedUpdateManyWithoutUsersNestedInput
+    ownership_transfers_sent?: group_ownership_transfersUncheckedUpdateManyWithoutFrom_userNestedInput
+    ownership_transfers_received?: group_ownership_transfersUncheckedUpdateManyWithoutTo_userNestedInput
   }
 
   export type circle_membersUpsertWithWhereUniqueWithoutSavings_circleInput = {
@@ -23966,6 +25943,334 @@ export namespace Prisma {
     updated_at?: DateTimeFilter<"payouts"> | Date | string
   }
 
+  export type group_ownership_transfersUpsertWithWhereUniqueWithoutSavings_circleInput = {
+    where: group_ownership_transfersWhereUniqueInput
+    update: XOR<group_ownership_transfersUpdateWithoutSavings_circleInput, group_ownership_transfersUncheckedUpdateWithoutSavings_circleInput>
+    create: XOR<group_ownership_transfersCreateWithoutSavings_circleInput, group_ownership_transfersUncheckedCreateWithoutSavings_circleInput>
+  }
+
+  export type group_ownership_transfersUpdateWithWhereUniqueWithoutSavings_circleInput = {
+    where: group_ownership_transfersWhereUniqueInput
+    data: XOR<group_ownership_transfersUpdateWithoutSavings_circleInput, group_ownership_transfersUncheckedUpdateWithoutSavings_circleInput>
+  }
+
+  export type group_ownership_transfersUpdateManyWithWhereWithoutSavings_circleInput = {
+    where: group_ownership_transfersScalarWhereInput
+    data: XOR<group_ownership_transfersUpdateManyMutationInput, group_ownership_transfersUncheckedUpdateManyWithoutSavings_circleInput>
+  }
+
+  export type savings_circlesCreateWithoutOwnership_transfersInput = {
+    id?: string
+    name: string
+    decription: string
+    contribution_amount: Decimal | DecimalJsLike | number | string
+    currency: string
+    frequency: $Enums.Frequency
+    member_limit: number
+    start_date: Date | string
+    status?: $Enums.Group_Status
+    created_at?: Date | string
+    updated_at?: Date | string
+    users: usersCreateNestedOneWithoutSavings_circlesInput
+    circle_members?: circle_membersCreateNestedManyWithoutSavings_circleInput
+    circle_invitations?: circle_invitationsCreateNestedManyWithoutSavings_circleInput
+    savings_schedules?: savings_schedulesCreateNestedManyWithoutSavings_circleInput
+    contributions?: contributionsCreateNestedManyWithoutSavings_circleInput
+    payouts?: payoutsCreateNestedManyWithoutSavings_circleInput
+  }
+
+  export type savings_circlesUncheckedCreateWithoutOwnership_transfersInput = {
+    id?: string
+    name: string
+    decription: string
+    owner_id: string
+    contribution_amount: Decimal | DecimalJsLike | number | string
+    currency: string
+    frequency: $Enums.Frequency
+    member_limit: number
+    start_date: Date | string
+    status?: $Enums.Group_Status
+    created_at?: Date | string
+    updated_at?: Date | string
+    circle_members?: circle_membersUncheckedCreateNestedManyWithoutSavings_circleInput
+    circle_invitations?: circle_invitationsUncheckedCreateNestedManyWithoutSavings_circleInput
+    savings_schedules?: savings_schedulesUncheckedCreateNestedManyWithoutSavings_circleInput
+    contributions?: contributionsUncheckedCreateNestedManyWithoutSavings_circleInput
+    payouts?: payoutsUncheckedCreateNestedManyWithoutSavings_circleInput
+  }
+
+  export type savings_circlesCreateOrConnectWithoutOwnership_transfersInput = {
+    where: savings_circlesWhereUniqueInput
+    create: XOR<savings_circlesCreateWithoutOwnership_transfersInput, savings_circlesUncheckedCreateWithoutOwnership_transfersInput>
+  }
+
+  export type usersCreateWithoutOwnership_transfers_sentInput = {
+    id?: string
+    email: string
+    phone?: string | null
+    password_hash: string
+    first_name: string
+    last_name: string
+    avatar_url?: string | null
+    email_verified_at?: Date | string | null
+    status?: $Enums.Status
+    created_at?: Date | string
+    updated_at?: Date | string
+    waitlistEntry?: waitlistEntryCreateNestedOneWithoutUserInput
+    session?: sessionsCreateNestedOneWithoutUserInput
+    savings_circles?: savings_circlesCreateNestedManyWithoutUsersInput
+    circle_members?: circle_membersCreateNestedManyWithoutUsersInput
+    circle_invitations?: circle_invitationsCreateNestedManyWithoutUsersInput
+    contributions?: contributionsCreateNestedManyWithoutUsersInput
+    payment_transactions?: payment_transactionsCreateNestedManyWithoutUsersInput
+    notifications?: notificationsCreateNestedManyWithoutUsersInput
+    ownership_transfers_received?: group_ownership_transfersCreateNestedManyWithoutTo_userInput
+  }
+
+  export type usersUncheckedCreateWithoutOwnership_transfers_sentInput = {
+    id?: string
+    email: string
+    phone?: string | null
+    password_hash: string
+    first_name: string
+    last_name: string
+    avatar_url?: string | null
+    email_verified_at?: Date | string | null
+    status?: $Enums.Status
+    created_at?: Date | string
+    updated_at?: Date | string
+    waitlistEntry?: waitlistEntryUncheckedCreateNestedOneWithoutUserInput
+    session?: sessionsUncheckedCreateNestedOneWithoutUserInput
+    savings_circles?: savings_circlesUncheckedCreateNestedManyWithoutUsersInput
+    circle_members?: circle_membersUncheckedCreateNestedManyWithoutUsersInput
+    circle_invitations?: circle_invitationsUncheckedCreateNestedManyWithoutUsersInput
+    contributions?: contributionsUncheckedCreateNestedManyWithoutUsersInput
+    payment_transactions?: payment_transactionsUncheckedCreateNestedManyWithoutUsersInput
+    notifications?: notificationsUncheckedCreateNestedManyWithoutUsersInput
+    ownership_transfers_received?: group_ownership_transfersUncheckedCreateNestedManyWithoutTo_userInput
+  }
+
+  export type usersCreateOrConnectWithoutOwnership_transfers_sentInput = {
+    where: usersWhereUniqueInput
+    create: XOR<usersCreateWithoutOwnership_transfers_sentInput, usersUncheckedCreateWithoutOwnership_transfers_sentInput>
+  }
+
+  export type usersCreateWithoutOwnership_transfers_receivedInput = {
+    id?: string
+    email: string
+    phone?: string | null
+    password_hash: string
+    first_name: string
+    last_name: string
+    avatar_url?: string | null
+    email_verified_at?: Date | string | null
+    status?: $Enums.Status
+    created_at?: Date | string
+    updated_at?: Date | string
+    waitlistEntry?: waitlistEntryCreateNestedOneWithoutUserInput
+    session?: sessionsCreateNestedOneWithoutUserInput
+    savings_circles?: savings_circlesCreateNestedManyWithoutUsersInput
+    circle_members?: circle_membersCreateNestedManyWithoutUsersInput
+    circle_invitations?: circle_invitationsCreateNestedManyWithoutUsersInput
+    contributions?: contributionsCreateNestedManyWithoutUsersInput
+    payment_transactions?: payment_transactionsCreateNestedManyWithoutUsersInput
+    notifications?: notificationsCreateNestedManyWithoutUsersInput
+    ownership_transfers_sent?: group_ownership_transfersCreateNestedManyWithoutFrom_userInput
+  }
+
+  export type usersUncheckedCreateWithoutOwnership_transfers_receivedInput = {
+    id?: string
+    email: string
+    phone?: string | null
+    password_hash: string
+    first_name: string
+    last_name: string
+    avatar_url?: string | null
+    email_verified_at?: Date | string | null
+    status?: $Enums.Status
+    created_at?: Date | string
+    updated_at?: Date | string
+    waitlistEntry?: waitlistEntryUncheckedCreateNestedOneWithoutUserInput
+    session?: sessionsUncheckedCreateNestedOneWithoutUserInput
+    savings_circles?: savings_circlesUncheckedCreateNestedManyWithoutUsersInput
+    circle_members?: circle_membersUncheckedCreateNestedManyWithoutUsersInput
+    circle_invitations?: circle_invitationsUncheckedCreateNestedManyWithoutUsersInput
+    contributions?: contributionsUncheckedCreateNestedManyWithoutUsersInput
+    payment_transactions?: payment_transactionsUncheckedCreateNestedManyWithoutUsersInput
+    notifications?: notificationsUncheckedCreateNestedManyWithoutUsersInput
+    ownership_transfers_sent?: group_ownership_transfersUncheckedCreateNestedManyWithoutFrom_userInput
+  }
+
+  export type usersCreateOrConnectWithoutOwnership_transfers_receivedInput = {
+    where: usersWhereUniqueInput
+    create: XOR<usersCreateWithoutOwnership_transfers_receivedInput, usersUncheckedCreateWithoutOwnership_transfers_receivedInput>
+  }
+
+  export type savings_circlesUpsertWithoutOwnership_transfersInput = {
+    update: XOR<savings_circlesUpdateWithoutOwnership_transfersInput, savings_circlesUncheckedUpdateWithoutOwnership_transfersInput>
+    create: XOR<savings_circlesCreateWithoutOwnership_transfersInput, savings_circlesUncheckedCreateWithoutOwnership_transfersInput>
+    where?: savings_circlesWhereInput
+  }
+
+  export type savings_circlesUpdateToOneWithWhereWithoutOwnership_transfersInput = {
+    where?: savings_circlesWhereInput
+    data: XOR<savings_circlesUpdateWithoutOwnership_transfersInput, savings_circlesUncheckedUpdateWithoutOwnership_transfersInput>
+  }
+
+  export type savings_circlesUpdateWithoutOwnership_transfersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    decription?: StringFieldUpdateOperationsInput | string
+    contribution_amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    currency?: StringFieldUpdateOperationsInput | string
+    frequency?: EnumFrequencyFieldUpdateOperationsInput | $Enums.Frequency
+    member_limit?: IntFieldUpdateOperationsInput | number
+    start_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: EnumGroup_StatusFieldUpdateOperationsInput | $Enums.Group_Status
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: usersUpdateOneRequiredWithoutSavings_circlesNestedInput
+    circle_members?: circle_membersUpdateManyWithoutSavings_circleNestedInput
+    circle_invitations?: circle_invitationsUpdateManyWithoutSavings_circleNestedInput
+    savings_schedules?: savings_schedulesUpdateManyWithoutSavings_circleNestedInput
+    contributions?: contributionsUpdateManyWithoutSavings_circleNestedInput
+    payouts?: payoutsUpdateManyWithoutSavings_circleNestedInput
+  }
+
+  export type savings_circlesUncheckedUpdateWithoutOwnership_transfersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    decription?: StringFieldUpdateOperationsInput | string
+    owner_id?: StringFieldUpdateOperationsInput | string
+    contribution_amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    currency?: StringFieldUpdateOperationsInput | string
+    frequency?: EnumFrequencyFieldUpdateOperationsInput | $Enums.Frequency
+    member_limit?: IntFieldUpdateOperationsInput | number
+    start_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: EnumGroup_StatusFieldUpdateOperationsInput | $Enums.Group_Status
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    circle_members?: circle_membersUncheckedUpdateManyWithoutSavings_circleNestedInput
+    circle_invitations?: circle_invitationsUncheckedUpdateManyWithoutSavings_circleNestedInput
+    savings_schedules?: savings_schedulesUncheckedUpdateManyWithoutSavings_circleNestedInput
+    contributions?: contributionsUncheckedUpdateManyWithoutSavings_circleNestedInput
+    payouts?: payoutsUncheckedUpdateManyWithoutSavings_circleNestedInput
+  }
+
+  export type usersUpsertWithoutOwnership_transfers_sentInput = {
+    update: XOR<usersUpdateWithoutOwnership_transfers_sentInput, usersUncheckedUpdateWithoutOwnership_transfers_sentInput>
+    create: XOR<usersCreateWithoutOwnership_transfers_sentInput, usersUncheckedCreateWithoutOwnership_transfers_sentInput>
+    where?: usersWhereInput
+  }
+
+  export type usersUpdateToOneWithWhereWithoutOwnership_transfers_sentInput = {
+    where?: usersWhereInput
+    data: XOR<usersUpdateWithoutOwnership_transfers_sentInput, usersUncheckedUpdateWithoutOwnership_transfers_sentInput>
+  }
+
+  export type usersUpdateWithoutOwnership_transfers_sentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    password_hash?: StringFieldUpdateOperationsInput | string
+    first_name?: StringFieldUpdateOperationsInput | string
+    last_name?: StringFieldUpdateOperationsInput | string
+    avatar_url?: NullableStringFieldUpdateOperationsInput | string | null
+    email_verified_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    waitlistEntry?: waitlistEntryUpdateOneWithoutUserNestedInput
+    session?: sessionsUpdateOneWithoutUserNestedInput
+    savings_circles?: savings_circlesUpdateManyWithoutUsersNestedInput
+    circle_members?: circle_membersUpdateManyWithoutUsersNestedInput
+    circle_invitations?: circle_invitationsUpdateManyWithoutUsersNestedInput
+    contributions?: contributionsUpdateManyWithoutUsersNestedInput
+    payment_transactions?: payment_transactionsUpdateManyWithoutUsersNestedInput
+    notifications?: notificationsUpdateManyWithoutUsersNestedInput
+    ownership_transfers_received?: group_ownership_transfersUpdateManyWithoutTo_userNestedInput
+  }
+
+  export type usersUncheckedUpdateWithoutOwnership_transfers_sentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    password_hash?: StringFieldUpdateOperationsInput | string
+    first_name?: StringFieldUpdateOperationsInput | string
+    last_name?: StringFieldUpdateOperationsInput | string
+    avatar_url?: NullableStringFieldUpdateOperationsInput | string | null
+    email_verified_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    waitlistEntry?: waitlistEntryUncheckedUpdateOneWithoutUserNestedInput
+    session?: sessionsUncheckedUpdateOneWithoutUserNestedInput
+    savings_circles?: savings_circlesUncheckedUpdateManyWithoutUsersNestedInput
+    circle_members?: circle_membersUncheckedUpdateManyWithoutUsersNestedInput
+    circle_invitations?: circle_invitationsUncheckedUpdateManyWithoutUsersNestedInput
+    contributions?: contributionsUncheckedUpdateManyWithoutUsersNestedInput
+    payment_transactions?: payment_transactionsUncheckedUpdateManyWithoutUsersNestedInput
+    notifications?: notificationsUncheckedUpdateManyWithoutUsersNestedInput
+    ownership_transfers_received?: group_ownership_transfersUncheckedUpdateManyWithoutTo_userNestedInput
+  }
+
+  export type usersUpsertWithoutOwnership_transfers_receivedInput = {
+    update: XOR<usersUpdateWithoutOwnership_transfers_receivedInput, usersUncheckedUpdateWithoutOwnership_transfers_receivedInput>
+    create: XOR<usersCreateWithoutOwnership_transfers_receivedInput, usersUncheckedCreateWithoutOwnership_transfers_receivedInput>
+    where?: usersWhereInput
+  }
+
+  export type usersUpdateToOneWithWhereWithoutOwnership_transfers_receivedInput = {
+    where?: usersWhereInput
+    data: XOR<usersUpdateWithoutOwnership_transfers_receivedInput, usersUncheckedUpdateWithoutOwnership_transfers_receivedInput>
+  }
+
+  export type usersUpdateWithoutOwnership_transfers_receivedInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    password_hash?: StringFieldUpdateOperationsInput | string
+    first_name?: StringFieldUpdateOperationsInput | string
+    last_name?: StringFieldUpdateOperationsInput | string
+    avatar_url?: NullableStringFieldUpdateOperationsInput | string | null
+    email_verified_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    waitlistEntry?: waitlistEntryUpdateOneWithoutUserNestedInput
+    session?: sessionsUpdateOneWithoutUserNestedInput
+    savings_circles?: savings_circlesUpdateManyWithoutUsersNestedInput
+    circle_members?: circle_membersUpdateManyWithoutUsersNestedInput
+    circle_invitations?: circle_invitationsUpdateManyWithoutUsersNestedInput
+    contributions?: contributionsUpdateManyWithoutUsersNestedInput
+    payment_transactions?: payment_transactionsUpdateManyWithoutUsersNestedInput
+    notifications?: notificationsUpdateManyWithoutUsersNestedInput
+    ownership_transfers_sent?: group_ownership_transfersUpdateManyWithoutFrom_userNestedInput
+  }
+
+  export type usersUncheckedUpdateWithoutOwnership_transfers_receivedInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    password_hash?: StringFieldUpdateOperationsInput | string
+    first_name?: StringFieldUpdateOperationsInput | string
+    last_name?: StringFieldUpdateOperationsInput | string
+    avatar_url?: NullableStringFieldUpdateOperationsInput | string | null
+    email_verified_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    waitlistEntry?: waitlistEntryUncheckedUpdateOneWithoutUserNestedInput
+    session?: sessionsUncheckedUpdateOneWithoutUserNestedInput
+    savings_circles?: savings_circlesUncheckedUpdateManyWithoutUsersNestedInput
+    circle_members?: circle_membersUncheckedUpdateManyWithoutUsersNestedInput
+    circle_invitations?: circle_invitationsUncheckedUpdateManyWithoutUsersNestedInput
+    contributions?: contributionsUncheckedUpdateManyWithoutUsersNestedInput
+    payment_transactions?: payment_transactionsUncheckedUpdateManyWithoutUsersNestedInput
+    notifications?: notificationsUncheckedUpdateManyWithoutUsersNestedInput
+    ownership_transfers_sent?: group_ownership_transfersUncheckedUpdateManyWithoutFrom_userNestedInput
+  }
+
   export type savings_circlesCreateWithoutCircle_membersInput = {
     id?: string
     name: string
@@ -23975,7 +26280,7 @@ export namespace Prisma {
     frequency: $Enums.Frequency
     member_limit: number
     start_date: Date | string
-    status?: $Enums.Circle_Status
+    status?: $Enums.Group_Status
     created_at?: Date | string
     updated_at?: Date | string
     users: usersCreateNestedOneWithoutSavings_circlesInput
@@ -23983,6 +26288,7 @@ export namespace Prisma {
     savings_schedules?: savings_schedulesCreateNestedManyWithoutSavings_circleInput
     contributions?: contributionsCreateNestedManyWithoutSavings_circleInput
     payouts?: payoutsCreateNestedManyWithoutSavings_circleInput
+    ownership_transfers?: group_ownership_transfersCreateNestedManyWithoutSavings_circleInput
   }
 
   export type savings_circlesUncheckedCreateWithoutCircle_membersInput = {
@@ -23995,13 +26301,14 @@ export namespace Prisma {
     frequency: $Enums.Frequency
     member_limit: number
     start_date: Date | string
-    status?: $Enums.Circle_Status
+    status?: $Enums.Group_Status
     created_at?: Date | string
     updated_at?: Date | string
     circle_invitations?: circle_invitationsUncheckedCreateNestedManyWithoutSavings_circleInput
     savings_schedules?: savings_schedulesUncheckedCreateNestedManyWithoutSavings_circleInput
     contributions?: contributionsUncheckedCreateNestedManyWithoutSavings_circleInput
     payouts?: payoutsUncheckedCreateNestedManyWithoutSavings_circleInput
+    ownership_transfers?: group_ownership_transfersUncheckedCreateNestedManyWithoutSavings_circleInput
   }
 
   export type savings_circlesCreateOrConnectWithoutCircle_membersInput = {
@@ -24028,6 +26335,8 @@ export namespace Prisma {
     contributions?: contributionsCreateNestedManyWithoutUsersInput
     payment_transactions?: payment_transactionsCreateNestedManyWithoutUsersInput
     notifications?: notificationsCreateNestedManyWithoutUsersInput
+    ownership_transfers_sent?: group_ownership_transfersCreateNestedManyWithoutFrom_userInput
+    ownership_transfers_received?: group_ownership_transfersCreateNestedManyWithoutTo_userInput
   }
 
   export type usersUncheckedCreateWithoutCircle_membersInput = {
@@ -24049,6 +26358,8 @@ export namespace Prisma {
     contributions?: contributionsUncheckedCreateNestedManyWithoutUsersInput
     payment_transactions?: payment_transactionsUncheckedCreateNestedManyWithoutUsersInput
     notifications?: notificationsUncheckedCreateNestedManyWithoutUsersInput
+    ownership_transfers_sent?: group_ownership_transfersUncheckedCreateNestedManyWithoutFrom_userInput
+    ownership_transfers_received?: group_ownership_transfersUncheckedCreateNestedManyWithoutTo_userInput
   }
 
   export type usersCreateOrConnectWithoutCircle_membersInput = {
@@ -24112,7 +26423,7 @@ export namespace Prisma {
     frequency?: EnumFrequencyFieldUpdateOperationsInput | $Enums.Frequency
     member_limit?: IntFieldUpdateOperationsInput | number
     start_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: EnumCircle_StatusFieldUpdateOperationsInput | $Enums.Circle_Status
+    status?: EnumGroup_StatusFieldUpdateOperationsInput | $Enums.Group_Status
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: usersUpdateOneRequiredWithoutSavings_circlesNestedInput
@@ -24120,6 +26431,7 @@ export namespace Prisma {
     savings_schedules?: savings_schedulesUpdateManyWithoutSavings_circleNestedInput
     contributions?: contributionsUpdateManyWithoutSavings_circleNestedInput
     payouts?: payoutsUpdateManyWithoutSavings_circleNestedInput
+    ownership_transfers?: group_ownership_transfersUpdateManyWithoutSavings_circleNestedInput
   }
 
   export type savings_circlesUncheckedUpdateWithoutCircle_membersInput = {
@@ -24132,13 +26444,14 @@ export namespace Prisma {
     frequency?: EnumFrequencyFieldUpdateOperationsInput | $Enums.Frequency
     member_limit?: IntFieldUpdateOperationsInput | number
     start_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: EnumCircle_StatusFieldUpdateOperationsInput | $Enums.Circle_Status
+    status?: EnumGroup_StatusFieldUpdateOperationsInput | $Enums.Group_Status
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     circle_invitations?: circle_invitationsUncheckedUpdateManyWithoutSavings_circleNestedInput
     savings_schedules?: savings_schedulesUncheckedUpdateManyWithoutSavings_circleNestedInput
     contributions?: contributionsUncheckedUpdateManyWithoutSavings_circleNestedInput
     payouts?: payoutsUncheckedUpdateManyWithoutSavings_circleNestedInput
+    ownership_transfers?: group_ownership_transfersUncheckedUpdateManyWithoutSavings_circleNestedInput
   }
 
   export type usersUpsertWithoutCircle_membersInput = {
@@ -24171,6 +26484,8 @@ export namespace Prisma {
     contributions?: contributionsUpdateManyWithoutUsersNestedInput
     payment_transactions?: payment_transactionsUpdateManyWithoutUsersNestedInput
     notifications?: notificationsUpdateManyWithoutUsersNestedInput
+    ownership_transfers_sent?: group_ownership_transfersUpdateManyWithoutFrom_userNestedInput
+    ownership_transfers_received?: group_ownership_transfersUpdateManyWithoutTo_userNestedInput
   }
 
   export type usersUncheckedUpdateWithoutCircle_membersInput = {
@@ -24192,6 +26507,8 @@ export namespace Prisma {
     contributions?: contributionsUncheckedUpdateManyWithoutUsersNestedInput
     payment_transactions?: payment_transactionsUncheckedUpdateManyWithoutUsersNestedInput
     notifications?: notificationsUncheckedUpdateManyWithoutUsersNestedInput
+    ownership_transfers_sent?: group_ownership_transfersUncheckedUpdateManyWithoutFrom_userNestedInput
+    ownership_transfers_received?: group_ownership_transfersUncheckedUpdateManyWithoutTo_userNestedInput
   }
 
   export type payoutsUpsertWithWhereUniqueWithoutCircle_memberInput = {
@@ -24219,7 +26536,7 @@ export namespace Prisma {
     frequency: $Enums.Frequency
     member_limit: number
     start_date: Date | string
-    status?: $Enums.Circle_Status
+    status?: $Enums.Group_Status
     created_at?: Date | string
     updated_at?: Date | string
     users: usersCreateNestedOneWithoutSavings_circlesInput
@@ -24227,6 +26544,7 @@ export namespace Prisma {
     savings_schedules?: savings_schedulesCreateNestedManyWithoutSavings_circleInput
     contributions?: contributionsCreateNestedManyWithoutSavings_circleInput
     payouts?: payoutsCreateNestedManyWithoutSavings_circleInput
+    ownership_transfers?: group_ownership_transfersCreateNestedManyWithoutSavings_circleInput
   }
 
   export type savings_circlesUncheckedCreateWithoutCircle_invitationsInput = {
@@ -24239,13 +26557,14 @@ export namespace Prisma {
     frequency: $Enums.Frequency
     member_limit: number
     start_date: Date | string
-    status?: $Enums.Circle_Status
+    status?: $Enums.Group_Status
     created_at?: Date | string
     updated_at?: Date | string
     circle_members?: circle_membersUncheckedCreateNestedManyWithoutSavings_circleInput
     savings_schedules?: savings_schedulesUncheckedCreateNestedManyWithoutSavings_circleInput
     contributions?: contributionsUncheckedCreateNestedManyWithoutSavings_circleInput
     payouts?: payoutsUncheckedCreateNestedManyWithoutSavings_circleInput
+    ownership_transfers?: group_ownership_transfersUncheckedCreateNestedManyWithoutSavings_circleInput
   }
 
   export type savings_circlesCreateOrConnectWithoutCircle_invitationsInput = {
@@ -24272,6 +26591,8 @@ export namespace Prisma {
     contributions?: contributionsCreateNestedManyWithoutUsersInput
     payment_transactions?: payment_transactionsCreateNestedManyWithoutUsersInput
     notifications?: notificationsCreateNestedManyWithoutUsersInput
+    ownership_transfers_sent?: group_ownership_transfersCreateNestedManyWithoutFrom_userInput
+    ownership_transfers_received?: group_ownership_transfersCreateNestedManyWithoutTo_userInput
   }
 
   export type usersUncheckedCreateWithoutCircle_invitationsInput = {
@@ -24293,6 +26614,8 @@ export namespace Prisma {
     contributions?: contributionsUncheckedCreateNestedManyWithoutUsersInput
     payment_transactions?: payment_transactionsUncheckedCreateNestedManyWithoutUsersInput
     notifications?: notificationsUncheckedCreateNestedManyWithoutUsersInput
+    ownership_transfers_sent?: group_ownership_transfersUncheckedCreateNestedManyWithoutFrom_userInput
+    ownership_transfers_received?: group_ownership_transfersUncheckedCreateNestedManyWithoutTo_userInput
   }
 
   export type usersCreateOrConnectWithoutCircle_invitationsInput = {
@@ -24320,7 +26643,7 @@ export namespace Prisma {
     frequency?: EnumFrequencyFieldUpdateOperationsInput | $Enums.Frequency
     member_limit?: IntFieldUpdateOperationsInput | number
     start_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: EnumCircle_StatusFieldUpdateOperationsInput | $Enums.Circle_Status
+    status?: EnumGroup_StatusFieldUpdateOperationsInput | $Enums.Group_Status
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: usersUpdateOneRequiredWithoutSavings_circlesNestedInput
@@ -24328,6 +26651,7 @@ export namespace Prisma {
     savings_schedules?: savings_schedulesUpdateManyWithoutSavings_circleNestedInput
     contributions?: contributionsUpdateManyWithoutSavings_circleNestedInput
     payouts?: payoutsUpdateManyWithoutSavings_circleNestedInput
+    ownership_transfers?: group_ownership_transfersUpdateManyWithoutSavings_circleNestedInput
   }
 
   export type savings_circlesUncheckedUpdateWithoutCircle_invitationsInput = {
@@ -24340,13 +26664,14 @@ export namespace Prisma {
     frequency?: EnumFrequencyFieldUpdateOperationsInput | $Enums.Frequency
     member_limit?: IntFieldUpdateOperationsInput | number
     start_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: EnumCircle_StatusFieldUpdateOperationsInput | $Enums.Circle_Status
+    status?: EnumGroup_StatusFieldUpdateOperationsInput | $Enums.Group_Status
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     circle_members?: circle_membersUncheckedUpdateManyWithoutSavings_circleNestedInput
     savings_schedules?: savings_schedulesUncheckedUpdateManyWithoutSavings_circleNestedInput
     contributions?: contributionsUncheckedUpdateManyWithoutSavings_circleNestedInput
     payouts?: payoutsUncheckedUpdateManyWithoutSavings_circleNestedInput
+    ownership_transfers?: group_ownership_transfersUncheckedUpdateManyWithoutSavings_circleNestedInput
   }
 
   export type usersUpsertWithoutCircle_invitationsInput = {
@@ -24379,6 +26704,8 @@ export namespace Prisma {
     contributions?: contributionsUpdateManyWithoutUsersNestedInput
     payment_transactions?: payment_transactionsUpdateManyWithoutUsersNestedInput
     notifications?: notificationsUpdateManyWithoutUsersNestedInput
+    ownership_transfers_sent?: group_ownership_transfersUpdateManyWithoutFrom_userNestedInput
+    ownership_transfers_received?: group_ownership_transfersUpdateManyWithoutTo_userNestedInput
   }
 
   export type usersUncheckedUpdateWithoutCircle_invitationsInput = {
@@ -24400,6 +26727,8 @@ export namespace Prisma {
     contributions?: contributionsUncheckedUpdateManyWithoutUsersNestedInput
     payment_transactions?: payment_transactionsUncheckedUpdateManyWithoutUsersNestedInput
     notifications?: notificationsUncheckedUpdateManyWithoutUsersNestedInput
+    ownership_transfers_sent?: group_ownership_transfersUncheckedUpdateManyWithoutFrom_userNestedInput
+    ownership_transfers_received?: group_ownership_transfersUncheckedUpdateManyWithoutTo_userNestedInput
   }
 
   export type savings_circlesCreateWithoutSavings_schedulesInput = {
@@ -24411,7 +26740,7 @@ export namespace Prisma {
     frequency: $Enums.Frequency
     member_limit: number
     start_date: Date | string
-    status?: $Enums.Circle_Status
+    status?: $Enums.Group_Status
     created_at?: Date | string
     updated_at?: Date | string
     users: usersCreateNestedOneWithoutSavings_circlesInput
@@ -24419,6 +26748,7 @@ export namespace Prisma {
     circle_invitations?: circle_invitationsCreateNestedManyWithoutSavings_circleInput
     contributions?: contributionsCreateNestedManyWithoutSavings_circleInput
     payouts?: payoutsCreateNestedManyWithoutSavings_circleInput
+    ownership_transfers?: group_ownership_transfersCreateNestedManyWithoutSavings_circleInput
   }
 
   export type savings_circlesUncheckedCreateWithoutSavings_schedulesInput = {
@@ -24431,13 +26761,14 @@ export namespace Prisma {
     frequency: $Enums.Frequency
     member_limit: number
     start_date: Date | string
-    status?: $Enums.Circle_Status
+    status?: $Enums.Group_Status
     created_at?: Date | string
     updated_at?: Date | string
     circle_members?: circle_membersUncheckedCreateNestedManyWithoutSavings_circleInput
     circle_invitations?: circle_invitationsUncheckedCreateNestedManyWithoutSavings_circleInput
     contributions?: contributionsUncheckedCreateNestedManyWithoutSavings_circleInput
     payouts?: payoutsUncheckedCreateNestedManyWithoutSavings_circleInput
+    ownership_transfers?: group_ownership_transfersUncheckedCreateNestedManyWithoutSavings_circleInput
   }
 
   export type savings_circlesCreateOrConnectWithoutSavings_schedulesInput = {
@@ -24465,7 +26796,7 @@ export namespace Prisma {
     frequency?: EnumFrequencyFieldUpdateOperationsInput | $Enums.Frequency
     member_limit?: IntFieldUpdateOperationsInput | number
     start_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: EnumCircle_StatusFieldUpdateOperationsInput | $Enums.Circle_Status
+    status?: EnumGroup_StatusFieldUpdateOperationsInput | $Enums.Group_Status
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: usersUpdateOneRequiredWithoutSavings_circlesNestedInput
@@ -24473,6 +26804,7 @@ export namespace Prisma {
     circle_invitations?: circle_invitationsUpdateManyWithoutSavings_circleNestedInput
     contributions?: contributionsUpdateManyWithoutSavings_circleNestedInput
     payouts?: payoutsUpdateManyWithoutSavings_circleNestedInput
+    ownership_transfers?: group_ownership_transfersUpdateManyWithoutSavings_circleNestedInput
   }
 
   export type savings_circlesUncheckedUpdateWithoutSavings_schedulesInput = {
@@ -24485,13 +26817,14 @@ export namespace Prisma {
     frequency?: EnumFrequencyFieldUpdateOperationsInput | $Enums.Frequency
     member_limit?: IntFieldUpdateOperationsInput | number
     start_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: EnumCircle_StatusFieldUpdateOperationsInput | $Enums.Circle_Status
+    status?: EnumGroup_StatusFieldUpdateOperationsInput | $Enums.Group_Status
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     circle_members?: circle_membersUncheckedUpdateManyWithoutSavings_circleNestedInput
     circle_invitations?: circle_invitationsUncheckedUpdateManyWithoutSavings_circleNestedInput
     contributions?: contributionsUncheckedUpdateManyWithoutSavings_circleNestedInput
     payouts?: payoutsUncheckedUpdateManyWithoutSavings_circleNestedInput
+    ownership_transfers?: group_ownership_transfersUncheckedUpdateManyWithoutSavings_circleNestedInput
   }
 
   export type savings_circlesCreateWithoutContributionsInput = {
@@ -24503,7 +26836,7 @@ export namespace Prisma {
     frequency: $Enums.Frequency
     member_limit: number
     start_date: Date | string
-    status?: $Enums.Circle_Status
+    status?: $Enums.Group_Status
     created_at?: Date | string
     updated_at?: Date | string
     users: usersCreateNestedOneWithoutSavings_circlesInput
@@ -24511,6 +26844,7 @@ export namespace Prisma {
     circle_invitations?: circle_invitationsCreateNestedManyWithoutSavings_circleInput
     savings_schedules?: savings_schedulesCreateNestedManyWithoutSavings_circleInput
     payouts?: payoutsCreateNestedManyWithoutSavings_circleInput
+    ownership_transfers?: group_ownership_transfersCreateNestedManyWithoutSavings_circleInput
   }
 
   export type savings_circlesUncheckedCreateWithoutContributionsInput = {
@@ -24523,13 +26857,14 @@ export namespace Prisma {
     frequency: $Enums.Frequency
     member_limit: number
     start_date: Date | string
-    status?: $Enums.Circle_Status
+    status?: $Enums.Group_Status
     created_at?: Date | string
     updated_at?: Date | string
     circle_members?: circle_membersUncheckedCreateNestedManyWithoutSavings_circleInput
     circle_invitations?: circle_invitationsUncheckedCreateNestedManyWithoutSavings_circleInput
     savings_schedules?: savings_schedulesUncheckedCreateNestedManyWithoutSavings_circleInput
     payouts?: payoutsUncheckedCreateNestedManyWithoutSavings_circleInput
+    ownership_transfers?: group_ownership_transfersUncheckedCreateNestedManyWithoutSavings_circleInput
   }
 
   export type savings_circlesCreateOrConnectWithoutContributionsInput = {
@@ -24556,6 +26891,8 @@ export namespace Prisma {
     circle_invitations?: circle_invitationsCreateNestedManyWithoutUsersInput
     payment_transactions?: payment_transactionsCreateNestedManyWithoutUsersInput
     notifications?: notificationsCreateNestedManyWithoutUsersInput
+    ownership_transfers_sent?: group_ownership_transfersCreateNestedManyWithoutFrom_userInput
+    ownership_transfers_received?: group_ownership_transfersCreateNestedManyWithoutTo_userInput
   }
 
   export type usersUncheckedCreateWithoutContributionsInput = {
@@ -24577,6 +26914,8 @@ export namespace Prisma {
     circle_invitations?: circle_invitationsUncheckedCreateNestedManyWithoutUsersInput
     payment_transactions?: payment_transactionsUncheckedCreateNestedManyWithoutUsersInput
     notifications?: notificationsUncheckedCreateNestedManyWithoutUsersInput
+    ownership_transfers_sent?: group_ownership_transfersUncheckedCreateNestedManyWithoutFrom_userInput
+    ownership_transfers_received?: group_ownership_transfersUncheckedCreateNestedManyWithoutTo_userInput
   }
 
   export type usersCreateOrConnectWithoutContributionsInput = {
@@ -24645,7 +26984,7 @@ export namespace Prisma {
     frequency?: EnumFrequencyFieldUpdateOperationsInput | $Enums.Frequency
     member_limit?: IntFieldUpdateOperationsInput | number
     start_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: EnumCircle_StatusFieldUpdateOperationsInput | $Enums.Circle_Status
+    status?: EnumGroup_StatusFieldUpdateOperationsInput | $Enums.Group_Status
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: usersUpdateOneRequiredWithoutSavings_circlesNestedInput
@@ -24653,6 +26992,7 @@ export namespace Prisma {
     circle_invitations?: circle_invitationsUpdateManyWithoutSavings_circleNestedInput
     savings_schedules?: savings_schedulesUpdateManyWithoutSavings_circleNestedInput
     payouts?: payoutsUpdateManyWithoutSavings_circleNestedInput
+    ownership_transfers?: group_ownership_transfersUpdateManyWithoutSavings_circleNestedInput
   }
 
   export type savings_circlesUncheckedUpdateWithoutContributionsInput = {
@@ -24665,13 +27005,14 @@ export namespace Prisma {
     frequency?: EnumFrequencyFieldUpdateOperationsInput | $Enums.Frequency
     member_limit?: IntFieldUpdateOperationsInput | number
     start_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: EnumCircle_StatusFieldUpdateOperationsInput | $Enums.Circle_Status
+    status?: EnumGroup_StatusFieldUpdateOperationsInput | $Enums.Group_Status
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     circle_members?: circle_membersUncheckedUpdateManyWithoutSavings_circleNestedInput
     circle_invitations?: circle_invitationsUncheckedUpdateManyWithoutSavings_circleNestedInput
     savings_schedules?: savings_schedulesUncheckedUpdateManyWithoutSavings_circleNestedInput
     payouts?: payoutsUncheckedUpdateManyWithoutSavings_circleNestedInput
+    ownership_transfers?: group_ownership_transfersUncheckedUpdateManyWithoutSavings_circleNestedInput
   }
 
   export type usersUpsertWithoutContributionsInput = {
@@ -24704,6 +27045,8 @@ export namespace Prisma {
     circle_invitations?: circle_invitationsUpdateManyWithoutUsersNestedInput
     payment_transactions?: payment_transactionsUpdateManyWithoutUsersNestedInput
     notifications?: notificationsUpdateManyWithoutUsersNestedInput
+    ownership_transfers_sent?: group_ownership_transfersUpdateManyWithoutFrom_userNestedInput
+    ownership_transfers_received?: group_ownership_transfersUpdateManyWithoutTo_userNestedInput
   }
 
   export type usersUncheckedUpdateWithoutContributionsInput = {
@@ -24725,6 +27068,8 @@ export namespace Prisma {
     circle_invitations?: circle_invitationsUncheckedUpdateManyWithoutUsersNestedInput
     payment_transactions?: payment_transactionsUncheckedUpdateManyWithoutUsersNestedInput
     notifications?: notificationsUncheckedUpdateManyWithoutUsersNestedInput
+    ownership_transfers_sent?: group_ownership_transfersUncheckedUpdateManyWithoutFrom_userNestedInput
+    ownership_transfers_received?: group_ownership_transfersUncheckedUpdateManyWithoutTo_userNestedInput
   }
 
   export type payment_transactionsUpsertWithoutContributionInput = {
@@ -24783,7 +27128,7 @@ export namespace Prisma {
     frequency: $Enums.Frequency
     member_limit: number
     start_date: Date | string
-    status?: $Enums.Circle_Status
+    status?: $Enums.Group_Status
     created_at?: Date | string
     updated_at?: Date | string
     users: usersCreateNestedOneWithoutSavings_circlesInput
@@ -24791,6 +27136,7 @@ export namespace Prisma {
     circle_invitations?: circle_invitationsCreateNestedManyWithoutSavings_circleInput
     savings_schedules?: savings_schedulesCreateNestedManyWithoutSavings_circleInput
     contributions?: contributionsCreateNestedManyWithoutSavings_circleInput
+    ownership_transfers?: group_ownership_transfersCreateNestedManyWithoutSavings_circleInput
   }
 
   export type savings_circlesUncheckedCreateWithoutPayoutsInput = {
@@ -24803,13 +27149,14 @@ export namespace Prisma {
     frequency: $Enums.Frequency
     member_limit: number
     start_date: Date | string
-    status?: $Enums.Circle_Status
+    status?: $Enums.Group_Status
     created_at?: Date | string
     updated_at?: Date | string
     circle_members?: circle_membersUncheckedCreateNestedManyWithoutSavings_circleInput
     circle_invitations?: circle_invitationsUncheckedCreateNestedManyWithoutSavings_circleInput
     savings_schedules?: savings_schedulesUncheckedCreateNestedManyWithoutSavings_circleInput
     contributions?: contributionsUncheckedCreateNestedManyWithoutSavings_circleInput
+    ownership_transfers?: group_ownership_transfersUncheckedCreateNestedManyWithoutSavings_circleInput
   }
 
   export type savings_circlesCreateOrConnectWithoutPayoutsInput = {
@@ -24907,7 +27254,7 @@ export namespace Prisma {
     frequency?: EnumFrequencyFieldUpdateOperationsInput | $Enums.Frequency
     member_limit?: IntFieldUpdateOperationsInput | number
     start_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: EnumCircle_StatusFieldUpdateOperationsInput | $Enums.Circle_Status
+    status?: EnumGroup_StatusFieldUpdateOperationsInput | $Enums.Group_Status
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: usersUpdateOneRequiredWithoutSavings_circlesNestedInput
@@ -24915,6 +27262,7 @@ export namespace Prisma {
     circle_invitations?: circle_invitationsUpdateManyWithoutSavings_circleNestedInput
     savings_schedules?: savings_schedulesUpdateManyWithoutSavings_circleNestedInput
     contributions?: contributionsUpdateManyWithoutSavings_circleNestedInput
+    ownership_transfers?: group_ownership_transfersUpdateManyWithoutSavings_circleNestedInput
   }
 
   export type savings_circlesUncheckedUpdateWithoutPayoutsInput = {
@@ -24927,13 +27275,14 @@ export namespace Prisma {
     frequency?: EnumFrequencyFieldUpdateOperationsInput | $Enums.Frequency
     member_limit?: IntFieldUpdateOperationsInput | number
     start_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: EnumCircle_StatusFieldUpdateOperationsInput | $Enums.Circle_Status
+    status?: EnumGroup_StatusFieldUpdateOperationsInput | $Enums.Group_Status
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     circle_members?: circle_membersUncheckedUpdateManyWithoutSavings_circleNestedInput
     circle_invitations?: circle_invitationsUncheckedUpdateManyWithoutSavings_circleNestedInput
     savings_schedules?: savings_schedulesUncheckedUpdateManyWithoutSavings_circleNestedInput
     contributions?: contributionsUncheckedUpdateManyWithoutSavings_circleNestedInput
+    ownership_transfers?: group_ownership_transfersUncheckedUpdateManyWithoutSavings_circleNestedInput
   }
 
   export type circle_membersUpsertWithoutPayoutsInput = {
@@ -25037,6 +27386,8 @@ export namespace Prisma {
     circle_invitations?: circle_invitationsCreateNestedManyWithoutUsersInput
     contributions?: contributionsCreateNestedManyWithoutUsersInput
     notifications?: notificationsCreateNestedManyWithoutUsersInput
+    ownership_transfers_sent?: group_ownership_transfersCreateNestedManyWithoutFrom_userInput
+    ownership_transfers_received?: group_ownership_transfersCreateNestedManyWithoutTo_userInput
   }
 
   export type usersUncheckedCreateWithoutPayment_transactionsInput = {
@@ -25058,6 +27409,8 @@ export namespace Prisma {
     circle_invitations?: circle_invitationsUncheckedCreateNestedManyWithoutUsersInput
     contributions?: contributionsUncheckedCreateNestedManyWithoutUsersInput
     notifications?: notificationsUncheckedCreateNestedManyWithoutUsersInput
+    ownership_transfers_sent?: group_ownership_transfersUncheckedCreateNestedManyWithoutFrom_userInput
+    ownership_transfers_received?: group_ownership_transfersUncheckedCreateNestedManyWithoutTo_userInput
   }
 
   export type usersCreateOrConnectWithoutPayment_transactionsInput = {
@@ -25183,6 +27536,8 @@ export namespace Prisma {
     circle_invitations?: circle_invitationsUpdateManyWithoutUsersNestedInput
     contributions?: contributionsUpdateManyWithoutUsersNestedInput
     notifications?: notificationsUpdateManyWithoutUsersNestedInput
+    ownership_transfers_sent?: group_ownership_transfersUpdateManyWithoutFrom_userNestedInput
+    ownership_transfers_received?: group_ownership_transfersUpdateManyWithoutTo_userNestedInput
   }
 
   export type usersUncheckedUpdateWithoutPayment_transactionsInput = {
@@ -25204,6 +27559,8 @@ export namespace Prisma {
     circle_invitations?: circle_invitationsUncheckedUpdateManyWithoutUsersNestedInput
     contributions?: contributionsUncheckedUpdateManyWithoutUsersNestedInput
     notifications?: notificationsUncheckedUpdateManyWithoutUsersNestedInput
+    ownership_transfers_sent?: group_ownership_transfersUncheckedUpdateManyWithoutFrom_userNestedInput
+    ownership_transfers_received?: group_ownership_transfersUncheckedUpdateManyWithoutTo_userNestedInput
   }
 
   export type contributionsUpsertWithoutPayment_transactionInput = {
@@ -25415,6 +27772,8 @@ export namespace Prisma {
     circle_invitations?: circle_invitationsCreateNestedManyWithoutUsersInput
     contributions?: contributionsCreateNestedManyWithoutUsersInput
     payment_transactions?: payment_transactionsCreateNestedManyWithoutUsersInput
+    ownership_transfers_sent?: group_ownership_transfersCreateNestedManyWithoutFrom_userInput
+    ownership_transfers_received?: group_ownership_transfersCreateNestedManyWithoutTo_userInput
   }
 
   export type usersUncheckedCreateWithoutNotificationsInput = {
@@ -25436,6 +27795,8 @@ export namespace Prisma {
     circle_invitations?: circle_invitationsUncheckedCreateNestedManyWithoutUsersInput
     contributions?: contributionsUncheckedCreateNestedManyWithoutUsersInput
     payment_transactions?: payment_transactionsUncheckedCreateNestedManyWithoutUsersInput
+    ownership_transfers_sent?: group_ownership_transfersUncheckedCreateNestedManyWithoutFrom_userInput
+    ownership_transfers_received?: group_ownership_transfersUncheckedCreateNestedManyWithoutTo_userInput
   }
 
   export type usersCreateOrConnectWithoutNotificationsInput = {
@@ -25473,6 +27834,8 @@ export namespace Prisma {
     circle_invitations?: circle_invitationsUpdateManyWithoutUsersNestedInput
     contributions?: contributionsUpdateManyWithoutUsersNestedInput
     payment_transactions?: payment_transactionsUpdateManyWithoutUsersNestedInput
+    ownership_transfers_sent?: group_ownership_transfersUpdateManyWithoutFrom_userNestedInput
+    ownership_transfers_received?: group_ownership_transfersUpdateManyWithoutTo_userNestedInput
   }
 
   export type usersUncheckedUpdateWithoutNotificationsInput = {
@@ -25494,6 +27857,8 @@ export namespace Prisma {
     circle_invitations?: circle_invitationsUncheckedUpdateManyWithoutUsersNestedInput
     contributions?: contributionsUncheckedUpdateManyWithoutUsersNestedInput
     payment_transactions?: payment_transactionsUncheckedUpdateManyWithoutUsersNestedInput
+    ownership_transfers_sent?: group_ownership_transfersUncheckedUpdateManyWithoutFrom_userNestedInput
+    ownership_transfers_received?: group_ownership_transfersUncheckedUpdateManyWithoutTo_userNestedInput
   }
 
   export type savings_circlesCreateManyUsersInput = {
@@ -25505,7 +27870,7 @@ export namespace Prisma {
     frequency: $Enums.Frequency
     member_limit: number
     start_date: Date | string
-    status?: $Enums.Circle_Status
+    status?: $Enums.Group_Status
     created_at?: Date | string
     updated_at?: Date | string
   }
@@ -25570,6 +27935,24 @@ export namespace Prisma {
     created_at?: Date | string
   }
 
+  export type group_ownership_transfersCreateManyFrom_userInput = {
+    id?: string
+    circle_id: string
+    to_user_id: string
+    status?: $Enums.Ownership_Transfer_Status
+    created_at?: Date | string
+    responded_at?: Date | string | null
+  }
+
+  export type group_ownership_transfersCreateManyTo_userInput = {
+    id?: string
+    circle_id: string
+    from_user_id: string
+    status?: $Enums.Ownership_Transfer_Status
+    created_at?: Date | string
+    responded_at?: Date | string | null
+  }
+
   export type savings_circlesUpdateWithoutUsersInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
@@ -25579,7 +27962,7 @@ export namespace Prisma {
     frequency?: EnumFrequencyFieldUpdateOperationsInput | $Enums.Frequency
     member_limit?: IntFieldUpdateOperationsInput | number
     start_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: EnumCircle_StatusFieldUpdateOperationsInput | $Enums.Circle_Status
+    status?: EnumGroup_StatusFieldUpdateOperationsInput | $Enums.Group_Status
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     circle_members?: circle_membersUpdateManyWithoutSavings_circleNestedInput
@@ -25587,6 +27970,7 @@ export namespace Prisma {
     savings_schedules?: savings_schedulesUpdateManyWithoutSavings_circleNestedInput
     contributions?: contributionsUpdateManyWithoutSavings_circleNestedInput
     payouts?: payoutsUpdateManyWithoutSavings_circleNestedInput
+    ownership_transfers?: group_ownership_transfersUpdateManyWithoutSavings_circleNestedInput
   }
 
   export type savings_circlesUncheckedUpdateWithoutUsersInput = {
@@ -25598,7 +27982,7 @@ export namespace Prisma {
     frequency?: EnumFrequencyFieldUpdateOperationsInput | $Enums.Frequency
     member_limit?: IntFieldUpdateOperationsInput | number
     start_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: EnumCircle_StatusFieldUpdateOperationsInput | $Enums.Circle_Status
+    status?: EnumGroup_StatusFieldUpdateOperationsInput | $Enums.Group_Status
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     circle_members?: circle_membersUncheckedUpdateManyWithoutSavings_circleNestedInput
@@ -25606,6 +27990,7 @@ export namespace Prisma {
     savings_schedules?: savings_schedulesUncheckedUpdateManyWithoutSavings_circleNestedInput
     contributions?: contributionsUncheckedUpdateManyWithoutSavings_circleNestedInput
     payouts?: payoutsUncheckedUpdateManyWithoutSavings_circleNestedInput
+    ownership_transfers?: group_ownership_transfersUncheckedUpdateManyWithoutSavings_circleNestedInput
   }
 
   export type savings_circlesUncheckedUpdateManyWithoutUsersInput = {
@@ -25617,7 +28002,7 @@ export namespace Prisma {
     frequency?: EnumFrequencyFieldUpdateOperationsInput | $Enums.Frequency
     member_limit?: IntFieldUpdateOperationsInput | number
     start_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: EnumCircle_StatusFieldUpdateOperationsInput | $Enums.Circle_Status
+    status?: EnumGroup_StatusFieldUpdateOperationsInput | $Enums.Group_Status
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -25810,6 +28195,60 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type group_ownership_transfersUpdateWithoutFrom_userInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    status?: EnumOwnership_Transfer_StatusFieldUpdateOperationsInput | $Enums.Ownership_Transfer_Status
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    responded_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    savings_circle?: savings_circlesUpdateOneRequiredWithoutOwnership_transfersNestedInput
+    to_user?: usersUpdateOneRequiredWithoutOwnership_transfers_receivedNestedInput
+  }
+
+  export type group_ownership_transfersUncheckedUpdateWithoutFrom_userInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    circle_id?: StringFieldUpdateOperationsInput | string
+    to_user_id?: StringFieldUpdateOperationsInput | string
+    status?: EnumOwnership_Transfer_StatusFieldUpdateOperationsInput | $Enums.Ownership_Transfer_Status
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    responded_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type group_ownership_transfersUncheckedUpdateManyWithoutFrom_userInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    circle_id?: StringFieldUpdateOperationsInput | string
+    to_user_id?: StringFieldUpdateOperationsInput | string
+    status?: EnumOwnership_Transfer_StatusFieldUpdateOperationsInput | $Enums.Ownership_Transfer_Status
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    responded_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type group_ownership_transfersUpdateWithoutTo_userInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    status?: EnumOwnership_Transfer_StatusFieldUpdateOperationsInput | $Enums.Ownership_Transfer_Status
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    responded_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    savings_circle?: savings_circlesUpdateOneRequiredWithoutOwnership_transfersNestedInput
+    from_user?: usersUpdateOneRequiredWithoutOwnership_transfers_sentNestedInput
+  }
+
+  export type group_ownership_transfersUncheckedUpdateWithoutTo_userInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    circle_id?: StringFieldUpdateOperationsInput | string
+    from_user_id?: StringFieldUpdateOperationsInput | string
+    status?: EnumOwnership_Transfer_StatusFieldUpdateOperationsInput | $Enums.Ownership_Transfer_Status
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    responded_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type group_ownership_transfersUncheckedUpdateManyWithoutTo_userInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    circle_id?: StringFieldUpdateOperationsInput | string
+    from_user_id?: StringFieldUpdateOperationsInput | string
+    status?: EnumOwnership_Transfer_StatusFieldUpdateOperationsInput | $Enums.Ownership_Transfer_Status
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    responded_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
   export type circle_membersCreateManySavings_circleInput = {
     id?: string
     user_id: string
@@ -25868,6 +28307,15 @@ export namespace Prisma {
     transaction_id?: string | null
     created_at?: Date | string
     updated_at?: Date | string
+  }
+
+  export type group_ownership_transfersCreateManySavings_circleInput = {
+    id?: string
+    from_user_id: string
+    to_user_id: string
+    status?: $Enums.Ownership_Transfer_Status
+    created_at?: Date | string
+    responded_at?: Date | string | null
   }
 
   export type circle_membersUpdateWithoutSavings_circleInput = {
@@ -26050,6 +28498,33 @@ export namespace Prisma {
     transaction_id?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type group_ownership_transfersUpdateWithoutSavings_circleInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    status?: EnumOwnership_Transfer_StatusFieldUpdateOperationsInput | $Enums.Ownership_Transfer_Status
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    responded_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    from_user?: usersUpdateOneRequiredWithoutOwnership_transfers_sentNestedInput
+    to_user?: usersUpdateOneRequiredWithoutOwnership_transfers_receivedNestedInput
+  }
+
+  export type group_ownership_transfersUncheckedUpdateWithoutSavings_circleInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    from_user_id?: StringFieldUpdateOperationsInput | string
+    to_user_id?: StringFieldUpdateOperationsInput | string
+    status?: EnumOwnership_Transfer_StatusFieldUpdateOperationsInput | $Enums.Ownership_Transfer_Status
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    responded_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type group_ownership_transfersUncheckedUpdateManyWithoutSavings_circleInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    from_user_id?: StringFieldUpdateOperationsInput | string
+    to_user_id?: StringFieldUpdateOperationsInput | string
+    status?: EnumOwnership_Transfer_StatusFieldUpdateOperationsInput | $Enums.Ownership_Transfer_Status
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    responded_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type payoutsCreateManyCircle_memberInput = {

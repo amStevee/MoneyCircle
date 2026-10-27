@@ -6,10 +6,7 @@ import {
   findWaitlistEntry,
   markWaitlistEntryVerified,
 } from "../waiting-list/waitingList.repository.js";
-import {
-  createUser,
-  findUserByEmail,
-} from "../Users/users.repository.js";
+import { createUser, findUserByEmail } from "../Users/users.repository.js";
 import { createSession } from "./sessions.repository.js";
 
 const JWT_SECRET = process.env.JWT_SECRET || "dev-secret-change-me";
@@ -18,12 +15,20 @@ const SESSION_TTL_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
 export const signupSchema = z.object({
   first_name: z.string().trim().min(1, "First name is required"),
   last_name: z.string().trim().min(1, "Last name is required"),
-  email: z.string().trim().toLowerCase().email("Please provide a valid email address"),
+  email: z
+    .string()
+    .trim()
+    .toLowerCase()
+    .email("Please provide a valid email address"),
   password: z.string().min(8, "Password must be at least 8 characters long"),
 });
 
 export const loginSchema = z.object({
-  email: z.string().trim().toLowerCase().email("Please provide a valid email address"),
+  email: z
+    .string()
+    .trim()
+    .toLowerCase()
+    .email("Please provide a valid email address"),
   password: z.string().min(1, "Password is required"),
 });
 
@@ -78,7 +83,9 @@ class AuthService {
   async signup(input: SignupInput, token?: string) {
     const result = signupSchema.safeParse(input);
     if (!result.success) {
-      throw new Error(result.error.issues[0]?.message ?? "Invalid signup details");
+      throw new Error(
+        result.error.issues[0]?.message ?? "Invalid signup details",
+      );
     }
 
     const { first_name, last_name, email, password } = result.data;
@@ -127,7 +134,9 @@ class AuthService {
   async login(input: LoginInput) {
     const result = loginSchema.safeParse(input);
     if (!result.success) {
-      throw new Error(result.error.issues[0]?.message ?? "Invalid login details");
+      throw new Error(
+        result.error.issues[0]?.message ?? "Invalid login details",
+      );
     }
 
     const { email, password } = result.data;
@@ -135,6 +144,10 @@ class AuthService {
     const user = await findUserByEmail(email);
     if (!user) {
       throw new Error("Invalid email or password");
+    }
+
+    if (user.status === "UNSUBSCRIBED") {
+      throw new Error("This account has been deleted");
     }
 
     const passwordMatches = await bcrypt.compare(password, user.password_hash);
@@ -147,6 +160,8 @@ class AuthService {
 
     return { user: toSafeUser(user), token: jwtToken };
   }
+
+  
 }
 
 const authService = new AuthService();

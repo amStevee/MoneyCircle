@@ -51,6 +51,21 @@ export interface ApiNotification {
   read: boolean
   createdAt: string
 }
+export interface ApiOwnershipResolutionGroup {
+  id: string
+  name: string
+  status: string
+  eligibleMembers: { id: string; name: string }[]
+  pendingTransfer: {
+    id: string
+    nomineeId: string
+    nomineeName: string
+    createdAt: string
+  } | null
+  outstandingContributions: number
+  outstandingPayouts: number
+  processingPayments: number
+}
 
 // Internal client: hits this app's own /api/* route handlers (relative URLs),
 // which proxy to the external API server-side. Do NOT set a baseURL pointing
@@ -106,6 +121,29 @@ export const apiClient = {
     last_name: string
     phone: string | null
   }) => api.patch("/users/me", data).then((r) => r.data),
+  deleteMe: () => api.delete("/users/me").then((r) => r.data),
+  ownershipResolution: () =>
+    api
+      .get<ApiOwnershipResolutionGroup[]>("/groups/ownership-resolution")
+      .then((r) => r.data),
+  nominateGroupOwner: (groupId: string, nomineeId: string) =>
+    api
+      .post(`/groups/${groupId}/ownership-transfers`, { nomineeId })
+      .then((r) => r.data),
+  cancelGroupOwnershipTransfer: (groupId: string, transferId: string) =>
+    api
+      .post(`/groups/${groupId}/ownership-transfers/${transferId}/cancel`)
+      .then((r) => r.data),
+  respondToOwnershipTransfer: (transferId: string, accept: boolean) =>
+    api
+      .post(`/groups/ownership-transfers/${transferId}/respond`, { accept })
+      .then((r) => r.data),
+  moveGroupToPendingResolution: (groupId: string) =>
+    api.post(`/groups/${groupId}/pending-resolution`).then((r) => r.data),
+  closeResolvedGroup: (groupId: string) =>
+    api
+      .post(`/groups/${groupId}/close`, { confirmsNoDisputes: true })
+      .then((r) => r.data),
   logout: () => api.post("/auth/logout"),
   notifications: () =>
     api.get<ApiNotification[]>("/notifications").then((r) => r.data),

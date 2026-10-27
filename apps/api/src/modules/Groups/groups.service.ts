@@ -407,6 +407,10 @@ class GroupsService {
       throw new Error("This invitation has expired");
     }
 
+    if (invitation.savings_circle.status !== "ACTIVE") {
+      throw new Error("This group is no longer accepting members");
+    }
+
     if (invitation.email.toLowerCase() !== userEmail.toLowerCase()) {
       throw new Error("This invitation was sent to a different email address");
     }

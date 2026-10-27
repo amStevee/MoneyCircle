@@ -1,7 +1,7 @@
 import axios from "axios"
 
 const api = axios.create({
-  baseURL: "https://money-circle-api.vercel.app",
+  baseURL: process.env.NEXT_PUBLIC_API_URL,
   timeout: 20000,
   headers: {
     "Content-Type": "application/json",

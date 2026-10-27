@@ -34,6 +34,29 @@ export function NotificationsMenu() {
   const [notifications, setNotifications] = useState<
     ApiNotification[] | null
   >(null)
+  const [transferResponses, setTransferResponses] = useState<
+    Record<string, "accepted" | "declined">
+  >({})
+  const [respondingTransferId, setRespondingTransferId] = useState<
+    string | null
+  >(null)
+  const [responseErrors, setResponseErrors] = useState<Record<string, string>>(
+    {},
+  )
+
+  function getTransferId(data: unknown): string | null {
+    if (
+      typeof data === "object" &&
+      data !== null &&
+      "event" in data &&
+      data.event === "GROUP_OWNERSHIP_TRANSFER" &&
+      "transferId" in data &&
+      typeof data.transferId === "string"
+    ) {
+      return data.transferId
+    }
+    return null
+  }
 
   // Poll the unread count in the background so the dot stays accurate
   // even while the dropdown is closed.
@@ -93,6 +116,35 @@ export function NotificationsMenu() {
     }
   }
 
+  async function handleTransferResponse(
+    notification: ApiNotification,
+    accept: boolean,
+  ) {
+    const transferId = getTransferId(notification.data)
+    if (!transferId || respondingTransferId) return
+
+    setRespondingTransferId(transferId)
+    setResponseErrors((current) => ({ ...current, [transferId]: "" }))
+    try {
+      await apiClient.respondToOwnershipTransfer(transferId, accept)
+      setTransferResponses((current) => ({
+        ...current,
+        [transferId]: accept ? "accepted" : "declined",
+      }))
+      await handleNotificationClick(notification)
+    } catch (error: any) {
+      setResponseErrors((current) => ({
+        ...current,
+        [transferId]:
+          error?.response?.data?.error ??
+          error?.response?.data?.message ??
+          "Unable to respond to this ownership request.",
+      }))
+    } finally {
+      setRespondingTransferId(null)
+    }
+  }
+
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger
@@ -133,32 +185,79 @@ export function NotificationsMenu() {
             </p>
           )}
 
-          {notifications?.map((notification) => (
-            <button
-              key={notification.id}
-              type="button"
-              onClick={() => handleNotificationClick(notification)}
-              className={cn(
-                "flex w-full flex-col gap-0.5 border-b border-border/60 px-4 py-3 text-left transition-colors last:border-b-0 hover:bg-muted/50",
-                !notification.read && "bg-primary/5"
-              )}
-            >
-              <div className="flex items-center gap-2">
-                {!notification.read && (
-                  <span className="size-1.5 shrink-0 rounded-full bg-primary" />
+          {notifications?.map((notification) => {
+            const transferId = getTransferId(notification.data)
+            const response = transferId
+              ? transferResponses[transferId]
+              : undefined
+            const isResponding = transferId === respondingTransferId
+
+            return (
+              <div
+                key={notification.id}
+                className={cn(
+                  "border-b border-border/60 px-4 py-3 last:border-b-0",
+                  !notification.read && "bg-primary/5"
                 )}
-                <span className="text-sm font-medium">
-                  {notification.title}
-                </span>
+              >
+                <button
+                  type="button"
+                  onClick={() => handleNotificationClick(notification)}
+                  className="flex w-full flex-col gap-0.5 text-left"
+                >
+                  <div className="flex items-center gap-2">
+                    {!notification.read && (
+                      <span className="size-1.5 shrink-0 rounded-full bg-primary" />
+                    )}
+                    <span className="text-sm font-medium">
+                      {notification.title}
+                    </span>
+                  </div>
+                  <p className="text-sm text-muted-foreground">
+                    {notification.message}
+                  </p>
+                  <span className="text-xs text-muted-foreground">
+                    {timeAgo(notification.createdAt)}
+                  </span>
+                </button>
+
+                {transferId && !response && (
+                  <div className="mt-2 flex gap-2">
+                    <button
+                      type="button"
+                      className="rounded-md bg-primary px-3 py-1.5 text-xs font-medium text-primary-foreground disabled:opacity-50"
+                      onClick={() =>
+                        handleTransferResponse(notification, true)
+                      }
+                      disabled={isResponding || respondingTransferId !== null}
+                    >
+                      {isResponding ? "Saving..." : "Accept"}
+                    </button>
+                    <button
+                      type="button"
+                      className="rounded-md border px-3 py-1.5 text-xs font-medium disabled:opacity-50"
+                      onClick={() =>
+                        handleTransferResponse(notification, false)
+                      }
+                      disabled={isResponding || respondingTransferId !== null}
+                    >
+                      Decline
+                    </button>
+                  </div>
+                )}
+                {response && (
+                  <p className="mt-2 text-xs text-muted-foreground">
+                    You {response} this ownership request.
+                  </p>
+                )}
+                {transferId && !response && responseErrors[transferId] && (
+                  <p className="mt-2 text-xs text-destructive">
+                    {responseErrors[transferId]}
+                  </p>
+                )}
               </div>
-              <p className="text-sm text-muted-foreground">
-                {notification.message}
-              </p>
-              <span className="text-xs text-muted-foreground">
-                {timeAgo(notification.createdAt)}
-              </span>
-            </button>
-          ))}
+            )
+          })}
         </div>
       </PopoverContent>
     </Popover>

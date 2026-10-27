@@ -124,24 +124,32 @@ export default function GroupsPage() {
                 <option value="MONTHLY">Monthly</option>
                 <option value="YEARLY">Yearly</option>
               </select>
+              <label htmlFor="members">
+                Members:
+                <Input
+                  type="number"
+                  name="members"
+                  min="2"
+                  value={form.memberLimit}
+                  onChange={(e) =>
+                    setForm({ ...form, memberLimit: e.target.value })
+                  }
+                />
+              </label>
+            </div>
+            <label htmlFor="totalcircle">
+              Total Circle:
               <Input
                 type="number"
-                min="2"
-                value={form.memberLimit}
+                name="totalcircle"
+                min="1"
+                value={form.totalCycles}
                 onChange={(e) =>
-                  setForm({ ...form, memberLimit: e.target.value })
+                  setForm({ ...form, totalCycles: e.target.value })
                 }
+                placeholder="Number of cycles"
               />
-            </div>
-            <Input
-              type="number"
-              min="1"
-              value={form.totalCycles}
-              onChange={(e) =>
-                setForm({ ...form, totalCycles: e.target.value })
-              }
-              placeholder="Number of cycles"
-            />
+            </label>
             <Input
               type="date"
               value={form.startDate}

@@ -23,6 +23,7 @@ const Waitlist1 = ({ className }: Waitlist1Props) => {
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
     setEmail(e.target.value)
   }
+  
 
   async function joinWaitList(email: string) {
     if (submitting) return

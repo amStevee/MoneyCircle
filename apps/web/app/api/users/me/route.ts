@@ -35,3 +35,20 @@ export async function PATCH(request: Request) {
     )
   }
 }
+
+export async function DELETE(request: Request) {
+  try {
+    const authorization = request.headers.get("authorization")
+
+    const response = await api.delete("/api/v1/users/me", {
+      headers: authorization ? { Authorization: authorization } : {},
+    })
+
+    return NextResponse.json(response.data)
+  } catch (error: any) {
+    return NextResponse.json(
+      { error: error.response?.data?.message || "Server Error" },
+      { status: error.response?.status || 500 }
+    )
+  }
+}

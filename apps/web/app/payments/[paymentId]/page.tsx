@@ -15,6 +15,7 @@ import { buttonVariants } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { apiClient } from "@/lib/api"
 import { formatNaira } from "@/lib/dashboard-data"
+import { PaymentDetailsLoading } from "@/components/dashboard/page-loaders"
 
 export default function PaymentDetailsPage() {
   const { paymentId } = useParams<{ paymentId: string }>()
@@ -44,7 +45,7 @@ export default function PaymentDetailsPage() {
         </Card>
       </PageShell>
     )
-  if (!payment) return null
+  if (!payment) return <PaymentDetailsLoading />
   const Icon =
     payment.status === "PAID"
       ? CheckCircle2

@@ -52,7 +52,7 @@ export const useUserStore = create<UserState>()(
         })
 
         try {
-          const response = await api.get<User>(`/users/${userId}`)
+          const response = await api.get<User>(`/api/v1/users/${userId}`)
 
           set({
             user: response.data,

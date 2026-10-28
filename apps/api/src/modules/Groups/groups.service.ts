@@ -33,7 +33,11 @@ export const createGroupSchema = z.object({
 export type CreateGroupInput = z.infer<typeof createGroupSchema>;
 
 export const inviteMemberSchema = z.object({
-  email: z.string().trim().toLowerCase().email("Please provide a valid email address"),
+  email: z
+    .string()
+    .trim()
+    .toLowerCase()
+    .email("Please provide a valid email address"),
 });
 
 export type InviteMemberInput = z.infer<typeof inviteMemberSchema>;
@@ -43,7 +47,8 @@ const INVITATION_TTL_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
 // Base URL of the web app, used to build the link put in invitation
 // emails. Falls back to the production URL already hardcoded for CORS
 // in app.ts so this works out of the box in that environment too.
-const WEB_APP_URL = process.env.WEB_APP_URL || "https://money-circle-web.vercel.app";
+const WEB_APP_URL =
+  process.env.WEB_APP_URL || "https://money-circle-web.vercel.app";
 
 function hashToken(token: string): string {
   return crypto.createHash("sha256").update(token).digest("hex");
@@ -275,7 +280,9 @@ class GroupsService {
   ): Promise<{ invitation: InvitationSummary; inviteUrl: string }> {
     const result = inviteMemberSchema.safeParse(input);
     if (!result.success) {
-      throw new Error(result.error.issues[0]?.message ?? "Invalid invite details");
+      throw new Error(
+        result.error.issues[0]?.message ?? "Invalid invite details",
+      );
     }
     const email = result.data.email;
 
@@ -284,7 +291,9 @@ class GroupsService {
       throw new Error("Savings group not found");
     }
 
-    const inviter = group.circle_members.find((member) => member.user_id === inviterId);
+    const inviter = group.circle_members.find(
+      (member) => member.user_id === inviterId,
+    );
     if (!inviter || (inviter.role !== "OWNER" && inviter.role !== "ADMIN")) {
       throw new Error("Only the group owner or an admin can invite members");
     }
@@ -299,7 +308,10 @@ class GroupsService {
     }
 
     if (invitedUser) {
-      const existingMembership = await findMembershipByUserId(groupId, invitedUser.id);
+      const existingMembership = await findMembershipByUserId(
+        groupId,
+        invitedUser.id,
+      );
       if (existingMembership?.status === "ACTIVE") {
         throw new Error("This person is already a member of the group");
       }
@@ -314,7 +326,10 @@ class GroupsService {
     const tokenHash = hashToken(token);
     const expiresAt = new Date(Date.now() + INVITATION_TTL_MS);
 
-    const existingInvitation = await findPendingInvitationByEmail(groupId, email);
+    const existingInvitation = await findPendingInvitationByEmail(
+      groupId,
+      email,
+    );
     const invitation = existingInvitation
       ? await refreshInvitation(existingInvitation.id, { tokenHash, expiresAt })
       : await createInvitation({
@@ -360,7 +375,10 @@ class GroupsService {
    * List outstanding invitations for a group. Only an ACTIVE member
    * with role OWNER or ADMIN may view them.
    */
-  async listInvitations(groupId: string, userId: string): Promise<InvitationSummary[]> {
+  async listInvitations(
+    groupId: string,
+    userId: string,
+  ): Promise<InvitationSummary[]> {
     const group = await findGroupByIdForUser(groupId, userId);
     if (!group) {
       throw new Error("Savings group not found");

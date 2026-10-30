@@ -1,6 +1,6 @@
 "use client"
 import { useEffect, useMemo, useState } from "react"
-import { ArrowRight, Plus, Search, Users } from "lucide-react"
+import { ArrowRight, Plus, Search, ShieldCheck, Users } from "lucide-react"
 import Link from "next/link"
 import { PageShell } from "@/components/dashboard/page-shell"
 import { Badge } from "@/components/ui/badge"
@@ -86,6 +86,25 @@ export default function GroupsPage() {
       >
         <Plus /> Create savings group
       </Button>
+      <Card className="border-amber-500/40 p-4">
+        <div className="flex items-center gap-3">
+          <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-amber-500/10 text-amber-700 dark:text-amber-400">
+            <ShieldCheck className="size-5" />
+          </div>
+          <div className="min-w-0 flex-1">
+            <p className="font-medium">Group ownership &amp; resolution</p>
+            <p className="text-sm text-muted-foreground">
+              Transfer ownership or resolve groups you own.
+            </p>
+          </div>
+          <Link
+            href="/profile#group-ownership"
+            className="inline-flex shrink-0 items-center gap-1 text-sm font-medium text-primary"
+          >
+            Manage <ArrowRight className="size-4" />
+          </Link>
+        </div>
+      </Card>
       {show && (
         <Card className="p-5">
           <form onSubmit={create} className="grid gap-3">

@@ -1,7 +1,5 @@
 import { prisma } from "@repo/db";
 import type { Prisma } from "@repo/db";
-import { Decimal } from "../../../../../packages/db/src/generated/prisma/runtime/client.js";
-import { calculateCircleDueDate } from "../../utils.js";
 
 /**
  * Dashboard membership with the associated savings circle.
@@ -36,8 +34,8 @@ type DashboardMemberCount = {
 };
 
 /**
- * Application-level representation of a user's paid
- * contribution count within a circle.
+ * Application-level representation of a circle's paid
+ * contribution count across all active members.
  */
 type DashboardContributionCount = {
   circle_id: string;
@@ -109,10 +107,10 @@ async function findPaidContributions(
 /**
  * Find the user's next contribution that is due.
  */
-async function findUpcomingContribution(
+async function findUpcomingContributions(
   userId: string,
-): Promise<DashboardContribution | null> {
-  return prisma.contributions.findFirst({
+): Promise<DashboardContribution[]> {
+  return prisma.contributions.findMany({
     where: {
       circle_member: userId,
       status: {
@@ -204,13 +202,11 @@ async function findGroupMemberCounts(
 }
 
 /**
- * Count this user's paid contributions in each savings circle.
+ * Count paid contributions in each savings circle.
  *
- * Used to compute each group's contribution progress
- * on the dashboard (mirrors groups.repository.ts).
+ * Used to compute group-wide contribution progress on the dashboard.
  */
-async function findUserPaidContributionCounts(
-  userId: string,
+async function findGroupPaidContributionCounts(
   circleIds: string[],
 ): Promise<DashboardContributionCount[]> {
   if (!circleIds.length) {
@@ -224,7 +220,6 @@ async function findUserPaidContributionCounts(
       circle_id: {
         in: circleIds,
       },
-      circle_member: userId,
       status: "PAID",
     },
 
@@ -291,6 +286,6 @@ export {
   findGroupMemberCounts,
   findPaidContributions,
   findRecentContributions,
-  findUpcomingContribution,
-  findUserPaidContributionCounts,
+  findUpcomingContributions,
+  findGroupPaidContributionCounts,
 };

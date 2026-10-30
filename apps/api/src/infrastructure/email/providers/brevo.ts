@@ -6,13 +6,7 @@ import type {
 } from "../email.types.js";
 
 export class BrevoProvider implements EmailProvider {
-  // Cache the client on the instance instead of a module-level constant.
-  // `undefined` = "not yet attempted", `null` = "attempted, no API key".
-  // Deferring creation until the first `sendEmail()` call (rather than the
-  // constructor) means `process.env.BREVO_API_KEY` is read at send-time, not
-  // at "whenever this module happened to be imported" - so it no longer
-  // matters whether something like `dotenv.config()` ran before or after
-  // this file was pulled in via a transitive import chain.
+
   private brevo: BrevoClient | null | undefined;
 
   private getClient(): BrevoClient | null {

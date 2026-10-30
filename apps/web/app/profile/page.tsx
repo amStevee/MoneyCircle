@@ -2,8 +2,16 @@
 
 import axios from "axios"
 import { useRouter } from "next/navigation"
-import { LogOut, Mail, Phone, Save, ShieldCheck, Trash2, User } from "lucide-react"
-import { useState } from "react"
+import {
+  LogOut,
+  Mail,
+  Phone,
+  Save,
+  ShieldCheck,
+  Trash2,
+  User,
+} from "lucide-react"
+import { useEffect, useState } from "react"
 import { toast } from "react-toastify"
 
 import { PageShell } from "@/components/dashboard/page-shell"
@@ -79,6 +87,7 @@ function ProfileContent({
   const [ownedGroups, setOwnedGroups] = useState<
     ApiOwnershipResolutionGroup[] | null
   >(null)
+  const [ownershipLoadError, setOwnershipLoadError] = useState("")
   const [selectedNominees, setSelectedNominees] = useState<
     Record<string, string>
   >({})
@@ -87,6 +96,30 @@ function ProfileContent({
   >({})
   const [resolvingGroupId, setResolvingGroupId] = useState<string | null>(null)
   const router = useRouter()
+
+  useEffect(() => {
+    let cancelled = false
+
+    apiClient
+      .ownershipResolution()
+      .then((groups) => {
+        if (!cancelled) {
+          setOwnedGroups(groups)
+          setOwnershipLoadError("")
+        }
+      })
+      .catch(() => {
+        if (!cancelled) {
+          setOwnershipLoadError(
+            "Unable to load groups that need ownership resolution."
+          )
+        }
+      })
+
+    return () => {
+      cancelled = true
+    }
+  }, [])
 
   async function saveProfile(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -126,7 +159,7 @@ function ProfileContent({
     if (isDeleting) return
 
     const confirmed = window.confirm(
-      "Permanently delete your MoneyCircle account? Group owners will be notified when you leave. Your past payment and contribution records will remain unchanged.",
+      "Permanently delete your MoneyCircle account? Group owners will be notified when you leave. Your past payment and contribution records will remain unchanged."
     )
     if (!confirmed) return
 
@@ -151,11 +184,11 @@ function ProfileContent({
       }
 
       const message = axios.isAxiosError<{ error?: string; message?: string }>(
-        error,
+        error
       )
-        ? error.response?.data.message ??
+        ? (error.response?.data.message ??
           error.response?.data.error ??
-          "Unable to delete your account. Please try again."
+          "Unable to delete your account. Please try again.")
         : error instanceof Error
           ? error.message
           : "Unable to delete your account. Please try again."
@@ -167,13 +200,21 @@ function ProfileContent({
   }
 
   async function refreshOwnedGroups() {
-    setOwnedGroups(await apiClient.ownershipResolution())
+    try {
+      setOwnedGroups(await apiClient.ownershipResolution())
+      setOwnershipLoadError("")
+    } catch (error) {
+      setOwnershipLoadError(
+        "Unable to load groups that need ownership resolution."
+      )
+      throw error
+    }
   }
 
   async function resolveGroup(
     groupId: string,
     action: () => Promise<unknown>,
-    successMessage: string,
+    successMessage: string
   ) {
     if (resolvingGroupId) return
     setResolvingGroupId(groupId)
@@ -184,11 +225,11 @@ function ProfileContent({
       toast.success(successMessage)
     } catch (error) {
       const message = axios.isAxiosError<{ error?: string; message?: string }>(
-        error,
+        error
       )
-        ? error.response?.data.message ??
+        ? (error.response?.data.message ??
           error.response?.data.error ??
-          "Unable to update group ownership."
+          "Unable to update group ownership.")
         : error instanceof Error
           ? error.message
           : "Unable to update group ownership."
@@ -208,7 +249,7 @@ function ProfileContent({
     return resolveGroup(
       group.id,
       () => apiClient.nominateGroupOwner(group.id, nomineeId),
-      "Ownership transfer request sent.",
+      "Ownership transfer request sent."
     )
   }
 
@@ -220,18 +261,16 @@ function ProfileContent({
       () =>
         apiClient.cancelGroupOwnershipTransfer(
           group.id,
-          group.pendingTransfer!.id,
+          group.pendingTransfer!.id
         ),
-      "Transfer request cancelled.",
+      "Transfer request cancelled."
     )
   }
 
-  function handleMoveToPendingResolution(
-    group: ApiOwnershipResolutionGroup,
-  ) {
+  function handleMoveToPendingResolution(group: ApiOwnershipResolutionGroup) {
     if (
       !window.confirm(
-        `Stop trying to transfer ownership and place "${group.name}" in pending resolution?`,
+        `Stop trying to transfer ownership and place "${group.name}" in pending resolution?`
       )
     ) {
       return
@@ -240,14 +279,14 @@ function ProfileContent({
     return resolveGroup(
       group.id,
       () => apiClient.moveGroupToPendingResolution(group.id),
-      "Group moved to pending resolution.",
+      "Group moved to pending resolution."
     )
   }
 
   function handleCloseGroup(group: ApiOwnershipResolutionGroup) {
     if (
       !window.confirm(
-        `Archive "${group.name}"? This does not delete its financial records.`,
+        `Archive "${group.name}"? This does not delete its financial records.`
       )
     ) {
       return
@@ -256,7 +295,7 @@ function ProfileContent({
     return resolveGroup(
       group.id,
       () => apiClient.closeResolvedGroup(group.id),
-      "Group archived. Its financial records were preserved.",
+      "Group archived. Its financial records were preserved."
     )
   }
 
@@ -380,221 +419,231 @@ function ProfileContent({
         Sign out
       </Button>
 
-      {ownedGroups !== null && (
-        <Card className="border-amber-500/40 p-5">
-          <div className="flex flex-col gap-4">
-            <div>
-              <h2 className="font-semibold">Resolve group ownership first</h2>
-              <p className="mt-1 text-sm text-muted-foreground">
-                Transfer ownership, or place each group in pending resolution
-                and close it separately before deleting your account. Financial
-                records are retained.
+      <Card id="group-ownership" className="border-amber-500/40 p-5">
+        <div className="flex flex-col gap-4">
+          <div>
+            <h2 className="font-semibold">Group ownership &amp; resolution</h2>
+            <p className="mt-1 text-sm text-muted-foreground">
+              Transfer ownership, manage groups with unresolved obligations, or
+              archive resolved groups. Financial records are retained.
+            </p>
+          </div>
+
+          {ownershipLoadError ? (
+            <div className="flex flex-col gap-3">
+              <p role="alert" className="text-sm text-destructive">
+                {ownershipLoadError}
               </p>
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() =>
+                  refreshOwnedGroups().catch(() =>
+                    toast.error("Unable to refresh ownership status.")
+                  )
+                }
+                disabled={resolvingGroupId !== null}
+              >
+                Retry loading groups
+              </Button>
             </div>
+          ) : ownedGroups === null ? (
+            <p role="status" className="text-sm text-muted-foreground">
+              Loading groups that need ownership resolution...
+            </p>
+          ) : ownedGroups.length === 0 ? (
+            <p className="text-sm text-muted-foreground">
+              You don&apos;t currently own any groups that need resolution.
+            </p>
+          ) : (
+            ownedGroups.map((group) => {
+              const isWorking = resolvingGroupId === group.id
+              const outstandingCount =
+                group.outstandingContributions +
+                group.outstandingPayouts +
+                group.processingPayments
 
-            {ownedGroups.length === 0 ? (
-              <p className="text-sm text-muted-foreground">
-                No groups currently need resolution. You can try deleting your
-                account again.
-              </p>
-            ) : (
-              ownedGroups.map((group) => {
-                const isWorking = resolvingGroupId === group.id
-                const outstandingCount =
-                  group.outstandingContributions +
-                  group.outstandingPayouts +
-                  group.processingPayments
+              return (
+                <div key={group.id} className="rounded-xl border p-4">
+                  <div className="flex items-start justify-between gap-3">
+                    <h3 className="font-medium">{group.name}</h3>
+                    <span className="text-xs text-muted-foreground">
+                      {group.status.replaceAll("_", " ").toLowerCase()}
+                    </span>
+                  </div>
 
-                return (
-                  <div key={group.id} className="rounded-xl border p-4">
-                    <div className="flex items-start justify-between gap-3">
-                      <h3 className="font-medium">{group.name}</h3>
-                      <span className="text-xs text-muted-foreground">
-                        {group.status.replaceAll("_", " ").toLowerCase()}
-                      </span>
-                    </div>
-
-                    {group.status === "ACTIVE" && (
-                      <div className="mt-3 flex flex-col gap-3">
-                        {group.pendingTransfer ? (
-                          <>
-                            <p className="text-sm text-muted-foreground">
-                              Waiting for {group.pendingTransfer.nomineeName} to
-                              accept or decline the ownership request.
-                            </p>
-                            <Button
-                              type="button"
-                              variant="outline"
-                              onClick={() => handleCancelTransfer(group)}
-                              disabled={isWorking}
-                            >
-                              {isWorking
-                                ? "Updating..."
-                                : "Cancel request and choose another member"}
-                            </Button>
-                          </>
-                        ) : (
-                          <>
-                            {group.eligibleMembers.length > 0 ? (
-                              <div className="flex flex-col gap-2">
-                                <Label htmlFor={`nominee-${group.id}`}>
-                                  Nominate an active member
-                                </Label>
-                                <select
-                                  id={`nominee-${group.id}`}
-                                  className="h-10 rounded-md border bg-background px-3 text-sm"
-                                  value={selectedNominees[group.id] ?? ""}
-                                  onChange={(event) =>
-                                    setSelectedNominees((current) => ({
-                                      ...current,
-                                      [group.id]: event.target.value,
-                                    }))
-                                  }
-                                >
-                                  <option value="">Choose a member</option>
-                                  {group.eligibleMembers.map((member) => (
-                                    <option key={member.id} value={member.id}>
-                                      {member.name}
-                                    </option>
-                                  ))}
-                                </select>
-                                <Button
-                                  type="button"
-                                  onClick={() => handleNominate(group)}
-                                  disabled={isWorking}
-                                >
-                                  {isWorking
-                                    ? "Sending request..."
-                                    : "Request ownership transfer"}
-                                </Button>
-                              </div>
-                            ) : (
-                              <p className="text-sm text-muted-foreground">
-                                No eligible members remain to nominate.
-                              </p>
-                            )}
-
-                            <Button
-                              type="button"
-                              variant="outline"
-                              onClick={() =>
-                                handleMoveToPendingResolution(group)
-                              }
-                              disabled={isWorking}
-                            >
-                              Stop trying and move to pending resolution
-                            </Button>
-                          </>
-                        )}
-                      </div>
-                    )}
-
-                    {group.status !== "ACTIVE" &&
-                      group.status !== "PENDING_RESOLUTION" && (
-                        <div className="mt-3 flex flex-col gap-3">
+                  {group.status === "ACTIVE" && (
+                    <div className="mt-3 flex flex-col gap-3">
+                      {group.pendingTransfer ? (
+                        <>
                           <p className="text-sm text-muted-foreground">
-                            This group needs review before account deletion.
+                            Waiting for {group.pendingTransfer.nomineeName} to
+                            accept or decline the ownership request.
                           </p>
                           <Button
                             type="button"
                             variant="outline"
-                            onClick={() =>
-                              handleMoveToPendingResolution(group)
-                            }
+                            onClick={() => handleCancelTransfer(group)}
                             disabled={isWorking}
                           >
-                            Move to pending resolution
+                            {isWorking
+                              ? "Updating..."
+                              : "Cancel request and choose another member"}
                           </Button>
-                        </div>
-                      )}
-
-                    {group.status === "PENDING_RESOLUTION" && (
-                      <div className="mt-3 flex flex-col gap-3">
-                        <p className="text-sm text-muted-foreground">
-                          Outstanding contributions:{" "}
-                          {group.outstandingContributions}; payouts:{" "}
-                          {group.outstandingPayouts}; processing payments:{" "}
-                          {group.processingPayments}.
-                        </p>
-                        {outstandingCount > 0 ? (
-                          <p className="text-sm text-muted-foreground">
-                            Resolve these obligations before closing.{" "}
-                            <a
-                              className="font-medium text-primary underline"
-                              href={`mailto:savagekidsteven@email.com?subject=${encodeURIComponent(
-                                `Help resolving ${group.name}`,
-                              )}&body=${encodeURIComponent(
-                                `Please help resolve group ${group.name} (${group.id}) before closure.`,
-                              )}`}
-                            >
-                              Contact support
-                            </a>
-                          </p>
-                        ) : (
-                          <>
-                            <label className="flex items-start gap-2 text-sm">
-                              <input
-                                type="checkbox"
-                                className="mt-1"
-                                checked={
-                                  confirmedNoDisputes[group.id] ?? false
-                                }
+                        </>
+                      ) : (
+                        <>
+                          {group.eligibleMembers.length > 0 ? (
+                            <div className="flex flex-col gap-2">
+                              <Label htmlFor={`nominee-${group.id}`}>
+                                Nominate an active member
+                              </Label>
+                              <select
+                                id={`nominee-${group.id}`}
+                                className="h-10 rounded-md border bg-background px-3 text-sm"
+                                value={selectedNominees[group.id] ?? ""}
                                 onChange={(event) =>
-                                  setConfirmedNoDisputes((current) => ({
+                                  setSelectedNominees((current) => ({
                                     ...current,
-                                    [group.id]: event.target.checked,
+                                    [group.id]: event.target.value,
                                   }))
                                 }
-                              />
-                              I confirm there are no unresolved disputes. If
-                              there are disputes, contact support before
-                              archiving.
-                            </label>
-                            <Button
-                              type="button"
-                              variant="destructive"
-                              onClick={() => handleCloseGroup(group)}
-                              disabled={
-                                isWorking ||
-                                !confirmedNoDisputes[group.id]
-                              }
-                            >
-                              {isWorking ? "Archiving..." : "Archive group"}
-                            </Button>
-                          </>
-                        )}
-                        <a
-                          className="text-sm font-medium text-primary underline"
-                          href={`mailto:savagekidsteven@email.com?subject=${encodeURIComponent(
-                            `Question about ${group.name}`,
-                          )}&body=${encodeURIComponent(
-                            `Please contact me about group ${group.name} (${group.id}).`,
-                          )}`}
+                              >
+                                <option value="">Choose a member</option>
+                                {group.eligibleMembers.map((member) => (
+                                  <option key={member.id} value={member.id}>
+                                    {member.name}
+                                  </option>
+                                ))}
+                              </select>
+                              <Button
+                                type="button"
+                                onClick={() => handleNominate(group)}
+                                disabled={isWorking}
+                              >
+                                {isWorking
+                                  ? "Sending request..."
+                                  : "Request ownership transfer"}
+                              </Button>
+                            </div>
+                          ) : (
+                            <p className="text-sm text-muted-foreground">
+                              No eligible members remain to nominate.
+                            </p>
+                          )}
+
+                          <Button
+                            type="button"
+                            variant="outline"
+                            onClick={() => handleMoveToPendingResolution(group)}
+                            disabled={isWorking}
+                          >
+                            Stop trying and move to pending resolution
+                          </Button>
+                        </>
+                      )}
+                    </div>
+                  )}
+
+                  {group.status !== "ACTIVE" &&
+                    group.status !== "PENDING_RESOLUTION" && (
+                      <div className="mt-3 flex flex-col gap-3">
+                        <p className="text-sm text-muted-foreground">
+                          This group needs review before account deletion.
+                        </p>
+                        <Button
+                          type="button"
+                          variant="outline"
+                          onClick={() => handleMoveToPendingResolution(group)}
+                          disabled={isWorking}
                         >
-                          Contact support about a dispute
-                        </a>
+                          Move to pending resolution
+                        </Button>
                       </div>
                     )}
-                  </div>
-                )
-              })
-            )}
 
-            <Button
-              type="button"
-              variant="outline"
-              onClick={() =>
-                refreshOwnedGroups().catch(() =>
-                  toast.error("Unable to refresh ownership status."),
-                )
-              }
-              disabled={resolvingGroupId !== null}
-            >
-              Refresh group status
-            </Button>
-          </div>
-        </Card>
-      )}
+                  {group.status === "PENDING_RESOLUTION" && (
+                    <div className="mt-3 flex flex-col gap-3">
+                      <p className="text-sm text-muted-foreground">
+                        Outstanding contributions:{" "}
+                        {group.outstandingContributions}; payouts:{" "}
+                        {group.outstandingPayouts}; processing payments:{" "}
+                        {group.processingPayments}.
+                      </p>
+                      {outstandingCount > 0 ? (
+                        <p className="text-sm text-muted-foreground">
+                          Resolve these obligations before closing.{" "}
+                          <a
+                            className="font-medium text-primary underline"
+                            href={`mailto:savagekidsteven@email.com?subject=${encodeURIComponent(
+                              `Help resolving ${group.name}`
+                            )}&body=${encodeURIComponent(
+                              `Please help resolve group ${group.name} (${group.id}) before closure.`
+                            )}`}
+                          >
+                            Contact support
+                          </a>
+                        </p>
+                      ) : (
+                        <>
+                          <label className="flex items-start gap-2 text-sm">
+                            <input
+                              type="checkbox"
+                              className="mt-1"
+                              checked={confirmedNoDisputes[group.id] ?? false}
+                              onChange={(event) =>
+                                setConfirmedNoDisputes((current) => ({
+                                  ...current,
+                                  [group.id]: event.target.checked,
+                                }))
+                              }
+                            />
+                            I confirm there are no unresolved disputes. If there
+                            are disputes, contact support before archiving.
+                          </label>
+                          <Button
+                            type="button"
+                            variant="destructive"
+                            onClick={() => handleCloseGroup(group)}
+                            disabled={
+                              isWorking || !confirmedNoDisputes[group.id]
+                            }
+                          >
+                            {isWorking ? "Archiving..." : "Archive group"}
+                          </Button>
+                        </>
+                      )}
+                      <a
+                        className="text-sm font-medium text-primary underline"
+                        href={`mailto:savagekidsteven@email.com?subject=${encodeURIComponent(
+                          `Question about ${group.name}`
+                        )}&body=${encodeURIComponent(
+                          `Please contact me about group ${group.name} (${group.id}).`
+                        )}`}
+                      >
+                        Contact support about a dispute
+                      </a>
+                    </div>
+                  )}
+                </div>
+              )
+            })
+          )}
+
+          <Button
+            type="button"
+            variant="outline"
+            onClick={() =>
+              refreshOwnedGroups().catch(() =>
+                toast.error("Unable to refresh ownership status.")
+              )
+            }
+            disabled={resolvingGroupId !== null}
+          >
+            Refresh group status
+          </Button>
+        </div>
+      </Card>
 
       <Card className="border-destructive/40 p-5">
         <div className="flex flex-col gap-3">

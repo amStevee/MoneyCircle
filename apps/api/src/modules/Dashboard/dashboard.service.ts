@@ -4,8 +4,8 @@ import {
   findGroupMemberCounts,
   findPaidContributions,
   findRecentContributions,
-  findUpcomingContribution,
-  findUserPaidContributionCounts,
+  findUpcomingContributions,
+  findGroupPaidContributionCounts,
 } from "./dashboard.repository.js";
 
 /**
@@ -35,6 +35,7 @@ type DashboardUpcomingContribution = {
   groupName: string;
   groupId: string;
   dueDate: Date;
+  status: "PENDING" | "OVERDUE";
 };
 
 /**
@@ -62,6 +63,8 @@ type DashboardResponse = {
 
   upcomingContribution: DashboardUpcomingContribution | null;
 
+  overdueContributions: DashboardUpcomingContribution[];
+
   groups: DashboardGroup[];
 
   recentActivity: DashboardActivity[];
@@ -73,12 +76,19 @@ class DashboardService {
      * These queries do not depend on each other,
      * so execute them concurrently.
      */
-    const [memberships, paid, upcoming, activity] = await Promise.all([
+    const [memberships, paid, dueContributions, activity] = await Promise.all([
       findDashboardMemberships(userId),
       findPaidContributions(userId),
-      findUpcomingContribution(userId),
+      findUpcomingContributions(userId),
       findRecentContributions(userId),
     ]);
+    const now = new Date();
+    const isOverdue = (contribution: (typeof dueContributions)[number]) =>
+      contribution.status === "OVERDUE" || contribution.due_date < now;
+    const upcoming = dueContributions.find(
+      (contribution) => !isOverdue(contribution),
+    );
+    const overdueContributions = dueContributions.filter(isOverdue);
 
     /**
      * Get the circle IDs from the user's memberships.
@@ -90,7 +100,7 @@ class DashboardService {
      */
     const [counts, contributionCounts, circleCycles] = await Promise.all([
       findGroupMemberCounts(circleIds),
-      findUserPaidContributionCounts(userId, circleIds),
+      findGroupPaidContributionCounts(circleIds),
       findCircleTotalCycles(circleIds),
     ]);
 
@@ -109,6 +119,17 @@ class DashboardService {
     const totalCyclesMap = new Map(
       circleCycles.map((item) => [item.circle_id, item.total_cycles]),
     );
+    const nextContributionDateMap = new Map<string, Date>();
+    for (const contribution of dueContributions.filter(
+      (item) => !isOverdue(item),
+    )) {
+      if (!nextContributionDateMap.has(contribution.circle_id)) {
+        nextContributionDateMap.set(
+          contribution.circle_id,
+          contribution.due_date,
+        );
+      }
+    }
 
     /**
      * Build the groups returned by the API.
@@ -129,17 +150,14 @@ class DashboardService {
 
         contributionsMade: contributionCountMap.get(group.id) ?? 0,
 
-        totalContributions: totalCyclesMap.get(group.id) ?? 0,
+        totalContributions:
+          (totalCyclesMap.get(group.id) ?? 0) * (countMap.get(group.id) ?? 0),
 
         status: group.status,
 
         startDate: group.start_date,
 
-        /**
-         * This can later be populated from
-         * the user's next contribution.
-         */
-        nextContributionDate: null,
+        nextContributionDate: nextContributionDateMap.get(group.id) ?? null,
       }),
     );
 
@@ -170,12 +188,23 @@ class DashboardService {
             amount: Number(upcoming.amount),
 
             groupName: upcoming.savings_circle.name,
-
             groupId: upcoming.circle_id,
-
             dueDate: upcoming.due_date,
+            status:
+              upcoming.status === "OVERDUE" || upcoming.due_date < now
+                ? "OVERDUE"
+                : "PENDING",
           }
         : null,
+
+      overdueContributions: overdueContributions.map((contribution) => ({
+        id: contribution.id,
+        amount: Number(contribution.amount),
+        groupName: contribution.savings_circle.name,
+        groupId: contribution.circle_id,
+        dueDate: contribution.due_date,
+        status: "OVERDUE" as const,
+      })),
 
       /**
        * User's savings groups.

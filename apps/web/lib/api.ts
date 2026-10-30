@@ -42,6 +42,14 @@ export interface DueContribution {
   dueDate: string
   status: string
 }
+export interface DashboardContribution {
+  id: string
+  amount: number
+  groupName: string
+  groupId: string
+  dueDate: string
+  status: "PENDING" | "OVERDUE"
+}
 export interface ApiNotification {
   id: string
   type: string

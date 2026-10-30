@@ -10,7 +10,6 @@ import {
   findUserTransactions,
   markTransactionPaid,
 } from "./payments.repository.js";
-import { calculateCircleDueDate } from "../../utils.js";
 
 type SerializedTransaction = {
   id: string;

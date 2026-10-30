@@ -7,6 +7,7 @@ import { RecentActivityCard } from "@/components/dashboard/recent-activity-card"
 import { SavingsGroupsCard } from "@/components/dashboard/savings-groups-card"
 import { TotalContributionsCard } from "@/components/dashboard/total-contributions-card"
 import { UpcomingContributionCard } from "@/components/dashboard/upcoming-contribution-card"
+import { OverdueContributionsCard } from "@/components/dashboard/overdue-contributions-card"
 import { apiClient } from "@/lib/api"
 import { useUserStore } from "@/store/useUserStore"
 import DashboardLoading from "./loading"
@@ -34,7 +35,7 @@ export default function DashboardPage() {
     ...g,
     frequencyLabel: g.frequency.toLowerCase().replace("ly", ""),
   }))
-  
+
   const upcoming = data.upcomingContribution
   return (
     <div className="flex min-h-svh flex-col bg-muted/30">
@@ -45,6 +46,7 @@ export default function DashboardPage() {
           <UpcomingContributionCard
             amount={upcoming.amount}
             groupName={upcoming.groupName}
+            status={upcoming.status}
             dueDate={new Date(upcoming.dueDate).toLocaleDateString("en-NG", {
               month: "short",
               day: "numeric",
@@ -53,6 +55,9 @@ export default function DashboardPage() {
         ) : (
           <UpcomingContributionCard amount={0} groupName="" dueDate="" />
         )}
+        <OverdueContributionsCard
+          contributions={data.overdueContributions ?? []}
+        />
         <SavingsGroupsCard groups={groups} />
         <RecentActivityCard
           activity={data.recentActivity.map((a: any) => ({

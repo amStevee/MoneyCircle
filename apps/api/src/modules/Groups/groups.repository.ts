@@ -56,6 +56,72 @@ type CircleInvitationWithGroup = Prisma.circle_invitationsGetPayload<{
   };
 }>;
 
+type ContributionFrequency = "WEEKLY" | "MONTHLY" | "YEARLY";
+
+function getCycleDueDate(
+  startDate: Date,
+  frequency: ContributionFrequency,
+  cycleNumber: number,
+): Date {
+  const cycleOffset = cycleNumber - 1;
+  if (frequency === "WEEKLY") {
+    const dueDate = new Date(startDate);
+    dueDate.setUTCDate(dueDate.getUTCDate() + cycleOffset * 7);
+    return dueDate;
+  }
+
+  const targetMonth =
+    startDate.getUTCMonth() +
+    (frequency === "MONTHLY" ? cycleOffset : cycleOffset * 12);
+  const targetYear = startDate.getUTCFullYear() + Math.floor(targetMonth / 12);
+  const month = targetMonth % 12;
+  const day = Math.min(
+    startDate.getUTCDate(),
+    new Date(Date.UTC(targetYear, month + 1, 0)).getUTCDate(),
+  );
+  const dueDate = new Date(startDate);
+  dueDate.setUTCFullYear(targetYear, month, day);
+  return dueDate;
+}
+
+function buildContributionRows(params: {
+  circleId: string;
+  userId: string;
+  amount: Prisma.Decimal | number;
+  frequency: ContributionFrequency;
+  startDate: Date;
+  totalCycles: number;
+}) {
+  return Array.from({ length: params.totalCycles }, (_, index) => {
+    const cycleNumber = index + 1;
+    return {
+      circle_id: params.circleId,
+      circle_member: params.userId,
+      cycle_number: cycleNumber,
+      amount: params.amount,
+      due_date: getCycleDueDate(
+        params.startDate,
+        params.frequency,
+        cycleNumber,
+      ),
+      status: "PENDING" as const,
+    };
+  });
+}
+
+async function createContributionRows(
+  tx: Prisma.TransactionClient,
+  rows: Prisma.contributionsCreateManyInput[],
+): Promise<void> {
+  const batchSize = 5000;
+  for (let index = 0; index < rows.length; index += batchSize) {
+    await tx.contributions.createMany({
+      data: rows.slice(index, index + batchSize),
+      skipDuplicates: true,
+    });
+  }
+}
+
 async function findUserGroups(userId: string): Promise<UserGroup[]> {
   return prisma.circle_members.findMany({
     where: {
@@ -207,16 +273,17 @@ async function createGroup(
       },
     });
 
-    await tx.contributions.create({
-      data: {
-        circle_id: circle.id,
-        circle_member: userId,
-        cycle_number: 1,
+    await createContributionRows(
+      tx,
+      buildContributionRows({
+        circleId: circle.id,
+        userId,
         amount: input.contributionAmount,
-        due_date: input.startDate,
-        status: "PENDING",
-      },
-    });
+        frequency: input.frequency,
+        startDate: input.startDate,
+        totalCycles: input.totalCycles,
+      }),
+    );
 
     return circle;
   });
@@ -417,6 +484,32 @@ async function acceptInvitationTx(params: {
         accepted_at: new Date(),
       },
     });
+
+    const schedule = await tx.savings_schedules.findFirst({
+      where: { circle_id: params.circleId },
+      orderBy: { created_at: "desc" },
+    });
+    if (!schedule) {
+      throw new Error("Savings schedule not found");
+    }
+
+    const activeMembers = await tx.circle_members.findMany({
+      where: { circle_id: params.circleId, status: "ACTIVE" },
+      select: { user_id: true },
+    });
+    await createContributionRows(
+      tx,
+      activeMembers.flatMap(({ user_id }) =>
+        buildContributionRows({
+          circleId: params.circleId,
+          userId: user_id,
+          amount: schedule.contribution_amount,
+          frequency: schedule.frequency,
+          startDate: schedule.start_date,
+          totalCycles: schedule.total_cycles,
+        }),
+      ),
+    );
 
     return member;
   });

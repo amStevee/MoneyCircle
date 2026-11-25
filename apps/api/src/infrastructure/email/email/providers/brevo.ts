@@ -6,7 +6,6 @@ import type {
 } from "../email.types.js";
 
 export class BrevoProvider implements EmailProvider {
-
   private brevo: BrevoClient | null | undefined;
 
   private getClient(): BrevoClient | null {

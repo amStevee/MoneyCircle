@@ -138,7 +138,7 @@ const Navbar1 = ({
     },
   ],
   auth = {
-    waitlist: { title: "join the waitlist", url: "#waitlist" },
+    waitlist: { title: "Join the Waitlist", url: "#waitlist" },
     login: { title: "Login", url: "/login" },
   },
   // auth = {

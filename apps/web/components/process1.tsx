@@ -31,7 +31,7 @@ const Process1 = ({ className }: Process1Props) => {
       step: "04",
       title: "Track Contributions",
       description:
-        'Everyone can see who has paid, upcoming contributions, group progress and payout schedule. No more asking, "who has paid"',
+        'Everyone can see who has paid, upcoming contributions, group progress, and the payout schedule. No more asking, "Who has paid?"',
     },
     {
       step: "05",
@@ -43,7 +43,7 @@ const Process1 = ({ className }: Process1Props) => {
       step: "06",
       title: "Grow Together",
       description:
-        "Build a constistent saving habit with complete visibility for every member",
+        "Build a consistent saving habit with complete visibility for every member.",
     },
   ]
 

@@ -18,7 +18,7 @@ import {
   acceptInvitationTx,
 } from "./groups.repository.js";
 import { findUserByEmail } from "../Users/users.repository.js";
-import { emailService } from "../../infrastructure/email/email.provider.js";
+import { emailService } from "../../infrastructure/email/email/email.provider.js";
 
 export const createGroupSchema = z.object({
   name: z.string().trim().min(2).max(255),

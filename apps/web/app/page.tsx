@@ -15,15 +15,15 @@ export default function Page() {
   return (
     <>
       <Navbar1 />
-      <div className="flex flex-col gap-10 p-10 lg:gap-32">
+      <main className="mx-auto flex w-full max-w-[90rem] flex-col gap-10 px-4 sm:px-6 lg:gap-32 lg:px-8">
         <Hero47
           heading="The modern way"
           subheading=" for trusted groups to save together."
-          description="Money Circle helps friends, families, cowokers, and small communities organize rotational savings with transparency, reminders, and a clear record of every contribution"
+          description="Money Circle helps friends, families, coworkers, and small communities organize rotational savings with transparency, reminders, and a clear record of every contribution."
           buttons={{
             primary: { text: "Join the Waitlist", url: "#waitlist" },
             secondary: {
-              text: "Learn How it Works",
+              text: "Learn How It Works",
               url: "#Learn-How-it-Works",
             },
           }}
@@ -59,7 +59,7 @@ export default function Page() {
         />
         <Contact7 />
         <Footer2 />
-      </div>
+      </main>
       <ScrollToTopButton />
     </>
   )

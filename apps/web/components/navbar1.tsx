@@ -149,10 +149,10 @@ const Navbar1 = ({
 }: Navbar1Props) => {
   return (
     <section className={cn("py-0", className)}>
-      <div className="container">
+      <div className="">
         {/* Desktop Menu */}
         <nav className="hidden items-center justify-between p-5 lg:flex">
-          <div className="flex items-center gap-6">
+          <div className="flex w-full items-center gap-6">
             {/* Logo */}
             <a href={logo.url} className="flex items-center gap-2">
               <Image

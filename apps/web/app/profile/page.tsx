@@ -574,7 +574,7 @@ function ProfileContent({
                         <p className="text-sm text-muted-foreground">
                           {group.processingPayments} payment
                           {group.processingPayments === 1 ? " is" : "s are"}{" "}
-                          still being processed. You can archive the group once
+                          still being processed (payments or payouts). You can archive the group once
                           they finish.
                         </p>
                       ) : (

@@ -2,6 +2,7 @@ import { prisma } from "@repo/db";
 import {
   inFlightPaymentWhere,
   outstandingContributionWhere,
+  processingPayoutWhere,
   startOfNextUtcDay,
 } from "../Contributions/contribution-status.js";
 import { cancelUpcomingContributions } from "../Contributions/contributions.repository.js";
@@ -63,8 +64,12 @@ async function listOwnedGroupsForResolution(
   if (!groups.length) return [];
 
   const circleIds = groups.map(({ id }) => id);
-  const [contributionCounts, payoutCounts, processingTransactions] =
-    await Promise.all([
+  const [
+    contributionCounts,
+    payoutCounts,
+    processingTransactions,
+    processingPayoutCounts,
+  ] = await Promise.all([
       prisma.contributions.groupBy({
         by: ["circle_id"],
         where: {
@@ -99,6 +104,14 @@ async function listOwnedGroupsForResolution(
           payout: { select: { circle_id: true } },
         },
       }),
+      prisma.payouts.groupBy({
+        by: ["circle_id"],
+        where: {
+          circle_id: { in: circleIds },
+          ...processingPayoutWhere(),
+        },
+        _count: { _all: true },
+      }),
     ]);
 
   const contributionsByCircle = new Map(
@@ -126,6 +139,13 @@ async function listOwnedGroupsForResolution(
         (paymentsByCircle.get(circleId) ?? 0) + 1,
       );
     }
+  }
+
+  for (const { circle_id, _count } of processingPayoutCounts ?? []) {
+    paymentsByCircle.set(
+      circle_id,
+      (paymentsByCircle.get(circle_id) ?? 0) + _count._all,
+    );
   }
 
   return groups.map((group) => {
@@ -533,27 +553,35 @@ async function closeResolvedGroup(
       from: startOfNextUtcDay(now),
     });
 
-    // THE ONLY HARD BLOCK: money that is mid-flight. Archiving now could
-    // leave a payment that can no longer be attributed to anything.
+    // THE ONLY HARD BLOCK: money that is mid-flight (a payment in flight or
+    // a payout being processed). Archiving now could leave a payment that
+    // can no longer be attributed to anything.
     // Unpaid contributions/payouts never block - MoneyCircle is a tracker,
     // the group settles those itself. They are recorded in the group
     // history below instead.
-    const processingPayments = await tx.payment_transactions.count({
-      where: {
-        AND: [
-          inFlightPaymentWhere(now),
-          {
-            OR: [
-              { contribution: { is: { circle_id: groupId } } },
-              { payout: { is: { circle_id: groupId } } },
-            ],
-          },
-        ],
-      },
-    });
-    if (processingPayments) {
+    const [processingTransactions, processingPayouts] = await Promise.all([
+      tx.payment_transactions.count({
+        where: {
+          AND: [
+            inFlightPaymentWhere(now),
+            {
+              OR: [
+                { contribution: { is: { circle_id: groupId } } },
+                { payout: { is: { circle_id: groupId } } },
+              ],
+            },
+          ],
+        },
+      }),
+      // A payout still PROCESSING blocks closing too, even when it has no
+      // live payment transaction attached.
+      tx.payouts.count({
+        where: { circle_id: groupId, ...processingPayoutWhere(now) },
+      }),
+    ]);
+    if (processingTransactions || processingPayouts) {
       throw new Error(
-        "Payments are still being processed for this group. Try again once they finish",
+        "Payments or payouts are still being processed for this group. Try again once they finish",
       );
     }
 

@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
+import Image from "next/image"
 
 interface About3Props {
   className?: string
@@ -57,12 +58,14 @@ const About3 = ({
           </p>
         </div>
         <div className="grid gap-7 lg:grid-cols-3">
-          <img
+          <Image
             src={mainImage.src}
             alt={mainImage.alt}
             className="size-full max-h-[620px] rounded-xl object-cover lg:col-span-2"
+            width={600}
+            height={600}
           />
-          <div className="flex flex-col gap-7 md:flex-row lg:flex-col">
+          {/* <div className="flex flex-col gap-7 md:flex-row lg:flex-col">
             <div className="flex flex-col justify-between gap-6 rounded-xl bg-muted p-7 md:w-1/2 lg:w-auto">
               <img
                 src={breakout.src}
@@ -90,7 +93,7 @@ const About3 = ({
             <a className="hidden" href="https://storyset.com/people">
               People illustrations by Storyset
             </a>
-          </div>
+          </div> */}
         </div>
       </div>
     </section>

@@ -603,7 +603,32 @@ describe("ownership repository", () => {
 
       await expect(
         closeResolvedGroup("group-1", "owner-1", true),
-      ).rejects.toThrow("Payments are still being processed for this group");
+      ).rejects.toThrow("Payments or payouts are still being processed for this group");
+      expect(mockTx.savings_circles.update).not.toHaveBeenCalled();
+      expect(mockTx.audit_log.create).not.toHaveBeenCalled();
+    });
+
+    it("refuses closure while a payout is still being processed", async () => {
+      mockTx.savings_circles.findUnique.mockResolvedValue({
+        ...activeGroup,
+        status: "PENDING_RESOLUTION",
+      });
+      mockTx.payouts.count.mockResolvedValueOnce(1);
+
+      await expect(
+        closeResolvedGroup("group-1", "owner-1", true),
+      ).rejects.toThrow("still being processed");
+      expect(mockTx.payouts.count).toHaveBeenCalledWith({
+        where: {
+          circle_id: "group-1",
+          status: "PROCESSING",
+          NOT: {
+            payment_transaction: {
+              is: expect.objectContaining({ OR: expect.any(Array) }),
+            },
+          },
+        },
+      });
       expect(mockTx.savings_circles.update).not.toHaveBeenCalled();
       expect(mockTx.audit_log.create).not.toHaveBeenCalled();
     });
@@ -640,7 +665,8 @@ describe("ownership repository", () => {
         { user_id: "left-1", status: "LEFT" },
         { user_id: "active-1", status: "ACTIVE" },
       ]);
-      mockTx.payouts.count.mockResolvedValue(1);
+      // 1st call: payouts being processed (none); 2nd: unsettled payouts.
+      mockTx.payouts.count.mockResolvedValueOnce(0).mockResolvedValueOnce(1);
 
       await expect(
         closeResolvedGroup("group-1", "owner-1", true),
@@ -813,11 +839,12 @@ describe("ownership repository", () => {
         },
       ]);
       mockPrisma.contributions.groupBy.mockResolvedValue([
-        { circle_id: "group-1", _count: { _all: 2 } },
+        { circle_id: "group-1", _count: { _all: 2 }, _sum: { amount: 5000 } },
       ]);
-      mockPrisma.payouts.groupBy.mockResolvedValue([
-        { circle_id: "group-1", _count: { _all: 1 } },
-      ]);
+      // 1st call: unsettled payouts; 2nd call: payouts being processed.
+      mockPrisma.payouts.groupBy
+        .mockResolvedValueOnce([{ circle_id: "group-1", _count: { _all: 1 } }])
+        .mockResolvedValueOnce([{ circle_id: "group-1", _count: { _all: 1 } }]);
       mockPrisma.payment_transactions.findMany.mockResolvedValue([
         {
           contribution: { circle_id: "group-1" },
@@ -846,9 +873,10 @@ describe("ownership repository", () => {
             createdAt: new Date("2026-01-02T00:00:00.000Z"),
           },
           outstandingContributions: 2,
-          outstandingAmount: 0,
+          outstandingAmount: 5000,
           outstandingPayouts: 1,
-          processingPayments: 2,
+          // 2 in-flight transactions + 1 payout being processed
+          processingPayments: 3,
         },
       ]);
     });

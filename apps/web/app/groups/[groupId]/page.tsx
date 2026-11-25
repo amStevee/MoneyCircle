@@ -1,7 +1,7 @@
 "use client"
 import { useCallback, useEffect, useState } from "react"
 import Link from "next/link"
-import { ArrowLeft, Calendar, Copy, Mail, Users } from "lucide-react"
+import { ArrowLeft, Calendar, ChevronRight, Copy, History, Mail, Users } from "lucide-react"
 import { useParams } from "next/navigation"
 import { PageShell } from "@/components/dashboard/page-shell"
 import { Badge } from "@/components/ui/badge"
@@ -245,6 +245,21 @@ export default function GroupDetailsPage() {
           </Card>
         </>
       )}
+
+      <Link href={`/groups/${groupId}/history`}>
+        <Card className="p-5 transition-colors hover:bg-muted/50">
+          <div className="flex items-center gap-3">
+            <History className="size-5 text-primary" />
+            <div className="min-w-0 flex-1">
+              <p className="font-semibold">Group history</p>
+              <p className="text-sm text-muted-foreground">
+                Members who left, and what was recorded when the group closed.
+              </p>
+            </div>
+            <ChevronRight className="size-5 text-muted-foreground" />
+          </div>
+        </Card>
+      </Link>
 
       <Card className="p-5">
         <div className="flex items-center gap-3">

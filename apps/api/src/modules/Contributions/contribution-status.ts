@@ -69,3 +69,15 @@ export function inFlightPaymentWhere(now: Date = new Date()) {
     ],
   };
 }
+
+/**
+ * Prisma `where` for payouts that are being paid out right now and are not
+ * already covered by an in-flight payment transaction (those are counted via
+ * `inFlightPaymentWhere`, so one payout is never counted twice).
+ */
+export function processingPayoutWhere(now: Date = new Date()) {
+  return {
+    status: "PROCESSING" as const,
+    NOT: { payment_transaction: { is: inFlightPaymentWhere(now) } },
+  };
+}

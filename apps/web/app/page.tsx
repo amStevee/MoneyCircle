@@ -13,7 +13,7 @@ import { Waitlist1 } from "@/components/waitlist1"
 
 export default function Page() {
   return (
-    <>
+    <div className="flex flex-col align-middle justify-center">
       <Navbar1 />
       <main className="mx-auto flex w-full max-w-[90rem] flex-col gap-10 px-4 sm:px-6 lg:gap-32 lg:px-8">
         <Hero47
@@ -57,10 +57,10 @@ export default function Page() {
             buttonUrl: "https://www.linkedin.com/in/steven-anongo",
           }}
         />
-        <Contact7 />
+        {/* <Contact7 /> */}
         <Footer2 />
       </main>
       <ScrollToTopButton />
-    </>
+    </div>
   )
 }

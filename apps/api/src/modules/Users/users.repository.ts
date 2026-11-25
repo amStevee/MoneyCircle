@@ -2,6 +2,11 @@ import { prisma } from "@repo/db";
 import type { Prisma } from "@repo/db";
 import crypto from "node:crypto";
 import type { User } from "./user.type.js";
+import {
+  outstandingContributionWhere,
+  startOfUtcDay,
+} from "../Contributions/contribution-status.js";
+import { cancelUpcomingContributions } from "../Contributions/contributions.repository.js";
 
 /**
  * Prisma representation of a user.
@@ -143,6 +148,45 @@ async function deleteMeRepo(userId: string): Promise<void> {
     if (ownerNotifications.length) {
       await tx.notifications.createMany({
         data: ownerNotifications,
+      });
+    }
+
+    // The leaving member can never pay their not-yet-overdue cycles. Cancel
+    // them so they don't sit PENDING forever and block the group from being
+    // closed. Overdue/paid rows are real records and are left untouched.
+    await cancelUpcomingContributions(tx, {
+      userId,
+      from: startOfUtcDay(),
+    });
+
+    // Record the departure in each group's history, including what the
+    // member leaves unpaid. The app does not chase it: the group settles it.
+    const leftCircleIds = memberships.map(({ circle_id }) => circle_id);
+    if (leftCircleIds.length) {
+      const unpaid = await tx.contributions.findMany({
+        where: {
+          circle_member: userId,
+          circle_id: { in: leftCircleIds },
+          ...outstandingContributionWhere(),
+        },
+        select: { circle_id: true, cycle_number: true, amount: true },
+      });
+      await tx.audit_log.createMany({
+        data: leftCircleIds.map((circleId) => {
+          const rows = unpaid.filter((c) => c.circle_id === circleId);
+          return {
+            user_id: userId,
+            action: "MEMBER_LEFT",
+            entity_type: "savings_circle",
+            entity_id: circleId,
+            metadata: {
+              memberName: `${user.first_name} ${user.last_name}`,
+              reason: "ACCOUNT_DELETED",
+              unpaidCycles: rows.map((c) => c.cycle_number),
+              unpaidTotal: rows.reduce((sum, c) => sum + Number(c.amount), 0),
+            },
+          };
+        }),
       });
     }
 

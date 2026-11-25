@@ -20,6 +20,7 @@ import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { formatNaira } from "@/lib/dashboard-data"
 import { useUserStore } from "@/store/useUserStore"
 
 export default function ProfilePage() {
@@ -458,11 +459,6 @@ function ProfileContent({
           ) : (
             ownedGroups.map((group) => {
               const isWorking = resolvingGroupId === group.id
-              const outstandingCount =
-                group.outstandingContributions +
-                group.outstandingPayouts +
-                group.processingPayments
-
               return (
                 <div key={group.id} className="rounded-xl border p-4">
                   <div className="flex items-start justify-between gap-3">
@@ -564,25 +560,22 @@ function ProfileContent({
 
                   {group.status === "PENDING_RESOLUTION" && (
                     <div className="mt-3 flex flex-col gap-3">
-                      <p className="text-sm text-muted-foreground">
-                        Outstanding contributions:{" "}
-                        {group.outstandingContributions}; payouts:{" "}
-                        {group.outstandingPayouts}; processing payments:{" "}
-                        {group.processingPayments}.
-                      </p>
-                      {outstandingCount > 0 ? (
+                      {group.outstandingContributions > 0 && (
                         <p className="text-sm text-muted-foreground">
-                          Resolve these obligations before closing.{" "}
-                          <a
-                            className="font-medium text-primary underline"
-                            href={`mailto:savagekidsteven@email.com?subject=${encodeURIComponent(
-                              `Help resolving ${group.name}`
-                            )}&body=${encodeURIComponent(
-                              `Please help resolve group ${group.name} (${group.id}) before closure.`
-                            )}`}
-                          >
-                            Contact support
-                          </a>
+                          {group.outstandingContributions} unpaid contribution
+                          {group.outstandingContributions === 1 ? "" : "s"} (
+                          {formatNaira(group.outstandingAmount)}) will be
+                          recorded in the group history and will not be
+                          collected by MoneyCircle. The group settles these
+                          between its members.
+                        </p>
+                      )}
+                      {group.processingPayments > 0 ? (
+                        <p className="text-sm text-muted-foreground">
+                          {group.processingPayments} payment
+                          {group.processingPayments === 1 ? " is" : "s are"}{" "}
+                          still being processed. You can archive the group once
+                          they finish.
                         </p>
                       ) : (
                         <>
@@ -598,8 +591,9 @@ function ProfileContent({
                                 }))
                               }
                             />
-                            I confirm there are no unresolved disputes. If there
-                            are disputes, contact support before archiving.
+                            I understand that unpaid contributions and any
+                            disputes are for the group to settle outside
+                            MoneyCircle.
                           </label>
                           <Button
                             type="button"
@@ -613,16 +607,6 @@ function ProfileContent({
                           </Button>
                         </>
                       )}
-                      <a
-                        className="text-sm font-medium text-primary underline"
-                        href={`mailto:savagekidsteven@email.com?subject=${encodeURIComponent(
-                          `Question about ${group.name}`
-                        )}&body=${encodeURIComponent(
-                          `Please contact me about group ${group.name} (${group.id}).`
-                        )}`}
-                      >
-                        Contact support about a dispute
-                      </a>
                     </div>
                   )}
                 </div>

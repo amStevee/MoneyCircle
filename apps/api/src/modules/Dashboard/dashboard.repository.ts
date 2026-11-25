@@ -53,6 +53,7 @@ type DashboardCircleCycles = {
 
 /**
  * Find the savings groups the user belongs to.
+ * Archived groups are finished, so they are not shown on the dashboard.
  */
 async function findDashboardMemberships(
   userId: string,
@@ -61,6 +62,9 @@ async function findDashboardMemberships(
     where: {
       user_id: userId,
       status: "ACTIVE",
+      savings_circle: {
+        status: { not: "ARCHIVED" },
+      },
     },
 
     include: {
@@ -105,7 +109,11 @@ async function findPaidContributions(
 }
 
 /**
- * Find the user's next contribution that is due.
+ * Find the user's unpaid contributions (PENDING + OVERDUE), oldest first.
+ *
+ * Restricted to live groups the user is still an ACTIVE member of, so
+ * contributions of archived groups never show up as "upcoming" or "overdue".
+ * The service decides which of these are overdue vs upcoming.
  */
 async function findUpcomingContributions(
   userId: string,
@@ -115,6 +123,12 @@ async function findUpcomingContributions(
       circle_member: userId,
       status: {
         in: ["PENDING", "OVERDUE"],
+      },
+      savings_circle: {
+        status: { in: ["ACTIVE", "PENDING_RESOLUTION"] },
+        circle_members: {
+          some: { user_id: userId, status: "ACTIVE" },
+        },
       },
     },
 
@@ -138,6 +152,8 @@ async function findUpcomingContributions(
 
 /**
  * Find recent contributions for dashboard activity.
+ * Cancelled rows (future cycles of closed groups / left members) are not
+ * activity, so they are left out instead of showing up as "pending".
  */
 async function findRecentContributions(
   userId: string,
@@ -145,6 +161,7 @@ async function findRecentContributions(
   return prisma.contributions.findMany({
     where: {
       circle_member: userId,
+      status: { not: "CANCELLED" },
     },
 
     include: {

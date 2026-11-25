@@ -28,6 +28,7 @@ router.post("/", (req, res) => groupsController.createGroup(req, res));
 router.post("/invitations/:token/accept", (req, res) => groupsController.acceptInvitation(req, res));
 router.get("/:id/invitations", (req, res) => groupsController.getInvitations(req, res));
 router.post("/:id/invitations", (req, res) => groupsController.inviteMember(req, res));
+router.get("/:id/history", (req, res) => groupsController.getHistory(req, res));
 router.get("/:id", (req, res) => groupsController.getGroup(req, res));
 
 export default router;

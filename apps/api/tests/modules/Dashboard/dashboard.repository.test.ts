@@ -23,6 +23,10 @@ describe("findUpcomingContributions", () => {
       where: {
         circle_member: "user-1",
         status: { in: ["PENDING", "OVERDUE"] },
+        savings_circle: {
+          status: { in: ["ACTIVE", "PENDING_RESOLUTION"] },
+          circle_members: { some: { user_id: "user-1", status: "ACTIVE" } },
+        },
       },
       include: {
         savings_circle: {

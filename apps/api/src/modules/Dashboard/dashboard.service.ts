@@ -7,6 +7,8 @@ import {
   findUpcomingContributions,
   findGroupPaidContributionCounts,
 } from "./dashboard.repository.js";
+import { markOverdueContributions } from "../Contributions/contributions.repository.js";
+import { isContributionOverdue } from "../Contributions/contribution-status.js";
 
 /**
  * Group displayed on the dashboard.
@@ -72,6 +74,14 @@ type DashboardResponse = {
 
 class DashboardService {
   async getDashboard(userId: string): Promise<DashboardResponse> {
+    const now = new Date();
+
+    /**
+     * Persist OVERDUE for anything past its due day first, so every query
+     * below (and every other screen) sees the same status.
+     */
+    await markOverdueContributions({ userId }, now);
+
     /**
      * These queries do not depend on each other,
      * so execute them concurrently.
@@ -82,9 +92,8 @@ class DashboardService {
       findUpcomingContributions(userId),
       findRecentContributions(userId),
     ]);
-    const now = new Date();
     const isOverdue = (contribution: (typeof dueContributions)[number]) =>
-      contribution.status === "OVERDUE" || contribution.due_date < now;
+      isContributionOverdue(contribution, now);
     const upcoming = dueContributions.find(
       (contribution) => !isOverdue(contribution),
     );
@@ -171,7 +180,8 @@ class DashboardService {
           0,
         ),
 
-        activeGroups: groups.length,
+        activeGroups: groups.filter((group) => group.status === "ACTIVE")
+          .length,
 
         groupsCount: groups.length,
 
@@ -190,10 +200,8 @@ class DashboardService {
             groupName: upcoming.savings_circle.name,
             groupId: upcoming.circle_id,
             dueDate: upcoming.due_date,
-            status:
-              upcoming.status === "OVERDUE" || upcoming.due_date < now
-                ? "OVERDUE"
-                : "PENDING",
+            // `upcoming` is by definition not overdue.
+            status: "PENDING" as const,
           }
         : null,
 

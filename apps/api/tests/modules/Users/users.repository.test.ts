@@ -22,6 +22,13 @@ const mockTransaction = {
   sessions: {
     updateMany: jest.fn(),
   },
+  contributions: {
+    updateMany: jest.fn(),
+    findMany: jest.fn(),
+  },
+  audit_log: {
+    createMany: jest.fn(),
+  },
 };
 
 jest.mock("@repo/db", () => ({
@@ -46,6 +53,9 @@ describe("deleteMeRepo", () => {
     mockTransaction.circle_members.updateMany.mockResolvedValue({ count: 0 });
     mockTransaction.sessions.updateMany.mockResolvedValue({ count: 0 });
     mockTransaction.users.update.mockResolvedValue({});
+    mockTransaction.contributions.updateMany.mockResolvedValue({ count: 0 });
+    mockTransaction.contributions.findMany.mockResolvedValue([]);
+    mockTransaction.audit_log.createMany.mockResolvedValue({ count: 0 });
     mockTransaction.notifications.createMany.mockResolvedValue({ count: 0 });
   });
 
@@ -158,5 +168,48 @@ describe("deleteMeRepo", () => {
     expect(mockTransaction.circle_members.updateMany).toHaveBeenCalled();
     expect(mockTransaction.sessions.updateMany).toHaveBeenCalled();
     expect(mockTransaction.users.update).toHaveBeenCalled();
+  });
+});
+
+describe("deleteMeRepo group history", () => {
+  it("records the departure and what the member leaves unpaid in each group's history", async () => {
+    mockPrisma.$transaction.mockImplementation(
+      async (callback: (tx: typeof mockTransaction) => Promise<unknown>) =>
+        callback(mockTransaction),
+    );
+    mockTransaction.users.findUniqueOrThrow.mockResolvedValue({
+      first_name: "Ada",
+      last_name: "Obi",
+    });
+    mockTransaction.savings_circles.findMany.mockResolvedValue([]);
+    mockTransaction.circle_members.findMany.mockResolvedValue([
+      {
+        circle_id: "group-1",
+        savings_circle: { id: "group-1", name: "Savings", owner_id: "owner-1" },
+      },
+    ]);
+    mockTransaction.contributions.findMany.mockResolvedValue([
+      { circle_id: "group-1", cycle_number: 1, amount: 2500 },
+      { circle_id: "group-1", cycle_number: 2, amount: 2500 },
+    ]);
+
+    await deleteMeRepo("user-1");
+
+    expect(mockTransaction.audit_log.createMany).toHaveBeenCalledWith({
+      data: [
+        {
+          user_id: "user-1",
+          action: "MEMBER_LEFT",
+          entity_type: "savings_circle",
+          entity_id: "group-1",
+          metadata: {
+            memberName: "Ada Obi",
+            reason: "ACCOUNT_DELETED",
+            unpaidCycles: [1, 2],
+            unpaidTotal: 5000,
+          },
+        },
+      ],
+    });
   });
 });

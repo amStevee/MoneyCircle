@@ -96,6 +96,11 @@ export default function PaymentsPage() {
                   <p className="text-sm text-muted-foreground">
                     Cycle {c.cycle} · due{" "}
                     {new Date(c.dueDate).toLocaleDateString()}
+                    {c.status === "OVERDUE" && (
+                      <span className="ml-1 font-medium text-destructive">
+                        · Overdue
+                      </span>
+                    )}
                   </p>
                 </div>
                 <Button

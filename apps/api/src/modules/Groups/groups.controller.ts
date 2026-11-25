@@ -71,6 +71,20 @@ class GroupsController {
     }
   }
 
+  async getHistory(req: Request, res: Response) {
+    try {
+      return res
+        .status(200)
+        .json(
+          await groupsService.getHistory(req.params.id as string, req.userId!),
+        );
+    } catch (error: any) {
+      return res
+        .status(statusForError(error?.message))
+        .json({ message: error?.message ?? "Unable to load group history" });
+    }
+  }
+
   async getInvitations(req: Request, res: Response) {
     try {
       const invitations = await groupsService.listInvitations(

@@ -4,6 +4,7 @@ import {
   createGroup,
   findGroupByIdForUser,
   findGroupMemberCounts,
+  findGroupHistory,
   findUserGroups,
   findUserPaidContributionCounts,
   countActiveMembers,
@@ -233,6 +234,21 @@ class GroupsService {
           }
         : null,
     };
+  }
+
+  /** History of a group. Any ACTIVE member of the group may read it. */
+  async getHistory(groupId: string, userId: string) {
+    const group = await findGroupByIdForUser(groupId, userId);
+    if (!group) {
+      throw new Error("Savings group not found");
+    }
+    const entries = await findGroupHistory(groupId);
+    return entries.map((entry) => ({
+      id: entry.id,
+      action: entry.action,
+      details: entry.metadata,
+      createdAt: entry.created_at,
+    }));
   }
 
   async create(

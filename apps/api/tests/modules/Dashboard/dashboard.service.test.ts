@@ -19,6 +19,14 @@ jest.mock("../../../src/modules/Dashboard/dashboard.repository", () => ({
   findGroupPaidContributionCounts: jest.fn(),
 }));
 
+jest.mock(
+  "../../../src/modules/Contributions/contributions.repository",
+  () => ({
+    markOverdueContributions: jest.fn().mockResolvedValue(0),
+    cancelUpcomingContributions: jest.fn(),
+  }),
+);
+
 describe("DashboardService", () => {
   beforeEach(() => {
     jest.clearAllMocks();

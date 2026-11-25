@@ -104,36 +104,38 @@ describe("group member contributions", () => {
     });
   });
 
-  it("creates missing scheduled contributions for both active members when an invitation is accepted", async () => {
-    await acceptInvitationTx({
-      invitationId: "invitation-1",
-      circleId: "group-1",
-      userId: "user-2",
-    });
+  it("creates contributions only for the joining member, skipping cycles already in the past", async () => {
+    // Schedule: cycle 1 = 31 Jan, cycle 2 = 28 Feb, cycle 3 = 31 Mar.
+    // The member joins on 10 Feb, so cycle 1 is already past and must NOT be
+    // created (it would show up as instantly overdue).
+    jest.useFakeTimers().setSystemTime(new Date("2026-02-10T09:00:00.000Z"));
+    try {
+      await acceptInvitationTx({
+        invitationId: "invitation-1",
+        circleId: "group-1",
+        userId: "user-2",
+      });
+    } finally {
+      jest.useRealTimers();
+    }
 
     expect(mockTransaction.circle_members.upsert).toHaveBeenCalled();
-    expect(mockTransaction.circle_members.findMany).toHaveBeenCalledWith({
-      where: { circle_id: "group-1", status: "ACTIVE" },
-      select: { user_id: true },
-    });
     const contributionBatch =
       mockTransaction.contributions.createMany.mock.calls[0]?.[0];
-    expect(contributionBatch).toMatchObject({
-      skipDuplicates: true,
-      data: expect.arrayContaining([
-        expect.objectContaining({
-          circle_member: "user-1",
-          cycle_number: 2,
-          due_date: new Date("2026-02-28T12:00:00.000Z"),
-        }),
-        expect.objectContaining({
-          circle_member: "user-2",
-          cycle_number: 2,
-          due_date: new Date("2026-02-28T12:00:00.000Z"),
-        }),
-      ]),
-    });
-    expect(contributionBatch?.data).toHaveLength(6);
+    expect(contributionBatch.skipDuplicates).toBe(true);
+    expect(contributionBatch.data).toHaveLength(2);
+    expect(contributionBatch.data).toEqual([
+      expect.objectContaining({
+        circle_member: "user-2",
+        cycle_number: 2,
+        due_date: new Date("2026-02-28T12:00:00.000Z"),
+      }),
+      expect.objectContaining({
+        circle_member: "user-2",
+        cycle_number: 3,
+        due_date: new Date("2026-03-31T12:00:00.000Z"),
+      }),
+    ]);
   });
 
   it("does not accept an invitation when the group has no schedule", async () => {

@@ -1,4 +1,5 @@
 import {
+  findTransferStatuses,
   countUnreadNotifications,
   findUserNotifications,
   markAllNotificationsRead,
@@ -30,7 +31,33 @@ function serializeNotification(notification: any): SerializedNotification {
 class NotificationsService {
   async getNotifications(userId: string): Promise<SerializedNotification[]> {
     const notifications = await findUserNotifications(userId);
-    return notifications.map(serializeNotification);
+
+    // Attach the live status of any ownership-transfer request so the UI
+    // only shows Accept/Decline while the request is still PENDING.
+    const transferIdOf = (data: any): string | null =>
+      data?.event === "GROUP_OWNERSHIP_TRANSFER" &&
+      typeof data.transferId === "string"
+        ? data.transferId
+        : null;
+    const transferIds = notifications
+      .map((n: any) => transferIdOf(n.data))
+      .filter((id): id is string => id !== null);
+    const statuses = new Map(
+      (await findTransferStatuses(transferIds)).map((t) => [t.id, t.status]),
+    );
+
+    return notifications.map((notification: any) => {
+      const serialized = serializeNotification(notification);
+      const transferId = transferIdOf(notification.data);
+      if (!transferId) return serialized;
+      return {
+        ...serialized,
+        data: {
+          ...notification.data,
+          transferStatus: statuses.get(transferId) ?? "UNKNOWN",
+        },
+      };
+    });
   }
 
   async getUnreadCount(userId: string): Promise<{ count: number }> {

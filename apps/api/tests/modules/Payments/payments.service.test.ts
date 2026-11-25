@@ -17,6 +17,14 @@ jest.mock("../../../src/modules/Payments/payments.repository", () => ({
   markTransactionPaid: jest.fn(),
 }));
 
+jest.mock(
+  "../../../src/modules/Contributions/contributions.repository",
+  () => ({
+    markOverdueContributions: jest.fn().mockResolvedValue(0),
+    cancelUpcomingContributions: jest.fn(),
+  }),
+);
+
 describe("PaymentsService", () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -78,7 +86,7 @@ describe("PaymentsService", () => {
     }
   });
 
-  it("returns both not-yet-due and past-due contributions with stored due dates", async () => {
+  it("lists overdue contributions first, then the next upcoming one per group", async () => {
     const service = new PaymentsService();
     const now = new Date("2026-03-10T12:00:00.000Z");
     const dueDate = new Date("2026-03-10T23:59:00.000Z");
@@ -114,16 +122,6 @@ describe("PaymentsService", () => {
     try {
       await expect(service.getDueContributions("user-1")).resolves.toEqual([
         {
-          id: "contribution-due",
-          groupId: "circle-1",
-          groupName: "Savings",
-          amount: 2500,
-          currency: "NGN",
-          cycle: 1,
-          dueDate,
-          status: "PENDING",
-        },
-        {
           id: "contribution-past-due",
           groupId: "circle-2",
           groupName: "Travel",
@@ -133,6 +131,46 @@ describe("PaymentsService", () => {
           dueDate: pastDueDate,
           status: "OVERDUE",
         },
+        {
+          id: "contribution-due",
+          groupId: "circle-1",
+          groupName: "Savings",
+          amount: 2500,
+          currency: "NGN",
+          cycle: 1,
+          dueDate,
+          status: "PENDING",
+        },
+      ]);
+    } finally {
+      jest.useRealTimers();
+    }
+  });
+
+  it("only offers the next upcoming cycle per group and keeps a contribution due today pending", async () => {
+    const service = new PaymentsService();
+    jest.useFakeTimers().setSystemTime(new Date("2026-03-10T12:00:00.000Z"));
+    const row = (id: string, cycle: number, due: string, status = "PENDING") => ({
+      id,
+      circle_id: "circle-1",
+      amount: 2500,
+      cycle_number: cycle,
+      due_date: new Date(due),
+      status,
+      savings_circle: { name: "Savings", currency: "NGN" },
+    });
+    jest.mocked(findDueContributions).mockResolvedValue([
+      row("late", 1, "2026-03-01T00:00:00.000Z", "OVERDUE"),
+      row("today", 2, "2026-03-10T00:00:00.000Z"),
+      row("later-1", 3, "2026-04-10T00:00:00.000Z"),
+      row("later-2", 4, "2026-05-10T00:00:00.000Z"),
+    ] as never);
+
+    try {
+      const result = await service.getDueContributions("user-1");
+      expect(result.map((c) => [c.id, c.status])).toEqual([
+        ["late", "OVERDUE"],
+        ["today", "PENDING"],
       ]);
     } finally {
       jest.useRealTimers();

@@ -1,9 +1,13 @@
 import { NotificationsService } from "../../../src/modules/Notifications/notifications.service.js";
-import { findUserNotifications } from "../../../src/modules/Notifications/notifications.repository.js";
+import {
+  findTransferStatuses,
+  findUserNotifications,
+} from "../../../src/modules/Notifications/notifications.repository.js";
 
 jest.mock(
   "../../../src/modules/Notifications/notifications.repository",
   () => ({
+    findTransferStatuses: jest.fn().mockResolvedValue([]),
     countUnreadNotifications: jest.fn(),
     findUserNotifications: jest.fn(),
     markAllNotificationsRead: jest.fn(),
@@ -57,5 +61,32 @@ describe("NotificationsService", () => {
         createdAt,
       },
     ]);
+  });
+
+  it("adds the live transfer status so stale requests can't be answered", async () => {
+    const service = new NotificationsService();
+    const createdAt = new Date("2026-03-01T10:00:00.000Z");
+    jest.mocked(findUserNotifications).mockResolvedValue([
+      {
+        id: "n1",
+        type: "CIRCLE_UPDATE",
+        title: "Group ownership transfer requested",
+        message: "Nominated",
+        data: { event: "GROUP_OWNERSHIP_TRANSFER", transferId: "t1" },
+        read_at: null,
+        created_at: createdAt,
+      },
+    ] as never);
+    jest
+      .mocked(findTransferStatuses)
+      .mockResolvedValue([{ id: "t1", status: "CANCELLED" }]);
+
+    const [result] = await service.getNotifications("user-1");
+
+    expect(result?.data).toEqual({
+      event: "GROUP_OWNERSHIP_TRANSFER",
+      transferId: "t1",
+      transferStatus: "CANCELLED",
+    });
   });
 });

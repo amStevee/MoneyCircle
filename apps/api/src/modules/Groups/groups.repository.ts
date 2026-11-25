@@ -1,6 +1,7 @@
 import { prisma } from "@repo/db";
 import type { Prisma } from "@repo/db";
 import type { CreateGroupInput } from "./group.type.js";
+import { startOfUtcDay } from "../Contributions/contribution-status.js";
 
 type UserGroup = Prisma.circle_membersGetPayload<{
   include: {
@@ -91,6 +92,13 @@ function buildContributionRows(params: {
   frequency: ContributionFrequency;
   startDate: Date;
   totalCycles: number;
+  /**
+   * When set, cycles whose due date is before this moment are skipped.
+   * Used for members who join a group that is already running: they must not
+   * inherit past cycles as instantly-overdue debt. Cycle numbers are kept as
+   * in the schedule so "cycle 5" means the same cycle for everyone.
+   */
+  onlyDueFrom?: Date;
 }) {
   return Array.from({ length: params.totalCycles }, (_, index) => {
     const cycleNumber = index + 1;
@@ -106,7 +114,9 @@ function buildContributionRows(params: {
       ),
       status: "PENDING" as const,
     };
-  });
+  }).filter(
+    (row) => !params.onlyDueFrom || row.due_date >= params.onlyDueFrom,
+  );
 }
 
 async function createContributionRows(
@@ -493,29 +503,41 @@ async function acceptInvitationTx(params: {
       throw new Error("Savings schedule not found");
     }
 
-    const activeMembers = await tx.circle_members.findMany({
-      where: { circle_id: params.circleId, status: "ACTIVE" },
-      select: { user_id: true },
-    });
+    /**
+     * Only the member who just joined needs new rows (everyone else already
+     * has theirs), and only for cycles that are not already in the past.
+     */
     await createContributionRows(
       tx,
-      activeMembers.flatMap(({ user_id }) =>
-        buildContributionRows({
-          circleId: params.circleId,
-          userId: user_id,
-          amount: schedule.contribution_amount,
-          frequency: schedule.frequency,
-          startDate: schedule.start_date,
-          totalCycles: schedule.total_cycles,
-        }),
-      ),
+      buildContributionRows({
+        circleId: params.circleId,
+        userId: params.userId,
+        amount: schedule.contribution_amount,
+        frequency: schedule.frequency,
+        startDate: schedule.start_date,
+        totalCycles: schedule.total_cycles,
+        onlyDueFrom: startOfUtcDay(),
+      }),
     );
 
     return member;
   });
 }
 
+/**
+ * Group history: audit entries recorded against a savings circle
+ * (members leaving, the group being closed and what it left unpaid).
+ */
+async function findGroupHistory(groupId: string) {
+  return prisma.audit_log.findMany({
+    where: { entity_type: "savings_circle", entity_id: groupId },
+    orderBy: { created_at: "desc" },
+    select: { id: true, action: true, metadata: true, created_at: true },
+  });
+}
+
 export {
+  findGroupHistory,
   type GroupMemberCount,
   type UserContributionCount,
   type CircleMember,

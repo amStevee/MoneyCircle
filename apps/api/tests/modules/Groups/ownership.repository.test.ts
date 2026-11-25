@@ -17,7 +17,11 @@ const mockTx = {
   },
   circle_members: {
     findUnique: jest.fn(),
+    findMany: jest.fn(),
     update: jest.fn(),
+  },
+  audit_log: {
+    create: jest.fn(),
   },
   group_ownership_transfers: {
     findFirst: jest.fn(),
@@ -33,7 +37,9 @@ const mockTx = {
   },
   contributions: {
     count: jest.fn(),
+    findMany: jest.fn(),
     groupBy: jest.fn(),
+    updateMany: jest.fn(),
   },
   payouts: {
     count: jest.fn(),
@@ -120,6 +126,10 @@ describe("ownership repository", () => {
     mockTx.notifications.create.mockResolvedValue({});
     mockTx.notifications.createMany.mockResolvedValue({ count: 0 });
     mockTx.contributions.count.mockResolvedValue(0);
+    mockTx.contributions.updateMany.mockResolvedValue({ count: 0 });
+    mockTx.contributions.findMany.mockResolvedValue([]);
+    mockTx.circle_members.findMany.mockResolvedValue([]);
+    mockTx.audit_log.create.mockResolvedValue({});
     mockTx.payouts.count.mockResolvedValue(0);
     mockTx.payment_transactions.count.mockResolvedValue(0);
     mockTx.group_ownership_transfers.findMany.mockResolvedValue([]);
@@ -528,6 +538,14 @@ describe("ownership repository", () => {
           expect.objectContaining({ user_id: "nominee-2" }),
         ]),
       });
+      expect(mockTx.contributions.updateMany).toHaveBeenCalledWith({
+        where: {
+          status: "PENDING",
+          due_date: { gte: expect.any(Date) },
+          circle_id: "group-1",
+        },
+        data: { status: "CANCELLED" },
+      });
       expect(mockTx.savings_circles.update).toHaveBeenCalledWith({
         where: { id: "group-1" },
         data: { status: "PENDING_RESOLUTION" },
@@ -576,35 +594,105 @@ describe("ownership repository", () => {
       },
     );
 
-    it.each([
-      ["unsettled contributions", "contributions", 1],
-      ["unsettled payouts", "payouts", 1],
-      ["processing payments", "payment_transactions", 1],
-    ])(
-      "refuses closure with %s outstanding",
-      async (_condition, model, count) => {
-        mockTx.savings_circles.findUnique.mockResolvedValue({
-          ...activeGroup,
-          status: "PENDING_RESOLUTION",
-        });
-        if (model === "contributions") {
-          mockTx.contributions.count.mockResolvedValue(count);
-        } else if (model === "payouts") {
-          mockTx.payouts.count.mockResolvedValue(count);
-        } else {
-          mockTx.payment_transactions.count.mockResolvedValue(count);
-        }
+    it("refuses closure only while payments are in flight", async () => {
+      mockTx.savings_circles.findUnique.mockResolvedValue({
+        ...activeGroup,
+        status: "PENDING_RESOLUTION",
+      });
+      mockTx.payment_transactions.count.mockResolvedValue(1);
 
-        await expect(
-          closeResolvedGroup("group-1", "owner-1", true),
-        ).rejects.toThrow(
-          "Resolve all outstanding contributions, payouts, and processing payments before closing this group",
-        );
-        expect(mockTx.savings_circles.update).not.toHaveBeenCalled();
-      },
-    );
+      await expect(
+        closeResolvedGroup("group-1", "owner-1", true),
+      ).rejects.toThrow("Payments are still being processed for this group");
+      expect(mockTx.savings_circles.update).not.toHaveBeenCalled();
+      expect(mockTx.audit_log.create).not.toHaveBeenCalled();
+    });
 
-    it("archives the group when confirmed and all obligations are settled", async () => {
+    it("archives the group even with unpaid contributions and records them in the group history", async () => {
+      mockTx.savings_circles.findUnique.mockResolvedValue({
+        ...activeGroup,
+        status: "PENDING_RESOLUTION",
+      });
+      mockTx.contributions.findMany.mockResolvedValue([
+        {
+          circle_member: "left-1",
+          cycle_number: 1,
+          amount: 2500,
+          due_date: new Date("2026-01-01T00:00:00.000Z"),
+          users: { first_name: "Deleted", last_name: "User" },
+        },
+        {
+          circle_member: "left-1",
+          cycle_number: 2,
+          amount: 2500,
+          due_date: new Date("2026-02-01T00:00:00.000Z"),
+          users: { first_name: "Deleted", last_name: "User" },
+        },
+        {
+          circle_member: "active-1",
+          cycle_number: 2,
+          amount: 2500,
+          due_date: new Date("2026-02-01T00:00:00.000Z"),
+          users: { first_name: "Ada", last_name: "Obi" },
+        },
+      ]);
+      mockTx.circle_members.findMany.mockResolvedValue([
+        { user_id: "left-1", status: "LEFT" },
+        { user_id: "active-1", status: "ACTIVE" },
+      ]);
+      mockTx.payouts.count.mockResolvedValue(1);
+
+      await expect(
+        closeResolvedGroup("group-1", "owner-1", true),
+      ).resolves.toBeUndefined();
+
+      // future cycles cancelled, then only in-flight payments are checked
+      expect(mockTx.contributions.updateMany).toHaveBeenCalledWith({
+        where: {
+          status: "PENDING",
+          due_date: { gte: expect.any(Date) },
+          circle_id: "group-1",
+        },
+        data: { status: "CANCELLED" },
+      });
+      expect(mockTx.contributions.count).not.toHaveBeenCalled();
+
+      expect(mockTx.audit_log.create).toHaveBeenCalledWith({
+        data: {
+          user_id: "owner-1",
+          action: "GROUP_CLOSED",
+          entity_type: "savings_circle",
+          entity_id: "group-1",
+          metadata: {
+            unpaidContributions: [
+              {
+                userId: "left-1",
+                name: "Deleted User",
+                memberStatus: "LEFT",
+                cycles: [1, 2],
+                amount: 5000,
+              },
+              {
+                userId: "active-1",
+                name: "Ada Obi",
+                memberStatus: "ACTIVE",
+                cycles: [2],
+                amount: 2500,
+              },
+            ],
+            unpaidTotal: 7500,
+            unsettledPayouts: 1,
+          },
+        },
+      });
+      expect(mockTx.savings_circles.update).toHaveBeenCalledWith({
+        where: { id: "group-1" },
+        data: { status: "ARCHIVED" },
+      });
+      expect(mockTx.$queryRaw).toHaveBeenCalled();
+    });
+
+    it("archives a fully settled group and still writes a history entry", async () => {
       mockTx.savings_circles.findUnique.mockResolvedValue({
         ...activeGroup,
         status: "PENDING_RESOLUTION",
@@ -614,28 +702,17 @@ describe("ownership repository", () => {
         closeResolvedGroup("group-1", "owner-1", true),
       ).resolves.toBeUndefined();
 
-      expect(mockTx.contributions.count).toHaveBeenCalledWith(
-        expect.objectContaining({
-          where: {
-            circle_id: "group-1",
-            status: { in: ["PENDING", "OVERDUE", "FAILED"] },
+      expect(mockTx.audit_log.create).toHaveBeenCalledWith({
+        data: expect.objectContaining({
+          action: "GROUP_CLOSED",
+          metadata: {
+            unpaidContributions: [],
+            unpaidTotal: 0,
+            unsettledPayouts: 0,
           },
         }),
-      );
-      expect(mockTx.payouts.count).toHaveBeenCalledWith(
-        expect.objectContaining({
-          where: {
-            circle_id: "group-1",
-            status: { in: ["PENDING", "PROCESSING", "FAILED"] },
-          },
-        }),
-      );
-      expect(mockTx.payment_transactions.count).toHaveBeenCalled();
-      expect(mockTx.savings_circles.update).toHaveBeenCalledWith({
-        where: { id: "group-1" },
-        data: { status: "ARCHIVED" },
       });
-      expect(mockTx.$queryRaw).toHaveBeenCalled();
+      expect(mockTx.savings_circles.update).toHaveBeenCalled();
     });
   });
 
@@ -671,6 +748,7 @@ describe("ownership repository", () => {
           eligibleMembers: [],
           pendingTransfer: null,
           outstandingContributions: 0,
+          outstandingAmount: 0,
           outstandingPayouts: 0,
           processingPayments: 0,
         },
@@ -768,6 +846,7 @@ describe("ownership repository", () => {
             createdAt: new Date("2026-01-02T00:00:00.000Z"),
           },
           outstandingContributions: 2,
+          outstandingAmount: 0,
           outstandingPayouts: 1,
           processingPayments: 2,
         },

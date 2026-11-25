@@ -163,7 +163,14 @@ async function findUserTransaction(
 
 /**
  * Find outstanding contributions for a user.
- * Bug: does not transition PENDING contributions to OVERDUE if past due date. This is handled in the service layer.
+ *
+ * Only contributions the user can still act on are returned: the group must be
+ * live (ACTIVE, or PENDING_RESOLUTION while it winds down - overdue money is
+ * still owed) and the user must still be an ACTIVE member. Rows from archived
+ * groups or groups the user left used to leak into the list forever.
+ *
+ * Which of these are overdue vs upcoming is decided in the service layer with
+ * the shared helpers in Contributions/contribution-status.ts.
  */
 async function findDueContributions(
   userId: string,
@@ -173,6 +180,12 @@ async function findDueContributions(
       circle_member: userId,
       status: {
         in: ["PENDING", "OVERDUE"],
+      },
+      savings_circle: {
+        status: { in: ["ACTIVE", "PENDING_RESOLUTION"] },
+        circle_members: {
+          some: { user_id: userId, status: "ACTIVE" },
+        },
       },
     },
     orderBy: {

@@ -71,7 +71,22 @@ async function markAllNotificationsRead(userId: string): Promise<void> {
   });
 }
 
+/**
+ * Current status of ownership-transfer requests, so notifications can stop
+ * offering Accept/Decline once a request is no longer pending.
+ */
+async function findTransferStatuses(
+  transferIds: string[],
+): Promise<{ id: string; status: string }[]> {
+  if (!transferIds.length) return [];
+  return prisma.group_ownership_transfers.findMany({
+    where: { id: { in: transferIds } },
+    select: { id: true, status: true },
+  });
+}
+
 export {
+  findTransferStatuses,
   countUnreadNotifications,
   findUserNotifications,
   markAllNotificationsRead,

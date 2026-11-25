@@ -1,6 +1,11 @@
 import { prisma } from "@repo/db";
+import {
+  inFlightPaymentWhere,
+  outstandingContributionWhere,
+  startOfNextUtcDay,
+} from "../Contributions/contribution-status.js";
+import { cancelUpcomingContributions } from "../Contributions/contributions.repository.js";
 
-const UNSETTLED_CONTRIBUTION_STATUSES = ["PENDING", "OVERDUE", "FAILED"] as const;
 const UNSETTLED_PAYOUT_STATUSES = ["PENDING", "PROCESSING", "FAILED"] as const;
 
 type OwnedGroup = {
@@ -15,6 +20,8 @@ type OwnedGroup = {
     createdAt: Date;
   } | null;
   outstandingContributions: number;
+  /** Total unpaid amount across those contributions (informational). */
+  outstandingAmount: number;
   outstandingPayouts: number;
   processingPayments: number;
 };
@@ -62,9 +69,10 @@ async function listOwnedGroupsForResolution(
         by: ["circle_id"],
         where: {
           circle_id: { in: circleIds },
-          status: { in: [...UNSETTLED_CONTRIBUTION_STATUSES] },
+          ...outstandingContributionWhere(),
         },
         _count: { _all: true },
+        _sum: { amount: true },
       }),
       prisma.payouts.groupBy({
         by: ["circle_id"],
@@ -76,10 +84,14 @@ async function listOwnedGroupsForResolution(
       }),
       prisma.payment_transactions.findMany({
         where: {
-          status: { in: ["PENDING", "PROCESSING"] },
-          OR: [
-            { contribution: { is: { circle_id: { in: circleIds } } } },
-            { payout: { is: { circle_id: { in: circleIds } } } },
+          AND: [
+            inFlightPaymentWhere(),
+            {
+              OR: [
+                { contribution: { is: { circle_id: { in: circleIds } } } },
+                { payout: { is: { circle_id: { in: circleIds } } } },
+              ],
+            },
           ],
         },
         select: {
@@ -93,6 +105,12 @@ async function listOwnedGroupsForResolution(
     contributionCounts.map(({ circle_id, _count }) => [
       circle_id,
       _count._all,
+    ]),
+  );
+  const amountByCircle = new Map(
+    contributionCounts.map(({ circle_id, _sum }) => [
+      circle_id,
+      Number(_sum?.amount ?? 0),
     ]),
   );
   const payoutsByCircle = new Map(
@@ -112,9 +130,15 @@ async function listOwnedGroupsForResolution(
 
   return groups.map((group) => {
     const latestTransfer = group.ownership_transfers[0];
+    // A decline only counts against the CURRENT owner's requests. If
+    // ownership already changed hands, earlier declines were answers to
+    // someone else and must not lock the nominee out forever.
     const declinedNominees = new Set(
       group.ownership_transfers
-        .filter(({ status }) => status === "DECLINED")
+        .filter(
+          ({ status, from_user_id }) =>
+            status === "DECLINED" && from_user_id === group.owner_id,
+        )
         .map(({ to_user_id }) => to_user_id),
     );
 
@@ -143,6 +167,7 @@ async function listOwnedGroupsForResolution(
           : null,
       outstandingContributions:
         contributionsByCircle.get(group.id) ?? 0,
+      outstandingAmount: amountByCircle.get(group.id) ?? 0,
       outstandingPayouts: payoutsByCircle.get(group.id) ?? 0,
       processingPayments: paymentsByCircle.get(group.id) ?? 0,
     };
@@ -203,6 +228,7 @@ async function nominateGroupOwner(
     const priorDecline = await tx.group_ownership_transfers.findFirst({
       where: {
         circle_id: groupId,
+        from_user_id: ownerId,
         to_user_id: nomineeId,
         status: "DECLINED",
       },
@@ -461,6 +487,14 @@ async function moveGroupToPendingResolution(
       });
     }
 
+    // The group is winding down: future cycles will never be collected, so
+    // stop showing them as "upcoming". Due-today, overdue and paid rows are
+    // kept - those are real obligations/records.
+    await cancelUpcomingContributions(tx, {
+      circleId: groupId,
+      from: startOfNextUtcDay(),
+    });
+
     await tx.savings_circles.update({
       where: { id: groupId },
       data: { status: "PENDING_RESOLUTION" },
@@ -490,12 +524,50 @@ async function closeResolvedGroup(
       throw new Error("Only groups pending resolution can be closed");
     }
 
-    const [contributions, payouts, processingPayments] = await Promise.all([
-      tx.contributions.count({
-        where: {
-          circle_id: groupId,
-          status: { in: [...UNSETTLED_CONTRIBUTION_STATUSES] },
+    const now = new Date();
+
+    // Safety net for groups that entered PENDING_RESOLUTION before upcoming
+    // cycles were cancelled at that step.
+    await cancelUpcomingContributions(tx, {
+      circleId: groupId,
+      from: startOfNextUtcDay(now),
+    });
+
+    // THE ONLY HARD BLOCK: money that is mid-flight. Archiving now could
+    // leave a payment that can no longer be attributed to anything.
+    // Unpaid contributions/payouts never block - MoneyCircle is a tracker,
+    // the group settles those itself. They are recorded in the group
+    // history below instead.
+    const processingPayments = await tx.payment_transactions.count({
+      where: {
+        AND: [
+          inFlightPaymentWhere(now),
+          {
+            OR: [
+              { contribution: { is: { circle_id: groupId } } },
+              { payout: { is: { circle_id: groupId } } },
+            ],
+          },
+        ],
+      },
+    });
+    if (processingPayments) {
+      throw new Error(
+        "Payments are still being processed for this group. Try again once they finish",
+      );
+    }
+
+    const [unsettled, unsettledPayouts] = await Promise.all([
+      tx.contributions.findMany({
+        where: { circle_id: groupId, ...outstandingContributionWhere(now) },
+        select: {
+          circle_member: true,
+          cycle_number: true,
+          amount: true,
+          due_date: true,
+          users: { select: { first_name: true, last_name: true } },
         },
+        orderBy: [{ due_date: "asc" }, { cycle_number: "asc" }],
       }),
       tx.payouts.count({
         where: {
@@ -503,21 +575,58 @@ async function closeResolvedGroup(
           status: { in: [...UNSETTLED_PAYOUT_STATUSES] },
         },
       }),
-      tx.payment_transactions.count({
-        where: {
-          status: { in: ["PENDING", "PROCESSING"] },
-          OR: [
-            { contribution: { is: { circle_id: groupId } } },
-            { payout: { is: { circle_id: groupId } } },
-          ],
-        },
-      }),
     ]);
-    if (contributions || payouts || processingPayments) {
-      throw new Error(
-        "Resolve all outstanding contributions, payouts, and processing payments before closing this group",
-      );
+    const memberships = unsettled.length
+      ? await tx.circle_members.findMany({
+          where: {
+            circle_id: groupId,
+            user_id: { in: [...new Set(unsettled.map((c) => c.circle_member))] },
+          },
+          select: { user_id: true, status: true },
+        })
+      : [];
+    const statusByUser = new Map(
+      memberships.map(({ user_id, status }) => [user_id, status]),
+    );
+
+    const unpaidByMember = new Map<
+      string,
+      {
+        userId: string;
+        name: string;
+        memberStatus: string;
+        cycles: number[];
+        amount: number;
+      }
+    >();
+    for (const row of unsettled) {
+      const entry = unpaidByMember.get(row.circle_member) ?? {
+        userId: row.circle_member,
+        name: `${row.users.first_name} ${row.users.last_name}`,
+        memberStatus: statusByUser.get(row.circle_member) ?? "UNKNOWN",
+        cycles: [],
+        amount: 0,
+      };
+      entry.cycles.push(row.cycle_number);
+      entry.amount += Number(row.amount);
+      unpaidByMember.set(row.circle_member, entry);
     }
+    const unpaid = [...unpaidByMember.values()];
+
+    // Group history entry: the permanent record of what was left unsettled.
+    await tx.audit_log.create({
+      data: {
+        user_id: ownerId,
+        action: "GROUP_CLOSED",
+        entity_type: "savings_circle",
+        entity_id: groupId,
+        metadata: {
+          unpaidContributions: unpaid,
+          unpaidTotal: unpaid.reduce((sum, m) => sum + m.amount, 0),
+          unsettledPayouts,
+        },
+      },
+    });
 
     await tx.savings_circles.update({
       where: { id: groupId },

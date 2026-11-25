@@ -71,6 +71,7 @@ export interface ApiOwnershipResolutionGroup {
     createdAt: string
   } | null
   outstandingContributions: number
+  outstandingAmount: number
   outstandingPayouts: number
   processingPayments: number
 }
@@ -148,6 +149,17 @@ export const apiClient = {
       .then((r) => r.data),
   moveGroupToPendingResolution: (groupId: string) =>
     api.post(`/groups/${groupId}/pending-resolution`).then((r) => r.data),
+  groupHistory: (groupId: string) =>
+    api
+      .get<
+        {
+          id: string
+          action: string
+          details: unknown
+          createdAt: string
+        }[]
+      >(`/groups/${groupId}/history`)
+      .then((r) => r.data),
   closeResolvedGroup: (groupId: string) =>
     api
       .post(`/groups/${groupId}/close`, { confirmsNoDisputes: true })

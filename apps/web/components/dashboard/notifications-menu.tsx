@@ -44,6 +44,15 @@ export function NotificationsMenu() {
     {},
   )
 
+  function getTransferStatus(data: unknown): string | null {
+    if (typeof data === "object" && data !== null && "transferStatus" in data) {
+      return typeof data.transferStatus === "string"
+        ? data.transferStatus
+        : null
+    }
+    return null
+  }
+
   function getTransferId(data: unknown): string | null {
     if (
       typeof data === "object" &&
@@ -191,6 +200,9 @@ export function NotificationsMenu() {
               ? transferResponses[transferId]
               : undefined
             const isResponding = transferId === respondingTransferId
+            const transferStatus = getTransferStatus(notification.data)
+            // Only a still-pending request can be answered.
+            const canRespond = transferStatus === "PENDING"
 
             return (
               <div
@@ -221,7 +233,16 @@ export function NotificationsMenu() {
                   </span>
                 </button>
 
-                {transferId && !response && (
+                {transferId && !response && !canRespond && transferStatus && (
+                  <p className="mt-2 text-xs text-muted-foreground">
+                    This request is no longer open
+                    {transferStatus !== "UNKNOWN"
+                      ? ` (${transferStatus.toLowerCase()})`
+                      : ""}
+                    .
+                  </p>
+                )}
+                {transferId && !response && canRespond && (
                   <div className="mt-2 flex gap-2">
                     <button
                       type="button"

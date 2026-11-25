@@ -10,6 +10,8 @@ import {
   findUserTransactions,
   markTransactionPaid,
 } from "./payments.repository.js";
+import { markOverdueContributions } from "../Contributions/contributions.repository.js";
+import { isContributionOverdue } from "../Contributions/contribution-status.js";
 
 type SerializedTransaction = {
   id: string;
@@ -170,12 +172,33 @@ class PaymentsService {
     };
   }
 
+  /**
+   * Contributions the member should see on the Payments page:
+   *  - every overdue contribution, and
+   *  - only the NEXT upcoming contribution of each group.
+   *
+   * Every cycle of a group is created as a PENDING row up front, so returning
+   * all PENDING rows showed (and offered "Pay") for cycles months away.
+   */
   async getDueContributions(
     userId: string,
   ): Promise<DueContributionResponse[]> {
+    const now = new Date();
+    await markOverdueContributions({ userId }, now);
+
+    // Repository returns rows ordered by due_date ascending.
     const contributions = await findDueContributions(userId);
 
-    return contributions.map((contribution) => ({
+    const overdue = contributions.filter((c) => isContributionOverdue(c, now));
+    const nextPerGroup = new Map<string, (typeof contributions)[number]>();
+    for (const contribution of contributions) {
+      if (isContributionOverdue(contribution, now)) continue;
+      if (!nextPerGroup.has(contribution.circle_id)) {
+        nextPerGroup.set(contribution.circle_id, contribution);
+      }
+    }
+
+    return [...overdue, ...nextPerGroup.values()].map((contribution) => ({
       id: contribution.id,
       groupId: contribution.circle_id,
       groupName: contribution.savings_circle.name,
@@ -183,7 +206,7 @@ class PaymentsService {
       currency: contribution.savings_circle.currency,
       cycle: contribution.cycle_number,
       dueDate: contribution.due_date,
-      status: contribution.status === "OVERDUE" || contribution.due_date < new Date() ? "OVERDUE" : "PENDING",
+      status: isContributionOverdue(contribution, now) ? "OVERDUE" : "PENDING",
     }));
   }
 

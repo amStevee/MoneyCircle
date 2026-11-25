@@ -27,6 +27,7 @@ function ownershipErrorStatus(message: string): number {
     message.includes("no longer") ||
     message.includes("must be") ||
     message.includes("Resolve all outstanding") ||
+    message.includes("still being processed") ||
     message.includes("Only active groups") ||
     message.includes("Only groups pending")
   ) {

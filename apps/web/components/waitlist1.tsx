@@ -59,8 +59,8 @@ const Waitlist1 = ({ className }: Waitlist1Props) => {
           Join the Waitlist
         </h2>
         <p className="text-md mx-auto max-w-xl text-center text-muted-foreground lg:text-lg">
-          Help shape the futrue of digital Ajo. Get early access, product
-          updates, and oppurtunities to provied feedback before public launch
+          Help shape the future of digital Ajo. Get early access, product
+          updates, and opportunities to provide feedback before the public launch.
         </p>
         <div className="relative z-20 mt-10 flex w-full max-w-md items-center gap-3 rounded-full p-1">
           <Input

@@ -41,7 +41,7 @@ const defaultProps: Feature17Props = {
     {
       icon: <Quote className="size-5" />,
       title: "",
-      description: '"keeping track of who has paid is always difficult"',
+      description: '"Keeping track of who has paid is always difficult."',
     },
     {
       icon: <Quote className="size-5" />,

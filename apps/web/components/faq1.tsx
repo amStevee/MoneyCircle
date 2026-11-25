@@ -26,19 +26,19 @@ const Faq1 = ({
       id: "faq-1",
       question: "What is Ajo?",
       answer:
-        "Ajo is a traditional rotating savings scheme where a group of people agrees to contribute a fixed amount at regular intervals (daily, weekly, or monthly). Each contribution period, one participant recevives the pooled amount until everyone has had a turn",
+        "Ajo is a traditional rotating savings scheme where a group of people agrees to contribute a fixed amount at regular intervals (daily, weekly, or monthly). Each contribution period, one participant receives the pooled amount until everyone has had a turn.",
     },
     {
       id: "faq-2",
-      question: "Who is Money circle for?",
+      question: "Who is Money Circle for?",
       answer:
-        "Money circle is primarily for people who want to save money together in a structured, trusted group",
+        "Money Circle is primarily for people who want to save money together in a structured, trusted group.",
     },
     {
       id: "faq-3",
-      question: "Is my money stored in Money Circle",
+      question: "Is my money stored in Money Circle?",
       answer:
-        "No. Money circle stores the financial records, not the actual money",
+        "No. Money Circle stores the financial records, not the actual money.",
     },
     {
       id: "faq-4",
@@ -48,15 +48,15 @@ const Faq1 = ({
     },
     {
       id: "faq-5",
-      question: "When will Money Circle lunch?",
+      question: "When will Money Circle launch?",
       answer:
-        "At the moment Money Circle is in it's Beta phase and will be released when it's deemed fit by the developer",
+        "At the moment, Money Circle is in its beta phase and will be released when it is deemed ready by the developer.",
     },
     {
       id: "faq-6",
-      question: "can i create multiple groups?",
+      question: "Can I create multiple groups?",
       answer:
-        "Yes. Money Circle support the creation a nd managing of multiple groups.",
+        "Yes. Money Circle supports the creation and management of multiple groups.",
     },
   ],
   className,

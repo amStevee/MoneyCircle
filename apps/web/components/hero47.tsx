@@ -47,8 +47,8 @@ const Hero47 = ({
 }: Hero47Props) => {
   return (
     <section className={cn("bg-background py-5 lg:py-5", className)}>
-      <div className="container flex flex-col items-center gap-10 lg:my-0 lg:flex-row">
-        <div className="flex flex-col gap-7 lg:w-2/3">
+      <div className="container grid grid-cols-1 items-center gap-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)] lg:gap-12">
+        <div className="flex flex-col gap-7">
           <h2 className="text-5xl font-semibold text-foreground md:text-5xl lg:text-8xl">
             <span>{heading}</span>
             <span className="text-muted-foreground">{subheading}</span>
@@ -95,7 +95,7 @@ const Hero47 = ({
             alt="iphone"
           />
         </div> */}
-        <div className="relative z-10 w-full max-w-[260px] sm:max-w-[320px] lg:w-[450px] lg:max-w-[450px]">
+        <div className="relative z-10 mx-auto w-full max-w-[260px] sm:max-w-[320px] lg:max-w-[400px]">
           {/* Dashboard */}
           <div className="absolute top-[0.93%] left-[14.9%] z-0 h-full w-[68.23%] overflow-hidden rounded-[30px]">
             <img

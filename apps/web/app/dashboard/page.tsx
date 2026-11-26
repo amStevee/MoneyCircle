@@ -25,7 +25,13 @@ export default function DashboardPage() {
       apiClient
         .dashboard()
         .then(setData)
-        .catch(() => {})
+        .catch((err) =>
+          console.error(
+            "Dashboard failed to load:",
+            err?.response?.status,
+            err?.response?.data ?? err?.message
+          )
+        )
   }, [token, router, isHydrated])
 
   if (!isHydrated || !token || !user) return null

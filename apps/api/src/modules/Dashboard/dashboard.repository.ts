@@ -161,7 +161,8 @@ async function findRecentContributions(
   return prisma.contributions.findMany({
     where: {
       circle_member: userId,
-      status: { not: "CANCELLED" },
+      status: { in: ["PAID", "FAILED"], not: "CANCELLED" },
+      // status: { not: "CANCELLED" },
     },
 
     include: {

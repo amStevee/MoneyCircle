@@ -4,12 +4,9 @@ CREATE TYPE "Group_Status" AS ENUM ('INVITED', 'ACTIVE', 'SUSPENDED', 'LEFT', 'R
 -- CreateEnum
 CREATE TYPE "Ownership_Transfer_Status" AS ENUM ('PENDING', 'ACCEPTED', 'DECLINED', 'CANCELLED');
 
--- Preserve existing status values when moving the group column to its own enum.
-ALTER TABLE "savings_circles" RENAME COLUMN "status" TO "status_legacy";
-ALTER TABLE "savings_circles" ADD COLUMN "status" "Group_Status" NOT NULL DEFAULT 'ACTIVE';
-UPDATE "savings_circles"
-SET "status" = "status_legacy"::text::"Group_Status";
-ALTER TABLE "savings_circles" DROP COLUMN "status_legacy";
+-- AlterTable
+ALTER TABLE "savings_circles" DROP COLUMN "status",
+ADD COLUMN     "status" "Group_Status" NOT NULL DEFAULT 'ACTIVE';
 
 -- CreateTable
 CREATE TABLE "group_ownership_transfers" (
